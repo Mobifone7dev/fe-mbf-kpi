@@ -57,10 +57,6 @@ const menuCategory = [
     label: "Trang chủ",
     link: "/",
   },
-  {
-    label: "Dashboard kpi",
-    link: "/dashboard-kpi",
-  },
 
 ];
 

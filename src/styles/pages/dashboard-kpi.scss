@@ -1,0 +1,50 @@
+.table-kpi{
+    table{
+        .table-head {
+           th{
+            border: thin solid;
+            border-width: 1px;
+            border-color: #a1988c;
+            background-color: burlywood;
+           }
+            th:nth-child(1){
+                width: 40px;
+            }
+            th:nth-child(2){
+                width: 400px;
+            }
+            th:nth-child(3){
+                width: 200px;
+            }
+            th:nth-child(3){
+                width: 200px;
+            }
+            th:nth-child(4),
+            th:nth-child(5),
+            th:nth-child(6),
+            th:nth-child(7),
+            th:nth-child(8),
+            th:nth-child(9),
+            th:nth-child(10),
+            th:nth-child(11)
+            {
+                width: 50px;
+            }
+            
+        }
+        tbody{
+            tr{
+                td{
+                    border: thin solid;
+                    border-width: 1px;
+                    border-color: #a1988c;
+                    background-color: burlywood;
+                   }
+            }
+        }
+
+    }
+    .text-bold {
+        font-weight: 600;
+    }
+}

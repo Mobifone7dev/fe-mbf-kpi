@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+
+
 @import "variables";
 @import "fonts";
 @import "mbf-icon";
@@ -18,6 +20,8 @@
 @import "./pages/check_isdn.scss";
 @import "./pages/recruitment.scss";
 @import "./pages/chat.scss";
+@import "./pages/dashboard-kpi.scss";
+
 
 @tailwind base;
 @tailwind components;
