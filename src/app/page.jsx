@@ -74,26 +74,34 @@ const Page = () => {
             <tr className="table-head">
               <th>STT</th>
               <th>Nhiệm vụ</th>
-              <th>Tên KPI</th>
+              <th>DVT</th>
+              <th>Nội dung</th>
               <th>KHO</th>
               <th>DLA</th>
               <th>GLA</th>
               <th>PYE</th>
               <th>DNO</th>
               <th>KON</th>
+              <th>TTKDCNS</th>
               <th>Tổng</th>
+              <th>Đ/v phụ trách</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>I</td>
-              <td colSpan={10}>
+              <td className="text-sub1">I</td>
+              <td className="text-sub1" colSpan={13}>
                 <span className="text-bold">Viễn cảnh tài chính</span>
               </td>
             </tr>
             <tr>
-              <td rowSpan={3}>1</td>
-              <td rowSpan={3}>Doanh thu hạ tầng số</td>
+              <td rowSpan={4} className="text-sub2">
+                1
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu hạ tầng số
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
               <td>Kế hoạch tháng</td>
               <td></td>
               <td></td>
@@ -102,8 +110,400 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowSpan={4} className="text-sub2">
+                2
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu MobiFiber
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>DVVT</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowSpan={4} className="text-sub2">
+                3
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu Giải pháp số/Nền tảng số (*)
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>CNS</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td rowSpan={4} className="text-sub3">
+                3.1
+              </td>
+              <td rowSpan={4} className="text-sub3">
+                Doanh thu bán Mass
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>CNS</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowSpan={4} className="text-sub3">
+                3.2
+              </td>
+              <td rowSpan={4} className="text-sub3">
+                Doanh thu dự án
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>CNS</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td rowSpan={4} className="text-sub2">
+                4
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu NDS Platform
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>CNS</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowSpan={4} className="text-sub2">
+                5
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu thương hiệu giới trẻ
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>DVVT</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td rowSpan={4} className="text-sub2">
+                6
+              </td>
+              <td rowSpan={4} className="text-sub2">
+                Doanh thu GPS không gian mới
+              </td>
+              <td rowSpan={4}>triệu đồng</td>
+              <td>Kế hoạch tháng</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td rowSpan={4}>CNS</td>
+            </tr>
+            <tr>
+              <td>Thực hiện lũy kế</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>%HTKH lũy kế </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Ước %HTKH tháng</td>
               <td></td>
               <td></td>
               <td></td>
