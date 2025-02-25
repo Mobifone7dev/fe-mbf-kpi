@@ -1,7 +1,7 @@
 import { FC, Suspense } from "react";
 import TopBarProgress from "react-topbar-progress-indicator";
 
-const SuspensedView: FC = ({ children }) => {
+const SuspensedView: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   TopBarProgress.config({
     barColors: {
       "0": "#1a53ff",
