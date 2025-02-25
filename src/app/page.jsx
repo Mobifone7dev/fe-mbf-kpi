@@ -82,7 +82,6 @@ const Page = () => {
               <th className="bg-green-secondary">PYE</th>
               <th className="bg-green-secondary">DNO</th>
               <th className="bg-green-secondary">KON</th>
-              <th className="bg-green-secondary">TTKDCNS</th>
               <th className="bg-green-secondary">Tổng</th>
               <th className="bg-green-secondary">Đ/v phụ trách</th>
             </tr>
@@ -90,7 +89,7 @@ const Page = () => {
           <tbody>
             <tr>
               <td className="text-sub1">I</td>
-              <td className="text-sub1" colSpan={13}>
+              <td className="text-sub1" colSpan={11}>
                 <span className="text-bold">Viễn cảnh tài chính</span>
               </td>
             </tr>
@@ -110,12 +109,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -133,11 +130,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -162,12 +157,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -185,11 +178,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -202,7 +193,7 @@ const Page = () => {
               <td rowSpan={1} className="text-sub2">
                 3
               </td>
-              <td colSpan={13} className="text-sub2">
+              <td colSpan={11} className="text-sub2">
                 Doanh thu Giải pháp số/Nền tảng số (*)
               </td>
             </tr>
@@ -222,12 +213,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -245,11 +234,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -274,12 +261,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -297,11 +282,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -327,12 +310,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -350,11 +331,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -379,12 +358,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -402,11 +379,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -432,12 +407,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -455,11 +428,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -476,7 +447,7 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub2">7</td>
-              <td colSpan={13} className="text-sub2">
+              <td colSpan={11} className="text-sub2">
                 Phát triển kênh phân phối
               </td>
             </tr>
@@ -496,12 +467,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -519,11 +488,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -549,12 +516,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -572,11 +537,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -602,12 +565,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -625,7 +586,6 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
@@ -636,11 +596,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td className="text-sub2">8</td>
-              <td colSpan={13} className="text-sub2">
+              <td colSpan={11} className="text-sub2">
                 TB PTM mạng MobiFone
               </td>
             </tr>
@@ -660,12 +619,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -683,11 +640,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -712,12 +667,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -735,11 +688,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -764,12 +715,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -787,11 +736,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -816,12 +763,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -839,11 +784,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -868,12 +811,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -891,11 +832,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -920,12 +859,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -943,11 +880,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -972,12 +907,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -995,11 +928,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1024,12 +955,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>DVVT</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1047,11 +976,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1076,12 +1003,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1099,11 +1024,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1128,12 +1051,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CSKH</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1151,7 +1072,6 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
@@ -1162,11 +1082,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td className="text-sub2">15</td>
-              <td colSpan={13} className="text-sub2">
+              <td colSpan={11} className="text-sub2">
                 Tỷ lệ Thuê bao N-1 gia hạn gói cước
               </td>
             </tr>
@@ -1186,12 +1105,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CSKH</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1209,11 +1126,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1238,12 +1153,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CSKH</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1261,11 +1174,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1290,12 +1201,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CSKH</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1313,11 +1222,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1342,12 +1249,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>CNS</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1365,11 +1270,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1400,12 +1303,10 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
               <td rowSpan={4}>TH</td>
             </tr>
             <tr>
               <td>Thực hiện lũy kế</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -1423,11 +1324,9 @@ const Page = () => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
             </tr>
             <tr>
               <td>Ước %HTKH tháng</td>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>
