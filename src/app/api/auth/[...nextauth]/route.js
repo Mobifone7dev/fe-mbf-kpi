@@ -3,14 +3,19 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "@/lib/api";
 const API_URL = process.env.NEXTAUTH_APP_API_URL;
 export const LOGIN_URL = `${API_URL}/login`;
+import { cookies } from "next/headers";
+
 export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password, user } = credentials;
-        console.log("email + passs", email, password, user);
+        const { email, password, user, accessToken } = credentials;
+        console.log("accessToken", accessToken);
+        cookies().set("accessToken",
+          accessToken,
+        );
         return { ...user, email: email }; // Đảm bảo trả về thông tin người dùng hợp lệ
 
       },

@@ -58,6 +58,7 @@ const Page = () => {
           email: newStringEmail,
           password,
           user: user,
+          accessToken: user.accessToken,
           redirect: false,
         });
       }

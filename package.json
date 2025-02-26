@@ -50,7 +50,7 @@
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.53.2",
-    "react-loader-spinner": "^5.3.4",
+    "react-loader-spinner": "^5.4.5",
     "react-markdown": "^8.0.7",
     "react-modal": "^3.16.1",
     "react-modern-drawer": "1.4.0",

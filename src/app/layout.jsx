@@ -46,7 +46,9 @@ const RootLayout = async ({ children }) => {
           crossOrigin="anonymous"
         ></script>
         <AuthProvider>
-          {session ? <Layout>{children}</Layout> : children}
+          <React.StrictMode>
+            {session ? <Layout>{children}</Layout> : children}
+          </React.StrictMode>
         </AuthProvider>
       </body>
     </html>
