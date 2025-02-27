@@ -22,5 +22,19 @@ export function getQSParamFromURL(key, url) {
   const urlParams = new URLSearchParams(search);
   return urlParams.get(key);
 }
+export const convertToFloat2Fixed = (number) => {
+  if (Number(number)) {
+    const tempNumber = parseFloat(number).toFixed(2)
+    return Number(tempNumber)
+
+  } else {
+    return 0
+
+  }
+}
+export function daysInThisMonth() {
+  var now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+}
 
 

@@ -15,7 +15,7 @@ export async function GET(request: Request, response: Response) {
         console.log("cookies.value",cookies().get("accessToken")?.value)
         
         res = await fetch(
-            URL+`/dashboard/dashboard-plan-kpi?month=${month}`,    
+            URL + `/dashboard/dashboard-exec-kpi?month=${month}`,    
             { headers: {"Authorization" : `Bearer ${cookies().get("accessToken")?.value}`} })
             if(res.status == 403) {
                 signOut({ redirect: false });

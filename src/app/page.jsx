@@ -7,6 +7,7 @@ import { DatePickerField } from "../components/widgets/datePickers/DatePickerFie
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
+import { convertToFloat2Fixed,daysInThisMonth } from "../until/functions";
 
 var x = new Date();
 x.setDate(1);
@@ -14,6 +15,12 @@ x.setMonth(x.getMonth());
 const INIT_VALUES = {
   selectMonth: x,
 };
+
+var indexDateInMonth = new Date().getDate();
+
+console.log('indexDateInMonth',indexDateInMonth)
+var sumDateInMonth = daysInThisMonth();
+console.log('sumDateInMonth')
 
 const Page = () => {
   const [initValues, setInitValues] = useState(INIT_VALUES);
@@ -41,10 +48,17 @@ const Page = () => {
   const [PLAN_TILE_N_1_DONKY, SET_PLAN_TILE_N_1_DONKY] = useState({});
   const [PLAN_TILE_N_1_DAIKY, SET_PLAN_TILE_N_1_DAIKY] = useState({});
   const [PLAN_TILE_MNP, SET_PLAN_TILE_MNP] = useState({});
+  // kpi thuc hien
+  // //////////////////////////////////////////////////////////////
+  const [EXEC_DTHU_TKC_HTS, SET_EXEC_DTHU_TKC_HTS] = useState({});
 
   const [loadingPlan, setLoadingPlan] = useState(false);
+
+  const [loadingExec, setLoadingExec] = useState(false);
+
   useEffect(() => {
     setLoadingPlan(true);
+    setLoadingExec(true);
     fetch("api/get-plan-kpi?month=01-02-2025").then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
@@ -123,6 +137,16 @@ const Page = () => {
           }
         });
       }
+    });
+
+    fetch("api/get-exec-kpi?month=01-02-2025").then(async (res) => {
+      setLoadingExec(false);
+      const data = await res.json();
+      data.result.map((object, index) => {
+        if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
+          SET_EXEC_DTHU_TKC_HTS(object);
+        }
+      });
     });
   }, []);
 
@@ -214,7 +238,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.KHO ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.KHO)
                 ) : (
                   ""
                 )}
@@ -223,7 +247,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.DLA ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA)
                 ) : (
                   ""
                 )}
@@ -232,7 +256,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.GLA ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.GLA)
                 ) : (
                   ""
                 )}
@@ -241,7 +265,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.PYE ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.PYE)
                 ) : (
                   ""
                 )}
@@ -250,7 +274,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.DNO ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DNO)
                 ) : (
                   ""
                 )}
@@ -259,7 +283,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.KON ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.KON)
                 ) : (
                   ""
                 )}
@@ -268,7 +292,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.CTY7 ? (
-                  parseFloat(PLAN_DTHU_TKC_HTS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.CTY7)
                 ) : (
                   ""
                 )}
@@ -277,33 +301,280 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KHO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.KHO / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.DLA / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.GLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.GLA / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.PYE ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.PYE / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DNO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.DNO / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KON ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.KON / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_TKC_HTS.CTY7 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
+                  convertToFloat2Fixed(
+                   ( EXEC_DTHU_TKC_HTS.KHO *100)  /
+                      (PLAN_DTHU_TKC_HTS.KHO *1000000 )
+                    
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DLA *100)  /
+                      (PLAN_DTHU_TKC_HTS.DLA *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.GLA *100)  /
+                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.PYE *100)  /
+                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DNO *100)  /
+                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.KON *100)  /
+                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.CTY7 *100)  /
+                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.KHO /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.KHO *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.KHO /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.KHO *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DLA /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.DLA *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DLA /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.DLA *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.GLA /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.GLA /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.PYE /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.PYE /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DNO /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.DNO /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.KON /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.KON /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td className={convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
+                  ) >100 ? "bg-green": "bg-red"}>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ( EXEC_DTHU_TKC_HTS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
+                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">
@@ -319,7 +590,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.KHO ? (
-                  parseFloat(PLAN_DTHU_FIBER.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.KHO)
                 ) : (
                   ""
                 )}
@@ -328,7 +599,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.DLA ? (
-                  parseFloat(PLAN_DTHU_FIBER.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.DLA)
                 ) : (
                   ""
                 )}
@@ -337,7 +608,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.GLA ? (
-                  parseFloat(PLAN_DTHU_FIBER.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.GLA)
                 ) : (
                   ""
                 )}
@@ -346,7 +617,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.PYE ? (
-                  parseFloat(PLAN_DTHU_FIBER.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.PYE)
                 ) : (
                   ""
                 )}
@@ -355,7 +626,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.DNO ? (
-                  parseFloat(PLAN_DTHU_FIBER.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.DNO)
                 ) : (
                   ""
                 )}
@@ -364,7 +635,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.KON ? (
-                  parseFloat(PLAN_DTHU_FIBER.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.KON)
                 ) : (
                   ""
                 )}
@@ -373,7 +644,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.CTY7 ? (
-                  parseFloat(PLAN_DTHU_FIBER.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_FIBER.CTY7)
                 ) : (
                   ""
                 )}
@@ -431,7 +702,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.KHO ? (
-                  parseFloat(PLAN_DTHU_MASS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.KHO)
                 ) : (
                   ""
                 )}
@@ -440,7 +711,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.DLA ? (
-                  parseFloat(PLAN_DTHU_MASS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.DLA)
                 ) : (
                   ""
                 )}
@@ -449,7 +720,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.GLA ? (
-                  parseFloat(PLAN_DTHU_MASS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.GLA)
                 ) : (
                   ""
                 )}
@@ -458,7 +729,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.PYE ? (
-                  parseFloat(PLAN_DTHU_MASS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.PYE)
                 ) : (
                   ""
                 )}
@@ -467,7 +738,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.DNO ? (
-                  parseFloat(PLAN_DTHU_MASS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.DNO)
                 ) : (
                   ""
                 )}
@@ -476,7 +747,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.KON ? (
-                  parseFloat(PLAN_DTHU_MASS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.KON)
                 ) : (
                   ""
                 )}
@@ -485,7 +756,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.CTY7 ? (
-                  parseFloat(PLAN_DTHU_MASS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_MASS.CTY7)
                 ) : (
                   ""
                 )}
@@ -535,7 +806,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.KHO ? (
-                  parseFloat(PLAN_DTHU_DUAN.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.KHO)
                 ) : (
                   ""
                 )}
@@ -544,7 +815,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.DLA ? (
-                  parseFloat(PLAN_DTHU_DUAN.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.DLA)
                 ) : (
                   ""
                 )}
@@ -553,7 +824,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.GLA ? (
-                  parseFloat(PLAN_DTHU_DUAN.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.GLA)
                 ) : (
                   ""
                 )}
@@ -562,7 +833,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.PYE ? (
-                  parseFloat(PLAN_DTHU_DUAN.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.PYE)
                 ) : (
                   ""
                 )}
@@ -571,7 +842,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.DNO ? (
-                  parseFloat(PLAN_DTHU_DUAN.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.DNO)
                 ) : (
                   ""
                 )}
@@ -580,7 +851,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.KON ? (
-                  parseFloat(PLAN_DTHU_DUAN.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.KON)
                 ) : (
                   ""
                 )}
@@ -589,7 +860,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.CTY7 ? (
-                  parseFloat(PLAN_DTHU_DUAN.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_DUAN.CTY7)
                 ) : (
                   ""
                 )}
@@ -640,7 +911,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.KHO ? (
-                  parseFloat(PLAN_DTHU_NDS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.KHO)
                 ) : (
                   ""
                 )}
@@ -649,7 +920,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.DLA ? (
-                  parseFloat(PLAN_DTHU_NDS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.DLA)
                 ) : (
                   ""
                 )}
@@ -658,7 +929,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.GLA ? (
-                  parseFloat(PLAN_DTHU_NDS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.GLA)
                 ) : (
                   ""
                 )}
@@ -667,7 +938,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.PYE ? (
-                  parseFloat(PLAN_DTHU_NDS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.PYE)
                 ) : (
                   ""
                 )}
@@ -676,7 +947,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.DNO ? (
-                  parseFloat(PLAN_DTHU_NDS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.DNO)
                 ) : (
                   ""
                 )}
@@ -685,7 +956,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.KON ? (
-                  parseFloat(PLAN_DTHU_NDS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.KON)
                 ) : (
                   ""
                 )}
@@ -694,7 +965,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.CTY7 ? (
-                  parseFloat(PLAN_DTHU_NDS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_NDS.CTY7)
                 ) : (
                   ""
                 )}
@@ -744,7 +1015,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.KHO ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.KHO)
                 ) : (
                   ""
                 )}
@@ -753,7 +1024,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.DLA ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.DLA)
                 ) : (
                   ""
                 )}
@@ -762,7 +1033,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.GLA ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.GLA)
                 ) : (
                   ""
                 )}
@@ -771,7 +1042,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.PYE ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.PYE)
                 ) : (
                   ""
                 )}
@@ -780,7 +1051,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.DNO ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.DNO)
                 ) : (
                   ""
                 )}
@@ -789,7 +1060,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.KON ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.KON)
                 ) : (
                   ""
                 )}
@@ -798,7 +1069,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.CTY7 ? (
-                  parseFloat(PLAN_DTHU_SAYMEE.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.CTY7)
                 ) : (
                   ""
                 )}
@@ -849,7 +1120,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.KHO ? (
-                  parseFloat(PLAN_DTHU_GPS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.KHO)
                 ) : (
                   ""
                 )}
@@ -858,7 +1129,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.DLA ? (
-                  parseFloat(PLAN_DTHU_GPS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA)
                 ) : (
                   ""
                 )}
@@ -867,7 +1138,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.GLA ? (
-                  parseFloat(PLAN_DTHU_GPS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.GLA)
                 ) : (
                   ""
                 )}
@@ -876,7 +1147,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.PYE ? (
-                  parseFloat(PLAN_DTHU_GPS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.PYE)
                 ) : (
                   ""
                 )}
@@ -885,7 +1156,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.DNO ? (
-                  parseFloat(PLAN_DTHU_GPS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DNO)
                 ) : (
                   ""
                 )}
@@ -894,7 +1165,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.KON ? (
-                  parseFloat(PLAN_DTHU_GPS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.KON)
                 ) : (
                   ""
                 )}
@@ -903,7 +1174,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.CTY7 ? (
-                  parseFloat(PLAN_DTHU_GPS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.CTY7)
                 ) : (
                   ""
                 )}
@@ -965,7 +1236,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KHO ? (
-                  parseFloat(PLAN_SL_C2C.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -974,7 +1245,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DLA ? (
-                  parseFloat(PLAN_SL_C2C.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -983,7 +1254,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.GLA ? (
-                  parseFloat(PLAN_SL_C2C.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -992,7 +1263,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.PYE ? (
-                  parseFloat(PLAN_SL_C2C.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -1001,7 +1272,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DNO ? (
-                  parseFloat(PLAN_SL_C2C.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -1010,7 +1281,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KON ? (
-                  parseFloat(PLAN_SL_C2C.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -1019,7 +1290,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.CTY7 ? (
-                  parseFloat(PLAN_SL_C2C.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -1070,7 +1341,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KHO ? (
-                  parseInt(PLAN_SL_TB_C2C.KHO).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -1079,7 +1350,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DLA ? (
-                  parseInt(PLAN_SL_TB_C2C.DLA).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -1088,7 +1359,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.GLA ? (
-                  parseInt(PLAN_SL_TB_C2C.GLA).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -1097,7 +1368,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.PYE ? (
-                  parseInt(PLAN_SL_TB_C2C.PYE).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -1106,7 +1377,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DNO ? (
-                  parseInt(PLAN_SL_TB_C2C.DNO).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -1115,7 +1386,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KON ? (
-                  parseInt(PLAN_SL_TB_C2C.KON).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -1124,7 +1395,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.CTY7 ? (
-                  parseInt(PLAN_SL_TB_C2C.CTY7).toFixed(2)
+                  parseInt(PLAN_SL_TB_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -1175,7 +1446,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KHO ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -1184,7 +1455,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DLA ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -1193,7 +1464,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.GLA ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -1202,7 +1473,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.PYE ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -1211,7 +1482,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DNO ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -1220,7 +1491,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KON ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -1229,7 +1500,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.CTY7 ? (
-                  parseFloat(PLAN_TYLE_GD_C2C.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -1285,7 +1556,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KHO ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.KHO)
                 ) : (
                   ""
                 )}
@@ -1294,7 +1565,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DLA ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.DLA)
                 ) : (
                   ""
                 )}
@@ -1303,7 +1574,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.GLA ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.GLA)
                 ) : (
                   ""
                 )}
@@ -1312,7 +1583,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.PYE ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.PYE)
                 ) : (
                   ""
                 )}
@@ -1321,7 +1592,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DNO ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.DNO)
                 ) : (
                   ""
                 )}
@@ -1330,7 +1601,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KON ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.KON)
                 ) : (
                   ""
                 )}
@@ -1339,7 +1610,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_HTS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.CTY7)
                 ) : (
                   ""
                 )}
@@ -1389,7 +1660,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KHO ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.KHO)
                 ) : (
                   ""
                 )}
@@ -1398,7 +1669,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DLA ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.DLA)
                 ) : (
                   ""
                 )}
@@ -1407,7 +1678,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.GLA ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.GLA)
                 ) : (
                   ""
                 )}
@@ -1416,7 +1687,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.PYE ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.PYE)
                 ) : (
                   ""
                 )}
@@ -1425,7 +1696,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DNO ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.DNO)
                 ) : (
                   ""
                 )}
@@ -1434,7 +1705,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KON ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.KON)
                 ) : (
                   ""
                 )}
@@ -1443,7 +1714,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
-                  parseFloat(PLAN_SL_PTM_TBTT_NDS.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.CTY7)
                 ) : (
                   ""
                 )}
@@ -1493,7 +1764,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KHO ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.KHO)
                 ) : (
                   ""
                 )}
@@ -1502,7 +1773,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DLA ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA)
                 ) : (
                   ""
                 )}
@@ -1511,7 +1782,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.GLA ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.GLA)
                 ) : (
                   ""
                 )}
@@ -1520,7 +1791,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.PYE ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.PYE)
                 ) : (
                   ""
                 )}
@@ -1529,7 +1800,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DNO ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DNO)
                 ) : (
                   ""
                 )}
@@ -1538,7 +1809,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KON ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.KON)
                 ) : (
                   ""
                 )}
@@ -1547,7 +1818,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.CTY7 ? (
-                  parseFloat(PLAN_SL_TBTS_PTM_THOAI.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.CTY7)
                 ) : (
                   ""
                 )}
@@ -1597,7 +1868,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KHO ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.KHO)
                 ) : (
                   ""
                 )}
@@ -1606,7 +1877,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DLA ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA)
                 ) : (
                   ""
                 )}
@@ -1615,7 +1886,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.GLA ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.GLA)
                 ) : (
                   ""
                 )}
@@ -1624,7 +1895,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.PYE ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.PYE)
                 ) : (
                   ""
                 )}
@@ -1633,7 +1904,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DNO ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DNO)
                 ) : (
                   ""
                 )}
@@ -1642,7 +1913,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KON ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.KON)
                 ) : (
                   ""
                 )}
@@ -1651,7 +1922,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.CTY7 ? (
-                  parseFloat(PLAN_SL_TB_PTM_M2M.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.CTY7)
                 ) : (
                   ""
                 )}
@@ -1701,7 +1972,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KHO ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.KHO)
                 ) : (
                   ""
                 )}
@@ -1710,7 +1981,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DLA ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA)
                 ) : (
                   ""
                 )}
@@ -1719,7 +1990,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.GLA ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.GLA)
                 ) : (
                   ""
                 )}
@@ -1728,7 +1999,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.PYE ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.PYE)
                 ) : (
                   ""
                 )}
@@ -1737,7 +2008,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DNO ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DNO)
                 ) : (
                   ""
                 )}
@@ -1746,7 +2017,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KON ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.KON)
                 ) : (
                   ""
                 )}
@@ -1755,7 +2026,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.CTY7 ? (
-                  parseFloat(PLAN_TB_PTM_SAYMEE.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.CTY7)
                 ) : (
                   ""
                 )}
@@ -1805,7 +2076,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KHO ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.KHO)
                 ) : (
                   ""
                 )}
@@ -1814,7 +2085,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA)
                 ) : (
                   ""
                 )}
@@ -1823,7 +2094,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.GLA ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.GLA)
                 ) : (
                   ""
                 )}
@@ -1832,7 +2103,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.PYE ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.PYE)
                 ) : (
                   ""
                 )}
@@ -1841,7 +2112,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DNO ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DNO)
                 ) : (
                   ""
                 )}
@@ -1850,7 +2121,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KON ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.KON)
                 ) : (
                   ""
                 )}
@@ -1859,7 +2130,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.CTY7 ? (
-                  parseFloat(PLAN_TB_PTM_FIBER.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.CTY7)
                 ) : (
                   ""
                 )}
@@ -1909,7 +2180,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.KHO ? (
-                  parseFloat(PLAN_TB_VLR.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.KHO)
                 ) : (
                   ""
                 )}
@@ -1918,7 +2189,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DLA ? (
-                  parseFloat(PLAN_TB_VLR.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.DLA)
                 ) : (
                   ""
                 )}
@@ -1927,7 +2198,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.GLA ? (
-                  parseFloat(PLAN_TB_VLR.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.GLA)
                 ) : (
                   ""
                 )}
@@ -1936,7 +2207,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.PYE ? (
-                  parseFloat(PLAN_TB_VLR.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.PYE)
                 ) : (
                   ""
                 )}
@@ -1945,7 +2216,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DNO ? (
-                  parseFloat(PLAN_TB_VLR.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.DNO)
                 ) : (
                   ""
                 )}
@@ -1954,7 +2225,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.KON ? (
-                  parseFloat(PLAN_TB_VLR.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.KON)
                 ) : (
                   ""
                 )}
@@ -1963,7 +2234,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.CTY7 ? (
-                  parseFloat(PLAN_TB_VLR.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_VLR.CTY7)
                 ) : (
                   ""
                 )}
@@ -2013,7 +2284,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KHO ? (
-                  parseFloat(PLAN_TB_PSC.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.KHO)
                 ) : (
                   ""
                 )}
@@ -2022,7 +2293,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DLA ? (
-                  parseFloat(PLAN_TB_PSC.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.DLA)
                 ) : (
                   ""
                 )}
@@ -2031,7 +2302,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.GLA ? (
-                  parseFloat(PLAN_TB_PSC.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.GLA)
                 ) : (
                   ""
                 )}
@@ -2040,7 +2311,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.PYE ? (
-                  parseFloat(PLAN_TB_PSC.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.PYE)
                 ) : (
                   ""
                 )}
@@ -2049,7 +2320,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DNO ? (
-                  parseFloat(PLAN_TB_PSC.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.DNO)
                 ) : (
                   ""
                 )}
@@ -2058,7 +2329,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KON ? (
-                  parseFloat(PLAN_TB_PSC.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.KON)
                 ) : (
                   ""
                 )}
@@ -2067,7 +2338,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.CTY7 ? (
-                  parseFloat(PLAN_TB_PSC.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PSC.CTY7)
                 ) : (
                   ""
                 )}
@@ -2117,7 +2388,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.KHO ? (
-                  parseFloat(PLAN_TB_PLAT_TT.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.KHO)
                 ) : (
                   ""
                 )}
@@ -2127,7 +2398,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.DLA ? (
-                  parseFloat(PLAN_TB_PLAT_TT.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.DLA)
                 ) : (
                   ""
                 )}
@@ -2136,7 +2407,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.GLA ? (
-                  parseFloat(PLAN_TB_PLAT_TT.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.GLA)
                 ) : (
                   ""
                 )}
@@ -2145,7 +2416,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.PYE ? (
-                  parseFloat(PLAN_TB_PLAT_TT.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.PYE)
                 ) : (
                   ""
                 )}
@@ -2154,7 +2425,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.DNO ? (
-                  parseFloat(PLAN_TB_PLAT_TT.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.DNO)
                 ) : (
                   ""
                 )}
@@ -2163,7 +2434,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.KON ? (
-                  parseFloat(PLAN_TB_PLAT_TT.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.KON)
                 ) : (
                   ""
                 )}
@@ -2172,7 +2443,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.CTY7 ? (
-                  parseFloat(PLAN_TB_PLAT_TT.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TB_PLAT_TT.CTY7)
                 ) : (
                   ""
                 )}
@@ -2222,7 +2493,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.KHO ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.KHO)
                 ) : (
                   ""
                 )}
@@ -2231,7 +2502,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.DLA ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.DLA)
                 ) : (
                   ""
                 )}
@@ -2240,7 +2511,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.GLA ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.GLA)
                 ) : (
                   ""
                 )}
@@ -2249,7 +2520,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.PYE ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.PYE)
                 ) : (
                   ""
                 )}
@@ -2258,7 +2529,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.DNO ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.DNO)
                 ) : (
                   ""
                 )}
@@ -2267,7 +2538,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.KON ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.KON)
                 ) : (
                   ""
                 )}
@@ -2276,7 +2547,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.CTY7 ? (
-                  parseFloat(PLAN_TILE_N_1_GOI.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_GOI.CTY7)
                 ) : (
                   ""
                 )}
@@ -2332,7 +2603,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.KHO ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.KHO)
                 ) : (
                   ""
                 )}
@@ -2341,7 +2612,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.DLA ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.DLA)
                 ) : (
                   ""
                 )}
@@ -2350,7 +2621,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.GLA ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.GLA)
                 ) : (
                   ""
                 )}
@@ -2359,7 +2630,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.PYE ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.PYE)
                 ) : (
                   ""
                 )}
@@ -2368,7 +2639,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.DNO ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.DNO)
                 ) : (
                   ""
                 )}
@@ -2377,7 +2648,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.KON ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.KON)
                 ) : (
                   ""
                 )}
@@ -2386,7 +2657,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.CTY7 ? (
-                  parseFloat(PLAN_TILE_N_1_DONKY.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DONKY.CTY7)
                 ) : (
                   ""
                 )}
@@ -2436,7 +2707,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.KHO ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.KHO)
                 ) : (
                   ""
                 )}
@@ -2445,7 +2716,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.DLA ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.DLA)
                 ) : (
                   ""
                 )}
@@ -2454,7 +2725,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.GLA ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.GLA)
                 ) : (
                   ""
                 )}
@@ -2463,7 +2734,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.PYE ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.PYE)
                 ) : (
                   ""
                 )}
@@ -2472,7 +2743,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.DNO ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.DNO)
                 ) : (
                   ""
                 )}
@@ -2481,7 +2752,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.KON ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.KON)
                 ) : (
                   ""
                 )}
@@ -2490,7 +2761,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.CTY7 ? (
-                  parseFloat(PLAN_TILE_N_1_DAIKY.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_N_1_DAIKY.CTY7)
                 ) : (
                   ""
                 )}
@@ -2540,7 +2811,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KHO ? (
-                  parseFloat(PLAN_TILE_MNP.KHO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.KHO)
                 ) : (
                   ""
                 )}
@@ -2549,7 +2820,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DLA ? (
-                  parseFloat(PLAN_TILE_MNP.DLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.DLA)
                 ) : (
                   ""
                 )}
@@ -2558,7 +2829,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.GLA ? (
-                  parseFloat(PLAN_TILE_MNP.GLA).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.GLA)
                 ) : (
                   ""
                 )}
@@ -2567,7 +2838,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.PYE ? (
-                  parseFloat(PLAN_TILE_MNP.PYE).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.PYE)
                 ) : (
                   ""
                 )}
@@ -2576,7 +2847,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DNO ? (
-                  parseFloat(PLAN_TILE_MNP.DNO).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.DNO)
                 ) : (
                   ""
                 )}
@@ -2585,7 +2856,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KON ? (
-                  parseFloat(PLAN_TILE_MNP.KON).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.KON)
                 ) : (
                   ""
                 )}
@@ -2594,7 +2865,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.CTY7 ? (
-                  parseFloat(PLAN_TILE_MNP.CTY7).toFixed(2)
+                  convertToFloat2Fixed(PLAN_TILE_MNP.CTY7)
                 ) : (
                   ""
                 )}
