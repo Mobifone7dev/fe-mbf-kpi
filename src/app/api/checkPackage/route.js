@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { checkPackage } from "./../../../lib/api";
-import { xml2json } from "./../../../until/helper";
+import { getQSParamFromURL } from "../../../until/functions";
+
 export const dynamic = "force-dynamic";
 
 export async function GET(req, context) {
@@ -17,9 +18,4 @@ export async function GET(req, context) {
     );
   }
 }
- function getQSParamFromURL(key, url) {
-   if (!url) return "";
-   const search = new URL(url).search;
-   const urlParams = new URLSearchParams(search);
-   return urlParams.get(key);
- }
+

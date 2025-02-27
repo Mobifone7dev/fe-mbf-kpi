@@ -9,7 +9,7 @@ export async function GET(request: Request, response: Response) {
     const URL = process.env.NEXTAUTH_APP_API_URL;
 
     const month = getQSParamFromURL("month", request.url);    
-    console.log("URL", URL+`/dashboard/dashboard-plan-kpi?month=${month}`)
+    console.log("URL", URL+`/dashboard/dashboard-exec-kpi?month=${month}`)
     let res;
     try {
         console.log("cookies.value",cookies().get("accessToken")?.value)
@@ -43,5 +43,4 @@ export async function GET(request: Request, response: Response) {
 
 }
 
- 
  

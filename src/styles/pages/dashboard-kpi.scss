@@ -8,7 +8,7 @@
                 border: thin solid;
                 border-width: 1px;
                 border-color: #a1988c;
-                background-color: #f9d079;
+                background-color: #ffc000;
                 padding-left: 5px;
     
                }
@@ -58,7 +58,6 @@
                        }
                        td:nth-child(3){
                         font-style: italic;
-                        color: red;
                        }
                 }
             }
@@ -68,7 +67,7 @@
             font-weight: 600;
         }
         .text-sub1{
-            background-color: #f8dda5;
+            background-color: #fbe2d5;
             font-weight: 600;
         }
         .text-sub2{
@@ -79,10 +78,12 @@
             background-color: #d5f0f8;
         }
         .bg-green-secondary {
-            background-color:   #92e195 !important;
+            background-color:   #b5e6a2 !important;
         }
         .text-sub3{
             font-weight: 400;
+        }
+        .text-sub4{
             font-style: italic;
         }
     }
