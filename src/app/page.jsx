@@ -7398,8 +7398,8 @@ const Page = () => {
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_TILE_MNP.CTy7 ? (
-                  convertToFloat2Fixed(EXEC_TILE_MNP.CTy7)
+                ) : EXEC_TILE_MNP.CT7 ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.CTY7)
                 ) : (
                   ""
                 )}
