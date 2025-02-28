@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import moment from "moment";
 import { ErrorMessage, Form, Formik } from "formik";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,7 +7,11 @@ import { DatePickerField } from "../components/widgets/datePickers/DatePickerFie
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
-import { convertToFloat2Fixed,daysInThisMonth } from "../until/functions";
+import {
+  convertToFloat2Fixed,
+  daysInMonth,
+  changeFormatDateFirstDateInMonth,
+} from "../until/functions";
 
 var x = new Date();
 x.setDate(1);
@@ -16,15 +20,15 @@ const INIT_VALUES = {
   selectMonth: x,
 };
 
-var indexDateInMonth = new Date().getDate();
-
-console.log('indexDateInMonth',indexDateInMonth)
-var sumDateInMonth = daysInThisMonth();
-console.log('sumDateInMonth')
-
 const Page = () => {
+  const firstUpdate = useRef(true);
   const [initValues, setInitValues] = useState(INIT_VALUES);
+  const [indexDateInMonth, setIndexDateInMonth] = useState(
+    new Date().getDate()
+  );
+  const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
+
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
   const [PLAN_DTHU_MASS, SET_PLAN_DTHU_MASS] = useState({});
@@ -58,151 +62,236 @@ const Page = () => {
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
   const [EXEC_SL_PTM_TBTT_NDS, SET_EXEC_SL_PTM_TBTT_NDS] = useState({});
-
-
   const [EXEC_TILE_N_1_GOI, SET_EXEC_TILE_N_1_GOI] = useState({});
   const [EXEC_TILE_N_1_DONKY, SET_EXEC_TILE_N_1_DONKY] = useState({});
   const [EXEC_TILE_N_1_DAIKY, SET_EXEC_TILE_N_1_DAIKY] = useState({});
+  const [EXEC_SL_TBTS_PTM_THOAI, SET_EXEC_SL_TBTS_PTM_THOAI] = useState({});
+  const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
+  const [EXEC_TB_VLR, SET_EXEC_TB_VLR] = useState({});
+  const [EXEC_SL_TB_C2C, SET_EXEC_SL_TB_C2C] = useState({});
+  const [EXEC_SL_PTM_TBTT_HTS, SET_EXEC_SL_PTM_TBTT_HTS] = useState({});
   const [EXEC_TILE_MNP, SET_EXEC_TILE_MNP] = useState({});
-
-
-
-
-
 
   const [loadingPlan, setLoadingPlan] = useState(false);
 
   const [loadingExec, setLoadingExec] = useState(false);
 
+  // usetate value
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   useEffect(() => {
+    getPlanKpi(changeFormatDateFirstDateInMonth(x));
+    getExecKpi(changeFormatDateFirstDateInMonth(x));
+  }, []);
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    const date = changeFormatDateFirstDateInMonth(selectedDate);
+    getPlanKpi(date);
+    getExecKpi(date);
+  }, [selectedDate]);
+
+  const getPlanKpi = (month) => {
     setLoadingPlan(true);
-    setLoadingExec(true);
-    fetch("api/get-plan-kpi?month=01-02-2025").then(async (res) => {
+
+    fetch(`api/get-plan-kpi?month=${month}`).then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
       if (data && data.result) {
-        data.result.map((object, index) => {
-          if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
-            SET_PLAN_DTHU_TKC_HTS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
-            SET_PLAN_DTHU_FIBER(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_MASS") {
-            SET_PLAN_DTHU_MASS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
-            SET_PLAN_DTHU_DUAN(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_NDS") {
-            SET_PLAN_DTHU_NDS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
-            SET_PLAN_DTHU_SAYMEE(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
-            SET_PLAN_DTHU_GPS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_C2C") {
-            SET_PLAN_SL_C2C(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
-            SET_PLAN_SL_TB_C2C(object);
-          }
+        if (data.result.length > 0) {
+          data.result.map((object, index) => {
+            if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
+              SET_PLAN_DTHU_TKC_HTS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
+              SET_PLAN_DTHU_FIBER(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_MASS") {
+              SET_PLAN_DTHU_MASS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
+              SET_PLAN_DTHU_DUAN(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_NDS") {
+              SET_PLAN_DTHU_NDS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
+              SET_PLAN_DTHU_SAYMEE(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
+              SET_PLAN_DTHU_GPS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_C2C") {
+              SET_PLAN_SL_C2C(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
+              SET_PLAN_SL_TB_C2C(object);
+            }
 
-          if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
-            SET_PLAN_TYLE_GD_C2C(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_HTS") {
-            SET_PLAN_SL_PTM_TBTT_HTS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_NDS") {
-            SET_PLAN_SL_PTM_TBTT_NDS(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_TBTS_PTM_THOAI") {
-            SET_PLAN_SL_TBTS_PTM_THOAI(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
-            SET_PLAN_SL_TB_PTM_M2M(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
-            SET_PLAN_TB_PTM_SAYMEE(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
-            SET_PLAN_TB_PTM_FIBER(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TB_VLR") {
-            SET_PLAN_TB_VLR(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TB_PSC") {
-            SET_PLAN_TB_PSC(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TB_PLAT_TT") {
-            SET_PLAN_TB_PLAT_TT(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TILE_N_1_GOI") {
-            SET_PLAN_TILE_N_1_GOI(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TILE_N_1_DONKY") {
-            SET_PLAN_TILE_N_1_DONKY(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TI_LE_N_1_DAIKY") {
-            SET_PLAN_TILE_N_1_DAIKY(object);
-          }
-          if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
-            SET_PLAN_TILE_MNP(object);
-          }
-        });
+            if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
+              SET_PLAN_TYLE_GD_C2C(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_HTS") {
+              SET_PLAN_SL_PTM_TBTT_HTS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_NDS") {
+              SET_PLAN_SL_PTM_TBTT_NDS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_TBTS_PTM_THOAI") {
+              SET_PLAN_SL_TBTS_PTM_THOAI(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
+              SET_PLAN_SL_TB_PTM_M2M(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
+              SET_PLAN_TB_PTM_SAYMEE(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
+              SET_PLAN_TB_PTM_FIBER(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TB_VLR") {
+              SET_PLAN_TB_VLR(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TB_PSC") {
+              SET_PLAN_TB_PSC(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TB_PLAT_TT") {
+              SET_PLAN_TB_PLAT_TT(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TILE_N_1_GOI") {
+              SET_PLAN_TILE_N_1_GOI(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TILE_N_1_DONKY") {
+              SET_PLAN_TILE_N_1_DONKY(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TI_LE_N_1_DAIKY") {
+              SET_PLAN_TILE_N_1_DAIKY(object);
+            }
+
+            if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
+              SET_PLAN_TILE_MNP(object);
+            }
+          });
+        } else {
+          resetPlan();
+        }
       }
     });
+  };
+  const getExecKpi = (month) => {
+    setLoadingExec(true);
 
-    fetch("api/get-exec-kpi?month=01-02-2025").then(async (res) => {
+    fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
       setLoadingExec(false);
       const data = await res.json();
       console.log("data", data);
+      if (data.result.length > 0) {
+        data.result.map((object, index) => {
+          if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
+            SET_EXEC_DTHU_TKC_HTS(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
+            SET_EXEC_DTHU_FIBER(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
+            SET_EXEC_TB_PTM_FIBER(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
+            SET_EXEC_DTHU_SAYMEE(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TB_PSC") {
+            SET_EXEC_TB_PSC(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
+            SET_EXEC_SL_TB_PTM_M2M(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
+            SET_EXEC_TYLE_GD_C2C(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_NDS") {
+            SET_EXEC_SL_PTM_TBTT_NDS(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TILE_N_1_DONKY") {
+            SET_EXEC_TILE_N_1_DONKY(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TI_LE_N_1_DAIKY") {
+            SET_EXEC_TILE_N_1_DAIKY(object);
+          }
 
-      data.result.map((object, index) => {
-        if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
-          SET_EXEC_DTHU_TKC_HTS(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
-          SET_EXEC_DTHU_FIBER(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
-          console.log("object",object)
-          SET_EXEC_TB_PTM_FIBER(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
-          console.log("object",object)
-          SET_EXEC_DTHU_SAYMEE(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TB_PSC") {
-          console.log("object",object)
-          SET_EXEC_TB_PSC(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
-          console.log("object",object)
-          SET_EXEC_SL_TB_PTM_M2M(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
-          console.log("object",object)
-          SET_EXEC_TYLE_GD_C2C(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_NDS") {
-          console.log("object",object)
-          SET_EXEC_SL_PTM_TBTT_NDS(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TILE_N_1_DONKY") {
-          console.log("object",object)
-          SET_EXEC_TILE_N_1_DONKY(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TI_LE_N_1_DAIKY") {
-          console.log("object",object)
-          SET_EXEC_TILE_N_1_DAIKY(object);
-        }
-      });
+          if (object["TEN_CHI_TIEU"] == "TILE_N_1_GOI") {
+            SET_EXEC_TILE_N_1_GOI(object);
+          }
+
+          if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
+            SET_EXEC_TB_PTM_SAYMEE(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TB_VLR") {
+            SET_EXEC_TB_VLR(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
+            SET_EXEC_SL_TB_C2C(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT_HTS") {
+            SET_EXEC_SL_PTM_TBTT_HTS(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
+            SET_EXEC_TILE_MNP(object);
+          }
+        });
+      } else {
+        resetExec();
+      }
     });
-  }, []);
+  };
+  const resetPlan = () => {
+    SET_PLAN_DTHU_TKC_HTS({});
+    SET_PLAN_DTHU_FIBER({});
+    SET_PLAN_DTHU_MASS({});
+    SET_PLAN_DTHU_DUAN({});
+    SET_PLAN_DTHU_NDS({});
+    SET_PLAN_DTHU_SAYMEE({});
+    SET_PLAN_DTHU_GPS({});
+    SET_PLAN_SL_C2C({});
+    SET_PLAN_SL_TB_C2C({});
+    SET_PLAN_TYLE_GD_C2C({});
+    SET_PLAN_SL_PTM_TBTT_HTS({});
+    SET_PLAN_SL_PTM_TBTT_NDS({});
+    SET_PLAN_SL_TBTS_PTM_THOAI({});
+    SET_PLAN_SL_TB_PTM_M2M({});
+    SET_PLAN_TB_PTM_SAYMEE({});
+    SET_PLAN_TB_PTM_FIBER({});
+    SET_PLAN_TB_VLR({});
+    SET_PLAN_TB_PSC({});
+    SET_PLAN_TB_PLAT_TT({});
+    SET_PLAN_TILE_N_1_GOI({});
+    SET_PLAN_TILE_N_1_DONKY({});
+    SET_PLAN_TILE_N_1_DAIKY({});
+    SET_PLAN_TILE_MNP({});
+  };
+
+  const resetExec = () => {
+    SET_EXEC_DTHU_TKC_HTS({});
+    SET_EXEC_DTHU_FIBER({});
+    SET_EXEC_TB_PTM_FIBER({});
+    SET_EXEC_DTHU_SAYMEE({});
+    SET_EXEC_TB_PSC({});
+    SET_EXEC_SL_TB_PTM_M2M({});
+    SET_EXEC_TYLE_GD_C2C({});
+    SET_EXEC_SL_PTM_TBTT_NDS({});
+    SET_EXEC_TILE_N_1_GOI({});
+    SET_EXEC_TILE_N_1_DONKY({});
+    SET_EXEC_TILE_N_1_DAIKY({});
+    SET_EXEC_SL_TBTS_PTM_THOAI({});
+    SET_EXEC_TB_PTM_SAYMEE({});
+    SET_EXEC_TB_VLR({});
+    SET_EXEC_SL_TB_C2C({});
+    SET_EXEC_SL_PTM_TBTT_HTS({});
+    SET_EXEC_TILE_MNP({});
+  };
+
+  
 
   return (
     <div className="dashboard-kpi">
@@ -235,6 +324,18 @@ const Page = () => {
                         dateFormat="MM/yyyy"
                         disabled={false}
                         callbackSetDate={(e) => {
+                          setSelectedDate(e);
+                          let indexDate;
+                          if (e < new Date()) {
+                            indexDate = daysInMonth(e);
+                          } else {
+                            indexDate = e.getDate();
+                          }
+                          console.log("indexDate", indexDate);
+                          setIndexDateInMonth(e.getDate());
+                          const sumDate = daysInMonth(e);
+                          console.log("sumdate", sumDate);
+                          setSumDateInMonth(sumDate);
                           setInitValues({
                             ...initValues,
                             selectMonth: e,
@@ -426,9 +527,8 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_TKC_HTS.KHO *100)  /
-                      (PLAN_DTHU_TKC_HTS.KHO *1000000 )
-                    
+                    (EXEC_DTHU_TKC_HTS.KHO * 100) /
+                      (PLAN_DTHU_TKC_HTS.KHO * 1000000)
                   )
                 ) : (
                   ""
@@ -436,12 +536,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DLA *100)  /
-                      (PLAN_DTHU_TKC_HTS.DLA *1000000 )
+                    (EXEC_DTHU_TKC_HTS.DLA * 100) /
+                      (PLAN_DTHU_TKC_HTS.DLA * 1000000)
                   )
                 ) : (
                   ""
@@ -449,12 +549,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.GLA *100)  /
-                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
+                    (EXEC_DTHU_TKC_HTS.GLA * 100) /
+                      (PLAN_DTHU_TKC_HTS.GLA * 1000000)
                   )
                 ) : (
                   ""
@@ -462,12 +562,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.PYE *100)  /
-                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
+                    (EXEC_DTHU_TKC_HTS.PYE * 100) /
+                      (PLAN_DTHU_TKC_HTS.PYE * 1000000)
                   )
                 ) : (
                   ""
@@ -475,12 +575,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DNO *100)  /
-                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
+                    (EXEC_DTHU_TKC_HTS.DNO * 100) /
+                      (PLAN_DTHU_TKC_HTS.DNO * 1000000)
                   )
                 ) : (
                   ""
@@ -488,12 +588,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.KON *100)  /
-                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
+                    (EXEC_DTHU_TKC_HTS.KON * 100) /
+                      (PLAN_DTHU_TKC_HTS.KON * 1000000)
                   )
                 ) : (
                   ""
@@ -501,12 +601,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.CTY7 *100)  /
-                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
+                    (EXEC_DTHU_TKC_HTS.CTY7 * 100) /
+                      (PLAN_DTHU_TKC_HTS.CTY7 * 1000000)
                   )
                 ) : (
                   ""
@@ -516,113 +616,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.KHO *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.KHO *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.KHO * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.DLA *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.DLA *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.DLA * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.GLA *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.GLA * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.PYE *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.PYE * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.DNO *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.DNO * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.KON *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.KON * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_TKC_HTS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_TKC_HTS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_TKC_HTS.CTY7 *1000000 )
+                    ((EXEC_DTHU_TKC_HTS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_TKC_HTS.CTY7 * 1000000)
                   )
                 ) : (
                   ""
@@ -708,13 +877,12 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KHO && PLAN_DTHU_FIBER.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.KHO *100)  /
-                      (PLAN_DTHU_FIBER.KHO *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.KHO * 100) /
+                      (PLAN_DTHU_FIBER.KHO * 1000000)
                   )
                 ) : (
                   ""
@@ -722,13 +890,12 @@ const Page = () => {
                 {/* <span className="text-sub4">%</span> */}
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.DLA *100)  /
-                      (PLAN_DTHU_FIBER.DLA *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.DLA * 100) /
+                      (PLAN_DTHU_FIBER.DLA * 1000000)
                   )
                 ) : (
                   ""
@@ -736,13 +903,12 @@ const Page = () => {
                 {/* <span className="text-sub4">%</span> */}
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.GLA && PLAN_DTHU_FIBER.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.GLA *100)  /
-                      (PLAN_DTHU_FIBER.GLA *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.GLA * 100) /
+                      (PLAN_DTHU_FIBER.GLA * 1000000)
                   )
                 ) : (
                   ""
@@ -750,13 +916,12 @@ const Page = () => {
                 {/* <span className="text-sub4">%</span> */}
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.PYE *100)  /
-                      (PLAN_DTHU_FIBER.PYE *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.PYE * 100) /
+                      (PLAN_DTHU_FIBER.PYE * 1000000)
                   )
                 ) : (
                   ""
@@ -764,13 +929,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DNO && PLAN_DTHU_FIBER.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.DNO *100)  /
-                      (PLAN_DTHU_FIBER.DNO *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.DNO * 100) /
+                      (PLAN_DTHU_FIBER.DNO * 1000000)
                   )
                 ) : (
                   ""
@@ -778,13 +942,12 @@ const Page = () => {
                 {/* <span className="text-sub4">%</span> */}
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KON && PLAN_DTHU_FIBER.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.KON *100)  /
-                      (PLAN_DTHU_FIBER.KON *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.KON * 100) /
+                      (PLAN_DTHU_FIBER.KON * 1000000)
                   )
                 ) : (
                   ""
@@ -792,13 +955,12 @@ const Page = () => {
                 {/* <span className="text-sub4">%</span> */}
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.CTY7 && PLAN_DTHU_FIBER.CTY7 ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_FIBER.CTY7 *100)  /
-                      (PLAN_DTHU_FIBER.CTY7 *1000000 )
-                    
+                    (EXEC_DTHU_FIBER.CTY7 * 100) /
+                      (PLAN_DTHU_FIBER.CTY7 * 1000000)
                   )
                 ) : (
                   ""
@@ -1224,7 +1386,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KHO ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.KHO / 1000000)
@@ -1233,7 +1395,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DLA ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.DLA / 1000000)
@@ -1242,7 +1404,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.GLA ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.GLA / 1000000)
@@ -1251,7 +1413,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.PYE ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.PYE / 1000000)
@@ -1260,7 +1422,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DNO ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.DNO / 1000000)
@@ -1269,7 +1431,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KON ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.KON / 1000000)
@@ -1278,7 +1440,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.CTY7 ? (
                   convertToFloat2Fixed(EXEC_DTHU_SAYMEE.CTY7 / 1000000)
@@ -1290,13 +1452,12 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KHO && PLAN_DTHU_SAYMEE.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.KHO *100)  /
-                      (PLAN_DTHU_SAYMEE.KHO *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.KHO * 100) /
+                      (PLAN_DTHU_SAYMEE.KHO * 1000000)
                   )
                 ) : (
                   ""
@@ -1304,13 +1465,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DLA && PLAN_DTHU_SAYMEE.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.DLA *100)  /
-                      (PLAN_DTHU_SAYMEE.DLA *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.DLA * 100) /
+                      (PLAN_DTHU_SAYMEE.DLA * 1000000)
                   )
                 ) : (
                   ""
@@ -1318,13 +1478,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.GLA && PLAN_DTHU_SAYMEE.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.GLA *100)  /
-                      (PLAN_DTHU_SAYMEE.GLA *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.GLA * 100) /
+                      (PLAN_DTHU_SAYMEE.GLA * 1000000)
                   )
                 ) : (
                   ""
@@ -1332,13 +1491,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.PYE && PLAN_DTHU_SAYMEE.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.PYE *100)  /
-                      (PLAN_DTHU_SAYMEE.PYE *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.PYE * 100) /
+                      (PLAN_DTHU_SAYMEE.PYE * 1000000)
                   )
                 ) : (
                   ""
@@ -1346,13 +1504,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DNO && PLAN_DTHU_SAYMEE.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.DNO *100)  /
-                      (PLAN_DTHU_SAYMEE.DNO *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.DNO * 100) /
+                      (PLAN_DTHU_SAYMEE.DNO * 1000000)
                   )
                 ) : (
                   ""
@@ -1360,13 +1517,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KON && PLAN_DTHU_SAYMEE.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.KON *100)  /
-                      (PLAN_DTHU_SAYMEE.KON *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.KON * 100) /
+                      (PLAN_DTHU_SAYMEE.KON * 1000000)
                   )
                 ) : (
                   ""
@@ -1374,13 +1530,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.CTY7 && PLAN_DTHU_SAYMEE.CTY7 ? (
                   convertToFloat2Fixed(
-                   ( EXEC_DTHU_SAYMEE.CTY7 *100)  /
-                      (PLAN_DTHU_SAYMEE.CTY7 *1000000 )
-                    
+                    (EXEC_DTHU_SAYMEE.CTY7 * 100) /
+                      (PLAN_DTHU_SAYMEE.CTY7 * 1000000)
                   )
                 ) : (
                   ""
@@ -1390,118 +1545,189 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.KHO *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KHO && PLAN_DTHU_SAYMEE.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.KHO *1000000 )
+                    ((EXEC_DTHU_SAYMEE.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.KHO * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.DLA *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DLA && PLAN_DTHU_SAYMEE.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.DLA  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.DLA *1000000 )
+                    ((EXEC_DTHU_SAYMEE.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.DLA * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.GLA *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.GLA && PLAN_DTHU_SAYMEE.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.GLA  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.GLA *1000000 )
+                    ((EXEC_DTHU_SAYMEE.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.GLA * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.PYE *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.PYE && PLAN_DTHU_SAYMEE.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.PYE  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.PYE *1000000 )
-                  )
-                ) : (
-                  ""
-                )}
-                <span className="text-sub4">%</span>
-              </td>            
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.DNO *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : EXEC_DTHU_SAYMEE.DNO && PLAN_DTHU_SAYMEE.DNO ? (
-                  convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.DNO  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.DNO *1000000 )
-                  )
-                ) : (
-                  ""
-                )}
-                <span className="text-sub4">%</span>
-              </td>              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.KON *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : EXEC_DTHU_SAYMEE.KON && PLAN_DTHU_SAYMEE.KON ? (
-                  convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.KON  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.KON *1000000 )
+                    ((EXEC_DTHU_SAYMEE.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.PYE * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.CTY7 *1000000 )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : EXEC_DTHU_SAYMEE.CTY7 && PLAN_DTHU_SAYMEE.KON ? (
+              <td
+                className={
                   convertToFloat2Fixed(
-                    ( EXEC_DTHU_SAYMEE.CTY7  /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_DTHU_SAYMEE.CTY7 *1000000 )
+                    ((EXEC_DTHU_SAYMEE.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_SAYMEE.DNO && PLAN_DTHU_SAYMEE.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.DNO * 1000000)
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
-              </td>            
-              </tr>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_SAYMEE.KON && PLAN_DTHU_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_SAYMEE.CTY7 && PLAN_DTHU_SAYMEE.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_SAYMEE.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_SAYMEE.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+            </tr>
 
             <tr>
               <td rowSpan={4} className="text-sub2">
@@ -1800,33 +2026,342 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KHO ? (
+                  parseInt(EXEC_SL_TB_C2C.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA ? (
+                  parseInt(EXEC_SL_TB_C2C.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.GLA ? (
+                  parseInt(EXEC_SL_TB_C2C.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.PYE ? (
+                  parseInt(EXEC_SL_TB_C2C.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DNO ? (
+                  parseInt(EXEC_SL_TB_C2C.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KON ? (
+                  parseInt(EXEC_SL_TB_C2C.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.CTY7 ? (
+                  parseInt(EXEC_SL_TB_C2C.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KHO && PLAN_SL_TB_C2C.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.KHO * 100) / PLAN_SL_TB_C2C.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA && PLAN_SL_TB_C2C.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA * 100) / PLAN_SL_TB_C2C.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.GLA && PLAN_SL_TB_C2C.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.GLA * 100) / PLAN_SL_TB_C2C.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.PYE && PLAN_SL_TB_C2C.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.PYE * 100) / PLAN_SL_TB_C2C.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DNO && PLAN_SL_TB_C2C.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DNO * 100) / PLAN_SL_TB_C2C.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KON && PLAN_SL_TB_C2C.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.KON * 100) / PLAN_SL_TB_C2C.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.CTY7 && PLAN_SL_TB_C2C.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.CTY7 * 100) / PLAN_SL_TB_C2C.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KHO && PLAN_SL_TB_C2C.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA && PLAN_SL_TB_C2C.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.GLA && PLAN_SL_TB_C2C.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.PYE && PLAN_SL_TB_C2C.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DNO && PLAN_SL_TB_C2C.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.KON && PLAN_SL_TB_C2C.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.CTY7 && PLAN_SL_TB_C2C.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_TB_C2C.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
 
             <tr>
@@ -1906,7 +2441,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.KHO)
@@ -1915,7 +2450,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA)
@@ -1924,7 +2459,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.GLA)
@@ -1933,7 +2468,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.PYE)
@@ -1942,7 +2477,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DNO)
@@ -1951,7 +2486,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.KON)
@@ -1960,7 +2495,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 ? (
                   convertToFloat2Fixed(EXEC_TYLE_GD_C2C.CTY7)
@@ -1972,12 +2507,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO && PLAN_TYLE_GD_C2C.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KHO *100)  /
-                    (PLAN_TYLE_GD_C2C.KHO  )
+                    (EXEC_TYLE_GD_C2C.KHO * 100) / PLAN_TYLE_GD_C2C.KHO
                   )
                 ) : (
                   ""
@@ -1985,12 +2519,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA && PLAN_TYLE_GD_C2C.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DLA *100)  /
-                    (PLAN_TYLE_GD_C2C.DLA  )
+                    (EXEC_TYLE_GD_C2C.DLA * 100) / PLAN_TYLE_GD_C2C.DLA
                   )
                 ) : (
                   ""
@@ -1998,12 +2531,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA && PLAN_TYLE_GD_C2C.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.GLA *100)  /
-                    (PLAN_TYLE_GD_C2C.GLA  )
+                    (EXEC_TYLE_GD_C2C.GLA * 100) / PLAN_TYLE_GD_C2C.GLA
                   )
                 ) : (
                   ""
@@ -2011,12 +2543,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE && PLAN_TYLE_GD_C2C.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.PYE *100)  /
-                    (PLAN_TYLE_GD_C2C.PYE  )
+                    (EXEC_TYLE_GD_C2C.PYE * 100) / PLAN_TYLE_GD_C2C.PYE
                   )
                 ) : (
                   ""
@@ -2024,12 +2555,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO && PLAN_TYLE_GD_C2C.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DNO *100)  /
-                    (PLAN_TYLE_GD_C2C.DNO  )
+                    (EXEC_TYLE_GD_C2C.DNO * 100) / PLAN_TYLE_GD_C2C.DNO
                   )
                 ) : (
                   ""
@@ -2037,12 +2567,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON && PLAN_TYLE_GD_C2C.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KON *100)  /
-                    (PLAN_TYLE_GD_C2C.KON  )
+                    (EXEC_TYLE_GD_C2C.KON * 100) / PLAN_TYLE_GD_C2C.KON
                   )
                 ) : (
                   ""
@@ -2050,12 +2579,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 && PLAN_TYLE_GD_C2C.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.CTY7 *100)  /
-                    (PLAN_TYLE_GD_C2C.CTY7  )
+                    (EXEC_TYLE_GD_C2C.CTY7 * 100) / PLAN_TYLE_GD_C2C.CTY7
                   )
                 ) : (
                   ""
@@ -2065,119 +2593,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO && PLAN_TYLE_GD_C2C.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.KHO )
+                    ((EXEC_TYLE_GD_C2C.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA && PLAN_TYLE_GD_C2C.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.DLA )
+                    ((EXEC_TYLE_GD_C2C.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA && PLAN_TYLE_GD_C2C.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.GLA  )
+                    ((EXEC_TYLE_GD_C2C.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE && PLAN_TYLE_GD_C2C.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.PYE  )
+                    ((EXEC_TYLE_GD_C2C.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO && PLAN_TYLE_GD_C2C.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.DNO  )
+                    ((EXEC_TYLE_GD_C2C.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON && PLAN_TYLE_GD_C2C.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.KON  )
+                    ((EXEC_TYLE_GD_C2C.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TYLE_GD_C2C.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 && PLAN_TYLE_GD_C2C.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TYLE_GD_C2C.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TYLE_GD_C2C.CTY7  )
+                    ((EXEC_TYLE_GD_C2C.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TYLE_GD_C2C.CTY7
                   )
                 ) : (
                   ""
@@ -2267,33 +2858,342 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KHO ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DLA ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.GLA ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.PYE ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DNO ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KON ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KHO && PLAN_SL_PTM_TBTT_HTS.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.KHO * 100) / PLAN_SL_PTM_TBTT_HTS.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DLA && PLAN_SL_PTM_TBTT_HTS.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.DLA * 100) / PLAN_SL_PTM_TBTT_HTS.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.GLA && PLAN_SL_PTM_TBTT_HTS.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.GLA * 100) / PLAN_SL_PTM_TBTT_HTS.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.PYE && PLAN_SL_PTM_TBTT_HTS.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.PYE * 100) / PLAN_SL_PTM_TBTT_HTS.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DNO && PLAN_SL_PTM_TBTT_HTS.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.DNO * 100) / PLAN_SL_PTM_TBTT_HTS.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KON && PLAN_SL_PTM_TBTT_HTS.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.KON * 100) / PLAN_SL_PTM_TBTT_HTS.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.CTY7 && PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_TBTT_HTS.CTY7 * 100) /
+                      PLAN_SL_PTM_TBTT_HTS.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KHO && PLAN_SL_PTM_TBTT_HTS.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DLA && PLAN_SL_PTM_TBTT_HTS.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.GLA && PLAN_SL_PTM_TBTT_HTS.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.PYE && PLAN_SL_PTM_TBTT_HTS.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.DNO && PLAN_SL_PTM_TBTT_HTS.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.KON && PLAN_SL_PTM_TBTT_HTS.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT_HTS.CTY7 && PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_HTS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_HTS.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub3">
@@ -2372,7 +3272,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.KHO)
@@ -2381,7 +3281,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.DLA)
@@ -2390,7 +3290,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.GLA)
@@ -2399,7 +3299,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.PYE)
@@ -2408,7 +3308,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.DNO)
@@ -2417,7 +3317,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.KON)
@@ -2426,7 +3326,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 ? (
                   convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.CTY7)
@@ -2438,12 +3338,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO && PLAN_SL_PTM_TBTT_NDS.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.KHO *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.KHO  )
+                    (EXEC_SL_PTM_TBTT_NDS.KHO * 100) / PLAN_SL_PTM_TBTT_NDS.KHO
                   )
                 ) : (
                   ""
@@ -2451,12 +3350,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA && PLAN_SL_PTM_TBTT_NDS.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.DLA *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.DLA  )
+                    (EXEC_SL_PTM_TBTT_NDS.DLA * 100) / PLAN_SL_PTM_TBTT_NDS.DLA
                   )
                 ) : (
                   ""
@@ -2464,12 +3362,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA && PLAN_SL_PTM_TBTT_NDS.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.GLA *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.GLA )
+                    (EXEC_SL_PTM_TBTT_NDS.GLA * 100) / PLAN_SL_PTM_TBTT_NDS.GLA
                   )
                 ) : (
                   ""
@@ -2477,12 +3374,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE && PLAN_SL_PTM_TBTT_NDS.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.PYE *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.PYE  )
+                    (EXEC_SL_PTM_TBTT_NDS.PYE * 100) / PLAN_SL_PTM_TBTT_NDS.PYE
                   )
                 ) : (
                   ""
@@ -2490,12 +3386,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO && PLAN_SL_PTM_TBTT_NDS.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.DNO *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.DNO  )
+                    (EXEC_SL_PTM_TBTT_NDS.DNO * 100) / PLAN_SL_PTM_TBTT_NDS.DNO
                   )
                 ) : (
                   ""
@@ -2503,12 +3398,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON && PLAN_SL_PTM_TBTT_NDS.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.KON *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.KON  )
+                    (EXEC_SL_PTM_TBTT_NDS.KON * 100) / PLAN_SL_PTM_TBTT_NDS.KON
                   )
                 ) : (
                   ""
@@ -2516,12 +3410,12 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 && PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_PTM_TBTT_NDS.CTY7 *100)  /
-                      (PLAN_SL_PTM_TBTT_NDS.CTY7  )
+                    (EXEC_SL_PTM_TBTT_NDS.CTY7 * 100) /
+                      PLAN_SL_PTM_TBTT_NDS.CTY7
                   )
                 ) : (
                   ""
@@ -2531,112 +3425,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO && PLAN_SL_PTM_TBTT_NDS.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.KHO  )
+                    ((EXEC_SL_PTM_TBTT_NDS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA && PLAN_SL_PTM_TBTT_NDS.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.DLA  )
+                    ((EXEC_SL_PTM_TBTT_NDS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA && PLAN_SL_PTM_TBTT_NDS.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.GLA  )
+                    ((EXEC_SL_PTM_TBTT_NDS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE && PLAN_SL_PTM_TBTT_NDS.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.PYE  )
+                    ((EXEC_SL_PTM_TBTT_NDS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO && PLAN_SL_PTM_TBTT_NDS.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.DNO  )
+                    ((EXEC_SL_PTM_TBTT_NDS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.KON  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON && PLAN_SL_PTM_TBTT_NDS.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.KON  )
+                    ((EXEC_SL_PTM_TBTT_NDS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_SL_PTM_TBTT_NDS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 && PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_PTM_TBTT_NDS.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_PTM_TBTT_NDS.CTY7  )
+                    ((EXEC_SL_PTM_TBTT_NDS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_PTM_TBTT_NDS.CTY7
                   )
                 ) : (
                   ""
@@ -2721,24 +3685,163 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-                
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.KHO ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.KHO)
+                ) : (
+                  ""
+                )}
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.DLA ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.GLA ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.PYE ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.DNO ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.KON ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.KHO && PLAN_SL_TBTS_PTM_THOAI.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.KHO * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.DLA && PLAN_SL_TBTS_PTM_THOAI.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.DLA * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.GLA && PLAN_SL_TBTS_PTM_THOAI.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.GLA * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.PYE && PLAN_SL_TBTS_PTM_THOAI.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.PYE * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.DNO && PLAN_SL_TBTS_PTM_THOAI.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.DNO * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.KON && PLAN_SL_TBTS_PTM_THOAI.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.KON * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 &&
+                  PLAN_SL_TBTS_PTM_THOAI.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TBTS_PTM_THOAI.CTY7 * 100) /
+                      (PLAN_SL_TBTS_PTM_THOAI.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
@@ -2827,7 +3930,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.KHO)
@@ -2836,7 +3939,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.DLA)
@@ -2845,7 +3948,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.GLA)
@@ -2854,7 +3957,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.PYE)
@@ -2863,7 +3966,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.DNO)
@@ -2872,7 +3975,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.KON)
@@ -2881,7 +3984,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 ? (
                   convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.CTY7)
@@ -2893,13 +3996,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO && PLAN_SL_TB_PTM_M2M.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.KHO *100)  /
-                      (PLAN_SL_TB_PTM_M2M.KHO  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.KHO * 100) / PLAN_SL_TB_PTM_M2M.KHO
                   )
                 ) : (
                   ""
@@ -2907,13 +4008,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA && PLAN_SL_TB_PTM_M2M.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.DLA *100)  /
-                      (PLAN_SL_TB_PTM_M2M.DLA  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.DLA * 100) / PLAN_SL_TB_PTM_M2M.DLA
                   )
                 ) : (
                   ""
@@ -2921,13 +4020,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA && PLAN_SL_TB_PTM_M2M.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.GLA *100)  /
-                      (PLAN_SL_TB_PTM_M2M.GLA  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.GLA * 100) / PLAN_SL_TB_PTM_M2M.GLA
                   )
                 ) : (
                   ""
@@ -2935,13 +4032,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE && PLAN_SL_TB_PTM_M2M.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.PYE *100)  /
-                      (PLAN_SL_TB_PTM_M2M.PYE  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.PYE * 100) / PLAN_SL_TB_PTM_M2M.PYE
                   )
                 ) : (
                   ""
@@ -2949,13 +4044,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO && PLAN_SL_TB_PTM_M2M.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.DNO *100)  /
-                      (PLAN_SL_TB_PTM_M2M.DNO  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.DNO * 100) / PLAN_SL_TB_PTM_M2M.DNO
                   )
                 ) : (
                   ""
@@ -2963,13 +4056,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON && PLAN_SL_TB_PTM_M2M.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.KON *100)  /
-                      (PLAN_SL_TB_PTM_M2M.KON  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.KON * 100) / PLAN_SL_TB_PTM_M2M.KON
                   )
                 ) : (
                   ""
@@ -2977,13 +4068,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 && PLAN_SL_TB_PTM_M2M.CTY7 ? (
                   convertToFloat2Fixed(
-                   ( EXEC_SL_TB_PTM_M2M.CTY7 *100)  /
-                      (PLAN_SL_TB_PTM_M2M.CTY7  )
-                    
+                    (EXEC_SL_TB_PTM_M2M.CTY7 * 100) / PLAN_SL_TB_PTM_M2M.CTY7
                   )
                 ) : (
                   ""
@@ -2993,119 +4082,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO && PLAN_SL_TB_PTM_M2M.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.KHO  )
+                    ((EXEC_SL_TB_PTM_M2M.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA && PLAN_SL_TB_PTM_M2M.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.DLA  )
+                    ((EXEC_SL_TB_PTM_M2M.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA && PLAN_SL_TB_PTM_M2M.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.GLA  )
+                    ((EXEC_SL_TB_PTM_M2M.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE && PLAN_SL_TB_PTM_M2M.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.PYE  )
+                    ((EXEC_SL_TB_PTM_M2M.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO && PLAN_SL_TB_PTM_M2M.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.DNO  )
+                    ((EXEC_SL_TB_PTM_M2M.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.KON  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON && PLAN_SL_TB_PTM_M2M.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.KON  )
+                    ((EXEC_SL_TB_PTM_M2M.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( SET_EXEC_SL_TB_PTM_M2M.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((SET_EXEC_SL_TB_PTM_M2M.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 && PLAN_SL_TB_PTM_M2M.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_SL_TB_PTM_M2M.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_SL_TB_PTM_M2M.CTY7  )
+                    ((EXEC_SL_TB_PTM_M2M.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_PTM_M2M.CTY7
                   )
                 ) : (
                   ""
@@ -3189,33 +4341,341 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KHO ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DLA ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.GLA ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.PYE ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DNO ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KHO && PLAN_TB_PTM_SAYMEE.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.KHO * 100) / PLAN_TB_PTM_SAYMEE.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DLA && PLAN_TB_PTM_SAYMEE.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.DLA * 100) / PLAN_TB_PTM_SAYMEE.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.GLA && PLAN_TB_PTM_SAYMEE.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.GLA * 100) / PLAN_TB_PTM_SAYMEE.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.PYE && PLAN_TB_PTM_SAYMEE.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.PYE * 100) / PLAN_TB_PTM_SAYMEE.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DNO && PLAN_TB_PTM_SAYMEE.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.DNO * 100) / PLAN_TB_PTM_SAYMEE.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KON && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.KON * 100) / PLAN_TB_PTM_SAYMEE.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.CTY7 && PLAN_TB_PTM_SAYMEE.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_PTM_SAYMEE.CTY7 * 100) / PLAN_TB_PTM_SAYMEE.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KHO && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DLA && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.GLA && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.PYE && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.DNO && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.KON && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_PTM_SAYMEE.CTY7 && PLAN_TB_PTM_SAYMEE.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_SAYMEE.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_SAYMEE.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">
@@ -3294,64 +4754,64 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KHO ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KHO )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KHO)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DLA ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DLA )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DLA)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.GLA ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.GLA )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.GLA)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.PYE ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.PYE )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.PYE)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DNO ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DNO )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DNO)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KON ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KON )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KON)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.CTY7 ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.CTY7 )
+                  convertToFloat2Fixed(EXEC_TB_PTM_FIBER.CTY7)
                 ) : (
                   ""
                 )}
@@ -3360,13 +4820,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KHO && EXEC_TB_PTM_FIBER.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.KHO *100)  /
-                      (PLAN_TB_PTM_FIBER.KHO)
-                    
+                    (EXEC_TB_PTM_FIBER.KHO * 100) / PLAN_TB_PTM_FIBER.KHO
                   )
                 ) : (
                   ""
@@ -3374,26 +4832,24 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA && EXEC_TB_PTM_FIBER.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.DLA *100)  /
-                      (PLAN_TB_PTM_FIBER.DLA)
+                    (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-             
+
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.GLA && EXEC_TB_PTM_FIBER.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.GLA *100)  /
-                      (PLAN_TB_PTM_FIBER.GLA)
+                    (EXEC_TB_PTM_FIBER.GLA * 100) / PLAN_TB_PTM_FIBER.GLA
                   )
                 ) : (
                   ""
@@ -3401,12 +4857,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.PYE && EXEC_TB_PTM_FIBER.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.PYE *100)  /
-                      (PLAN_TB_PTM_FIBER.PYE)
+                    (EXEC_TB_PTM_FIBER.PYE * 100) / PLAN_TB_PTM_FIBER.PYE
                   )
                 ) : (
                   ""
@@ -3414,12 +4869,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DNO && EXEC_TB_PTM_FIBER.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.DNO *100)  /
-                      (PLAN_TB_PTM_FIBER.DNO)
+                    (EXEC_TB_PTM_FIBER.DNO * 100) / PLAN_TB_PTM_FIBER.DNO
                   )
                 ) : (
                   ""
@@ -3427,12 +4881,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KON && EXEC_TB_PTM_FIBER.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.KON *100)  /
-                      (PLAN_TB_PTM_FIBER.KON)
+                    (EXEC_TB_PTM_FIBER.KON * 100) / PLAN_TB_PTM_FIBER.KON
                   )
                 ) : (
                   ""
@@ -3440,12 +4893,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA && EXEC_TB_PTM_FIBER.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PTM_FIBER.DLA *100)  /
-                      (PLAN_TB_PTM_FIBER.DLA)
+                    (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                   )
                 ) : (
                   ""
@@ -3455,51 +4907,78 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.KHO )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KHO && PLAN_TB_PTM_FIBER.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.KHO  )
+                    ((EXEC_TB_PTM_FIBER.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.DLA )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DLA && PLAN_TB_PTM_FIBER.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.DLA  )
+                    ((EXEC_TB_PTM_FIBER.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.GLA )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.GLA && PLAN_TB_PTM_FIBER.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.GLA  )
+                    ((EXEC_TB_PTM_FIBER.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.GLA
                   )
                 ) : (
                   ""
@@ -3507,74 +4986,110 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
 
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.PYE )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.PYE && PLAN_TB_PTM_FIBER.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.PYE  )
+                    ((EXEC_TB_PTM_FIBER.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
-              </td>         
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.DNO )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DNO && PLAN_TB_PTM_FIBER.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.DNO  )
+                    ((EXEC_TB_PTM_FIBER.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
-              </td>  
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.KON )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KON && PLAN_TB_PTM_FIBER.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.KON  )
+                    ((EXEC_TB_PTM_FIBER.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
-              </td>  
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.CTY7 )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PTM_FIBER.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.CTY7 && PLAN_TB_PTM_FIBER.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PTM_FIBER.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PTM_FIBER.CTY7  )
+                    ((EXEC_TB_PTM_FIBER.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PTM_FIBER.CTY7
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
-              </td>  
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">
@@ -3652,33 +5167,341 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KHO ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DLA ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.GLA ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.PYE ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DNO ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KON ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_TB_VLR.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KHO && PLAN_TB_VLR.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.KHO * 100) / PLAN_TB_VLR.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DLA && PLAN_TB_VLR.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.DLA * 100) / PLAN_TB_VLR.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.GLA && PLAN_TB_VLR.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.GLA * 100) / PLAN_TB_VLR.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.PYE && PLAN_TB_VLR.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.PYE * 100) / PLAN_TB_VLR.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DNO && PLAN_TB_VLR.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.DNO * 100) / PLAN_TB_VLR.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KON && PLAN_TB_VLR.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.KON * 100) / PLAN_TB_VLR.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.CTY7 && PLAN_TB_VLR.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TB_VLR.CTY7 * 100) / PLAN_TB_VLR.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KHO && PLAN_TB_VLR.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DLA && PLAN_TB_VLR.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.GLA && PLAN_TB_VLR.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.PYE && PLAN_TB_VLR.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.DNO && PLAN_TB_VLR.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.KON && PLAN_TB_VLR.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TB_VLR.CTY7 && PLAN_TB_VLR.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_VLR.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_VLR.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">
@@ -3757,7 +5580,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.KHO)
@@ -3766,7 +5589,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.DLA)
@@ -3775,7 +5598,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.GLA)
@@ -3784,7 +5607,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.PYE)
@@ -3793,7 +5616,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.DNO)
@@ -3802,7 +5625,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.KON)
@@ -3811,7 +5634,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 ? (
                   convertToFloat2Fixed(EXEC_TB_PSC.CTY7)
@@ -3823,13 +5646,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO && PLAN_TB_PSC.KHO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.KHO *100)  /
-                      (PLAN_TB_PSC.KHO  )
-                    
+                    (EXEC_TB_PSC.KHO * 100) / PLAN_TB_PSC.KHO
                   )
                 ) : (
                   ""
@@ -3837,13 +5658,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA && PLAN_TB_PSC.DLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.DLA *100)  /
-                      (PLAN_TB_PSC.DLA  )
-                    
+                    (EXEC_TB_PSC.DLA * 100) / PLAN_TB_PSC.DLA
                   )
                 ) : (
                   ""
@@ -3851,13 +5670,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA && PLAN_TB_PSC.GLA ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.GLA *100)  /
-                      (PLAN_TB_PSC.GLA  )
-                    
+                    (EXEC_TB_PSC.GLA * 100) / PLAN_TB_PSC.GLA
                   )
                 ) : (
                   ""
@@ -3865,13 +5682,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE && PLAN_TB_PSC.PYE ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.PYE *100)  /
-                      (PLAN_TB_PSC.PYE  )
-                    
+                    (EXEC_TB_PSC.PYE * 100) / PLAN_TB_PSC.PYE
                   )
                 ) : (
                   ""
@@ -3879,13 +5694,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO && PLAN_TB_PSC.DNO ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.DNO *100)  /
-                      (PLAN_TB_PSC.DNO  )
-                    
+                    (EXEC_TB_PSC.DNO * 100) / PLAN_TB_PSC.DNO
                   )
                 ) : (
                   ""
@@ -3893,13 +5706,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON && PLAN_TB_PSC.KON ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.KON *100)  /
-                      (PLAN_TB_PSC.KON  )
-                    
+                    (EXEC_TB_PSC.KON * 100) / PLAN_TB_PSC.KON
                   )
                 ) : (
                   ""
@@ -3907,13 +5718,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 && PLAN_TB_PSC.CTY7 ? (
                   convertToFloat2Fixed(
-                   ( EXEC_TB_PSC.CTY7 *100)  /
-                      (PLAN_TB_PSC.CTY7  )
-                    
+                    (EXEC_TB_PSC.CTY7 * 100) / PLAN_TB_PSC.CTY7
                   )
                 ) : (
                   ""
@@ -3923,112 +5732,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO && PLAN_TB_PSC.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.KHO  )
+                    ((EXEC_TB_PSC.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA && PLAN_TB_PSC.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.DLA  )
+                    ((EXEC_TB_PSC.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA && PLAN_TB_PSC.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.GLA  )
+                    ((EXEC_TB_PSC.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE && PLAN_TB_PSC.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.PYE  )
+                    ((EXEC_TB_PSC.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO && PLAN_TB_PSC.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.DNO  )
+                    ((EXEC_TB_PSC.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.KON  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON && PLAN_TB_PSC.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.KON  )
+                    ((EXEC_TB_PSC.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TB_PSC.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 && PLAN_TB_PSC.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TB_PSC.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TB_PSC.CTY7  )
+                    ((EXEC_TB_PSC.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TB_PSC.CTY7
                   )
                 ) : (
                   ""
@@ -4217,33 +6096,343 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KHO ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DLA ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.GLA ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.PYE ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DNO ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KON ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_TILE_N_1_GOI.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KHO && PLAN_TILE_N_1_GOI.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.KHO * 100) / PLAN_TILE_N_1_GOI.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DLA && PLAN_TILE_N_1_GOI.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.DLA * 100) / PLAN_TILE_N_1_GOI.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.GLA && PLAN_TILE_N_1_GOI.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.GLA * 100) / PLAN_TILE_N_1_GOI.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.PYE && PLAN_TILE_N_1_GOI.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.PYE * 100) / PLAN_TILE_N_1_GOI.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DNO && PLAN_TILE_N_1_GOI.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.DNO * 100) / PLAN_TILE_N_1_GOI.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KON && PLAN_TILE_N_1_GOI.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.KON * 100) / PLAN_TILE_N_1_GOI.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.CTY7 && PLAN_TILE_N_1_GOI.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_N_1_GOI.CTY7 * 100) / PLAN_TILE_N_1_GOI.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KHO && PLAN_TILE_N_1_GOI.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DLA && PLAN_TILE_N_1_GOI.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.GLA && PLAN_TILE_N_1_GOI.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.PYE && PLAN_TILE_N_1_GOI.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.DNO && PLAN_TILE_N_1_GOI.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.KON && PLAN_TILE_N_1_GOI.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_N_1_GOI.CTY7 && PLAN_TILE_N_1_GOI.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_GOI.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_GOI.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub2">15</td>
@@ -4328,7 +6517,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KHO ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.KHO)
@@ -4337,7 +6526,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DLA ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.DLA)
@@ -4346,7 +6535,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.GLA ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.GLA)
@@ -4355,7 +6544,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.PYE ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.PYE)
@@ -4364,16 +6553,16 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DNO ? (
-                  convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.DNO  )
+                  convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.DNO)
                 ) : (
                   ""
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KON ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.KON)
@@ -4382,7 +6571,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingExec ? (
+                {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.CTY7 ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DONKY.CTY7)
@@ -4394,13 +6583,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KHO && PLAN_TILE_N_1_DONKY.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KHO *100)  /
-                    (PLAN_TILE_N_1_DONKY.KHO )
+                    (EXEC_TILE_N_1_DONKY.KHO * 100) / PLAN_TILE_N_1_DONKY.KHO
                   )
                 ) : (
                   ""
@@ -4408,12 +6595,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DLA && PLAN_TILE_N_1_DONKY.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DLA *100)  /
-                    (PLAN_TILE_N_1_DONKY.DLA  )
+                    (EXEC_TILE_N_1_DONKY.DLA * 100) / PLAN_TILE_N_1_DONKY.DLA
                   )
                 ) : (
                   ""
@@ -4421,12 +6607,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.GLA && PLAN_TILE_N_1_DONKY.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.GLA *100)  /
-                    (PLAN_TILE_N_1_DONKY.GLA  )
+                    (EXEC_TILE_N_1_DONKY.GLA * 100) / PLAN_TILE_N_1_DONKY.GLA
                   )
                 ) : (
                   ""
@@ -4434,12 +6619,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.PYE && PLAN_TILE_N_1_DONKY.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.PYE *100)  /
-                    (PLAN_TILE_N_1_DONKY.PYE  )
+                    (EXEC_TILE_N_1_DONKY.PYE * 100) / PLAN_TILE_N_1_DONKY.PYE
                   )
                 ) : (
                   ""
@@ -4447,12 +6631,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DNO && PLAN_TILE_N_1_DONKY.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DNO *100)  /
-                    (PLAN_TILE_N_1_DONKY.DNO  )
+                    (EXEC_TILE_N_1_DONKY.DNO * 100) / PLAN_TILE_N_1_DONKY.DNO
                   )
                 ) : (
                   ""
@@ -4460,12 +6643,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KON && PLAN_TILE_N_1_DONKY.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KON *100)  /
-                    (PLAN_TILE_N_1_DONKY.KON  )
+                    (EXEC_TILE_N_1_DONKY.KON * 100) / PLAN_TILE_N_1_DONKY.KON
                   )
                 ) : (
                   ""
@@ -4473,12 +6655,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.CTY7 && PLAN_TILE_N_1_DONKY.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.CTY7 *100)  /
-                    (PLAN_TILE_N_1_DONKY.CTY7  )
+                    (EXEC_TILE_N_1_DONKY.CTY7 * 100) / PLAN_TILE_N_1_DONKY.CTY7
                   )
                 ) : (
                   ""
@@ -4488,119 +6669,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KHO && PLAN_TILE_N_1_DONKY.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.KHO  )
+                    ((EXEC_TILE_N_1_DONKY.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DLA && PLAN_TILE_N_1_DONKY.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.DLA  )
+                    ((EXEC_TILE_N_1_DONKY.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.GLA && PLAN_TILE_N_1_DONKY.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.GLA  )
+                    ((EXEC_TILE_N_1_DONKY.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.PYE && PLAN_TILE_N_1_DONKY.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.PYE  )
+                    ((EXEC_TILE_N_1_DONKY.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DNO && PLAN_TILE_N_1_DONKY.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.DNO  )
+                    ((EXEC_TILE_N_1_DONKY.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.KON  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KON && PLAN_TILE_N_1_DONKY.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.KON  )
+                    ((EXEC_TILE_N_1_DONKY.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DONKY.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.CTY7 && PLAN_TILE_N_1_DONKY.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DONKY.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DONKY.CTY7  )
+                    ((EXEC_TILE_N_1_DONKY.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DONKY.CTY7
                   )
                 ) : (
                   ""
@@ -4685,7 +6929,7 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KHO ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.KHO)
@@ -4694,7 +6938,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DLA ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.DLA)
@@ -4703,7 +6947,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.GLA ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.GLA)
@@ -4712,7 +6956,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.PYE ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.PYE)
@@ -4721,7 +6965,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DNO ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.DNO)
@@ -4730,7 +6974,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KON ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.KON)
@@ -4739,7 +6983,7 @@ const Page = () => {
                 )}
               </td>
               <td>
-              {loadingPlan ? (
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.CTY7 ? (
                   convertToFloat2Fixed(EXEC_TILE_N_1_DAIKY.CTY7)
@@ -4751,13 +6995,11 @@ const Page = () => {
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
               <td>
-
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KHO && PLAN_TILE_N_1_DAIKY.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KHO *100)  /
-                    (PLAN_TILE_N_1_DAIKY.KHO  )
+                    (EXEC_TILE_N_1_DAIKY.KHO * 100) / PLAN_TILE_N_1_DAIKY.KHO
                   )
                 ) : (
                   ""
@@ -4765,12 +7007,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DLA && PLAN_TILE_N_1_DAIKY.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DLA *100)  /
-                    (PLAN_TILE_N_1_DAIKY.DLA  )
+                    (EXEC_TILE_N_1_DAIKY.DLA * 100) / PLAN_TILE_N_1_DAIKY.DLA
                   )
                 ) : (
                   ""
@@ -4778,12 +7019,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.GLA && PLAN_TILE_N_1_DAIKY.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.GLA *100)  /
-                    (PLAN_TILE_N_1_DAIKY.GLA  )
+                    (EXEC_TILE_N_1_DAIKY.GLA * 100) / PLAN_TILE_N_1_DAIKY.GLA
                   )
                 ) : (
                   ""
@@ -4791,12 +7031,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.PYE && PLAN_TILE_N_1_DAIKY.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.PYE *100)  /
-                    (PLAN_TILE_N_1_DAIKY.PYE  )
+                    (EXEC_TILE_N_1_DAIKY.PYE * 100) / PLAN_TILE_N_1_DAIKY.PYE
                   )
                 ) : (
                   ""
@@ -4804,12 +7043,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DNO && PLAN_TILE_N_1_DAIKY.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DNO *100)  /
-                    (PLAN_TILE_N_1_DAIKY.DNO  )
+                    (EXEC_TILE_N_1_DAIKY.DNO * 100) / PLAN_TILE_N_1_DAIKY.DNO
                   )
                 ) : (
                   ""
@@ -4817,12 +7055,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KON && PLAN_TILE_N_1_DAIKY.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KON *100)  /
-                    (PLAN_TILE_N_1_DAIKY.KON  )
+                    (EXEC_TILE_N_1_DAIKY.KON * 100) / PLAN_TILE_N_1_DAIKY.KON
                   )
                 ) : (
                   ""
@@ -4830,12 +7067,11 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-              {loadingExec || loadingPlan ? (
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.CTY7 && PLAN_TILE_N_1_DAIKY.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.CTY7 *100)  /
-                    (PLAN_TILE_N_1_DAIKY.CTY7  )
+                    (EXEC_TILE_N_1_DAIKY.CTY7 * 100) / PLAN_TILE_N_1_DAIKY.CTY7
                   )
                 ) : (
                   ""
@@ -4845,119 +7081,182 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.KHO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KHO && PLAN_TILE_N_1_DAIKY.KHO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KHO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.KHO  )
+                    ((EXEC_TILE_N_1_DAIKY.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.KHO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.DLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DLA && PLAN_TILE_N_1_DAIKY.DLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.DLA  )
+                    ((EXEC_TILE_N_1_DAIKY.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.DLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.GLA  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.GLA && PLAN_TILE_N_1_DAIKY.GLA ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.GLA /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.GLA  )
+                    ((EXEC_TILE_N_1_DAIKY.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.GLA
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.PYE  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.PYE && PLAN_TILE_N_1_DAIKY.PYE ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.PYE /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.PYE  )
+                    ((EXEC_TILE_N_1_DAIKY.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.PYE
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.DNO  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DNO && PLAN_TILE_N_1_DAIKY.DNO ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.DNO /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.DNO  )
+                    ((EXEC_TILE_N_1_DAIKY.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.DNO
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.KON  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KON && PLAN_TILE_N_1_DAIKY.KON ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.KON /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.KON  )
+                    ((EXEC_TILE_N_1_DAIKY.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.KON
                   )
                 ) : (
                   ""
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td className={convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.CTY7  )
-                  ) >100 ? "bg-green": "bg-red"}>
-
-              {loadingExec || loadingPlan ? (
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_N_1_DAIKY.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.CTY7 && PLAN_TILE_N_1_DAIKY.CTY7 ? (
                   convertToFloat2Fixed(
-                    ( EXEC_TILE_N_1_DAIKY.CTY7 /indexDateInMonth*sumDateInMonth)*100  /
-                    (PLAN_TILE_N_1_DAIKY.CTY7  )
+                    ((EXEC_TILE_N_1_DAIKY.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_N_1_DAIKY.CTY7
                   )
                 ) : (
                   ""
@@ -5041,33 +7340,348 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KHO ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DLA ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.GLA ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.PYE ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DNO ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KON ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.CTy7 ? (
+                  convertToFloat2Fixed(EXEC_TILE_MNP.CTy7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KHO && PLAN_TILE_MNP.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.KHO * 100) / PLAN_TILE_MNP.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DLA && PLAN_TILE_MNP.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.DLA * 100) / PLAN_TILE_MNP.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.GLA && PLAN_TILE_MNP.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.GLA * 100) / PLAN_TILE_MNP.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.PYE && PLAN_TILE_MNP.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.PYE * 100) / PLAN_TILE_MNP.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DNO && PLAN_TILE_MNP.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.DNO * 100) / PLAN_TILE_MNP.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KON && PLAN_TILE_MNP.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.KON * 100) / PLAN_TILE_MNP.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.CTY7 && PLAN_TILE_MNP.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_TILE_MNP.CTY7 * 100) / PLAN_TILE_MNP.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.KHO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KHO && PLAN_TILE_MNP.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.KHO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.DLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DLA && PLAN_TILE_MNP.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.DLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.GLA
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.GLA && PLAN_TILE_MNP.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.GLA
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.PYE
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.PYE && PLAN_TILE_MNP.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.PYE
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.DNO
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.DNO && PLAN_TILE_MNP.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.DNO
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.KON
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.KON && PLAN_TILE_MNP.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.KON
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.CTY7
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_TILE_MNP.CTY7 && PLAN_TILE_MNP.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_TILE_MNP.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_TILE_MNP.CTY7
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">

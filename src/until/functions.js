@@ -32,9 +32,20 @@ export const convertToFloat2Fixed = (number) => {
 
   }
 }
-export function daysInThisMonth() {
-  var now = new Date();
-  return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+export function daysInMonth(dateInput) {
+  return new Date(dateInput.getFullYear(), dateInput.getMonth() + 1, 0).getDate();
+}
+ export function changeFormatDateFirstDateInMonth (date) {
+const yyyy = date.getFullYear();
+let mm = date.getMonth() + 1; // Months start at 0!
+let dd = date.getDate();
+
+if (dd < 10) dd = '01';
+if (mm < 10) mm = '0' + mm;
+
+const formattedDate = dd + '-' + mm + '-' + yyyy;
+
+return formattedDate;
 }
 
 
