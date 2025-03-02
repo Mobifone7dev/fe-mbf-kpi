@@ -332,7 +332,7 @@ const Page = () => {
                             indexDate = e.getDate();
                           }
                           console.log("indexDate", indexDate);
-                          setIndexDateInMonth(e.getDate());
+                          setIndexDateInMonth(indexDate);
                           const sumDate = daysInMonth(e);
                           console.log("sumdate", sumDate);
                           setSumDateInMonth(sumDate);
@@ -640,6 +640,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
+                {/* <br />
+                <span>{indexDateInMonth}</span>
+                <br />
+                <span>{sumDateInMonth}</span> */}
                 <span className="text-sub4">%</span>
               </td>
               <td
