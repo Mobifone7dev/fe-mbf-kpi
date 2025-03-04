@@ -7,11 +7,45 @@ import { DatePickerField } from "../components/widgets/datePickers/DatePickerFie
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 import {
   convertToFloat2Fixed,
   daysInMonth,
   changeFormatDateFirstDateInMonth,
 } from "../until/functions";
+import MySelectSingle from "@components/selects/MySelectSingle";
+
+let kpiManualList = [
+  { value: "DTHU_FIBER", label: "Doanh thu Fiber" },
+  {
+    value: "DTHU_MASS",
+    label: "Doanh thu Mass",
+  },
+  {
+    value: "DTHU_DUAN",
+    label: "Doanh thu dự án",
+  },
+  {
+    value: "DTHU_GPS",
+    label: "Doanh thu GPS",
+  },
+  { value: "TB_PLAT_TT", label: "Thuê bao Nội dung số trả trước" },
+];
+let provinceList = [
+  { value: "KHO", label: "Khánh Hòa" },
+  { value: "DLA", label: "Đăk Lăk" },
+
+  { value: "GLA", label: "Gia Lai" },
+
+  { value: "PYE", label: "Phú Yên" },
+
+  { value: "DNO", label: "Đăk Nông" },
+
+  { value: "KON", label: "Kon Tum" },
+  { value: "CTY7", label: "Tổng" },
+];
 
 var x = new Date();
 x.setDate(1);
@@ -19,15 +53,26 @@ x.setMonth(x.getMonth());
 const INIT_VALUES = {
   selectMonth: x,
 };
-
+const INIT_KPI_VALUES = {
+  selectKpiMonth: x,
+  province: { value: "KHO", label: "Khánh Hòa" },
+  nameKpi: { value: "DTHU_FIBER", label: "Doanh thu Fiber" },
+  kpi: "",
+};
 const Page = () => {
   const firstUpdate = useRef(true);
   const [initValues, setInitValues] = useState(INIT_VALUES);
+  const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
+
   const [indexDateInMonth, setIndexDateInMonth] = useState(
     new Date().getDate()
   );
   const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
+
+  const formKpiSchema = Yup.object().shape({
+    kpi: Yup.number().required(),
+  });
 
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
@@ -56,9 +101,15 @@ const Page = () => {
   // //////////////////////////////////////////////////////////////
   const [EXEC_DTHU_TKC_HTS, SET_EXEC_DTHU_TKC_HTS] = useState({});
   const [EXEC_DTHU_FIBER, SET_EXEC_DTHU_FIBER] = useState({});
+  const [EXEC_DTHU_MASS, SET_EXEC_DTHU_MASS] = useState({});
+  const [EXEC_DTHU_DUAN, SET_EXEC_DTHU_DUAN] = useState({});
+  const [EXEC_DTHU_NDS, SET_EXEC_DTHU_NDS] = useState({});
+
+
   const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
   const [EXEC_DTHU_SAYMEE, SET_EXEC_DTHU_SAYMEE] = useState({});
   const [EXEC_TB_PSC, SET_EXEC_TB_PSC] = useState({});
+  const [EXEC_TB_PLAT_TT, SET_EXEC_TB_PLAT_TT] = useState({});
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
   const [EXEC_SL_PTM_TBTT_NDS, SET_EXEC_SL_PTM_TBTT_NDS] = useState({});
@@ -73,8 +124,9 @@ const Page = () => {
   const [EXEC_TILE_MNP, SET_EXEC_TILE_MNP] = useState({});
 
   const [loadingPlan, setLoadingPlan] = useState(false);
-
   const [loadingExec, setLoadingExec] = useState(false);
+  const [loadingCreateManualKpi, setLoadingCreateManualKpi] = useState(false);
+
 
   // usetate value
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -195,6 +247,19 @@ const Page = () => {
           if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
             SET_EXEC_DTHU_FIBER(object);
           }
+          if (object["TEN_CHI_TIEU"] == "DTHU_MASS") {
+            SET_EXEC_DTHU_MASS(object);
+          }
+
+          if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
+            SET_EXEC_DTHU_DUAN(object);
+          }
+
+          if (object["TEN_CHI_TIEU"] == "DTHU_NDS") {
+            SET_EXEC_DTHU_NDS(object);
+          }
+
+
           if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
             SET_EXEC_TB_PTM_FIBER(object);
           }
@@ -203,6 +268,9 @@ const Page = () => {
           }
           if (object["TEN_CHI_TIEU"] == "TB_PSC") {
             SET_EXEC_TB_PSC(object);
+          }
+          if (object["TEN_CHI_TIEU"] == "TB_PLAT_TT") {
+            SET_EXEC_TB_PLAT_TT(object);
           }
           if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
             SET_EXEC_SL_TB_PTM_M2M(object);
@@ -290,8 +358,10 @@ const Page = () => {
     SET_EXEC_SL_PTM_TBTT_HTS({});
     SET_EXEC_TILE_MNP({});
   };
+  const [show, setShow] = useState(false);
 
-  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <div className="dashboard-kpi">
@@ -353,6 +423,164 @@ const Page = () => {
             );
           }}
         </Formik>
+        <div>
+          <Button
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            Thêm Kpi đã thực hiện
+          </Button>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Thêm Kpi đã thực hiện</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Formik
+                enableReinitialize={true}
+                initialValues={initKpiValues}
+                validationSchema={formKpiSchema}
+                onSubmit={async (values, { resetForm }) => {
+                  try {
+                    console.log("values", values);
+                    const info = {
+                      month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
+                      kpi: values.kpi,
+                      nameKpi: values.nameKpi.value,
+                      province: values.province.value
+                    };
+                    setLoadingCreateManualKpi(true)
+                    const result=  await fetch('/api/create-manual-kpi',
+                      {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json',
+                        },
+                        body: JSON.stringify(info),
+                      }
+                    )
+                    setLoadingCreateManualKpi(false)
+                    const isCreated =  await result.json()
+                    console.log("isCreated",isCreated)
+                    if(isCreated){
+                        handleClose()
+                        getExecKpi(changeFormatDateFirstDateInMonth(selectedDate));
+                    }
+                    
+                  } catch (error) {
+                    console.log('error',error)
+                  }
+                 
+                  
+                }}
+              >
+                {(formikProps) => {
+                  return (
+                    <div className="select-filter form-group">
+                      <label
+                        htmlFor="selectKpiMonth"
+                        className="form-label fs-6 fw-bold text-dark me-2"
+                      >
+                        Tháng
+                      </label>
+                      <DatePickerField
+                        showMonthYearPicker={true}
+                        name={`selectKpiMonth`}
+                        dateFormat="MM/yyyy"
+                        disabled={false}
+                        callbackSetDate={(e) => {
+                          setInitKpiValues({
+                            ...initKpiValues,
+                            selectKpiMonth: e,
+                          });
+                        }}
+                      ></DatePickerField>
+
+                      <div className="text-danger">
+                        <ErrorMessage name="selectKpiMonth" />
+                      </div>
+                      <label
+                        className="form-label fs-6 fw-bold text-dark me-2"
+                        htmlFor="province"
+                      >
+                        Tỉnh
+                      </label>
+                      <MySelectSingle
+                        options={provinceList}
+                        value={{
+                          value: "KHO",
+                          label: "Khánh Hòa",
+                        }}
+                        onChange={(e) => {
+                          setInitKpiValues({
+                            ...initKpiValues,
+                            province: e,
+                          });
+                        }}
+                        name="province"
+                      ></MySelectSingle>
+                      <label
+                        className="form-label fs-6 fw-bold text-dark me-2 mt-1"
+                        htmlFor="name-kpi"
+                      >
+                        Tên chỉ tiêu
+                      </label>
+                      <MySelectSingle
+                        options={kpiManualList}
+                        value={{
+                          value: "DTHU_FIBER",
+                          label: "Doanh thu Fiber",
+                        }}
+                        onChange={(e) => {
+                          setInitKpiValues({
+                            ...initKpiValues,
+                            nameKpi: e,
+                          });
+                        }}
+                        name="nameKpi"
+                      ></MySelectSingle>
+                      <div className="text-danger">
+                        <ErrorMessage name="nameKpi" />
+                      </div>
+                      <label
+                        className="form-label fs-6 fw-bold text-dark me-2 mt-1"
+                        htmlFor="name-kpi"
+                      >
+                        Kpi
+                      </label>
+                      <input
+                        onChange={(e) => {
+                          setInitKpiValues({
+                            ...initKpiValues,
+                            kpi: e.target.value,
+                          });
+                        }}
+                        type="number"
+                        className="form-control"
+                        name="kpi"
+                      />
+                      <div className="text-danger">
+                        <ErrorMessage name="kpi" />
+                      </div>
+                      <div className="mt-4 d-flex justify-content-around">
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+
+                        <Button
+                          variant="primary"
+                          onClick={formikProps.handleSubmit}
+                        >
+                          {loadingCreateManualKpi ? 'Saving ...':'Save'}
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                }}
+              </Formik>
+            </Modal.Body>
+          </Modal>
+        </div>
       </div>
 
       <div className="table-kpi">
@@ -881,7 +1109,74 @@ const Page = () => {
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.KHO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.KHO / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.DLA / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.GLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.GLA / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.PYE ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.PYE / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DNO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.DNO / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.KON ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.KON / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_FIBER.CTY7 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="text-sub4">%HTKH lũy kế </td>
+              <td>
+
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KHO && PLAN_DTHU_FIBER.KHO ? (
                   convertToFloat2Fixed(
@@ -891,10 +1186,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
                   convertToFloat2Fixed(
@@ -904,10 +1199,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.GLA && PLAN_DTHU_FIBER.GLA ? (
                   convertToFloat2Fixed(
@@ -917,10 +1212,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
                   convertToFloat2Fixed(
@@ -933,7 +1228,7 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DNO && PLAN_DTHU_FIBER.DNO ? (
                   convertToFloat2Fixed(
@@ -943,10 +1238,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KON && PLAN_DTHU_FIBER.KON ? (
                   convertToFloat2Fixed(
@@ -956,10 +1251,10 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
               <td>
-                {loadingExec || loadingPlan ? (
+              {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.CTY7 && PLAN_DTHU_FIBER.CTY7 ? (
                   convertToFloat2Fixed(
@@ -969,28 +1264,193 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                {/* <span className="text-sub4">%</span> */}
+                <span className="text-sub4">%</span>
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.KHO && PLAN_DTHU_FIBER.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.GLA && PLAN_DTHU_FIBER.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DNO && PLAN_DTHU_FIBER.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.KON && PLAN_DTHU_FIBER.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.CTY7 && PLAN_DTHU_FIBER.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_FIBER.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={1} className="text-sub2">
@@ -1076,33 +1536,348 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KHO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.GLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.PYE ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DNO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KON ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_MASS.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KHO && PLAN_DTHU_MASS.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.KHO * 100) /
+                      (PLAN_DTHU_MASS.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DLA && PLAN_DTHU_MASS.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.DLA * 100) /
+                      (PLAN_DTHU_MASS.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.GLA && PLAN_DTHU_MASS.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.GLA * 100) /
+                      (PLAN_DTHU_MASS.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.PYE && PLAN_DTHU_MASS.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.PYE * 100) /
+                      (PLAN_DTHU_MASS.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DNO && PLAN_DTHU_MASS.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.DNO * 100) /
+                      (PLAN_DTHU_MASS.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KON && PLAN_DTHU_MASS.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.KON * 100) /
+                      (PLAN_DTHU_MASS.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.CTY7 && PLAN_DTHU_MASS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_MASS.CTY7 * 100) /
+                      (PLAN_DTHU_MASS.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KHO && PLAN_DTHU_MASS.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DLA && PLAN_DTHU_MASS.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.GLA && PLAN_DTHU_MASS.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.PYE && PLAN_DTHU_MASS.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.DNO && PLAN_DTHU_MASS.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.KON && PLAN_DTHU_MASS.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_MASS.CTY7 && PLAN_DTHU_MASS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_MASS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_MASS.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub3">
@@ -1180,33 +1955,348 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KHO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.KHO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.DLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.GLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.GLA)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.PYE ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.PYE)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DNO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.DNO)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KON ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.KON)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_DUAN.CTY7)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KHO && PLAN_DTHU_DUAN.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.KHO * 100) /
+                      (PLAN_DTHU_DUAN.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DLA && PLAN_DTHU_DUAN.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.DLA * 100) /
+                      (PLAN_DTHU_DUAN.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.GLA && PLAN_DTHU_DUAN.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.GLA * 100) /
+                      (PLAN_DTHU_DUAN.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.PYE && PLAN_DTHU_DUAN.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.PYE * 100) /
+                      (PLAN_DTHU_DUAN.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DNO && PLAN_DTHU_DUAN.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.DNO * 100) /
+                      (PLAN_DTHU_DUAN.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KON && PLAN_DTHU_DUAN.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.KON * 100) /
+                      (PLAN_DTHU_DUAN.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.CTY7 && PLAN_DTHU_DUAN.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_DUAN.CTY7 * 100) /
+                      (PLAN_DTHU_DUAN.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KHO && PLAN_DTHU_DUAN.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DLA && PLAN_DTHU_DUAN.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.GLA && PLAN_DTHU_DUAN.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.PYE && PLAN_DTHU_DUAN.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.DNO && PLAN_DTHU_DUAN.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.KON && PLAN_DTHU_DUAN.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_DUAN.CTY7 && PLAN_DTHU_DUAN.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_DUAN.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_DUAN.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
 
             <tr>
@@ -1285,33 +2375,348 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KHO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.KHO/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.DLA/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.GLA ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.GLA/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.PYE ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.PYE/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DNO ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.DNO/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KON ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.KON/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+              {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.CTY7 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_NDS.CTY7/1000000)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KHO && PLAN_DTHU_NDS.KHO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.KHO * 100) /
+                      (PLAN_DTHU_NDS.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DLA && PLAN_DTHU_NDS.DLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.DLA * 100) /
+                      (PLAN_DTHU_NDS.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.GLA && PLAN_DTHU_NDS.GLA ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.GLA * 100) /
+                      (PLAN_DTHU_NDS.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.PYE && PLAN_DTHU_NDS.PYE ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.PYE * 100) /
+                      (PLAN_DTHU_NDS.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DNO && PLAN_DTHU_NDS.DNO ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.DNO * 100) /
+                      (PLAN_DTHU_NDS.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KON && PLAN_DTHU_NDS.KON ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.KON * 100) /
+                      (PLAN_DTHU_NDS.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td>
+              {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.CTY7 && PLAN_DTHU_NDS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_DTHU_NDS.CTY7 * 100) /
+                      (PLAN_DTHU_NDS.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.KHO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KHO && PLAN_DTHU_NDS.KHO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.KHO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.KHO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.DLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DLA && PLAN_DTHU_NDS.DLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.DLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.DLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.GLA * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.GLA && PLAN_DTHU_NDS.GLA ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.GLA / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.GLA * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.PYE * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.PYE && PLAN_DTHU_NDS.PYE ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.PYE / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.PYE * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.DNO * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.DNO && PLAN_DTHU_NDS.DNO ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.DNO / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.DNO * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.KON * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.KON && PLAN_DTHU_NDS.KON ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.KON / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.KON * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.CTY7 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_NDS.CTY7 && PLAN_DTHU_NDS.CTY7 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_NDS.CTY7 / indexDateInMonth) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_NDS.CTY7 * 1000000)
+                  )
+                ) : (
+                  ""
+                )}
+                <span className="text-sub4">%</span>
+              </td>
             </tr>
             <tr>
               <td rowSpan={4} className="text-sub2">
