@@ -24,9 +24,7 @@ export function getQSParamFromURL(key, url) {
 }
 export const convertToFloat2Fixed = (number) => {
   if (Number(number)) {
-    const tempNumber = parseFloat(number).toFixed(2)
-    return Number(tempNumber)
-
+    return parseFloat(number).toFixed(2)
   } else {
     return 0
 
