@@ -30,6 +30,14 @@ export const convertToFloat2Fixed = (number) => {
 
   }
 }
+export const convertToFloat2FixedNumber = (number) => {
+  if (Number(number)) {
+    return Number(parseFloat(number).toFixed(2))
+  } else {
+    return 0
+
+  }
+}
 export function daysInMonth(dateInput) {
   return new Date(dateInput.getFullYear(), dateInput.getMonth() + 1, 0).getDate();
 }
