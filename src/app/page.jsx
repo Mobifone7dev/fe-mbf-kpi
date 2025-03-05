@@ -6732,10 +6732,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.KHO
+                    (EXEC_TB_VLR.KHO * 100) / PLAN_TB_VLR.KHO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6745,10 +6742,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KHO && PLAN_TB_VLR.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.KHO
+                    (EXEC_TB_VLR.KHO * 100) / PLAN_TB_VLR.KHO
                   )
                 ) : (
                   ""
@@ -6758,10 +6752,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.DLA
+                    (EXEC_TB_VLR.DLA * 100) / PLAN_TB_VLR.DLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6771,10 +6762,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DLA && PLAN_TB_VLR.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.DLA
+                    (EXEC_TB_VLR.DLA * 100) / PLAN_TB_VLR.DLA
                   )
                 ) : (
                   ""
@@ -6784,10 +6772,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.GLA
+                    (EXEC_TB_VLR.GLA * 100) / PLAN_TB_VLR.GLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6797,10 +6782,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.GLA && PLAN_TB_VLR.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.GLA
+                    (EXEC_TB_VLR.GLA * 100) / PLAN_TB_VLR.GLA
                   )
                 ) : (
                   ""
@@ -6810,10 +6792,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.PYE
+                    (EXEC_TB_VLR.PYE * 100) / PLAN_TB_VLR.PYE
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6823,10 +6802,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.PYE && PLAN_TB_VLR.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.PYE
+                    (EXEC_TB_VLR.PYE * 100) / PLAN_TB_VLR.PYE
                   )
                 ) : (
                   ""
@@ -6836,10 +6812,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.DNO
+                    (EXEC_TB_VLR.DNO * 100) / PLAN_TB_VLR.DNO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6849,10 +6822,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DNO && PLAN_TB_VLR.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.DNO
+                    (EXEC_TB_VLR.DNO * 100) / PLAN_TB_VLR.DNO
                   )
                 ) : (
                   ""
@@ -6862,10 +6832,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.KON
+                    (EXEC_TB_VLR.KON * 100) / PLAN_TB_VLR.KON
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6875,10 +6842,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KON && PLAN_TB_VLR.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.KON
+                    (EXEC_TB_VLR.KON * 100) / PLAN_TB_VLR.KON
                   )
                 ) : (
                   ""
@@ -6888,10 +6852,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.CTY7
+                    (EXEC_TB_VLR.CTY7 * 100) / PLAN_TB_VLR.CTY7
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -6901,10 +6862,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.CTY7 && PLAN_TB_VLR.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_VLR.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_VLR.CTY7
+                    (EXEC_TB_VLR.CTY7 * 100) / PLAN_TB_VLR.CTY7
                   )
                 ) : (
                   ""
@@ -7144,10 +7102,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.KHO
+                    (EXEC_TB_PSC.KHO * 100) / PLAN_TB_PSC.KHO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7157,10 +7112,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO && PLAN_TB_PSC.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.KHO
+                    (EXEC_TB_PSC.KHO * 100) / PLAN_TB_PSC.KHO
                   )
                 ) : (
                   ""
@@ -7170,10 +7122,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.DLA
+                    (EXEC_TB_PSC.DLA * 100) / PLAN_TB_PSC.DLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7183,10 +7132,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA && PLAN_TB_PSC.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.DLA
+                    (EXEC_TB_PSC.DLA * 100) / PLAN_TB_PSC.DLA
                   )
                 ) : (
                   ""
@@ -7196,10 +7142,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.GLA
+                    (EXEC_TB_PSC.GLA * 100) / PLAN_TB_PSC.GLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7209,10 +7152,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA && PLAN_TB_PSC.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.GLA
+                    (EXEC_TB_PSC.GLA * 100) / PLAN_TB_PSC.GLA
                   )
                 ) : (
                   ""
@@ -7222,10 +7162,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.PYE
+                    (EXEC_TB_PSC.PYE * 100) / PLAN_TB_PSC.PYE
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7235,10 +7172,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE && PLAN_TB_PSC.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.PYE
+                    (EXEC_TB_PSC.PYE * 100) / PLAN_TB_PSC.PYE
                   )
                 ) : (
                   ""
@@ -7248,10 +7182,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.DNO
+                    (EXEC_TB_PSC.DNO * 100) / PLAN_TB_PSC.DNO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7261,10 +7192,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO && PLAN_TB_PSC.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.DNO
+                    (EXEC_TB_PSC.DNO * 100) / PLAN_TB_PSC.DNO
                   )
                 ) : (
                   ""
@@ -7274,10 +7202,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.KON
+                    (EXEC_TB_PSC.KON * 100) / PLAN_TB_PSC.KON
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7287,10 +7212,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON && PLAN_TB_PSC.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.KON
+                    (EXEC_TB_PSC.KON * 100) / PLAN_TB_PSC.KON
                   )
                 ) : (
                   ""
@@ -7300,10 +7222,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.CTY7
+                    (EXEC_TB_PSC.CTY7 * 100) / PLAN_TB_PSC.CTY7
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7313,10 +7232,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 && PLAN_TB_PSC.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TB_PSC.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PSC.CTY7
+                    (EXEC_TB_PSC.CTY7 * 100) / PLAN_TB_PSC.CTY7
                   )
                 ) : (
                   ""
@@ -7662,10 +7578,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.KHO
+                    (EXEC_TILE_N_1_GOI.KHO * 100) / PLAN_TILE_N_1_GOI.KHO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7675,10 +7588,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KHO && PLAN_TILE_N_1_GOI.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.KHO
+                    (EXEC_TILE_N_1_GOI.KHO * 100) / PLAN_TILE_N_1_GOI.KHO
                   )
                 ) : (
                   ""
@@ -7689,10 +7599,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.DLA
+                    (EXEC_TILE_N_1_GOI.DLA * 100) / PLAN_TILE_N_1_GOI.DLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7702,10 +7609,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DLA && PLAN_TILE_N_1_GOI.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.DLA
+                    (EXEC_TILE_N_1_GOI.DLA * 100) / PLAN_TILE_N_1_GOI.DLA
                   )
                 ) : (
                   ""
@@ -7715,10 +7619,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.GLA
+                    (EXEC_TILE_N_1_GOI.GLA * 100) / PLAN_TILE_N_1_GOI.GLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7728,10 +7629,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.GLA && PLAN_TILE_N_1_GOI.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.GLA
+                    (EXEC_TILE_N_1_GOI.GLA * 100) / PLAN_TILE_N_1_GOI.GLA
                   )
                 ) : (
                   ""
@@ -7741,10 +7639,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.PYE
+                    (EXEC_TILE_N_1_GOI.PYE * 100) / PLAN_TILE_N_1_GOI.PYE
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7754,10 +7649,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.PYE && PLAN_TILE_N_1_GOI.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.PYE
+                    (EXEC_TILE_N_1_GOI.PYE * 100) / PLAN_TILE_N_1_GOI.PYE
                   )
                 ) : (
                   ""
@@ -7767,10 +7659,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.DNO
+                    (EXEC_TILE_N_1_GOI.DNO * 100) / PLAN_TILE_N_1_GOI.DNO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7780,10 +7669,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DNO && PLAN_TILE_N_1_GOI.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.DNO
+                    (EXEC_TILE_N_1_GOI.DNO * 100) / PLAN_TILE_N_1_GOI.DNO
                   )
                 ) : (
                   ""
@@ -7793,10 +7679,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.KON
+                    (EXEC_TILE_N_1_GOI.KON * 100) / PLAN_TILE_N_1_GOI.KON
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -7806,10 +7689,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KON && PLAN_TILE_N_1_GOI.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.KON
+                    (EXEC_TILE_N_1_GOI.KON * 100) / PLAN_TILE_N_1_GOI.KON
                   )
                 ) : (
                   ""
@@ -7818,12 +7698,9 @@ const Page = () => {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.CTY7
-                  ) > 100
+                    convertToFloat2Fixed(
+                      (EXEC_TILE_N_1_GOI.CTY7 * 100) / PLAN_TILE_N_1_GOI.CTY7
+                    )> 100
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7832,10 +7709,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.CTY7 && PLAN_TILE_N_1_GOI.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_N_1_GOI.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_N_1_GOI.CTY7
+                    (EXEC_TILE_N_1_GOI.CTY7 * 100) / PLAN_TILE_N_1_GOI.CTY7
                   )
                 ) : (
                   ""
@@ -8906,10 +8780,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.KHO
+                    (EXEC_TILE_MNP.KHO * 100) / PLAN_TILE_MNP.KHO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -8919,10 +8790,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KHO && PLAN_TILE_MNP.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.KHO
+                    (EXEC_TILE_MNP.KHO * 100) / PLAN_TILE_MNP.KHO
                   )
                 ) : (
                   ""
@@ -8933,10 +8801,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.DLA
+                    (EXEC_TILE_MNP.DLA * 100) / PLAN_TILE_MNP.DLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -8946,10 +8811,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DLA && PLAN_TILE_MNP.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.DLA
+                    (EXEC_TILE_MNP.DLA * 100) / PLAN_TILE_MNP.DLA
                   )
                 ) : (
                   ""
@@ -8960,10 +8822,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.GLA
+                    (EXEC_TILE_MNP.GLA * 100) / PLAN_TILE_MNP.GLA
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -8973,10 +8832,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.GLA && PLAN_TILE_MNP.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.GLA
+                    (EXEC_TILE_MNP.GLA * 100) / PLAN_TILE_MNP.GLA
                   )
                 ) : (
                   ""
@@ -8987,10 +8843,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.PYE
+                    (EXEC_TILE_MNP.PYE * 100) / PLAN_TILE_MNP.PYE
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -9000,10 +8853,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.PYE && PLAN_TILE_MNP.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.PYE
+                    (EXEC_TILE_MNP.PYE * 100) / PLAN_TILE_MNP.PYE
                   )
                 ) : (
                   ""
@@ -9014,10 +8864,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.DNO
+                    (EXEC_TILE_MNP.DNO * 100) / PLAN_TILE_MNP.DNO
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -9027,10 +8874,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DNO && PLAN_TILE_MNP.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.DNO
+                    (EXEC_TILE_MNP.DNO * 100) / PLAN_TILE_MNP.DNO
                   )
                 ) : (
                   ""
@@ -9041,10 +8885,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.KON
+                    (EXEC_TILE_MNP.KON * 100) / PLAN_TILE_MNP.KON
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -9054,10 +8895,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KON && PLAN_TILE_MNP.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.KON
+                    (EXEC_TILE_MNP.KON * 100) / PLAN_TILE_MNP.KON
                   )
                 ) : (
                   ""
@@ -9068,10 +8906,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.CTY7
+                    (EXEC_TILE_MNP.CTY7 * 100) / PLAN_TILE_MNP.CTY7
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -9081,10 +8916,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.CTY7 && PLAN_TILE_MNP.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TILE_MNP.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TILE_MNP.CTY7
+                    (EXEC_TILE_MNP.CTY7 * 100) / PLAN_TILE_MNP.CTY7
                   )
                 ) : (
                   ""
