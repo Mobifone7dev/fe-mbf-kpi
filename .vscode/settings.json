@@ -1,7 +1,14 @@
 {
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "editor.formatOnSave": false
   },
   "cSpell.words": ["isdn"],
   "editor.formatOnSaveMode": "modifications",
@@ -9,5 +16,6 @@
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/node_modules/**": true
-  }
+  },
+  "files.autoSave": "afterDelay"
 }

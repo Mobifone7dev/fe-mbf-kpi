@@ -6,9 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "../components/widgets/datePickers/DatePickerField";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import LoadingComponent from "@components/loading/LoadingComponent";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import LoadingComponent from "@components/loading/LoadingComponent";
+import CreateKpiModal from "../components/modals/CreatekpiModal";
+
 
 import {
   convertToFloat2Fixed,
@@ -16,37 +17,7 @@ import {
   daysInMonth,
   changeFormatDateFirstDateInMonth,
 } from "../until/functions";
-import MySelectSingle from "@components/selects/MySelectSingle";
 
-let kpiManualList = [
-  { value: "DTHU_FIBER", label: "Doanh thu Fiber" },
-  {
-    value: "DTHU_MASS",
-    label: "Doanh thu Mass",
-  },
-  {
-    value: "DTHU_DUAN",
-    label: "Doanh thu dự án",
-  },
-  {
-    value: "DTHU_GPS",
-    label: "Doanh thu GPS",
-  },
-  { value: "TB_PLAT_TT", label: "Thuê bao Nội dung số trả trước" },
-];
-let provinceList = [
-  { value: "KHO", label: "Khánh Hòa" },
-  { value: "DLA", label: "Đăk Lăk" },
-
-  { value: "GLA", label: "Gia Lai" },
-
-  { value: "PYE", label: "Phú Yên" },
-
-  { value: "DNO", label: "Đăk Nông" },
-
-  { value: "KON", label: "Kon Tum" },
-  { value: "CTY7", label: "Tổng" },
-];
 
 var x = new Date();
 x.setDate(1);
@@ -54,16 +25,10 @@ x.setMonth(x.getMonth());
 const INIT_VALUES = {
   selectMonth: x,
 };
-const INIT_KPI_VALUES = {
-  selectKpiMonth: x,
-  province: { value: "KHO", label: "Khánh Hòa" },
-  nameKpi: { value: "DTHU_FIBER", label: "Doanh thu Fiber" },
-  kpi: "",
-};
+
 const Page = () => {
   const firstUpdate = useRef(true);
   const [initValues, setInitValues] = useState(INIT_VALUES);
-  const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
 
   const [indexDateInMonth, setIndexDateInMonth] = useState(
     new Date().getDate()
@@ -71,10 +36,7 @@ const Page = () => {
   const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
 
-  const formKpiSchema = Yup.object().shape({
-    kpi: Yup.number().required(),
-  });
-
+  
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
   const [PLAN_DTHU_MASS, SET_PLAN_DTHU_MASS] = useState({});
@@ -126,7 +88,6 @@ const Page = () => {
 
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [loadingExec, setLoadingExec] = useState(false);
-  const [loadingCreateManualKpi, setLoadingCreateManualKpi] = useState(false);
 
 
   // usetate value
@@ -148,7 +109,6 @@ const Page = () => {
 
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
-
     fetch(`api/get-plan-kpi?month=${month}`).then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
@@ -359,7 +319,7 @@ const Page = () => {
     SET_EXEC_SL_PTM_TBTT_HTS({});
     SET_EXEC_TILE_MNP({});
   };
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -387,7 +347,7 @@ const Page = () => {
                         htmlFor="selectMonth"
                         className="form-label fs-6 fw-bold text-dark me-2"
                       >
-                        Tháng
+                        Tháng 
                       </label>
                       <DatePickerField
                         showMonthYearPicker={true}
@@ -424,7 +384,7 @@ const Page = () => {
             );
           }}
         </Formik>
-        <div>
+        {/* <div>
           <Button
             onClick={() => {
               setShow(true);
@@ -432,156 +392,7 @@ const Page = () => {
           >
             Thêm Kpi đã thực hiện
           </Button>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Thêm Kpi đã thực hiện</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Formik
-                enableReinitialize={true}
-                initialValues={initKpiValues}
-                validationSchema={formKpiSchema}
-                onSubmit={async (values, { resetForm }) => {
-                  try {
-                    console.log("values", values);
-                    const info = {
-                      month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
-                      kpi: values.kpi,
-                      nameKpi: values.nameKpi.value,
-                      province: values.province.value
-                    };
-                    setLoadingCreateManualKpi(true)
-                    const result=  await fetch('/api/create-manual-kpi',
-                      {
-                        method: 'POST',
-                        headers: {
-                            'Content-type': 'application/json',
-                        },
-                        body: JSON.stringify(info),
-                      }
-                    )
-                    setLoadingCreateManualKpi(false)
-                    const isCreated =  await result.json()
-                    console.log("isCreated",isCreated)
-                    if(isCreated){
-                        handleClose()
-                        getExecKpi(changeFormatDateFirstDateInMonth(selectedDate));
-                    }
-                    
-                  } catch (error) {
-                    console.log('error',error)
-                  }
-                 
-                  
-                }}
-              >
-                {(formikProps) => {
-                  return (
-                    <div className="select-filter form-group">
-                      <label
-                        htmlFor="selectKpiMonth"
-                        className="form-label fs-6 fw-bold text-dark me-2"
-                      >
-                        Tháng
-                      </label>
-                      <DatePickerField
-                        showMonthYearPicker={true}
-                        name={`selectKpiMonth`}
-                        dateFormat="MM/yyyy"
-                        disabled={false}
-                        callbackSetDate={(e) => {
-                          setInitKpiValues({
-                            ...initKpiValues,
-                            selectKpiMonth: e,
-                          });
-                        }}
-                      ></DatePickerField>
-
-                      <div className="text-danger">
-                        <ErrorMessage name="selectKpiMonth" />
-                      </div>
-                      <label
-                        className="form-label fs-6 fw-bold text-dark me-2"
-                        htmlFor="province"
-                      >
-                        Tỉnh
-                      </label>
-                      <MySelectSingle
-                        options={provinceList}
-                        value={{
-                          value: "KHO",
-                          label: "Khánh Hòa",
-                        }}
-                        onChange={(e) => {
-                          setInitKpiValues({
-                            ...initKpiValues,
-                            province: e,
-                          });
-                        }}
-                        name="province"
-                      ></MySelectSingle>
-                      <label
-                        className="form-label fs-6 fw-bold text-dark me-2 mt-1"
-                        htmlFor="name-kpi"
-                      >
-                        Tên chỉ tiêu
-                      </label>
-                      <MySelectSingle
-                        options={kpiManualList}
-                        value={{
-                          value: "DTHU_FIBER",
-                          label: "Doanh thu Fiber",
-                        }}
-                        onChange={(e) => {
-                          setInitKpiValues({
-                            ...initKpiValues,
-                            nameKpi: e,
-                          });
-                        }}
-                        name="nameKpi"
-                      ></MySelectSingle>
-                      <div className="text-danger">
-                        <ErrorMessage name="nameKpi" />
-                      </div>
-                      <label
-                        className="form-label fs-6 fw-bold text-dark me-2 mt-1"
-                        htmlFor="name-kpi"
-                      >
-                        Kpi
-                      </label>
-                      <input
-                        onChange={(e) => {
-                          setInitKpiValues({
-                            ...initKpiValues,
-                            kpi: e.target.value,
-                          });
-                        }}
-                        type="number"
-                        className="form-control"
-                        name="kpi"
-                      />
-                      <div className="text-danger">
-                        <ErrorMessage name="kpi" />
-                      </div>
-                      <div className="mt-4 d-flex justify-content-around">
-                        <Button variant="secondary" onClick={handleClose}>
-                          Close
-                        </Button>
-
-                        <Button
-                          variant="primary"
-                          onClick={formikProps.handleSubmit}
-                        >
-                          {loadingCreateManualKpi ? 'Saving ...':'Save'}
-                        </Button>
-                      </div>
-                    </div>
-                  );
-                }}
-              </Formik>
-            </Modal.Body>
-          </Modal>
-        </div>
+        </div> */}
       </div>
 
       <div className="table-kpi">
@@ -9030,6 +8841,10 @@ const Page = () => {
           </tbody>
         </table>
       </div>
+      {/* <CreateKpiModal show={show} handleClose={()=>{
+            setShow(false)
+          }}/> */}
+          
     </div>
   );
 };
