@@ -320,6 +320,7 @@ const Page = () => {
     SET_EXEC_TB_PTM_FIBER({});
     SET_EXEC_DTHU_SAYMEE({});
     SET_EXEC_TB_PSC({});
+    SET_EXEC_DTHU_NDS({});
     SET_EXEC_SL_TB_PTM_M2M({});
     SET_EXEC_TYLE_GD_C2C({});
     SET_EXEC_SL_PTM_TBTT_NDS({});
