@@ -13,6 +13,7 @@ import CreateKpiModal from "@components/modals/CreateKpiModal";
 import {
   convertToFloat2Fixed,
   convertToFloat2FixedNumber,
+  formatIntegerWithCommas,    
   daysInMonth,
   changeFormatDateFirstDateInMonth,
 } from "../until/functions";
@@ -3396,7 +3397,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KHO ? (
-                  parseInt(PLAN_SL_C2C.KHO)
+                  formatIntegerWithCommas(PLAN_SL_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -3405,7 +3406,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DLA ? (
-                  parseInt(PLAN_SL_C2C.DLA)
+                  formatIntegerWithCommas(PLAN_SL_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -3414,7 +3415,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.GLA ? (
-                  parseInt(PLAN_SL_C2C.GLA)
+                  formatIntegerWithCommas(PLAN_SL_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -3423,7 +3424,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.PYE ? (
-                  parseInt(PLAN_SL_C2C.PYE)
+                  formatIntegerWithCommas(PLAN_SL_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -3432,7 +3433,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DNO ? (
-                  parseInt(PLAN_SL_C2C.DNO)
+                  formatIntegerWithCommas(PLAN_SL_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -3441,7 +3442,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KON ? (
-                  parseInt(PLAN_SL_C2C.KON)
+                  formatIntegerWithCommas(PLAN_SL_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -3450,7 +3451,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.CTY7 ? (
-                  parseInt(PLAN_SL_C2C.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -3463,7 +3464,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KHO ? (
-                  parseInt(EXEC_SL_C2C.KHO)
+                  formatIntegerWithCommas(EXEC_SL_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -3473,7 +3474,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DLA ? (
-                  parseInt(EXEC_SL_C2C.DLA)
+                  formatIntegerWithCommas(EXEC_SL_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -3482,7 +3483,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.GLA ? (
-                  parseInt(EXEC_SL_C2C.GLA)
+                  formatIntegerWithCommas(EXEC_SL_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -3491,7 +3492,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.PYE ? (
-                  parseInt(EXEC_SL_C2C.PYE)
+                  formatIntegerWithCommas(EXEC_SL_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -3500,7 +3501,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DNO ? (
-                  parseInt(EXEC_SL_C2C.DNO)
+                  formatIntegerWithCommas(EXEC_SL_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -3509,7 +3510,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KON ? (
-                  parseInt(EXEC_SL_C2C.KON)
+                  formatIntegerWithCommas(EXEC_SL_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -3518,7 +3519,7 @@ const Page = () => {
               {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.CTY7 ? (
-                  parseInt(EXEC_SL_C2C.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -3810,7 +3811,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KHO ? (
-                  parseInt(PLAN_SL_TB_C2C.KHO)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -3819,7 +3820,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DLA ? (
-                  parseInt(PLAN_SL_TB_C2C.DLA)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -3828,7 +3829,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.GLA ? (
-                  parseInt(PLAN_SL_TB_C2C.GLA)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -3837,7 +3838,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.PYE ? (
-                  parseInt(PLAN_SL_TB_C2C.PYE)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -3846,7 +3847,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DNO ? (
-                  parseInt(PLAN_SL_TB_C2C.DNO)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -3855,7 +3856,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KON ? (
-                  parseInt(PLAN_SL_TB_C2C.KON)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -3864,7 +3865,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.CTY7 ? (
-                  parseInt(PLAN_SL_TB_C2C.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_TB_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -3877,7 +3878,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KHO ? (
-                  parseInt(EXEC_SL_TB_C2C.KHO)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -3886,7 +3887,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DLA ? (
-                  parseInt(EXEC_SL_TB_C2C.DLA)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -3895,7 +3896,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.GLA ? (
-                  parseInt(EXEC_SL_TB_C2C.GLA)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -3904,7 +3905,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.PYE ? (
-                  parseInt(EXEC_SL_TB_C2C.PYE)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -3914,7 +3915,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DNO ? (
-                  parseInt(EXEC_SL_TB_C2C.DNO)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -3923,7 +3924,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KON ? (
-                  parseInt(EXEC_SL_TB_C2C.KON)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -3932,7 +3933,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.CTY7 ? (
-                  parseInt(EXEC_SL_TB_C2C.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_TB_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -4224,7 +4225,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KHO ? (
-                  parseInt(PLAN_TYLE_GD_C2C.KHO)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -4233,7 +4234,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DLA ? (
-                  parseInt(PLAN_TYLE_GD_C2C.DLA)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -4242,7 +4243,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.GLA ? (
-                  parseInt(PLAN_TYLE_GD_C2C.GLA)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -4251,7 +4252,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.PYE ? (
-                  parseInt(PLAN_TYLE_GD_C2C.PYE)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -4260,7 +4261,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DNO ? (
-                  parseInt(PLAN_TYLE_GD_C2C.DNO)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -4269,7 +4270,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KON ? (
-                  parseInt(PLAN_TYLE_GD_C2C.KON)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -4278,7 +4279,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.CTY7 ? (
-                  parseInt(PLAN_TYLE_GD_C2C.CTY7)
+                  formatIntegerWithCommas(PLAN_TYLE_GD_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -4291,7 +4292,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO ? (
-                  parseInt(EXEC_TYLE_GD_C2C.KHO)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.KHO)
                 ) : (
                   ""
                 )}
@@ -4300,7 +4301,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA ? (
-                  parseInt(EXEC_TYLE_GD_C2C.DLA)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.DLA)
                 ) : (
                   ""
                 )}
@@ -4309,7 +4310,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA ? (
-                  parseInt(EXEC_TYLE_GD_C2C.GLA)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.GLA)
                 ) : (
                   ""
                 )}
@@ -4318,7 +4319,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE ? (
-                  parseInt(EXEC_TYLE_GD_C2C.PYE)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.PYE)
                 ) : (
                   ""
                 )}
@@ -4327,7 +4328,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO ? (
-                  parseInt(EXEC_TYLE_GD_C2C.DNO)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.DNO)
                 ) : (
                   ""
                 )}
@@ -4336,7 +4337,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON ? (
-                  parseInt(EXEC_TYLE_GD_C2C.KON)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.KON)
                 ) : (
                   ""
                 )}
@@ -4345,7 +4346,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 ? (
-                  parseInt(EXEC_TYLE_GD_C2C.CTY7)
+                  formatIntegerWithCommas(EXEC_TYLE_GD_C2C.CTY7)
                 ) : (
                   ""
                 )}
@@ -4642,7 +4643,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KHO ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.KHO)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.KHO)
                 ) : (
                   ""
                 )}
@@ -4651,7 +4652,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DLA ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.DLA)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.DLA)
                 ) : (
                   ""
                 )}
@@ -4660,7 +4661,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.GLA ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.GLA)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.GLA)
                 ) : (
                   ""
                 )}
@@ -4669,7 +4670,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.PYE ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.PYE)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.PYE)
                 ) : (
                   ""
                 )}
@@ -4678,7 +4679,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DNO ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.DNO)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.DNO)
                 ) : (
                   ""
                 )}
@@ -4687,7 +4688,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KON ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.KON)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.KON)
                 ) : (
                   ""
                 )}
@@ -4696,7 +4697,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
-                  parseInt(PLAN_SL_PTM_TBTT_HTS.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.CTY7)
                 ) : (
                   ""
                 )}
@@ -4709,7 +4710,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KHO ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.KHO)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.KHO)
                 ) : (
                   ""
                 )}
@@ -4718,7 +4719,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DLA ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.DLA)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.DLA)
                 ) : (
                   ""
                 )}
@@ -4727,7 +4728,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.GLA ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.GLA)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.GLA)
                 ) : (
                   ""
                 )}
@@ -4736,7 +4737,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.PYE ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.PYE)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.PYE)
                 ) : (
                   ""
                 )}
@@ -4745,7 +4746,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DNO ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.DNO)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.DNO)
                 ) : (
                   ""
                 )}
@@ -4754,7 +4755,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KON ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.KON)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.KON)
                 ) : (
                   ""
                 )}
@@ -4763,7 +4764,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.CTY7 ? (
-                  parseInt(EXEC_SL_PTM_TBTT_HTS.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.CTY7)
                 ) : (
                   ""
                 )}
@@ -5055,7 +5056,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KHO ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.KHO)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.KHO)
                 ) : (
                   ""
                 )}
@@ -5064,7 +5065,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DLA ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.DLA)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.DLA)
                 ) : (
                   ""
                 )}
@@ -5073,7 +5074,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.GLA ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.GLA)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.GLA)
                 ) : (
                   ""
                 )}
@@ -5082,7 +5083,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.PYE ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.PYE)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.PYE)
                 ) : (
                   ""
                 )}
@@ -5091,7 +5092,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DNO ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.DNO)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.DNO)
                 ) : (
                   ""
                 )}
@@ -5100,7 +5101,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KON ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.KON)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.KON)
                 ) : (
                   ""
                 )}
@@ -5109,7 +5110,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
-                  parseInt(PLAN_SL_PTM_TBTT_NDS.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.CTY7)
                 ) : (
                   ""
                 )}
@@ -5122,7 +5123,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.KHO)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.KHO)
                 ) : (
                   ""
                 )}
@@ -5131,7 +5132,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.DLA)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.DLA)
                 ) : (
                   ""
                 )}
@@ -5140,7 +5141,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.GLA)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.GLA)
                 ) : (
                   ""
                 )}
@@ -5149,7 +5150,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.PYE)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.PYE)
                 ) : (
                   ""
                 )}
@@ -5158,7 +5159,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.DNO)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.DNO)
                 ) : (
                   ""
                 )}
@@ -5167,7 +5168,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.KON)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.KON)
                 ) : (
                   ""
                 )}
@@ -5176,7 +5177,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 ? (
-                  parseInt(EXEC_SL_PTM_TBTT_NDS.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.CTY7)
                 ) : (
                   ""
                 )}
@@ -5468,7 +5469,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KHO ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.KHO)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.KHO)
                 ) : (
                   ""
                 )}
@@ -5477,7 +5478,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DLA ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.DLA)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.DLA)
                 ) : (
                   ""
                 )}
@@ -5486,7 +5487,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.GLA ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.GLA)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.GLA)
                 ) : (
                   ""
                 )}
@@ -5495,7 +5496,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.PYE ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.PYE)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.PYE)
                 ) : (
                   ""
                 )}
@@ -5504,7 +5505,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DNO ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.DNO)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.DNO)
                 ) : (
                   ""
                 )}
@@ -5513,7 +5514,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KON ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.KON)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.KON)
                 ) : (
                   ""
                 )}
@@ -5522,7 +5523,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.CTY7 ? (
-                  parseInt(PLAN_SL_TBTS_PTM_THOAI.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.CTY7)
                 ) : (
                   ""
                 )}
@@ -5535,7 +5536,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KHO ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.KHO)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.KHO)
                 ) : (
                   ""
                 )}
@@ -5544,7 +5545,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DLA ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.DLA)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.DLA)
                 ) : (
                   ""
                 )}
@@ -5553,7 +5554,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.GLA ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.GLA)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.GLA)
                 ) : (
                   ""
                 )}
@@ -5562,7 +5563,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.PYE ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.PYE)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.PYE)
                 ) : (
                   ""
                 )}
@@ -5571,7 +5572,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DNO ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.DNO)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.DNO)
                 ) : (
                   ""
                 )}
@@ -5580,7 +5581,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KON ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.KON)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.KON)
                 ) : (
                   ""
                 )}
@@ -5589,7 +5590,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 ? (
-                  parseInt(EXEC_SL_TBTS_PTM_THOAI.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.CTY7)
                 ) : (
                   ""
                 )}
@@ -5888,7 +5889,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KHO ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.KHO)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.KHO)
                 ) : (
                   ""
                 )}
@@ -5897,7 +5898,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DLA ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.DLA)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.DLA)
                 ) : (
                   ""
                 )}
@@ -5906,7 +5907,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.GLA ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.GLA)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.GLA)
                 ) : (
                   ""
                 )}
@@ -5915,7 +5916,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.PYE ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.PYE)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.PYE)
                 ) : (
                   ""
                 )}
@@ -5924,7 +5925,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DNO ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.DNO)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.DNO)
                 ) : (
                   ""
                 )}
@@ -5933,7 +5934,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KON ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.KON)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.KON)
                 ) : (
                   ""
                 )}
@@ -5942,7 +5943,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.CTY7 ? (
-                  parseInt(PLAN_SL_TB_PTM_M2M.CTY7)
+                  formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.CTY7)
                 ) : (
                   ""
                 )}
@@ -5955,7 +5956,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.KHO)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.KHO)
                 ) : (
                   ""
                 )}
@@ -5964,7 +5965,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.DLA)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.DLA)
                 ) : (
                   ""
                 )}
@@ -5973,7 +5974,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.GLA)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.GLA)
                 ) : (
                   ""
                 )}
@@ -5982,7 +5983,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.PYE)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.PYE)
                 ) : (
                   ""
                 )}
@@ -5991,7 +5992,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.DNO)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.DNO)
                 ) : (
                   ""
                 )}
@@ -6000,7 +6001,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.KON)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.KON)
                 ) : (
                   ""
                 )}
@@ -6009,7 +6010,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 ? (
-                  parseInt(EXEC_SL_TB_PTM_M2M.CTY7)
+                  formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.CTY7)
                 ) : (
                   ""
                 )}
@@ -6300,7 +6301,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KHO ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.KHO)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.KHO)
                 ) : (
                   ""
                 )}
@@ -6309,7 +6310,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DLA ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.DLA)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.DLA)
                 ) : (
                   ""
                 )}
@@ -6318,7 +6319,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.GLA ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.GLA)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.GLA)
                 ) : (
                   ""
                 )}
@@ -6327,7 +6328,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.PYE ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.PYE)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.PYE)
                 ) : (
                   ""
                 )}
@@ -6336,7 +6337,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DNO ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.DNO)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.DNO)
                 ) : (
                   ""
                 )}
@@ -6345,7 +6346,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KON ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.KON)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.KON)
                 ) : (
                   ""
                 )}
@@ -6354,7 +6355,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.CTY7 ? (
-                  parseInt(PLAN_TB_PTM_SAYMEE.CTY7)
+                  formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.CTY7)
                 ) : (
                   ""
                 )}
@@ -6367,7 +6368,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KHO ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.KHO)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.KHO)
                 ) : (
                   ""
                 )}
@@ -6376,7 +6377,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DLA ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.DLA)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.DLA)
                 ) : (
                   ""
                 )}
@@ -6385,7 +6386,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.GLA ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.GLA)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.GLA)
                 ) : (
                   ""
                 )}
@@ -6394,7 +6395,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.PYE ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.PYE)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.PYE)
                 ) : (
                   ""
                 )}
@@ -6403,7 +6404,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DNO ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.DNO)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.DNO)
                 ) : (
                   ""
                 )}
@@ -6412,7 +6413,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KON ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.KON)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.KON)
                 ) : (
                   ""
                 )}
@@ -6421,7 +6422,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.CTY7 ? (
-                  parseInt(EXEC_TB_PTM_SAYMEE.CTY7)
+                  formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.CTY7)
                 ) : (
                   ""
                 )}
@@ -6712,7 +6713,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KHO ? (
-                  parseInt(PLAN_TB_PTM_FIBER.KHO)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.KHO)
                 ) : (
                   ""
                 )}
@@ -6721,7 +6722,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA ? (
-                  parseInt(PLAN_TB_PTM_FIBER.DLA)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.DLA)
                 ) : (
                   ""
                 )}
@@ -6730,7 +6731,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.GLA ? (
-                  parseInt(PLAN_TB_PTM_FIBER.GLA)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.GLA)
                 ) : (
                   ""
                 )}
@@ -6739,7 +6740,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.PYE ? (
-                  parseInt(PLAN_TB_PTM_FIBER.PYE)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.PYE)
                 ) : (
                   ""
                 )}
@@ -6748,7 +6749,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DNO ? (
-                  parseInt(PLAN_TB_PTM_FIBER.DNO)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.DNO)
                 ) : (
                   ""
                 )}
@@ -6757,7 +6758,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KON ? (
-                  parseInt(PLAN_TB_PTM_FIBER.KON)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.KON)
                 ) : (
                   ""
                 )}
@@ -6766,7 +6767,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.CTY7 ? (
-                  parseInt(PLAN_TB_PTM_FIBER.CTY7)
+                  formatIntegerWithCommas(PLAN_TB_PTM_FIBER.CTY7)
                 ) : (
                   ""
                 )}
@@ -6779,7 +6780,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KHO ? (
-                  parseInt(EXEC_TB_PTM_FIBER.KHO)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.KHO)
                 ) : (
                   ""
                 )}
@@ -6788,7 +6789,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DLA ? (
-                  parseInt(EXEC_TB_PTM_FIBER.DLA)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.DLA)
                 ) : (
                   ""
                 )}
@@ -6797,7 +6798,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.GLA ? (
-                  parseInt(EXEC_TB_PTM_FIBER.GLA)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.GLA)
                 ) : (
                   ""
                 )}
@@ -6806,7 +6807,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.PYE ? (
-                  parseInt(EXEC_TB_PTM_FIBER.PYE)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.PYE)
                 ) : (
                   ""
                 )}
@@ -6815,7 +6816,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DNO ? (
-                  parseInt(EXEC_TB_PTM_FIBER.DNO)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.DNO)
                 ) : (
                   ""
                 )}
@@ -6824,7 +6825,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KON ? (
-                  parseInt(EXEC_TB_PTM_FIBER.KON)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.KON)
                 ) : (
                   ""
                 )}
@@ -6833,7 +6834,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.CTY7 ? (
-                  parseInt(EXEC_TB_PTM_FIBER.CTY7)
+                  formatIntegerWithCommas(EXEC_TB_PTM_FIBER.CTY7)
                 ) : (
                   ""
                 )}
@@ -7126,7 +7127,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.KHO ? (
-                  parseInt(PLAN_TB_VLR.KHO)
+                  formatIntegerWithCommas(PLAN_TB_VLR.KHO)
                 ) : (
                   ""
                 )}
@@ -7135,7 +7136,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DLA ? (
-                  parseInt(PLAN_TB_VLR.DLA)
+                  formatIntegerWithCommas(PLAN_TB_VLR.DLA)
                 ) : (
                   ""
                 )}
@@ -7144,7 +7145,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.GLA ? (
-                  parseInt(PLAN_TB_VLR.GLA)
+                  formatIntegerWithCommas(PLAN_TB_VLR.GLA)
                 ) : (
                   ""
                 )}
@@ -7153,7 +7154,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.PYE ? (
-                  parseInt(PLAN_TB_VLR.PYE)
+                  formatIntegerWithCommas(PLAN_TB_VLR.PYE)
                 ) : (
                   ""
                 )}
@@ -7162,7 +7163,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DNO ? (
-                  parseInt(PLAN_TB_VLR.DNO)
+                  formatIntegerWithCommas(PLAN_TB_VLR.DNO)
                 ) : (
                   ""
                 )}
@@ -7180,7 +7181,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.CTY7 ? (
-                  parseInt(PLAN_TB_VLR.CTY7)
+                  formatIntegerWithCommas(PLAN_TB_VLR.CTY7)
                 ) : (
                   ""
                 )}
@@ -7193,7 +7194,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KHO ? (
-                  parseInt(EXEC_TB_VLR.KHO)
+                  formatIntegerWithCommas(EXEC_TB_VLR.KHO)
                 ) : (
                   ""
                 )}
@@ -7202,7 +7203,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DLA ? (
-                  parseInt(EXEC_TB_VLR.DLA)
+                  formatIntegerWithCommas(EXEC_TB_VLR.DLA)
                 ) : (
                   ""
                 )}
@@ -7211,7 +7212,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.GLA ? (
-                  parseInt(EXEC_TB_VLR.GLA)
+                  formatIntegerWithCommas(EXEC_TB_VLR.GLA)
                 ) : (
                   ""
                 )}
@@ -7220,7 +7221,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.PYE ? (
-                  parseInt(EXEC_TB_VLR.PYE)
+                  formatIntegerWithCommas(EXEC_TB_VLR.PYE)
                 ) : (
                   ""
                 )}
@@ -7229,7 +7230,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DNO ? (
-                  parseInt(EXEC_TB_VLR.DNO)
+                  formatIntegerWithCommas(EXEC_TB_VLR.DNO)
                 ) : (
                   ""
                 )}
@@ -7238,7 +7239,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KON ? (
-                  parseInt(EXEC_TB_VLR.KON)
+                  formatIntegerWithCommas(EXEC_TB_VLR.KON)
                 ) : (
                   ""
                 )}
@@ -7247,7 +7248,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.CTY7 ? (
-                  parseInt(EXEC_TB_VLR.CTY7)
+                  formatIntegerWithCommas(EXEC_TB_VLR.CTY7)
                 ) : (
                   ""
                 )}
@@ -7496,7 +7497,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KHO ? (
-                  parseInt(PLAN_TB_PSC.KHO)
+                  formatIntegerWithCommas(PLAN_TB_PSC.KHO)
                 ) : (
                   ""
                 )}
@@ -7505,7 +7506,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DLA ? (
-                  parseInt(PLAN_TB_PSC.DLA)
+                  formatIntegerWithCommas(PLAN_TB_PSC.DLA)
                 ) : (
                   ""
                 )}
@@ -7514,7 +7515,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.GLA ? (
-                  parseInt(PLAN_TB_PSC.GLA)
+                  formatIntegerWithCommas(PLAN_TB_PSC.GLA)
                 ) : (
                   ""
                 )}
@@ -7523,7 +7524,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.PYE ? (
-                  parseInt(PLAN_TB_PSC.PYE)
+                  formatIntegerWithCommas(PLAN_TB_PSC.PYE)
                 ) : (
                   ""
                 )}
@@ -7532,7 +7533,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DNO ? (
-                  parseInt(PLAN_TB_PSC.DNO)
+                  formatIntegerWithCommas(PLAN_TB_PSC.DNO)
                 ) : (
                   ""
                 )}
@@ -7541,7 +7542,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KON ? (
-                  parseInt(PLAN_TB_PSC.KON)
+                  formatIntegerWithCommas(PLAN_TB_PSC.KON)
                 ) : (
                   ""
                 )}
@@ -7550,7 +7551,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.CTY7 ? (
-                  parseInt(PLAN_TB_PSC.CTY7)
+                  formatIntegerWithCommas(PLAN_TB_PSC.CTY7)
                 ) : (
                   ""
                 )}
@@ -7563,7 +7564,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO ? (
-                  parseInt(EXEC_TB_PSC.KHO)
+                  formatIntegerWithCommas(EXEC_TB_PSC.KHO)
                 ) : (
                   ""
                 )}
@@ -7572,7 +7573,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA ? (
-                  parseInt(EXEC_TB_PSC.DLA)
+                  formatIntegerWithCommas(EXEC_TB_PSC.DLA)
                 ) : (
                   ""
                 )}
@@ -7581,7 +7582,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA ? (
-                  parseInt(EXEC_TB_PSC.GLA)
+                  formatIntegerWithCommas(EXEC_TB_PSC.GLA)
                 ) : (
                   ""
                 )}
@@ -7590,7 +7591,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE ? (
-                  parseInt(EXEC_TB_PSC.PYE)
+                  formatIntegerWithCommas(EXEC_TB_PSC.PYE)
                 ) : (
                   ""
                 )}
@@ -7599,7 +7600,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO ? (
-                  parseInt(EXEC_TB_PSC.DNO)
+                  formatIntegerWithCommas(EXEC_TB_PSC.DNO)
                 ) : (
                   ""
                 )}
@@ -7608,7 +7609,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON ? (
-                  parseInt(EXEC_TB_PSC.KON)
+                  formatIntegerWithCommas(EXEC_TB_PSC.KON)
                 ) : (
                   ""
                 )}
@@ -7617,7 +7618,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 ? (
-                  parseInt(EXEC_TB_PSC.CTY7)
+                  formatIntegerWithCommas(EXEC_TB_PSC.CTY7)
                 ) : (
                   ""
                 )}
@@ -9173,7 +9174,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KHO ? (
-                  parseInt(PLAN_TILE_MNP.KHO)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.KHO)
                 ) : (
                   ""
                 )}
@@ -9182,7 +9183,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DLA ? (
-                  parseInt(PLAN_TILE_MNP.DLA)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.DLA)
                 ) : (
                   ""
                 )}
@@ -9191,7 +9192,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.GLA ? (
-                  parseInt(PLAN_TILE_MNP.GLA)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.GLA)
                 ) : (
                   ""
                 )}
@@ -9200,7 +9201,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.PYE ? (
-                  parseInt(PLAN_TILE_MNP.PYE)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.PYE)
                 ) : (
                   ""
                 )}
@@ -9209,7 +9210,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DNO ? (
-                  parseInt(PLAN_TILE_MNP.DNO)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.DNO)
                 ) : (
                   ""
                 )}
@@ -9218,7 +9219,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KON ? (
-                  parseInt(PLAN_TILE_MNP.KON)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.KON)
                 ) : (
                   ""
                 )}
@@ -9227,7 +9228,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.CTY7 ? (
-                  parseInt(PLAN_TILE_MNP.CTY7)
+                  formatIntegerWithCommas(PLAN_TILE_MNP.CTY7)
                 ) : (
                   ""
                 )}
@@ -9240,7 +9241,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KHO ? (
-                  parseInt(EXEC_TILE_MNP.KHO)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.KHO)
                 ) : (
                   ""
                 )}
@@ -9249,7 +9250,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DLA ? (
-                  parseInt(EXEC_TILE_MNP.DLA)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.DLA)
                 ) : (
                   ""
                 )}
@@ -9258,7 +9259,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.GLA ? (
-                  parseInt(EXEC_TILE_MNP.GLA)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.GLA)
                 ) : (
                   ""
                 )}
@@ -9268,7 +9269,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.PYE ? (
-                  parseInt(EXEC_TILE_MNP.PYE)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.PYE)
                 ) : (
                   ""
                 )}
@@ -9277,7 +9278,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DNO ? (
-                  parseInt(EXEC_TILE_MNP.DNO)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.DNO)
                 ) : (
                   ""
                 )}
@@ -9286,7 +9287,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KON ? (
-                  parseInt(EXEC_TILE_MNP.KON)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.KON)
                 ) : (
                   ""
                 )}
@@ -9295,7 +9296,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.CT7 ? (
-                  parseInt(EXEC_TILE_MNP.CTY7)
+                  formatIntegerWithCommas(EXEC_TILE_MNP.CTY7)
                 ) : (
                   ""
                 )}

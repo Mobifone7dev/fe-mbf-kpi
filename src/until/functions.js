@@ -23,21 +23,26 @@ export function getQSParamFromURL(key, url) {
   return urlParams.get(key);
 }
 export const convertToFloat2Fixed = (number) => {
-  if (Number(number)) {
-    return parseFloat(number).toFixed(2)
-  } else {
-    return 0
+  if (!Number(number)) return "0";
 
-  }
-}
+  const num = parseFloat(number);
+  const formatted = num.toLocaleString("en-US", {
+    minimumFractionDigits: num % 1 === 0 ? 0 : 2, // Nếu là số nguyên, không hiển thị thập phân
+    maximumFractionDigits: 2,
+  });
+
+  return formatted;
+};
 export const convertToFloat2FixedNumber = (number) => {
-  if (Number(number)) {
-    return Number(parseFloat(number).toFixed(2))
-  } else {
-    return 0
+  if (!Number(number)) return 0;
 
-  }
-}
+  const num = parseFloat(number);
+  return num % 1 === 0 ? num : Number(num.toFixed(2));
+};
+export const formatIntegerWithCommas = (number) => {
+  if (!Number(number)) return "0";
+  return parseInt(number).toLocaleString("en-US");
+};
 export function daysInMonth(dateInput) {
   return new Date(dateInput.getFullYear(), dateInput.getMonth() + 1, 0).getDate();
 }
