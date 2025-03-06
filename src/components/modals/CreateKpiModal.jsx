@@ -553,7 +553,7 @@ const CreateKpiModal = (props) => {
                 <div className="d-flex">
                   <label
                     htmlFor="selectKpiMonth"
-                    className="form-label fs-6 fw-bold text-dark me-2"
+                    className="form-label fs-6 fw-bold text-dark me-2 mt-2"
                   >
                     Tháng
                   </label>

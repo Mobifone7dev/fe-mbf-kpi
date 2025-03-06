@@ -108,6 +108,7 @@ const Page = () => {
 
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
+    resetPlan();
     fetch(`api/get-plan-kpi?month=${month}`).then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
@@ -186,15 +187,13 @@ const Page = () => {
               SET_PLAN_TILE_MNP(object);
             }
           });
-        } else {
-          resetPlan();
-        }
+        } 
       }
     });
   };
   const getExecKpi = (month) => {
     setLoadingExec(true);
-
+    resetExec();
     fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
       setLoadingExec(false);
       const data = await res.json();
@@ -280,8 +279,6 @@ const Page = () => {
           }
           
         });
-      } else {
-        resetExec();
       }
     });
   };
@@ -309,6 +306,12 @@ const Page = () => {
     SET_PLAN_TILE_N_1_DONKY({});
     SET_PLAN_TILE_N_1_DAIKY({});
     SET_PLAN_TILE_MNP({});
+    SET_PLAN_SL_C2C({})
+    SET_PLAN_DTHU_FIBER({})
+    SET_PLAN_DTHU_GPS({})
+    SET_PLAN_DTHU_MASS({})
+    SET_PLAN_DTHU_DUAN({})
+    SET_PLAN_SL_TBTS_PTM_THOAI({})
   };
 
   const resetExec = () => {
@@ -329,6 +332,12 @@ const Page = () => {
     SET_EXEC_SL_TB_C2C({});
     SET_EXEC_SL_PTM_TBTT_HTS({});
     SET_EXEC_TILE_MNP({});
+    SET_EXEC_SL_C2C({})
+    SET_EXEC_DTHU_FIBER({})
+    SET_EXEC_DTHU_GPS({})
+    SET_EXEC_DTHU_MASS({})
+    SET_EXEC_DTHU_DUAN({})
+    SET_EXEC_SL_TBTS_PTM_THOAI({})
   };
   const [show, setShow] = useState(false);
 
