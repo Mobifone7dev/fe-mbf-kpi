@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import LoadingComponent from "@components/loading/LoadingComponent";
-import CreateKpiModal from "@components/modals/CreatekpiModal";
+import CreateKpiModal from "@components/modals/CreateKpiModal";
 
 import {
   convertToFloat2Fixed,
