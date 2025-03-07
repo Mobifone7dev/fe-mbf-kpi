@@ -35,6 +35,7 @@ const Page = () => {
   );
   const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
+  const [isSticky, setisSticky] = useState(false);
 
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
@@ -110,6 +111,20 @@ const Page = () => {
     getPlanKpi(date);
     getExecKpi(date);
   }, [selectedDate]);
+  const handleSticky = () => {
+    // const header = document.querySelector('.header') as any
+    // scrollTop >= 250
+    //   ? header.classList.add('is-sticky')
+    //   : header.classList.remove('is-sticky')
+    const scrollTop = window.scrollY;
+    scrollTop > 80 ? setisSticky(true) : setisSticky(false);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleSticky);
+    return () => {
+      window.removeEventListener("scroll", handleSticky);
+    };
+  });
 
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
@@ -437,8 +452,8 @@ const Page = () => {
 
       <div className="table-kpi">
         <table className="table-responsive  align-middle gs-0 gy-3">
-          <thead>
-            <tr className="table-head">
+          <thead >
+            <tr className={`table-head ${isSticky && "is-sticky"}`}>
               <th>STT</th>
               <th>Nhiệm vụ</th>
               <th>DVT</th>
@@ -453,7 +468,7 @@ const Page = () => {
               <th className="bg-green-secondary">Đ/v phụ trách</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody  className={` ${isSticky && "is-sticky"}`}>
             <tr>
               <td className="text-sub1">I</td>
               <td className="text-sub1" colSpan={11}>
@@ -464,12 +479,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 1
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Doanh thu hạ tầng số
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.KHO ? (
@@ -478,7 +493,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.DLA ? (
@@ -487,7 +502,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.GLA ? (
@@ -496,7 +511,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.PYE ? (
@@ -505,7 +520,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.DNO ? (
@@ -514,7 +529,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.KON ? (
@@ -523,7 +538,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_TKC_HTS.CTY7 ? (
@@ -546,8 +561,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KHO ? (
@@ -556,7 +571,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DLA ? (
@@ -565,7 +580,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.GLA ? (
@@ -574,7 +589,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.PYE ? (
@@ -583,7 +598,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DNO ? (
@@ -592,7 +607,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KON ? (
@@ -601,7 +616,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.CTY7 ? (
@@ -612,8 +627,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
@@ -626,7 +641,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
@@ -639,7 +654,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
@@ -652,7 +667,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
@@ -665,7 +680,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
@@ -678,7 +693,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
@@ -691,7 +706,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
@@ -706,7 +721,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -898,12 +913,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 2
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Doanh thu MobiFiber
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -913,7 +928,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.DLA ? (
@@ -922,7 +937,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.GLA ? (
@@ -931,7 +946,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.PYE ? (
@@ -940,7 +955,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.DNO ? (
@@ -949,7 +964,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.KON ? (
@@ -958,7 +973,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.CTY7 ? (
@@ -981,8 +996,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KHO ? (
@@ -991,7 +1006,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DLA ? (
@@ -1000,7 +1015,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.GLA ? (
@@ -1009,7 +1024,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.PYE ? (
@@ -1018,7 +1033,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DNO ? (
@@ -1027,7 +1042,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KON ? (
@@ -1036,7 +1051,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.CTY7 ? (
@@ -1047,8 +1062,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KHO && PLAN_DTHU_FIBER.KHO ? (
@@ -1061,7 +1076,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
@@ -1074,7 +1089,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.GLA && PLAN_DTHU_FIBER.GLA ? (
@@ -1087,7 +1102,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
@@ -1100,7 +1115,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DNO && PLAN_DTHU_FIBER.DNO ? (
@@ -1113,7 +1128,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KON && PLAN_DTHU_FIBER.KON ? (
@@ -1126,7 +1141,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.CTY7 && PLAN_DTHU_FIBER.CTY7 ? (
@@ -1141,7 +1156,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -1337,12 +1352,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 3.1
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Doanh thu bán Mass
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.KHO ? (
@@ -1351,7 +1366,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.DLA ? (
@@ -1360,7 +1375,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.GLA ? (
@@ -1369,7 +1384,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.PYE ? (
@@ -1378,7 +1393,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.DNO ? (
@@ -1387,7 +1402,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.KON ? (
@@ -1396,7 +1411,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_MASS.CTY7 ? (
@@ -1420,8 +1435,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KHO ? (
@@ -1430,7 +1445,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DLA ? (
@@ -1439,7 +1454,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.GLA ? (
@@ -1448,7 +1463,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.PYE ? (
@@ -1457,7 +1472,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DNO ? (
@@ -1466,7 +1481,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KON ? (
@@ -1475,7 +1490,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.CTY7 ? (
@@ -1486,8 +1501,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KHO && PLAN_DTHU_MASS.KHO ? (
@@ -1499,7 +1514,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DLA && PLAN_DTHU_MASS.DLA ? (
@@ -1511,7 +1526,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.GLA && PLAN_DTHU_MASS.GLA ? (
@@ -1523,7 +1538,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.PYE && PLAN_DTHU_MASS.PYE ? (
@@ -1535,7 +1550,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DNO && PLAN_DTHU_MASS.DNO ? (
@@ -1547,7 +1562,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KON && PLAN_DTHU_MASS.KON ? (
@@ -1559,7 +1574,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.CTY7 && PLAN_DTHU_MASS.CTY7 ? (
@@ -1574,7 +1589,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -1762,12 +1777,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 3.2
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Doanh thu dự án
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.KHO ? (
@@ -1776,7 +1791,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.DLA ? (
@@ -1785,7 +1800,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.GLA ? (
@@ -1794,7 +1809,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.PYE ? (
@@ -1803,7 +1818,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.DNO ? (
@@ -1812,7 +1827,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.KON ? (
@@ -1821,7 +1836,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_DUAN.CTY7 ? (
@@ -1845,8 +1860,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KHO ? (
@@ -1855,7 +1870,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DLA ? (
@@ -1864,7 +1879,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.GLA ? (
@@ -1873,7 +1888,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.PYE ? (
@@ -1882,7 +1897,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DNO ? (
@@ -1891,7 +1906,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KON ? (
@@ -1900,7 +1915,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.CTY7 ? (
@@ -1911,8 +1926,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KHO && PLAN_DTHU_DUAN.KHO ? (
@@ -1924,7 +1939,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DLA && PLAN_DTHU_DUAN.DLA ? (
@@ -1936,7 +1951,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.GLA && PLAN_DTHU_DUAN.GLA ? (
@@ -1948,7 +1963,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.PYE && PLAN_DTHU_DUAN.PYE ? (
@@ -1960,7 +1975,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DNO && PLAN_DTHU_DUAN.DNO ? (
@@ -1972,7 +1987,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KON && PLAN_DTHU_DUAN.KON ? (
@@ -1984,7 +1999,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.CTY7 && PLAN_DTHU_DUAN.CTY7 ? (
@@ -1999,7 +2014,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -2188,12 +2203,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 4
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Doanh thu NDS Platform
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.KHO ? (
@@ -2202,7 +2217,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.DLA ? (
@@ -2211,7 +2226,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.GLA ? (
@@ -2220,7 +2235,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.PYE ? (
@@ -2229,7 +2244,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.DNO ? (
@@ -2238,7 +2253,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.KON ? (
@@ -2247,7 +2262,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_NDS.CTY7 ? (
@@ -2271,8 +2286,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KHO ? (
@@ -2281,7 +2296,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DLA ? (
@@ -2290,7 +2305,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.GLA ? (
@@ -2299,7 +2314,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.PYE ? (
@@ -2308,7 +2323,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DNO ? (
@@ -2317,7 +2332,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KON ? (
@@ -2326,7 +2341,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.CTY7 ? (
@@ -2337,8 +2352,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KHO && PLAN_DTHU_NDS.KHO ? (
@@ -2350,7 +2365,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DLA && PLAN_DTHU_NDS.DLA ? (
@@ -2362,7 +2377,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.GLA && PLAN_DTHU_NDS.GLA ? (
@@ -2374,7 +2389,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.PYE && PLAN_DTHU_NDS.PYE ? (
@@ -2386,7 +2401,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DNO && PLAN_DTHU_NDS.DNO ? (
@@ -2398,7 +2413,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KON && PLAN_DTHU_NDS.KON ? (
@@ -2410,7 +2425,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.CTY7 && PLAN_DTHU_NDS.CTY7 ? (
@@ -2424,7 +2439,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -2612,12 +2627,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 5
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Doanh thu thương hiệu giới trẻ
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.KHO ? (
@@ -2626,7 +2641,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.DLA ? (
@@ -2635,7 +2650,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.GLA ? (
@@ -2644,7 +2659,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.PYE ? (
@@ -2653,7 +2668,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.DNO ? (
@@ -2662,7 +2677,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.KON ? (
@@ -2671,7 +2686,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.CTY7 ? (
@@ -2694,8 +2709,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KHO ? (
@@ -2704,7 +2719,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DLA ? (
@@ -2713,7 +2728,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.GLA ? (
@@ -2722,7 +2737,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.PYE ? (
@@ -2731,7 +2746,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DNO ? (
@@ -2740,7 +2755,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KON ? (
@@ -2749,7 +2764,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.CTY7 ? (
@@ -2760,8 +2775,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KHO && PLAN_DTHU_SAYMEE.KHO ? (
@@ -2774,7 +2789,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DLA && PLAN_DTHU_SAYMEE.DLA ? (
@@ -2787,7 +2802,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.GLA && PLAN_DTHU_SAYMEE.GLA ? (
@@ -2800,7 +2815,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.PYE && PLAN_DTHU_SAYMEE.PYE ? (
@@ -2813,7 +2828,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.DNO && PLAN_DTHU_SAYMEE.DNO ? (
@@ -2826,7 +2841,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.KON && PLAN_DTHU_SAYMEE.KON ? (
@@ -2839,7 +2854,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_SAYMEE.CTY7 && PLAN_DTHU_SAYMEE.CTY7 ? (
@@ -2854,7 +2869,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -3043,12 +3058,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 6
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Doanh thu GPS không gian mới
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.KHO ? (
@@ -3057,7 +3072,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.DLA ? (
@@ -3066,7 +3081,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.GLA ? (
@@ -3075,7 +3090,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.PYE ? (
@@ -3084,7 +3099,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.DNO ? (
@@ -3093,7 +3108,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.KON ? (
@@ -3102,7 +3117,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.CTY7 ? (
@@ -3126,8 +3141,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.KHO ? (
@@ -3136,7 +3151,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.DLA ? (
@@ -3145,7 +3160,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.GLA ? (
@@ -3154,7 +3169,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.PYE ? (
@@ -3163,7 +3178,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.DNO ? (
@@ -3172,7 +3187,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.KON ? (
@@ -3181,7 +3196,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.CTY7 ? (
@@ -3192,8 +3207,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.KHO && PLAN_DTHU_GPS.KHO ? (
@@ -3205,7 +3220,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.DLA && PLAN_DTHU_GPS.DLA ? (
@@ -3217,7 +3232,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.GLA && PLAN_DTHU_GPS.GLA ? (
@@ -3229,7 +3244,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.PYE && PLAN_DTHU_GPS.PYE ? (
@@ -3241,7 +3256,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.DNO && PLAN_DTHU_GPS.DNO ? (
@@ -3253,7 +3268,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.KON && PLAN_DTHU_GPS.KON ? (
@@ -3265,7 +3280,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.CTY7 && PLAN_DTHU_GPS.CTY7 ? (
@@ -3279,7 +3294,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -3479,12 +3494,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 7.1
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Số lượng điểm C2C
               </td>
-              <td rowSpan={4}>điểm</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">điểm</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KHO ? (
@@ -3493,7 +3508,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DLA ? (
@@ -3502,7 +3517,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.GLA ? (
@@ -3511,7 +3526,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.PYE ? (
@@ -3520,7 +3535,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.DNO ? (
@@ -3529,7 +3544,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.KON ? (
@@ -3538,7 +3553,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_C2C.CTY7 ? (
@@ -3561,8 +3576,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KHO ? (
@@ -3571,7 +3586,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DLA ? (
@@ -3580,7 +3595,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.GLA ? (
@@ -3589,7 +3604,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.PYE ? (
@@ -3598,7 +3613,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DNO ? (
@@ -3607,7 +3622,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KON ? (
@@ -3616,7 +3631,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.CTY7 ? (
@@ -3627,8 +3642,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KHO && PLAN_SL_C2C.KHO ? (
@@ -3640,7 +3655,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DLA && PLAN_SL_C2C.DLA ? (
@@ -3652,7 +3667,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.GLA && PLAN_SL_C2C.GLA ? (
@@ -3664,7 +3679,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.PYE && PLAN_SL_C2C.PYE ? (
@@ -3676,7 +3691,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.DNO && PLAN_SL_C2C.DNO ? (
@@ -3688,7 +3703,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.KON && PLAN_SL_C2C.KON ? (
@@ -3700,7 +3715,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_C2C.CTY7 && PLAN_SL_C2C.CTY7 ? (
@@ -3714,7 +3729,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -3903,12 +3918,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 7.2
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Số lượng TB PTM qua kênh C2C
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KHO ? (
@@ -3917,7 +3932,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DLA ? (
@@ -3926,7 +3941,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.GLA ? (
@@ -3935,7 +3950,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.PYE ? (
@@ -3944,7 +3959,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.DNO ? (
@@ -3953,7 +3968,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.KON ? (
@@ -3962,7 +3977,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_C2C.CTY7 ? (
@@ -3985,8 +4000,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KHO ? (
@@ -3995,7 +4010,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DLA ? (
@@ -4004,7 +4019,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.GLA ? (
@@ -4013,7 +4028,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.PYE ? (
@@ -4023,7 +4038,7 @@ const Page = () => {
                 )}
               </td>
 
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DNO ? (
@@ -4032,7 +4047,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KON ? (
@@ -4041,7 +4056,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.CTY7 ? (
@@ -4052,8 +4067,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KHO && PLAN_SL_TB_C2C.KHO ? (
@@ -4065,7 +4080,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DLA && PLAN_SL_TB_C2C.DLA ? (
@@ -4077,7 +4092,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.GLA && PLAN_SL_TB_C2C.GLA ? (
@@ -4089,7 +4104,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.PYE && PLAN_SL_TB_C2C.PYE ? (
@@ -4101,7 +4116,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.DNO && PLAN_SL_TB_C2C.DNO ? (
@@ -4113,7 +4128,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.KON && PLAN_SL_TB_C2C.KON ? (
@@ -4125,7 +4140,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_C2C.CTY7 && PLAN_SL_TB_C2C.CTY7 ? (
@@ -4139,7 +4154,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -4328,12 +4343,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 7.3
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Tỷ lệ Điểm bán C2C có phát sinh giao dịch
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KHO ? (
@@ -4342,7 +4357,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DLA ? (
@@ -4351,7 +4366,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.GLA ? (
@@ -4360,7 +4375,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.PYE ? (
@@ -4369,7 +4384,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.DNO ? (
@@ -4378,7 +4393,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.KON ? (
@@ -4387,7 +4402,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TYLE_GD_C2C.CTY7 ? (
@@ -4410,8 +4425,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO ? (
@@ -4420,7 +4435,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA ? (
@@ -4429,7 +4444,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA ? (
@@ -4438,7 +4453,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE ? (
@@ -4447,7 +4462,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO ? (
@@ -4456,7 +4471,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON ? (
@@ -4465,7 +4480,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 ? (
@@ -4476,8 +4491,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KHO && PLAN_TYLE_GD_C2C.KHO ? (
@@ -4489,7 +4504,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA && PLAN_TYLE_GD_C2C.DLA ? (
@@ -4501,7 +4516,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.GLA && PLAN_TYLE_GD_C2C.GLA ? (
@@ -4513,7 +4528,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.PYE && PLAN_TYLE_GD_C2C.PYE ? (
@@ -4525,7 +4540,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DNO && PLAN_TYLE_GD_C2C.DNO ? (
@@ -4537,7 +4552,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.KON && PLAN_TYLE_GD_C2C.KON ? (
@@ -4549,7 +4564,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.CTY7 && PLAN_TYLE_GD_C2C.CTY7 ? (
@@ -4563,7 +4578,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -4757,12 +4772,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 8.1
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 TBTT PTM Hạ tầng số
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KHO ? (
@@ -4771,7 +4786,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DLA ? (
@@ -4780,7 +4795,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.GLA ? (
@@ -4789,7 +4804,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.PYE ? (
@@ -4798,7 +4813,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.DNO ? (
@@ -4807,7 +4822,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.KON ? (
@@ -4816,7 +4831,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -4840,8 +4855,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KHO ? (
@@ -4850,7 +4865,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DLA ? (
@@ -4859,7 +4874,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.GLA ? (
@@ -4868,7 +4883,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.PYE ? (
@@ -4877,7 +4892,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DNO ? (
@@ -4886,7 +4901,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KON ? (
@@ -4895,7 +4910,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -4906,8 +4921,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KHO && PLAN_SL_PTM_TBTT_HTS.KHO ? (
@@ -4919,7 +4934,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DLA && PLAN_SL_PTM_TBTT_HTS.DLA ? (
@@ -4931,7 +4946,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.GLA && PLAN_SL_PTM_TBTT_HTS.GLA ? (
@@ -4943,7 +4958,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.PYE && PLAN_SL_PTM_TBTT_HTS.PYE ? (
@@ -4955,7 +4970,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DNO && PLAN_SL_PTM_TBTT_HTS.DNO ? (
@@ -4967,7 +4982,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KON && PLAN_SL_PTM_TBTT_HTS.KON ? (
@@ -4979,7 +4994,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.CTY7 && PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -4994,7 +5009,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -5182,12 +5197,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 8.2
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 TBTT PTM Nội dung số
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KHO ? (
@@ -5196,7 +5211,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DLA ? (
@@ -5205,7 +5220,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.GLA ? (
@@ -5214,7 +5229,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.PYE ? (
@@ -5223,7 +5238,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.DNO ? (
@@ -5232,7 +5247,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.KON ? (
@@ -5241,7 +5256,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
@@ -5265,8 +5280,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO ? (
@@ -5275,7 +5290,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA ? (
@@ -5284,7 +5299,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA ? (
@@ -5293,7 +5308,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE ? (
@@ -5302,7 +5317,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO ? (
@@ -5311,7 +5326,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON ? (
@@ -5320,7 +5335,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 ? (
@@ -5331,8 +5346,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO && PLAN_SL_PTM_TBTT_NDS.KHO ? (
@@ -5344,7 +5359,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA && PLAN_SL_PTM_TBTT_NDS.DLA ? (
@@ -5356,7 +5371,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA && PLAN_SL_PTM_TBTT_NDS.GLA ? (
@@ -5368,7 +5383,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE && PLAN_SL_PTM_TBTT_NDS.PYE ? (
@@ -5380,7 +5395,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO && PLAN_SL_PTM_TBTT_NDS.DNO ? (
@@ -5392,7 +5407,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON && PLAN_SL_PTM_TBTT_NDS.KON ? (
@@ -5404,7 +5419,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 && PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
@@ -5419,7 +5434,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -5607,12 +5622,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 8.3
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 TBTS PTM (thoại)
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KHO ? (
@@ -5621,7 +5636,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DLA ? (
@@ -5630,7 +5645,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.GLA ? (
@@ -5639,7 +5654,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.PYE ? (
@@ -5648,7 +5663,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.DNO ? (
@@ -5657,7 +5672,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.KON ? (
@@ -5666,7 +5681,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TBTS_PTM_THOAI.CTY7 ? (
@@ -5692,8 +5707,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KHO ? (
@@ -5702,7 +5717,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DLA ? (
@@ -5711,7 +5726,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.GLA ? (
@@ -5720,7 +5735,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.PYE ? (
@@ -5729,7 +5744,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DNO ? (
@@ -5738,7 +5753,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KON ? (
@@ -5747,7 +5762,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 ? (
@@ -5758,8 +5773,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KHO && PLAN_SL_TBTS_PTM_THOAI.KHO ? (
@@ -5772,7 +5787,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DLA && PLAN_SL_TBTS_PTM_THOAI.DLA ? (
@@ -5785,7 +5800,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.GLA && PLAN_SL_TBTS_PTM_THOAI.GLA ? (
@@ -5798,7 +5813,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.PYE && PLAN_SL_TBTS_PTM_THOAI.PYE ? (
@@ -5811,7 +5826,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DNO && PLAN_SL_TBTS_PTM_THOAI.DNO ? (
@@ -5824,7 +5839,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KON && PLAN_SL_TBTS_PTM_THOAI.KON ? (
@@ -5837,7 +5852,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 &&
@@ -5853,7 +5868,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -6042,12 +6057,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 8.3
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 TB PTM M2M
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KHO ? (
@@ -6056,7 +6071,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DLA ? (
@@ -6065,7 +6080,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.GLA ? (
@@ -6074,7 +6089,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.PYE ? (
@@ -6083,7 +6098,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.DNO ? (
@@ -6092,7 +6107,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.KON ? (
@@ -6101,7 +6116,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_TB_PTM_M2M.CTY7 ? (
@@ -6125,8 +6140,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO ? (
@@ -6135,7 +6150,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA ? (
@@ -6144,7 +6159,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA ? (
@@ -6153,7 +6168,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE ? (
@@ -6162,7 +6177,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO ? (
@@ -6171,7 +6186,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON ? (
@@ -6180,7 +6195,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 ? (
@@ -6191,8 +6206,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO && PLAN_SL_TB_PTM_M2M.KHO ? (
@@ -6204,7 +6219,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA && PLAN_SL_TB_PTM_M2M.DLA ? (
@@ -6216,7 +6231,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA && PLAN_SL_TB_PTM_M2M.GLA ? (
@@ -6228,7 +6243,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE && PLAN_SL_TB_PTM_M2M.PYE ? (
@@ -6240,7 +6255,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO && PLAN_SL_TB_PTM_M2M.DNO ? (
@@ -6252,7 +6267,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON && PLAN_SL_TB_PTM_M2M.KON ? (
@@ -6264,7 +6279,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 && PLAN_SL_TB_PTM_M2M.CTY7 ? (
@@ -6278,7 +6293,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -6466,12 +6481,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 9
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 TB PTM mạng Saymee
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KHO ? (
@@ -6480,7 +6495,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DLA ? (
@@ -6489,7 +6504,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.GLA ? (
@@ -6498,7 +6513,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.PYE ? (
@@ -6507,7 +6522,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.DNO ? (
@@ -6516,7 +6531,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.KON ? (
@@ -6525,7 +6540,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_SAYMEE.CTY7 ? (
@@ -6549,8 +6564,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KHO ? (
@@ -6559,7 +6574,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DLA ? (
@@ -6568,7 +6583,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.GLA ? (
@@ -6577,7 +6592,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.PYE ? (
@@ -6586,7 +6601,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DNO ? (
@@ -6595,7 +6610,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KON ? (
@@ -6604,7 +6619,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.CTY7 ? (
@@ -6615,8 +6630,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KHO && PLAN_TB_PTM_SAYMEE.KHO ? (
@@ -6628,7 +6643,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DLA && PLAN_TB_PTM_SAYMEE.DLA ? (
@@ -6640,7 +6655,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.GLA && PLAN_TB_PTM_SAYMEE.GLA ? (
@@ -6652,7 +6667,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.PYE && PLAN_TB_PTM_SAYMEE.PYE ? (
@@ -6664,7 +6679,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DNO && PLAN_TB_PTM_SAYMEE.DNO ? (
@@ -6676,7 +6691,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KON && PLAN_TB_PTM_SAYMEE.KON ? (
@@ -6688,7 +6703,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.CTY7 && PLAN_TB_PTM_SAYMEE.CTY7 ? (
@@ -6702,7 +6717,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -6890,12 +6905,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 10
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 TB PTM MobiFiber
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KHO ? (
@@ -6904,7 +6919,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA ? (
@@ -6913,7 +6928,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.GLA ? (
@@ -6922,7 +6937,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.PYE ? (
@@ -6931,7 +6946,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DNO ? (
@@ -6940,7 +6955,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KON ? (
@@ -6949,7 +6964,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.CTY7 ? (
@@ -6973,8 +6988,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KHO ? (
@@ -6983,7 +6998,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DLA ? (
@@ -6992,7 +7007,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.GLA ? (
@@ -7001,7 +7016,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.PYE ? (
@@ -7010,7 +7025,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.DNO ? (
@@ -7019,7 +7034,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.KON ? (
@@ -7028,7 +7043,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.CTY7 ? (
@@ -7039,8 +7054,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KHO && EXEC_TB_PTM_FIBER.KHO ? (
@@ -7052,7 +7067,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA && EXEC_TB_PTM_FIBER.DLA ? (
@@ -7065,7 +7080,7 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
 
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.GLA && EXEC_TB_PTM_FIBER.GLA ? (
@@ -7077,7 +7092,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.PYE && EXEC_TB_PTM_FIBER.PYE ? (
@@ -7089,7 +7104,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DNO && EXEC_TB_PTM_FIBER.DNO ? (
@@ -7101,7 +7116,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.KON && EXEC_TB_PTM_FIBER.KON ? (
@@ -7113,7 +7128,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PTM_FIBER.DLA && EXEC_TB_PTM_FIBER.DLA ? (
@@ -7127,7 +7142,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -7316,12 +7331,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 11
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 TB VLR (MobiFone + Saymee)
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.KHO ? (
@@ -7330,7 +7345,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DLA ? (
@@ -7339,7 +7354,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.GLA ? (
@@ -7348,7 +7363,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.PYE ? (
@@ -7357,7 +7372,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.DNO ? (
@@ -7366,7 +7381,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.KON ? (
@@ -7375,7 +7390,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_VLR.CTY7 ? (
@@ -7399,8 +7414,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KHO ? (
@@ -7409,7 +7424,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DLA ? (
@@ -7418,7 +7433,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.GLA ? (
@@ -7427,7 +7442,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.PYE ? (
@@ -7436,7 +7451,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DNO ? (
@@ -7445,7 +7460,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KON ? (
@@ -7454,7 +7469,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.CTY7 ? (
@@ -7465,8 +7480,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KHO && PLAN_TB_VLR.KHO ? (
@@ -7478,7 +7493,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DLA && PLAN_TB_VLR.DLA ? (
@@ -7490,7 +7505,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.GLA && PLAN_TB_VLR.GLA ? (
@@ -7502,7 +7517,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.PYE && PLAN_TB_VLR.PYE ? (
@@ -7514,7 +7529,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.DNO && PLAN_TB_VLR.DNO ? (
@@ -7526,7 +7541,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.KON && PLAN_TB_VLR.KON ? (
@@ -7538,7 +7553,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_VLR.CTY7 && PLAN_TB_VLR.CTY7 ? (
@@ -7552,7 +7567,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -7698,12 +7713,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 12
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 TB PSC (MobiFone + Saymee)
               </td>
-              <td rowSpan={4}>thuê bao</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">thuê bao</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KHO ? (
@@ -7712,7 +7727,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DLA ? (
@@ -7721,7 +7736,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.GLA ? (
@@ -7730,7 +7745,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.PYE ? (
@@ -7739,7 +7754,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.DNO ? (
@@ -7748,7 +7763,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.KON ? (
@@ -7757,7 +7772,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PSC.CTY7 ? (
@@ -7781,8 +7796,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO ? (
@@ -7791,7 +7806,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA ? (
@@ -7800,7 +7815,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA ? (
@@ -7809,7 +7824,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE ? (
@@ -7818,7 +7833,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO ? (
@@ -7827,7 +7842,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON ? (
@@ -7836,7 +7851,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 ? (
@@ -7847,8 +7862,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KHO && PLAN_TB_PSC.KHO ? (
@@ -7860,7 +7875,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DLA && PLAN_TB_PSC.DLA ? (
@@ -7872,7 +7887,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.GLA && PLAN_TB_PSC.GLA ? (
@@ -7884,7 +7899,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.PYE && PLAN_TB_PSC.PYE ? (
@@ -7896,7 +7911,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.DNO && PLAN_TB_PSC.DNO ? (
@@ -7908,7 +7923,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.KON && PLAN_TB_PSC.KON ? (
@@ -7920,7 +7935,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PSC.CTY7 && PLAN_TB_PSC.CTY7 ? (
@@ -7934,7 +7949,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8080,12 +8095,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 13
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 TB Platform tương tác
               </td>
-              <td rowSpan={4}>%</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.KHO ? (
@@ -8094,7 +8109,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.DLA ? (
@@ -8103,7 +8118,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.GLA ? (
@@ -8112,7 +8127,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.PYE ? (
@@ -8121,7 +8136,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.DNO ? (
@@ -8130,7 +8145,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.KON ? (
@@ -8139,7 +8154,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TB_PLAT_TT.CTY7 ? (
@@ -8163,8 +8178,8 @@ const Page = () => {
               </td>{" "}
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.KHO ? (
@@ -8173,7 +8188,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.DLA ? (
@@ -8182,7 +8197,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.GLA ? (
@@ -8191,7 +8206,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.PYE ? (
@@ -8200,7 +8215,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.DNO ? (
@@ -8209,7 +8224,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.KON ? (
@@ -8218,7 +8233,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.CTY7 ? (
@@ -8229,8 +8244,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.KHO && PLAN_TB_PLAT_TT.KHO ? (
@@ -8242,7 +8257,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.DLA && PLAN_TB_PLAT_TT.DLA ? (
@@ -8254,7 +8269,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.GLA && PLAN_TB_PLAT_TT.GLA ? (
@@ -8266,7 +8281,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.PYE && PLAN_TB_PLAT_TT.PYE ? (
@@ -8278,7 +8293,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.DNO && PLAN_TB_PLAT_TT.DNO ? (
@@ -8290,7 +8305,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.KON && PLAN_TB_PLAT_TT.KON ? (
@@ -8302,7 +8317,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PLAT_TT.CTY7 && PLAN_TB_PLAT_TT.CTY7 ? (
@@ -8316,7 +8331,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8462,12 +8477,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 14
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Tỷ lệ Thuê bao N-1 có gói cước
               </td>
-              <td rowSpan={4}>%</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.KHO ? (
@@ -8476,7 +8491,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.DLA ? (
@@ -8485,7 +8500,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.GLA ? (
@@ -8494,7 +8509,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.PYE ? (
@@ -8503,7 +8518,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.DNO ? (
@@ -8512,7 +8527,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.KON ? (
@@ -8521,7 +8536,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_GOI.CTY7 ? (
@@ -8533,8 +8548,8 @@ const Page = () => {
               <td rowSpan={4}>CSKH</td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KHO ? (
@@ -8543,7 +8558,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DLA ? (
@@ -8552,7 +8567,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.GLA ? (
@@ -8561,7 +8576,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8571,7 +8586,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DNO ? (
@@ -8580,7 +8595,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KON ? (
@@ -8589,7 +8604,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.CTY7 ? (
@@ -8600,8 +8615,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KHO && PLAN_TILE_N_1_GOI.KHO ? (
@@ -8613,7 +8628,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DLA && PLAN_TILE_N_1_GOI.DLA ? (
@@ -8625,7 +8640,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.GLA && PLAN_TILE_N_1_GOI.GLA ? (
@@ -8637,7 +8652,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.PYE && PLAN_TILE_N_1_GOI.PYE ? (
@@ -8649,7 +8664,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.DNO && PLAN_TILE_N_1_GOI.DNO ? (
@@ -8661,7 +8676,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.KON && PLAN_TILE_N_1_GOI.KON ? (
@@ -8673,7 +8688,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.CTY7 && PLAN_TILE_N_1_GOI.CTY7 ? (
@@ -8687,7 +8702,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8840,12 +8855,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 15.1
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Đơn kỳ
               </td>
-              <td rowSpan={4}>%</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.KHO ? (
@@ -8854,7 +8869,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.DLA ? (
@@ -8863,7 +8878,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.GLA ? (
@@ -8872,7 +8887,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.PYE ? (
@@ -8881,7 +8896,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.DNO ? (
@@ -8890,7 +8905,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.KON ? (
@@ -8899,7 +8914,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DONKY.CTY7 ? (
@@ -8923,8 +8938,8 @@ const Page = () => {
               </td>{" "}
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KHO ? (
@@ -8933,7 +8948,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DLA ? (
@@ -8942,7 +8957,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.GLA ? (
@@ -8951,7 +8966,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.PYE ? (
@@ -8960,7 +8975,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DNO ? (
@@ -8969,7 +8984,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KON ? (
@@ -8978,7 +8993,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.CTY7 ? (
@@ -8989,8 +9004,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KHO && PLAN_TILE_N_1_DONKY.KHO ? (
@@ -9002,7 +9017,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DLA && PLAN_TILE_N_1_DONKY.DLA ? (
@@ -9014,7 +9029,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.GLA && PLAN_TILE_N_1_DONKY.GLA ? (
@@ -9026,7 +9041,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.PYE && PLAN_TILE_N_1_DONKY.PYE ? (
@@ -9038,7 +9053,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.DNO && PLAN_TILE_N_1_DONKY.DNO ? (
@@ -9050,7 +9065,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.KON && PLAN_TILE_N_1_DONKY.KON ? (
@@ -9062,7 +9077,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DONKY.CTY7 && PLAN_TILE_N_1_DONKY.CTY7 ? (
@@ -9076,7 +9091,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -9264,12 +9279,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub3">
                 15.2
               </td>
-              <td rowSpan={4} className="text-sub3">
+              <td rowSpan={4} className="text-sub3 cell-kpi">
                 Dài kỳ
               </td>
-              <td rowSpan={4}>%</td>
-              <td>Kế hoạch tháng </td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.KHO ? (
@@ -9278,7 +9293,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.DLA ? (
@@ -9287,7 +9302,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.GLA ? (
@@ -9296,7 +9311,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.PYE ? (
@@ -9305,7 +9320,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.DNO ? (
@@ -9314,7 +9329,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.KON ? (
@@ -9323,7 +9338,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_N_1_DAIKY.CTY7 ? (
@@ -9347,8 +9362,8 @@ const Page = () => {
               </td>{" "}
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KHO ? (
@@ -9357,7 +9372,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DLA ? (
@@ -9366,7 +9381,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.GLA ? (
@@ -9375,7 +9390,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.PYE ? (
@@ -9384,7 +9399,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DNO ? (
@@ -9393,7 +9408,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KON ? (
@@ -9402,7 +9417,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.CTY7 ? (
@@ -9413,8 +9428,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KHO && PLAN_TILE_N_1_DAIKY.KHO ? (
@@ -9426,7 +9441,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DLA && PLAN_TILE_N_1_DAIKY.DLA ? (
@@ -9438,7 +9453,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.GLA && PLAN_TILE_N_1_DAIKY.GLA ? (
@@ -9450,7 +9465,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.PYE && PLAN_TILE_N_1_DAIKY.PYE ? (
@@ -9462,7 +9477,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.DNO && PLAN_TILE_N_1_DAIKY.DNO ? (
@@ -9474,7 +9489,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.KON && PLAN_TILE_N_1_DAIKY.KON ? (
@@ -9486,7 +9501,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_DAIKY.CTY7 && PLAN_TILE_N_1_DAIKY.CTY7 ? (
@@ -9500,7 +9515,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -9688,12 +9703,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 16
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Tỷ lệ TB MNP đến - đi (1:1)
               </td>
-              <td rowSpan={4}>%</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KHO ? (
@@ -9702,7 +9717,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DLA ? (
@@ -9711,7 +9726,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.GLA ? (
@@ -9720,7 +9735,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.PYE ? (
@@ -9729,7 +9744,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.DNO ? (
@@ -9738,7 +9753,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.KON ? (
@@ -9747,7 +9762,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TILE_MNP.CTY7 ? (
@@ -9771,8 +9786,8 @@ const Page = () => {
               </td>{" "}
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KHO ? (
@@ -9781,7 +9796,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DLA ? (
@@ -9790,7 +9805,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.GLA ? (
@@ -9800,7 +9815,7 @@ const Page = () => {
                 )}
               </td>
 
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.PYE ? (
@@ -9809,7 +9824,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DNO ? (
@@ -9818,7 +9833,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KON ? (
@@ -9827,7 +9842,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.CT7 ? (
@@ -9838,8 +9853,8 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KHO && PLAN_TILE_MNP.KHO ? (
@@ -9851,7 +9866,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DLA && PLAN_TILE_MNP.DLA ? (
@@ -9863,7 +9878,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.GLA && PLAN_TILE_MNP.GLA ? (
@@ -9875,7 +9890,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.PYE && PLAN_TILE_MNP.PYE ? (
@@ -9887,7 +9902,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.DNO && PLAN_TILE_MNP.DNO ? (
@@ -9899,7 +9914,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.KON && PLAN_TILE_MNP.KON ? (
@@ -9911,7 +9926,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_MNP.CTY7 && PLAN_TILE_MNP.CTY7 ? (
@@ -9925,7 +9940,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -10077,12 +10092,12 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 17
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 cell-kpi">
                 Tỷ lệ DN sử dụng giải pháp MobiFone
               </td>
-              <td rowSpan={4}>%</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td>
+              <td rowSpan={4} className="kpi-dvt">%</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
@@ -10091,7 +10106,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
@@ -10100,7 +10115,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
@@ -10109,7 +10124,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
@@ -10118,7 +10133,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
@@ -10127,7 +10142,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
@@ -10136,7 +10151,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
@@ -10163,7 +10178,7 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">Thực hiện lũy kế </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
@@ -10172,7 +10187,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
@@ -10181,7 +10196,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
@@ -10190,7 +10205,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
@@ -10199,7 +10214,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
@@ -10208,7 +10223,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
@@ -10217,7 +10232,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
@@ -10229,7 +10244,7 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4">%HTKH lũy kế</td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO &&
@@ -10243,7 +10258,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA &&
@@ -10257,7 +10272,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA &&
@@ -10271,7 +10286,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE &&
@@ -10285,7 +10300,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO &&
@@ -10299,7 +10314,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON &&
@@ -10313,7 +10328,7 @@ const Page = () => {
                 )}
                 <span className="text-sub4">%</span>
               </td>
-              <td>
+              <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 &&
@@ -10330,7 +10345,7 @@ const Page = () => {
             </tr>
 
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -10503,49 +10518,49 @@ const Page = () => {
               <td rowSpan={4} className="text-sub2">
                 18
               </td>
-              <td rowSpan={4} className="text-sub2">
+              <td rowSpan={4} className="text-sub2 text-sub2">
                 Tăng trưởng Doanh thu quản trị
               </td>
-              <td rowSpan={4}>triệu đồng</td>
-              <td className="text-sub4">Kế hoạch tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
+              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
               <td rowSpan={4}>TH</td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
             </tr>
             <tr>
-              <td className="text-sub4">Ước %HTKH tháng</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
+              <td className="cell-number"></td>
             </tr>
           </tbody>
         </table>

@@ -1,96 +1,110 @@
-.dashboard-kpi{
-    margin-bottom: 20px;
-    .table-kpi{
-        table{
-    
-            .table-head {
-               th{
-                border: thin solid;
-                border-width: 1px;
-                border-color: #a1988c;
-                background-color: #ffc000;
-                padding-left: 5px;
-    
-               }
-                th:nth-child(1){
-                    width: 40px;
-                }
-                th:nth-child(2){
-                    width: 250px;
-    
-                }
-                th:nth-child(3){
-                    width: 100px;
-                    font-style: italic;
-    
-                }
-                th:nth-child(4){
-                    width: 150px;
-                }
-                th:nth-child(5),
-                th:nth-child(6),
-                th:nth-child(7),
-                th:nth-child(8),
-                th:nth-child(9),
-                th:nth-child(10)
-                {
-                    width: 80px;
-                }
-                th:nth-child(11)
-                {
-                    width: 100px;
-                }
-                th:nth-child(12){
-                    width: 140px;
-                }
-              
-    
+.dashboard-kpi {
+  margin-bottom: 20px;
+  .table-kpi {
+    position: relative;
+    table {
+      .table-head {
+        @media (min-width:1140px) {
+            &.is-sticky {
+                position: fixed;
+                top: 0;
                 
-            }
-            tbody{
-                tr{
-                    td{
-                        border: thin solid;
-                        border-width: 1px;
-                        border-color: #a1988c;
-                        padding-left: 5px;
-    
-                       }
-                       td:nth-child(3){
-                        font-style: italic;
-                       }
-                }
-            }
-    
+              }
         }
-        .text-bold {
-            font-weight: 600;
+       
+        th {
+          border: thin solid;
+          border-width: 1px;
+          border-color: #a1988c;
+          background-color: #ffc000;
+          padding-left: 5px;
         }
-        .text-sub1{
-            background-color: #fbe2d5;
-            font-weight: 600;
+        th:nth-child(1) {
+          width: 40px;
         }
-        .text-sub2{
-            font-weight: 500;
-
+        th:nth-child(2) {
+          width: 300px;
         }
-        .bg-blue-secondary{
-            background-color: #d5f0f8;
+        th:nth-child(3) {
+          width: 100px;
+          font-style: italic;
         }
-        .bg-green-secondary {
-            background-color:   #b5e6a2 !important;
+        th:nth-child(4) {
+          width: 150px;
         }
-        .text-sub3{
-            font-weight: 400;
+        th:nth-child(5),
+        th:nth-child(6),
+        th:nth-child(7),
+        th:nth-child(8),
+        th:nth-child(9),
+        th:nth-child(10) {
+          width: 80px;
         }
-        .text-sub4{
+        th:nth-child(11) {
+          width: 80px;
+        }
+        th:nth-child(12) {
+          width: 140px;
+        }
+      }
+      tbody {
+        &.is-sticky {
+           @media (min-width:1140px) {
+            .kpi-dvt{
+                width: 100px;
+              }
+              .kpi-kht, .kpi-thlk, kpi-percent-lk, kpi-percent-th{
+                  width: 150px;
+              }
+              .cell-number{
+                  width: 80px;
+              }
+              .cell-kpi {
+                  width: 305px !important;
+              }
+           }
+           
+          }
+        tr {
+          td {
+            border: thin solid;
+            border-width: 1px;
+            border-color: #a1988c;
+            padding-left: 5px;
+          }
+          td:nth-child(3) {
             font-style: italic;
+          }
         }
-        .bg-red{
-            background-color: #ff9999;
-        }
-        .bg-green{
-            background-color: #99e699;
-        }
+      }
     }
+    .text-bold {
+      font-weight: 600;
+    }
+    .text-sub1 {
+      background-color: #fbe2d5;
+      font-weight: 600;
+    }
+    .text-sub2 {
+      font-weight: 500;
+    }
+    .bg-blue-secondary {
+      background-color: #d5f0f8;
+    }
+    .bg-green-secondary {
+      background-color: #b5e6a2 !important;
+    }
+    .text-sub3 {
+      font-weight: 400;
+    }
+    .text-sub4 {
+      font-style: italic;
+    }
+    .bg-red {
+      background-color: #ff9999;
+    }
+    .bg-green {
+      background-color: #99e699;
+    }
+  }
 }

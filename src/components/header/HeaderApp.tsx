@@ -72,6 +72,18 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
               </Link>
             </div>
             <div className="main-title">7</div>
+            <div className="navigation ms-5">
+              {menuCategory.map((item, index) => (
+                <div
+                  key={index}
+                  className={`nav-item ${item.link === pathname && "active"}`}
+                >
+                  <Link href={item.link} as={item.link}>
+                    <span>{item.label} </span>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="hotline">
@@ -98,44 +110,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           </button>
         </div>
       </div>
-      <div className="header-bottom">
-        <div className="navigation">
-          {menuCategory.map((item, index) => (
-            <div
-              key={index}
-              className={`nav-item ${item.link === pathname && "active"}`}
-            >
-              <Link href={item.link} as={item.link}>
-                <span>{item.label} </span>
-              </Link>
-            </div>
-          ))}
-        </div>
-        <div className={`search-blog ${isSearch && "openSearch"}`}>
-          {!isSearch ? (
-            <i className="icon-search" onClick={() => setIsSearch(!isSearch)} />
-          ) : (
-            // <i
-            //   className="icon-search"
-            //   onClick={() =>
-            //     alert('Tính năng đang được xây dựng, mong bạn thông cảm')
-            //   }
-            // />
-            <div className="search-group">
-              <input
-                type="text"
-                placeholder="Nhập từ khoá tìm kiếm..."
-                onChange={(e) => setSearchVal(e.target.value)}
-                onKeyDown={(e) => handleSearch(e)}
-              />
-              <i
-                className="icon-close"
-                onClick={() => setIsSearch(!isSearch)}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+
     </div>
   );
 };
