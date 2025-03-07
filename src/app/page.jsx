@@ -10086,7 +10086,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
                 ) : (
                   ""
                 )}
@@ -10095,7 +10095,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
                 ) : (
                   ""
                 )}
@@ -10104,7 +10104,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
                 ) : (
                   ""
                 )}
@@ -10113,7 +10113,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
                 ) : (
                   ""
                 )}
@@ -10122,7 +10122,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
                 ) : (
                   ""
                 )}
@@ -10131,7 +10131,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON)
                 ) : (
                   ""
                 )}
@@ -10140,7 +10140,7 @@ const Page = () => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
-                  formatIntegerWithCommas(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
+                  convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
                 ) : (
                   ""
                 )}
@@ -10167,7 +10167,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
                 ) : (
                   ""
                 )}
@@ -10176,7 +10176,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
                 ) : (
                   ""
                 )}
@@ -10185,7 +10185,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
                 ) : (
                   ""
                 )}
@@ -10194,7 +10194,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
                 ) : (
                   ""
                 )}
@@ -10203,7 +10203,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
                 ) : (
                   ""
                 )}
@@ -10212,7 +10212,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON)
                 ) : (
                   ""
                 )}
@@ -10221,7 +10221,7 @@ const Page = () => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
-                  formatIntegerWithCommas(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
+                  convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
                 ) : (
                   ""
                 )}
