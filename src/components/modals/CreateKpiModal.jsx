@@ -170,6 +170,43 @@ const initDataGps = [
     value: 0,
   },
 ];
+const initDNSDGP= [
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "KHO",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "DLA",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "GLA",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "PYE",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "DNO",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "KON",
+    value: 0,
+  },
+  {
+    id: "TI_LE_DN_SU_DUNG_GP_MBF",
+    province: "CTY7",
+    value: 0,
+  },
+]
 
 const CreateKpiModal = (props) => {
   const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
@@ -180,6 +217,8 @@ const CreateKpiModal = (props) => {
   const [dataMass, setDataMass] = useState(initDataMass);
   const [dataDuan, setDataDuan] = useState(initDataDuan);
   const [dataGps, setDataGps] = useState(initDataGps);
+  const [dataDNSDGP, setDataDNSDGP] =  useState(initDNSDGP)
+  const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] = useState({initDNSDGP});
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [EXEC_DTHU_FIBER, SET_EXEC_DTHU_FIBER] = useState({});
   const [EXEC_DTHU_MASS, SET_EXEC_DTHU_MASS] = useState({});
@@ -217,7 +256,10 @@ const CreateKpiModal = (props) => {
     if (Object.keys(EXEC_DTHU_GPS).length > 0) {
       setInitGps();
     }
-  }, [EXEC_DTHU_FIBER, EXEC_DTHU_DUAN, EXEC_DTHU_MASS, EXEC_DTHU_GPS]);
+    if (Object.keys(EXEC_TI_LE_DN_SU_DUNG_GP_MBF).length > 0) {
+      setInitDNSDGP();
+    }
+  }, [EXEC_DTHU_FIBER, EXEC_DTHU_DUAN, EXEC_DTHU_MASS, EXEC_DTHU_GPS,EXEC_TI_LE_DN_SU_DUNG_GP_MBF]);
 
   const setInitFiber = () => {
     let tempData = [];
@@ -382,6 +424,46 @@ const CreateKpiModal = (props) => {
 
     setDataGps(tempData);
   };
+  const setInitDNSDGP = () => {
+    let tempData = [];
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO  : 0,
+      province: "KHO",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA  : 0,
+      province: "DLA",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA  : 0,
+      province: "GLA",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE  : 0,
+      province: "PYE",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO  : 0,
+      province: "DNO",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON  : 0,
+      province: "KON",
+    });
+    tempData.push({
+      id: "TI_LE_DN_SU_DUNG_GP_MBF",
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7  : 0,
+      province: "CTY7",
+    });
+
+    setDataDNSDGP(tempData);
+  };
   const getExecKpi = (month) => {
     setLoadingExecKpi(true);
     fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
@@ -390,6 +472,7 @@ const CreateKpiModal = (props) => {
       resetMass()
       resetDuan();
       resetGps();
+      resetDNSDGP();
       const data = await res.json();
       if (data && data.result) {
         if (data.result.length > 0) {
@@ -405,6 +488,9 @@ const CreateKpiModal = (props) => {
             }
             if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
               SET_EXEC_DTHU_GPS(object);
+            }
+            if (object["TEN_CHI_TIEU"] == "TI_LE_DN_SU_DUNG_GP_MBF") {
+              SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(object);
             }
           });
         }
@@ -425,6 +511,10 @@ const CreateKpiModal = (props) => {
   }
   const resetGps= () => {
     SET_EXEC_DTHU_GPS(initDataGps);
+
+  }
+  const resetDNSDGP= () => {
+    SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(initDNSDGP);
 
   }
 
@@ -471,6 +561,16 @@ const CreateKpiModal = (props) => {
         } else return object;
       });
       setDataGps(tempData);
+    }else if(id == "TI_LE_DN_SU_DUNG_GP_MBF"){
+      const tempData = dataDNSDGP.map((object) => {
+        if (object.province == province) {
+          return {
+            ...object,
+            value: valueInput,
+          };
+        } else return object;
+      });
+      setDataDNSDGP(tempData);
     }
   };
 
@@ -519,6 +619,13 @@ const CreateKpiModal = (props) => {
                 value: object.value ? object.value * 1000000 : 0,
               };
             });
+
+            const tempDataDNSDGP = dataDNSDGP.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value  : 0,
+              };
+            }); 
             try {
               console.log("values", values);
               const info = {
@@ -526,7 +633,8 @@ const CreateKpiModal = (props) => {
                 kpiList: tempDataFiber.concat(
                   tempDataMass,
                   tempDataDuan,
-                  tempDataGps
+                  tempDataGps,
+                  tempDataDNSDGP
                 ),
               };
               setLoadingCreateManualKpi(true);
@@ -714,6 +822,35 @@ const CreateKpiModal = (props) => {
                           </td>
                           {dataGps.map((object, index) => (
                             <td key={index + `_gps`}>
+                              <input
+                                className="form-control input-kpi"
+                                value={object.value}
+                                type="number"
+                                onChange={(e) =>
+                                  handleValueUpdate(
+                                    object.id,
+                                    e.target.value,
+                                    object.province
+                                  )
+                                }
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <td>Tỷ lệ DN sử dụng GP MobiFone</td>
+                          <td>
+                            <span
+                              style={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                              }}
+                            >
+                              %
+                            </span>
+                          </td>
+                          {dataDNSDGP.map((object, index) => (
+                            <td key={index + `_DN`}>
                               <input
                                 className="form-control input-kpi"
                                 value={object.value}
