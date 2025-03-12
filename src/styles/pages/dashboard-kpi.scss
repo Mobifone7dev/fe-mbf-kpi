@@ -107,4 +107,16 @@
       background-color: #99e699;
     }
   }
+#exec-kpi-nds,
+#exec-kpi-hts,
+#exec-kpi-thoai,
+#exec-kpi-m2m,
+#exec-kpi-saymee {
+  &:hover {
+    color: #007bff;
+    text-decoration: underline;
+    background-color: rgba(0, 123, 255, 0.1);
+    cursor: pointer;
+  }
+}
 }

@@ -9,7 +9,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
-
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 import {
   convertToFloat2Fixed,
   getFormattedDate,
@@ -214,6 +215,8 @@ const Page = () => {
       }
     });
   };
+
+
   const getExecKpi = (month) => {
     setLoadingExec(true);
     resetExec();
@@ -308,6 +311,55 @@ const Page = () => {
       }
     });
   };
+
+  const handleDownloadExcel = async (kpiType) => {
+    if (!selectedDate) {
+        console.error("Lỗi: Chưa chọn tháng!");
+        return;
+    }
+
+    const formattedMonth = new Date(selectedDate)
+        .toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" })
+        .replace(" ", "/");
+
+    try {
+      alert("🔄 Đang tải file Excel...");
+        console.log("Gửi request đến API:", `/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}`);
+
+        const response = await fetch(`/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}`);
+
+        if (!response.ok) {
+            throw new Error(`Lỗi tải dữ liệu từ server: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log("Dữ liệu nhận được:", data);
+
+        if (!data.result || data.result.length === 0) {
+            throw new Error("Không có dữ liệu để xuất Excel");
+        }
+
+        // Chuyển đổi JSON thành worksheet
+        const worksheet = XLSX.utils.json_to_sheet(data.result);
+
+        // Tạo workbook và gán worksheet vào
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "KPI Data");
+
+        // Xuất file Excel
+        const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+        const excelBlob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+        // Lưu file xuống
+        saveAs(excelBlob, `KPI_${kpiType}_${formattedMonth.replace("/", "-")}.xlsx`);
+        alert("✅ Tải file Excel thành công!");
+        console.log("Tải xuống thành công!");
+    } catch (error) {
+      alert(`❌ Lỗi khi tải Excel: ${error.message}`);
+        console.error("Lỗi khi tải Excel:", error);
+    }
+};
+
   const resetPlan = () => {
     SET_PLAN_DTHU_TKC_HTS({});
     SET_PLAN_DTHU_FIBER({});
@@ -4831,7 +4883,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number" >
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -4910,7 +4962,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td id="exec-kpi-hts" className="cell-number" onClick={() => handleDownloadExcel("KPI_PTM_HTS")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -5335,7 +5387,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td id="exec-kpi-nds" className="cell-number" onClick={() => handleDownloadExcel("KPI_PTM_NDS")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.CTY7 ? (
@@ -5762,7 +5814,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td id="exec-kpi-thoai" className="cell-number" onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 ? (
@@ -6195,7 +6247,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td id="exec-kpi-m2m" className="cell-number" onClick={() => handleDownloadExcel("KPI_PTM_M2M")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.CTY7 ? (
@@ -6619,7 +6671,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td id="exec-kpi-saymee" className="cell-number" onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.CTY7 ? (
