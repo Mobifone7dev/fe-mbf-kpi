@@ -119,4 +119,12 @@
     cursor: pointer;
   }
 }
+.kpi-cell {
+  &:hover {
+    color: #007bff;
+    text-decoration: underline;
+    background-color: rgba(0, 123, 255, 0.1);
+    cursor: pointer;
+  }
+}
 }

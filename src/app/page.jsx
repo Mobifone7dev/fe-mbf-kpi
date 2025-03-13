@@ -312,7 +312,7 @@ const Page = () => {
     });
   };
 
-  const handleDownloadExcel = async (kpiType) => {
+  const handleDownloadExcel = async (kpiType, provincePt = "") => {
     if (!selectedDate) {
         console.error("Lỗi: Chưa chọn tháng!");
         return;
@@ -323,17 +323,23 @@ const Page = () => {
         .replace(" ", "/");
 
     try {
-      alert("🔄 Đang tải file Excel...");
-        console.log("Gửi request đến API:", `/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}`);
+        alert("🔄 Đang tải file Excel...");
 
-        const response = await fetch(`/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}`);
+        // Xây dựng URL động
+        const provinceQuery = provincePt ? `&provincePt=${provincePt}` : ""; // 🔥 Đúng key BE yêu cầu
+
+        const apiUrl = `/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}${provinceQuery}`;
+
+        console.log("📌 Gửi request đến API:", apiUrl);
+
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
             throw new Error(`Lỗi tải dữ liệu từ server: ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log("Dữ liệu nhận được:", data);
+        console.log("📌 Dữ liệu nhận được:", data);
 
         if (!data.result || data.result.length === 0) {
             throw new Error("Không có dữ liệu để xuất Excel");
@@ -346,19 +352,29 @@ const Page = () => {
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "KPI Data");
 
+        // Lấy giờ phút giây hiện tại
+        const now = new Date();
+        const timeStamp = now.toLocaleTimeString("en-GB", { hour12: false }).replace(/:/g, "-");
+
+        // Xây dựng tên file
+        const provinceSuffix = provincePt ? `_${provincePt}` : "";
+        const fileName = `KPI_${kpiType}${provinceSuffix}_${formattedMonth.replace("/", "-")}_${timeStamp}.xlsx`;
+
         // Xuất file Excel
         const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
         const excelBlob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
 
         // Lưu file xuống
-        saveAs(excelBlob, `KPI_${kpiType}_${formattedMonth.replace("/", "-")}.xlsx`);
+        saveAs(excelBlob, fileName);
         alert("✅ Tải file Excel thành công!");
-        console.log("Tải xuống thành công!");
+        console.log("✅ Tải xuống thành công! File:", fileName);
     } catch (error) {
-      alert(`❌ Lỗi khi tải Excel: ${error.message}`);
-        console.error("Lỗi khi tải Excel:", error);
+        alert(`❌ Lỗi khi tải Excel: ${error.message}`);
+        console.error("❌ Lỗi khi tải Excel:", error);
     }
 };
+
+
 
   const resetPlan = () => {
     SET_PLAN_DTHU_TKC_HTS({});
@@ -4883,7 +4899,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number" >
+              <td className="cell-number " >
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
@@ -4908,7 +4924,8 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "KHO")} >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KHO ? (
@@ -4917,7 +4934,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "DLA")} >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DLA ? (
@@ -4926,7 +4944,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "GLA")} >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.GLA ? (
@@ -4935,7 +4954,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "PYE")} >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.PYE ? (
@@ -4944,7 +4964,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "DNO")} >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.DNO ? (
@@ -4953,7 +4974,9 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_HTS", "KON")} // Truyền province = KON
+              >
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_HTS.KON ? (
@@ -5333,7 +5356,8 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "KHO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KHO ? (
@@ -5342,7 +5366,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "DLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DLA ? (
@@ -5351,7 +5376,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "GLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.GLA ? (
@@ -5360,7 +5386,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "PYE")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.PYE ? (
@@ -5369,7 +5396,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "DNO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.DNO ? (
@@ -5378,7 +5406,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_NDS", "KON")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_PTM_TBTT_NDS.KON ? (
@@ -5760,7 +5789,8 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+               onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "KHO")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KHO ? (
@@ -5769,7 +5799,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "DLA")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DLA ? (
@@ -5778,7 +5809,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "GLA")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.GLA ? (
@@ -5787,7 +5819,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "PYE")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.PYE ? (
@@ -5796,7 +5829,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "DNO")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.DNO ? (
@@ -5805,7 +5839,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "KON")}>
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TBTS_PTM_THOAI.KON ? (
@@ -6193,7 +6228,8 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "KHO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KHO ? (
@@ -6202,7 +6238,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "DLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DLA ? (
@@ -6211,7 +6248,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "GLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.GLA ? (
@@ -6220,7 +6258,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "PYE")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.PYE ? (
@@ -6229,7 +6268,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "DNO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.DNO ? (
@@ -6238,7 +6278,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_M2M", "KON")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_SL_TB_PTM_M2M.KON ? (
@@ -6617,7 +6658,8 @@ const Page = () => {
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "KHO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KHO ? (
@@ -6626,7 +6668,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "DLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DLA ? (
@@ -6635,7 +6678,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "GLA")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.GLA ? (
@@ -6644,7 +6688,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "PYE")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.PYE ? (
@@ -6653,7 +6698,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "DNO")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.DNO ? (
@@ -6662,7 +6708,8 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td className="cell-number">
+              <td className="cell-number kpi-cell"
+              onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "KON")}>
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_SAYMEE.KON ? (

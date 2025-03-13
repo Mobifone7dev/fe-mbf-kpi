@@ -14,7 +14,8 @@ export async function GET(request: Request) {
 
         const kpiType = getQSParamFromURL("kpiType", request.url);
         const month = getQSParamFromURL("month", request.url);
-
+        const provincePt = getQSParamFromURL("provincePt", request.url);
+        console.log("📌 FE gửi province_pt:", provincePt);
         if (!month || !kpiType) {
             return NextResponse.json({ message: "Thiếu tham số month hoặc kpiType" }, { status: 400 });
         }
@@ -28,7 +29,11 @@ export async function GET(request: Request) {
             return NextResponse.json({ message: "Không tìm thấy accessToken" }, { status: 401 });
         }
 
-        const apiUrl = `${URL}/dashboard/dashboard-export-excel-exec-kpi?month=${convertedMonth}&kpiType=${kpiType}`;
+        // 🔥 Thêm provincePt vào API backend nếu có
+        const provinceQuery = provincePt ? `&provincePt=${provincePt}` : ""; // 🔥 Đúng key BE yêu cầu
+        const apiUrl = `${URL}/dashboard/dashboard-export-excel-exec-kpi?month=${convertedMonth}&kpiType=${kpiType}${provinceQuery}`;
+
+        
         console.log("📌 Gọi API backend:", apiUrl);
 
         const res = await fetch(apiUrl, {
@@ -48,7 +53,7 @@ export async function GET(request: Request) {
         }
 
         const data = await res.json();
-        console.log("📌 Dữ liệu từ backend:", JSON.stringify(data, null, 2));
+        // console.log("📌 Dữ liệu từ backend:", JSON.stringify(data, null, 2));
 
         return NextResponse.json({ success: true, result: data.result });
     } catch (error) {
