@@ -57,7 +57,12 @@
                   width: 150px;
               }
               .cell-number{
-                  width: 80px;
+                width: 80px;
+                text-align: right; // Căn phải nội dung các ô số
+              }
+              .cell-donviphutrach {
+                text-align: center; // Căn giữa nội dung
+                    
               }
               .cell-kpi {
                   width: 305px !important;
@@ -71,6 +76,12 @@
             border-width: 1px;
             border-color: #a1988c;
             padding-left: 5px;
+          }
+          td.cell-number {
+            text-align: right;
+          }
+          td.cell-donviphutrach {
+            text-align: center;
           }
           td:nth-child(3) {
             font-style: italic;
@@ -102,9 +113,11 @@
     }
     .bg-red {
       background-color: #ff9999;
+      text-align: right;
     }
     .bg-green {
       background-color: #99e699;
+      text-align: right;
     }
   }
 #exec-kpi-nds,

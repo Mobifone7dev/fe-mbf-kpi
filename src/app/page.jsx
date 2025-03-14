@@ -615,7 +615,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -1050,7 +1050,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -1488,7 +1488,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -1913,7 +1913,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -2339,7 +2339,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -2763,7 +2763,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -3194,7 +3194,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -3630,7 +3630,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -4054,7 +4054,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -4479,7 +4479,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 DVVT
                 <br></br> {" ("}
                 <span style={{ fontStyle: "italic" }}>Ngày cập nhật</span>{" "}
@@ -4908,7 +4908,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -5340,7 +5340,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -5771,7 +5771,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -6212,7 +6212,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -6642,7 +6642,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -7072,7 +7072,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -7498,7 +7498,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -7880,7 +7880,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 DVVT
                 <br></br> {" ("}
@@ -8262,7 +8262,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -9022,7 +9022,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CSKH
                 <br></br> {" ("}
@@ -9446,7 +9446,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CSKH
                 <br></br> {" ("}
@@ -9870,7 +9870,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CSKH
                 <br></br> {" ("}
@@ -10259,7 +10259,7 @@ const Page = () => {
                   ""
                 )}
               </td>
-              <td rowSpan={4}>
+              <td rowSpan={4} className="cell-donviphutrach">
                 {" "}
                 CNS
                 <br></br> {" ("}
@@ -10629,7 +10629,7 @@ const Page = () => {
               <td className="cell-number"></td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
-              <td rowSpan={4}>TH</td>
+              <td rowSpan={4} className="cell-donviphutrach">TH</td>
             </tr>
             <tr>
               <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
