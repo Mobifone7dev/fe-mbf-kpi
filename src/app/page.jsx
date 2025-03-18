@@ -340,7 +340,7 @@ const Page = () => {
 
         const data = await response.json();
         console.log("📌 Dữ liệu nhận được:", data);
-
+        
         if (!data.result || data.result.length === 0) {
             throw new Error("Không có dữ liệu để xuất Excel");
         }
@@ -438,6 +438,8 @@ const Page = () => {
   };
   const [show, setShow] = useState(false);
 
+  {console.log("LAST_DATE getDate HTS :", new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())}
+  
   return (
     <div className="dashboard-kpi">
       <div className="d-flex select-filter mt-2">
@@ -793,7 +795,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.KHO / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.KHO * 1000000)
@@ -806,7 +808,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KHO && PLAN_DTHU_TKC_HTS.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.KHO / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.KHO * 1000000)
@@ -823,7 +825,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.DLA / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.DLA * 1000000)
@@ -836,7 +838,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DLA && PLAN_DTHU_TKC_HTS.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.DLA / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.DLA * 1000000)
@@ -849,7 +851,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.GLA / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.GLA * 1000000)
@@ -862,7 +864,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.GLA && PLAN_DTHU_TKC_HTS.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.GLA / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.GLA * 1000000)
@@ -875,7 +877,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.PYE / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.PYE * 1000000)
@@ -888,7 +890,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.PYE && PLAN_DTHU_TKC_HTS.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.PYE / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.PYE * 1000000)
@@ -901,7 +903,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.DNO / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.DNO * 1000000)
@@ -914,7 +916,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.DNO && PLAN_DTHU_TKC_HTS.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.DNO / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.DNO * 1000000)
@@ -927,7 +929,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.KON / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.KON * 1000000)
@@ -940,7 +942,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.KON && PLAN_DTHU_TKC_HTS.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.KON / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.KON * 1000000)
@@ -953,7 +955,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.CTY7 / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.CTY7 * 1000000)
@@ -966,7 +968,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_TKC_HTS.CTY7 && PLAN_DTHU_TKC_HTS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_TKC_HTS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_TKC_HTS.CTY7 / new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_TKC_HTS.CTY7 * 1000000)
@@ -1228,10 +1230,8 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.KHO * 1000000)
+                    (EXEC_DTHU_FIBER.KHO * 100) /
+                    (PLAN_DTHU_FIBER.KHO * 1000000)
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -1241,9 +1241,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KHO && PLAN_DTHU_FIBER.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.KHO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
+                    (EXEC_DTHU_FIBER.KHO * 100) /
                       (PLAN_DTHU_FIBER.KHO * 1000000)
                   )
                 ) : (
@@ -1252,38 +1250,32 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td
-                className={
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.DLA * 1000000)
-                  ) > 100
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.DLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.DLA * 1000000)
-                  )
-                ) : (
-                  ""
-                )}
-                <span className="text-sub4">%</span>
+               className={
+                convertToFloat2Fixed(
+                  (EXEC_DTHU_FIBER.DLA * 100) /
+                  (PLAN_DTHU_FIBER.DLA * 1000000)
+                ) > 100
+                  ? "bg-green"
+                  : "bg-red"
+              }
+            >
+              {loadingExec || loadingPlan ? (
+                <LoadingComponent />
+              ) : EXEC_DTHU_FIBER.DLA && PLAN_DTHU_FIBER.DLA ? (
+                convertToFloat2Fixed(
+                  (EXEC_DTHU_FIBER.DLA * 100) /
+                    (PLAN_DTHU_FIBER.DLA * 1000000)
+                )
+              ) : (
+                ""
+              )}
+              <span className="text-sub4">%</span>
               </td>
               <td
-                className={
+                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.GLA * 1000000)
+                    (EXEC_DTHU_FIBER.GLA * 100) /
+                    (PLAN_DTHU_FIBER.GLA * 1000000)
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -1293,9 +1285,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.GLA && PLAN_DTHU_FIBER.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.GLA / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
+                    (EXEC_DTHU_FIBER.GLA * 100) /
                       (PLAN_DTHU_FIBER.GLA * 1000000)
                   )
                 ) : (
@@ -1304,38 +1294,32 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td
-                className={
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.PYE * 1000000)
-                  ) > 100
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.PYE / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.PYE * 1000000)
-                  )
-                ) : (
-                  ""
-                )}
-                <span className="text-sub4">%</span>
+               className={
+                convertToFloat2Fixed(
+                  (EXEC_DTHU_FIBER.PYE * 100) /
+                  (PLAN_DTHU_FIBER.PYE * 1000000)
+                ) > 100
+                  ? "bg-green"
+                  : "bg-red"
+              }
+            >
+              {loadingExec || loadingPlan ? (
+                <LoadingComponent />
+              ) : EXEC_DTHU_FIBER.PYE && PLAN_DTHU_FIBER.PYE ? (
+                convertToFloat2Fixed(
+                  (EXEC_DTHU_FIBER.PYE * 100) /
+                    (PLAN_DTHU_FIBER.PYE * 1000000)
+                )
+              ) : (
+                ""
+              )}
+              <span className="text-sub4">%</span>
               </td>
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.DNO * 1000000)
+                    (EXEC_DTHU_FIBER.DNO * 100) /
+                    (PLAN_DTHU_FIBER.DNO * 1000000)
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -1345,9 +1329,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.DNO && PLAN_DTHU_FIBER.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.DNO / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
+                    (EXEC_DTHU_FIBER.DNO * 100) /
                       (PLAN_DTHU_FIBER.DNO * 1000000)
                   )
                 ) : (
@@ -1356,12 +1338,10 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td
-                className={
+                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.KON * 1000000)
+                    (EXEC_DTHU_FIBER.KON * 100) /
+                    (PLAN_DTHU_FIBER.KON * 1000000)
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -1371,9 +1351,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.KON && PLAN_DTHU_FIBER.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.KON / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
+                    (EXEC_DTHU_FIBER.KON * 100) /
                       (PLAN_DTHU_FIBER.KON * 1000000)
                   )
                 ) : (
@@ -1382,12 +1360,10 @@ const Page = () => {
                 <span className="text-sub4">%</span>
               </td>
               <td
-                className={
+                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_FIBER.CTY7 * 1000000)
+                    (EXEC_DTHU_FIBER.CTY7 * 100) /
+                    (PLAN_DTHU_FIBER.CTY7 * 1000000)
                   ) > 100
                     ? "bg-green"
                     : "bg-red"
@@ -1397,9 +1373,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_FIBER.CTY7 && PLAN_DTHU_FIBER.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_FIBER.CTY7 / indexDateInMonth) *
-                      sumDateInMonth *
-                      100) /
+                    (EXEC_DTHU_FIBER.CTY7 * 100) /
                       (PLAN_DTHU_FIBER.CTY7 * 1000000)
                   )
                 ) : (
@@ -1661,7 +1635,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.KHO / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.KHO * 1000000)
@@ -1674,7 +1648,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KHO && PLAN_DTHU_MASS.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.KHO / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.KHO * 1000000)
@@ -1687,7 +1661,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.DLA / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.DLA * 1000000)
@@ -1700,7 +1674,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DLA && PLAN_DTHU_MASS.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.DLA / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.DLA * 1000000)
@@ -1713,7 +1687,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.GLA / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.GLA * 1000000)
@@ -1726,7 +1700,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.GLA && PLAN_DTHU_MASS.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.GLA / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.GLA * 1000000)
@@ -1739,7 +1713,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.PYE / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.PYE * 1000000)
@@ -1752,7 +1726,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.PYE && PLAN_DTHU_MASS.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.PYE / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.PYE * 1000000)
@@ -1765,7 +1739,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.DNO / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.DNO * 1000000)
@@ -1778,7 +1752,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.DNO && PLAN_DTHU_MASS.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.DNO / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.DNO * 1000000)
@@ -1791,7 +1765,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.KON / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.KON * 1000000)
@@ -1804,7 +1778,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.KON && PLAN_DTHU_MASS.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.KON / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.KON * 1000000)
@@ -1817,7 +1791,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.CTY7 / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.CTY7 * 1000000)
@@ -1830,7 +1804,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_MASS.CTY7 && PLAN_DTHU_MASS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_MASS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_MASS.CTY7 / new Date(EXEC_DTHU_MASS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_MASS.CTY7 * 1000000)
@@ -2086,7 +2060,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.KHO / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.KHO * 1000000)
@@ -2099,7 +2073,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KHO && PLAN_DTHU_DUAN.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.KHO / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.KHO * 1000000)
@@ -2112,7 +2086,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.DLA / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.DLA * 1000000)
@@ -2125,7 +2099,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DLA && PLAN_DTHU_DUAN.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.DLA / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.DLA * 1000000)
@@ -2138,7 +2112,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.GLA / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.GLA * 1000000)
@@ -2151,7 +2125,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.GLA && PLAN_DTHU_DUAN.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.GLA / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.GLA * 1000000)
@@ -2164,7 +2138,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.PYE / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.PYE * 1000000)
@@ -2177,7 +2151,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.PYE && PLAN_DTHU_DUAN.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.PYE / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.PYE * 1000000)
@@ -2190,7 +2164,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.DNO / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.DNO * 1000000)
@@ -2203,7 +2177,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.DNO && PLAN_DTHU_DUAN.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.DNO / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.DNO * 1000000)
@@ -2216,7 +2190,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.KON / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.KON * 1000000)
@@ -2229,7 +2203,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.KON && PLAN_DTHU_DUAN.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.KON / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.KON * 1000000)
@@ -2242,7 +2216,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.CTY7 / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.CTY7 * 1000000)
@@ -2255,7 +2229,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_DUAN.CTY7 && PLAN_DTHU_DUAN.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_DUAN.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_DUAN.CTY7 / new Date(EXEC_DTHU_DUAN.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_DUAN.CTY7 * 1000000)
@@ -2511,7 +2485,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.KHO / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.KHO * 1000000)
@@ -2524,7 +2498,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KHO && PLAN_DTHU_NDS.KHO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.KHO / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.KHO / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.KHO * 1000000)
@@ -2537,7 +2511,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.DLA / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.DLA * 1000000)
@@ -2550,7 +2524,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DLA && PLAN_DTHU_NDS.DLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.DLA / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.DLA / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.DLA * 1000000)
@@ -2563,7 +2537,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.GLA / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.GLA * 1000000)
@@ -2576,7 +2550,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.GLA && PLAN_DTHU_NDS.GLA ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.GLA / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.GLA / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.GLA * 1000000)
@@ -2589,7 +2563,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.PYE / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.PYE * 1000000)
@@ -2602,7 +2576,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.PYE && PLAN_DTHU_NDS.PYE ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.PYE / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.PYE / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.PYE * 1000000)
@@ -2615,7 +2589,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.DNO / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.DNO * 1000000)
@@ -2628,7 +2602,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.DNO && PLAN_DTHU_NDS.DNO ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.DNO / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.DNO / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.DNO * 1000000)
@@ -2641,7 +2615,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.KON / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.KON * 1000000)
@@ -2654,7 +2628,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.KON && PLAN_DTHU_NDS.KON ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.KON / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.KON / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.KON * 1000000)
@@ -2667,7 +2641,7 @@ const Page = () => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.CTY7 / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.CTY7 * 1000000)
@@ -2680,7 +2654,7 @@ const Page = () => {
                   <LoadingComponent />
                 ) : EXEC_DTHU_NDS.CTY7 && PLAN_DTHU_NDS.CTY7 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_NDS.CTY7 / indexDateInMonth) *
+                    ((EXEC_DTHU_NDS.CTY7 / new Date(EXEC_DTHU_NDS.LAST_DATE).getDate()) *
                       sumDateInMonth *
                       100) /
                       (PLAN_DTHU_NDS.CTY7 * 1000000)
