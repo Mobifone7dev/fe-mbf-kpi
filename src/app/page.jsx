@@ -554,7 +554,7 @@ const Page = () => {
                 Doanh thu hạ tầng số
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -630,7 +630,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -696,7 +696,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -708,7 +708,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -721,7 +721,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -734,7 +734,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -747,7 +747,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -760,7 +760,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -773,7 +773,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -786,11 +786,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -819,7 +819,7 @@ const Page = () => {
                 <span>{indexDateInMonth}</span>
                 <br />
                 <span>{sumDateInMonth}</span> */}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -845,7 +845,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -871,7 +871,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -897,7 +897,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -923,7 +923,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -949,7 +949,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -975,7 +975,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -986,9 +986,9 @@ const Page = () => {
                 Doanh thu MobiFiber (<span style={{color:'red'}}>*</span>)
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
-                {" "}
+                
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_FIBER.KHO ? (
@@ -1063,7 +1063,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -1129,7 +1129,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -1141,7 +1141,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1154,7 +1154,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1167,7 +1167,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1180,7 +1180,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1193,7 +1193,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1206,7 +1206,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1219,11 +1219,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -1244,7 +1244,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                className={
@@ -1266,7 +1266,7 @@ const Page = () => {
               ) : (
                 ""
               )}
-              <span className="text-sub4">%</span>
+              
               </td>
               <td
                  className={
@@ -1288,7 +1288,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                className={
@@ -1310,7 +1310,7 @@ const Page = () => {
               ) : (
                 ""
               )}
-              <span className="text-sub4">%</span>
+              
               </td>
               <td
                 className={
@@ -1332,7 +1332,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                  className={
@@ -1354,7 +1354,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                  className={
@@ -1376,7 +1376,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -1395,7 +1395,7 @@ const Page = () => {
                 Doanh thu bán Mass(<span style={{color:'red'}}>*</span>)
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1460,7 +1460,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -1472,7 +1472,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -1538,7 +1538,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -1549,7 +1549,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1561,7 +1561,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1573,7 +1573,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1585,7 +1585,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1597,7 +1597,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1609,7 +1609,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1622,11 +1622,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -1651,7 +1651,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1677,7 +1677,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1703,7 +1703,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1729,7 +1729,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1755,7 +1755,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1781,7 +1781,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -1807,7 +1807,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -1818,7 +1818,7 @@ const Page = () => {
                 Doanh thu dự án(<span style={{color:'red'}}>*</span>)
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1883,7 +1883,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -1895,7 +1895,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -1961,7 +1961,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -1972,7 +1972,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1984,7 +1984,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -1996,7 +1996,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2008,7 +2008,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2020,7 +2020,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2032,7 +2032,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2045,11 +2045,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -2074,7 +2074,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2100,7 +2100,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2126,7 +2126,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2152,7 +2152,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2178,7 +2178,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2204,7 +2204,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2230,7 +2230,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
 
@@ -2242,7 +2242,7 @@ const Page = () => {
                 Doanh thu NDS Platform 
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2307,7 +2307,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -2319,7 +2319,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -2385,7 +2385,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -2396,7 +2396,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2408,7 +2408,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2420,7 +2420,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2432,7 +2432,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2444,7 +2444,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2456,7 +2456,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2468,11 +2468,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -2497,7 +2497,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2523,7 +2523,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2549,7 +2549,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2575,7 +2575,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2601,7 +2601,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2627,7 +2627,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2653,7 +2653,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -2664,7 +2664,7 @@ const Page = () => {
                 Doanh thu thương hiệu giới trẻ
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2740,7 +2740,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -2806,7 +2806,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -2818,7 +2818,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2831,7 +2831,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2844,7 +2844,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2857,7 +2857,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2870,7 +2870,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2883,7 +2883,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -2896,11 +2896,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -2925,7 +2925,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2951,7 +2951,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -2977,7 +2977,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3003,7 +3003,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3029,7 +3029,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3055,7 +3055,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3081,7 +3081,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
 
@@ -3093,7 +3093,7 @@ const Page = () => {
                 Doanh thu GPS không gian mới
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -3158,7 +3158,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -3170,7 +3170,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -3236,7 +3236,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -3247,7 +3247,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3259,7 +3259,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3271,7 +3271,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3283,7 +3283,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3295,7 +3295,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3307,7 +3307,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3319,11 +3319,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -3348,7 +3348,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3374,7 +3374,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3400,7 +3400,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3426,7 +3426,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3452,7 +3452,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3478,7 +3478,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3504,7 +3504,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -3527,7 +3527,7 @@ const Page = () => {
                 Số lượng điểm C2C
               </td>
               <td rowSpan={4} className="kpi-dvt">điểm</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -3603,7 +3603,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -3669,7 +3669,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -3680,7 +3680,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3692,7 +3692,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3704,7 +3704,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3716,7 +3716,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3728,7 +3728,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3740,7 +3740,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -3752,11 +3752,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -3781,7 +3781,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3807,7 +3807,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3833,7 +3833,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3859,7 +3859,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3885,7 +3885,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3911,7 +3911,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -3937,7 +3937,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
 
@@ -3949,7 +3949,7 @@ const Page = () => {
                 Số lượng TB PTM qua kênh C2C
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -4025,7 +4025,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -4092,7 +4092,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -4103,7 +4103,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4115,7 +4115,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4127,7 +4127,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4139,7 +4139,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4151,7 +4151,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4163,7 +4163,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4175,11 +4175,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -4204,7 +4204,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4230,7 +4230,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4256,7 +4256,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4282,7 +4282,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4308,7 +4308,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4334,7 +4334,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4360,7 +4360,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
 
@@ -4372,7 +4372,7 @@ const Page = () => {
                 Tỷ lệ Điểm bán C2C có phát sinh giao dịch
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -4448,7 +4448,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -4514,7 +4514,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -4525,7 +4525,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4537,7 +4537,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4549,7 +4549,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4561,7 +4561,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4573,7 +4573,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4585,7 +4585,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4597,11 +4597,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -4626,7 +4626,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4652,7 +4652,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4678,7 +4678,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4704,7 +4704,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4730,7 +4730,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4756,7 +4756,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -4782,7 +4782,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -4799,7 +4799,7 @@ const Page = () => {
                 TBTT PTM Hạ tầng số
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -4864,7 +4864,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -4876,7 +4876,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number kpi-cell"
               onClick={() => handleDownloadExcel("KPI_PTM_HTS", "KHO")} >
                 {loadingExec ? (
@@ -4949,7 +4949,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -4960,7 +4960,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4972,7 +4972,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4984,7 +4984,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -4996,7 +4996,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5008,7 +5008,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5020,7 +5020,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5033,11 +5033,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -5062,7 +5062,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5088,7 +5088,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5114,7 +5114,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5140,7 +5140,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5166,7 +5166,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5192,7 +5192,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5218,7 +5218,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -5229,7 +5229,7 @@ const Page = () => {
                 TBTT PTM Nội dung số
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -5294,7 +5294,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -5306,7 +5306,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number kpi-cell"
               onClick={() => handleDownloadExcel("KPI_PTM_NDS", "KHO")}>
                 {loadingExec ? (
@@ -5378,7 +5378,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -5389,7 +5389,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5401,7 +5401,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5413,7 +5413,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5425,7 +5425,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5437,7 +5437,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5449,7 +5449,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5462,11 +5462,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -5491,7 +5491,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5517,7 +5517,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5543,7 +5543,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5569,7 +5569,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5595,7 +5595,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5621,7 +5621,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5647,7 +5647,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -5658,7 +5658,7 @@ const Page = () => {
                 TBTS PTM (thoại)
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -5723,7 +5723,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -5737,7 +5737,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number kpi-cell"
                onClick={() => handleDownloadExcel("KPI_PTM_TBTS_THOAI", "KHO")}>
                 {loadingPlan ? (
@@ -5809,7 +5809,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -5821,7 +5821,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5834,7 +5834,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5847,7 +5847,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5860,7 +5860,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5873,7 +5873,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5886,7 +5886,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -5900,11 +5900,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -5929,7 +5929,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5955,7 +5955,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -5981,7 +5981,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6007,7 +6007,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6033,7 +6033,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6059,7 +6059,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6086,7 +6086,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -6097,7 +6097,7 @@ const Page = () => {
                 TB PTM M2M
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -6162,7 +6162,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -6174,7 +6174,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number kpi-cell"
               onClick={() => handleDownloadExcel("KPI_PTM_M2M", "KHO")}>
                 {loadingExec ? (
@@ -6246,7 +6246,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -6257,7 +6257,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6269,7 +6269,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6281,7 +6281,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6293,7 +6293,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6305,7 +6305,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6317,7 +6317,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6329,11 +6329,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -6358,7 +6358,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6384,7 +6384,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6410,7 +6410,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6436,7 +6436,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6462,7 +6462,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6488,7 +6488,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6514,7 +6514,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -6525,7 +6525,7 @@ const Page = () => {
                 TB PTM mạng Saymee
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -6590,7 +6590,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -6602,7 +6602,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number kpi-cell"
               onClick={() => handleDownloadExcel("KPI_PTM_SAYMEE", "KHO")}>
                 {loadingExec ? (
@@ -6674,7 +6674,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -6685,7 +6685,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6697,7 +6697,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6709,7 +6709,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6721,7 +6721,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6733,7 +6733,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6745,7 +6745,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -6757,11 +6757,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -6786,7 +6786,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6812,7 +6812,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6838,7 +6838,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6864,7 +6864,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6890,7 +6890,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6916,7 +6916,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -6942,7 +6942,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -6953,7 +6953,7 @@ const Page = () => {
                 TB PTM MobiFiber
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -7018,7 +7018,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -7030,7 +7030,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -7096,7 +7096,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -7107,7 +7107,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7119,7 +7119,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td className="cell-number">
@@ -7132,7 +7132,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7144,7 +7144,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7156,7 +7156,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7168,7 +7168,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7180,11 +7180,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -7209,7 +7209,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7235,7 +7235,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7261,7 +7261,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -7288,7 +7288,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7314,7 +7314,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7340,7 +7340,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7366,7 +7366,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -7377,7 +7377,7 @@ const Page = () => {
                 TB VLR (MobiFone + Saymee)
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -7442,7 +7442,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -7454,7 +7454,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -7520,7 +7520,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -7531,7 +7531,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7543,7 +7543,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7555,7 +7555,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7567,7 +7567,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7579,7 +7579,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7591,7 +7591,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7603,11 +7603,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -7626,7 +7626,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7646,7 +7646,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7666,7 +7666,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7686,7 +7686,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7706,7 +7706,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7726,7 +7726,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -7746,7 +7746,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -7757,7 +7757,7 @@ const Page = () => {
                 TB PSC (MobiFone + Saymee)
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -7822,7 +7822,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 DVVT
                 
                 <br />
@@ -7834,7 +7834,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -7900,7 +7900,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -7911,7 +7911,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7923,7 +7923,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7935,7 +7935,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7947,7 +7947,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7959,7 +7959,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7971,7 +7971,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -7983,11 +7983,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8006,7 +8006,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8026,7 +8026,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8046,7 +8046,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8066,7 +8066,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8086,7 +8086,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8106,7 +8106,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8126,7 +8126,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -8137,7 +8137,7 @@ const Page = () => {
                 TB Platform tương tác(<span style={{color:'red'}}>*</span>)
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8202,7 +8202,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -8211,10 +8211,10 @@ const Page = () => {
                     ? getFormattedDate(new Date(EXEC_TB_PLAT_TT.LAST_DATE))
                     : ""}
                 </span>
-              </td>{" "}
+              </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -8280,7 +8280,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -8291,7 +8291,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8303,7 +8303,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8315,7 +8315,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8327,7 +8327,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8339,7 +8339,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8351,7 +8351,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8363,11 +8363,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8386,7 +8386,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8406,7 +8406,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8426,7 +8426,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8446,7 +8446,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8466,7 +8466,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8486,7 +8486,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8506,7 +8506,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -8517,7 +8517,7 @@ const Page = () => {
                 Tỷ lệ Thuê bao N-1 có gói cước
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8588,7 +8588,7 @@ const Page = () => {
 
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8617,7 +8617,7 @@ const Page = () => {
                 )}
               </td>
               <td className="cell-number">
-                {" "}
+                
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TILE_N_1_GOI.PYE ? (
@@ -8655,7 +8655,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -8666,7 +8666,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8678,7 +8678,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8690,7 +8690,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8702,7 +8702,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8714,7 +8714,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8726,7 +8726,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -8738,11 +8738,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -8761,7 +8761,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -8782,7 +8782,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8802,7 +8802,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8822,7 +8822,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8842,7 +8842,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8862,7 +8862,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -8882,7 +8882,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -8899,7 +8899,7 @@ const Page = () => {
                 Đơn kỳ
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8964,7 +8964,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CSKH
                 
                 <br />
@@ -8973,10 +8973,10 @@ const Page = () => {
                     ? getFormattedDate(new Date(EXEC_TILE_N_1_DONKY.LAST_DATE))
                     : ""}
                 </span>
-              </td>{" "}
+              </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -9042,7 +9042,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -9053,7 +9053,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9065,7 +9065,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9077,7 +9077,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9089,7 +9089,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9101,7 +9101,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9113,7 +9113,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9125,11 +9125,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -9154,7 +9154,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9180,7 +9180,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9206,7 +9206,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9232,7 +9232,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9258,7 +9258,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9284,7 +9284,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9310,7 +9310,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -9321,7 +9321,7 @@ const Page = () => {
                 Dài kỳ
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="cell-number">Kế hoạch tháng </td>
+              <td className="cell-number">KHT </td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -9386,7 +9386,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CSKH
                 
                 <br />
@@ -9395,10 +9395,10 @@ const Page = () => {
                     ? getFormattedDate(new Date(EXEC_TILE_N_1_DAIKY.LAST_DATE))
                     : ""}
                 </span>
-              </td>{" "}
+              </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -9464,7 +9464,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -9475,7 +9475,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9487,7 +9487,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9499,7 +9499,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9511,7 +9511,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9523,7 +9523,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9535,7 +9535,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9547,11 +9547,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -9576,7 +9576,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9602,7 +9602,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9628,7 +9628,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9654,7 +9654,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9680,7 +9680,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9706,7 +9706,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -9732,7 +9732,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -9743,7 +9743,7 @@ const Page = () => {
                 Tỷ lệ TB MNP đến - đi (1:1)
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -9808,7 +9808,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CSKH
                 
                 <br />
@@ -9817,10 +9817,10 @@ const Page = () => {
                     ? getFormattedDate(new Date(EXEC_TILE_MNP.LAST_DATE))
                     : ""}
                 </span>
-              </td>{" "}
+              </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -9887,7 +9887,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -9898,7 +9898,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9910,7 +9910,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9922,7 +9922,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9934,7 +9934,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9946,7 +9946,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9958,7 +9958,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -9970,11 +9970,11 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -9993,7 +9993,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10014,7 +10014,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10035,7 +10035,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10056,7 +10056,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10077,7 +10077,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10098,7 +10098,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
 
               <td
@@ -10119,7 +10119,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -10130,7 +10130,7 @@ const Page = () => {
                 Tỷ lệ DN sử dụng giải pháp MobiFone(<span style={{color:'red'}}>*</span>)
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -10195,7 +10195,7 @@ const Page = () => {
                 )}
               </td>
               <td rowSpan={4} className="cell-donviphutrach">
-                {" "}
+                
                 CNS
                 
                 <br />
@@ -10209,7 +10209,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">Thực hiện lũy kế </td>
+              <td className="text-sub4">THLK </td>
               <td className="cell-number">
                 {loadingExec ? (
                   <LoadingComponent />
@@ -10275,7 +10275,7 @@ const Page = () => {
               </td>
             </tr>
             <tr>
-              <td className="text-sub4">%HTKH lũy kế</td>
+              <td className="text-sub4">%HTKH</td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -10288,7 +10288,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10302,7 +10302,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10316,7 +10316,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10330,7 +10330,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10344,7 +10344,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10358,7 +10358,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td className="cell-number">
                 {loadingExec || loadingPlan ? (
@@ -10372,12 +10372,12 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
 
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td
                 className={
                   convertToFloat2Fixed(
@@ -10399,7 +10399,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10422,7 +10422,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10445,7 +10445,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10468,7 +10468,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10491,7 +10491,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10514,7 +10514,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
               <td
                 className={
@@ -10537,7 +10537,7 @@ const Page = () => {
                 ) : (
                   ""
                 )}
-                <span className="text-sub4">%</span>
+                
               </td>
             </tr>
             <tr>
@@ -10554,7 +10554,7 @@ const Page = () => {
                 Tăng trưởng Doanh thu quản trị
               </td>
               <td rowSpan={4} className="kpi-dvt">triệu đồng</td>
-              <td className="text-sub4 kpi-kht">Kế hoạch tháng</td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
@@ -10565,7 +10565,7 @@ const Page = () => {
               <td rowSpan={4} className="cell-donviphutrach">TH</td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-thlk">Thực hiện lũy kế</td>
+              <td className="text-sub4 kpi-thlk">THLK</td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
@@ -10575,7 +10575,7 @@ const Page = () => {
               <td className="cell-number"></td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-lk">%HTKH lũy kế </td>
+              <td className="text-sub4 kpi-percent-lk">%HTKH </td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
@@ -10585,7 +10585,7 @@ const Page = () => {
               <td className="cell-number"></td>
             </tr>
             <tr>
-              <td className="text-sub4 kpi-percent-th">Ước %HTKH tháng</td>
+              <td className="text-sub4 kpi-percent-th">Ước %HTKH</td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>
               <td className="cell-number"></td>

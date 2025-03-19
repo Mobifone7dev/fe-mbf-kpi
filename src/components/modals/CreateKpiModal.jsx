@@ -14,7 +14,9 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { changeFormatDateFirstDateInMonth } from "../../until/functions";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import CustomDateInput from "../../components/widgets/datePickers/CustomDateInput";
 var x = new Date();
 
 const INIT_KPI_VALUES = {
@@ -170,7 +172,7 @@ const initDataGps = [
     value: 0,
   },
 ];
-const initDNSDGP= [
+const initDNSDGP = [
   {
     id: "TI_LE_DN_SU_DUNG_GP_MBF",
     province: "KHO",
@@ -206,8 +208,8 @@ const initDNSDGP= [
     province: "CTY7",
     value: 0,
   },
-]
-const initTbPlatTT= [
+];
+const initTbPlatTT = [
   {
     id: "TB_PLAT_TT",
     province: "KHO",
@@ -243,7 +245,7 @@ const initTbPlatTT= [
     province: "CTY7",
     value: 0,
   },
-]
+];
 const CreateKpiModal = (props) => {
   const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
   const [loadingCreateManualKpi, setLoadingCreateManualKpi] = useState(false);
@@ -253,17 +255,25 @@ const CreateKpiModal = (props) => {
   const [dataMass, setDataMass] = useState(initDataMass);
   const [dataDuan, setDataDuan] = useState(initDataDuan);
   const [dataGps, setDataGps] = useState(initDataGps);
-  const [dataDNSDGP, setDataDNSDGP] =  useState(initDNSDGP)
-  const [dataTbPlatTT, setDataTbPlatTT] =  useState(initTbPlatTT)
+  const [dataDNSDGP, setDataDNSDGP] = useState(initDNSDGP);
+  const [dataTbPlatTT, setDataTbPlatTT] = useState(initTbPlatTT);
 
-  const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] = useState({initDNSDGP});
+  const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] =
+    useState({ initDNSDGP });
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [EXEC_DTHU_FIBER, SET_EXEC_DTHU_FIBER] = useState({});
   const [EXEC_DTHU_MASS, SET_EXEC_DTHU_MASS] = useState({});
   const [EXEC_DTHU_DUAN, SET_EXEC_DTHU_DUAN] = useState({});
   const [EXEC_DTHU_GPS, SET_EXEC_DTHU_GPS] = useState({});
   const [loadingExecKpi, setLoadingExecKpi] = useState(false);
-  const [EXEC_TB_PLAT_TT, SET_EXEC_TB_PLAT_TT] = useState({initTbPlatTT});
+  const [EXEC_TB_PLAT_TT, SET_EXEC_TB_PLAT_TT] = useState({ initTbPlatTT });
+
+  const [dateUpdateFiber, setDateUpdateFiber] = useState(new Date());
+  const [dateUpdateTbPlatTT, setDateUpdateTbPlatTT] = useState(new Date());
+  const [dateUpdateDthuMass, setDateUpdateDthuMass] = useState(new Date());
+  const [dateUpdateDthuDuan, setDateUpdateDthuDuan] = useState(new Date());
+  const [dateUpdateDthuGps, setDateUpdateDthuGps] = useState(new Date());
+  const [dateUpdateGpMbf, setDateUpdateGpMbf] = useState(new Date());
 
   const handleSubmit = async (e) => {};
   const handleClose = async (e) => {
@@ -301,7 +311,14 @@ const CreateKpiModal = (props) => {
     if (Object.keys(EXEC_TB_PLAT_TT).length > 0) {
       setInitTbPlatTT();
     }
-  }, [EXEC_DTHU_FIBER, EXEC_DTHU_DUAN, EXEC_DTHU_MASS, EXEC_DTHU_GPS,EXEC_TI_LE_DN_SU_DUNG_GP_MBF,EXEC_TB_PLAT_TT]);
+  }, [
+    EXEC_DTHU_FIBER,
+    EXEC_DTHU_DUAN,
+    EXEC_DTHU_MASS,
+    EXEC_DTHU_GPS,
+    EXEC_TI_LE_DN_SU_DUNG_GP_MBF,
+    EXEC_TB_PLAT_TT,
+  ]);
 
   const setInitFiber = () => {
     let tempData = [];
@@ -313,27 +330,27 @@ const CreateKpiModal = (props) => {
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA ? EXEC_DTHU_FIBER.DLA / 1000000: 0,
+      value: EXEC_DTHU_FIBER.DLA ? EXEC_DTHU_FIBER.DLA / 1000000 : 0,
       province: "DLA",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.GLA ? EXEC_DTHU_FIBER.GLA / 1000000: 0,
+      value: EXEC_DTHU_FIBER.GLA ? EXEC_DTHU_FIBER.GLA / 1000000 : 0,
       province: "GLA",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.PYE ? EXEC_DTHU_FIBER.PYE/ 1000000 : 0,
+      value: EXEC_DTHU_FIBER.PYE ? EXEC_DTHU_FIBER.PYE / 1000000 : 0,
       province: "PYE",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DNO ? EXEC_DTHU_FIBER.DNO / 1000000: 0,
+      value: EXEC_DTHU_FIBER.DNO ? EXEC_DTHU_FIBER.DNO / 1000000 : 0,
       province: "DNO",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.KON ? EXEC_DTHU_FIBER.KON / 1000000: 0,
+      value: EXEC_DTHU_FIBER.KON ? EXEC_DTHU_FIBER.KON / 1000000 : 0,
       province: "KON",
     });
     tempData.push({
@@ -470,37 +487,51 @@ const CreateKpiModal = (props) => {
     let tempData = [];
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+        : 0,
       province: "KHO",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA
+        : 0,
       province: "DLA",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA
+        : 0,
       province: "GLA",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE
+        : 0,
       province: "PYE",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO
+        : 0,
       province: "DNO",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON
+        : 0,
       province: "KON",
     });
     tempData.push({
       id: "TI_LE_DN_SU_DUNG_GP_MBF",
-      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7  : 0,
+      value: EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7
+        ? EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7
+        : 0,
       province: "CTY7",
     });
 
@@ -511,37 +542,37 @@ const CreateKpiModal = (props) => {
     let tempData = [];
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.KHO ? EXEC_TB_PLAT_TT.KHO  : 0,
+      value: EXEC_TB_PLAT_TT.KHO ? EXEC_TB_PLAT_TT.KHO : 0,
       province: "KHO",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.DLA ? EXEC_TB_PLAT_TT.DLA  : 0,
+      value: EXEC_TB_PLAT_TT.DLA ? EXEC_TB_PLAT_TT.DLA : 0,
       province: "DLA",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.GLA ? EXEC_TB_PLAT_TT.GLA  : 0,
+      value: EXEC_TB_PLAT_TT.GLA ? EXEC_TB_PLAT_TT.GLA : 0,
       province: "GLA",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.PYE ? EXEC_TB_PLAT_TT.PYE  : 0,
+      value: EXEC_TB_PLAT_TT.PYE ? EXEC_TB_PLAT_TT.PYE : 0,
       province: "PYE",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.DNO ? EXEC_TB_PLAT_TT.DNO  : 0,
+      value: EXEC_TB_PLAT_TT.DNO ? EXEC_TB_PLAT_TT.DNO : 0,
       province: "DNO",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.KON ? EXEC_TB_PLAT_TT.KON  : 0,
+      value: EXEC_TB_PLAT_TT.KON ? EXEC_TB_PLAT_TT.KON : 0,
       province: "KON",
     });
     tempData.push({
       id: "TB_PLAT_TT",
-      value: EXEC_TB_PLAT_TT.CTY7 ? EXEC_TB_PLAT_TT.CTY7  : 0,
+      value: EXEC_TB_PLAT_TT.CTY7 ? EXEC_TB_PLAT_TT.CTY7 : 0,
       province: "CTY7",
     });
     setDataTbPlatTT(tempData);
@@ -551,7 +582,7 @@ const CreateKpiModal = (props) => {
     fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
       setLoadingExecKpi(false);
       resetFiber();
-      resetMass()
+      resetMass();
       resetDuan();
       resetGps();
       resetDNSDGP();
@@ -562,52 +593,64 @@ const CreateKpiModal = (props) => {
           data.result.map((object, index) => {
             if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
               SET_EXEC_DTHU_FIBER(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateFiber(new Date(object["LAST_DATE"]));
+              }
             }
             if (object["TEN_CHI_TIEU"] == "DTHU_MASS") {
               SET_EXEC_DTHU_MASS(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateDthuMass(new Date(object["LAST_DATE"]));
+              }
             }
             if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
               SET_EXEC_DTHU_DUAN(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateDthuDuan(new Date(object["LAST_DATE"]));
+              }
             }
             if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
               SET_EXEC_DTHU_GPS(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateDthuGps(new Date(object["LAST_DATE"]));
+              }
             }
             if (object["TEN_CHI_TIEU"] == "TI_LE_DN_SU_DUNG_GP_MBF") {
               SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateGpMbf(new Date(object["LAST_DATE"]));
+              }
             }
             if (object["TEN_CHI_TIEU"] == "TB_PLAT_TT") {
               SET_EXEC_TB_PLAT_TT(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateTbPlatTT(new Date(object["LAST_DATE"]));
+              }
             }
           });
         }
       }
     });
   };
-  const resetFiber= () => {
+  const resetFiber = () => {
     SET_EXEC_DTHU_FIBER(initDataFiber);
-
-  }
-  const resetDuan= () => {
+  };
+  const resetDuan = () => {
     SET_EXEC_DTHU_DUAN(initDataDuan);
-
-  }
-  const resetMass= () => {
+  };
+  const resetMass = () => {
     SET_EXEC_DTHU_MASS(initDataMass);
-
-  }
-  const resetGps= () => {
+  };
+  const resetGps = () => {
     SET_EXEC_DTHU_GPS(initDataGps);
-
-  }
-  const resetDNSDGP= () => {
+  };
+  const resetDNSDGP = () => {
     SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(initDNSDGP);
+  };
 
-  }
-
-  const resetTBPlatTT= () => {
+  const resetTBPlatTT = () => {
     SET_EXEC_TB_PLAT_TT(initTbPlatTT);
-
-  }
+  };
 
   const handleValueUpdate = (id, valueInput, province) => {
     console.log("id, valueInput, province", id, valueInput, province);
@@ -652,7 +695,7 @@ const CreateKpiModal = (props) => {
         } else return object;
       });
       setDataGps(tempData);
-    }else if(id == "TI_LE_DN_SU_DUNG_GP_MBF"){
+    } else if (id == "TI_LE_DN_SU_DUNG_GP_MBF") {
       const tempData = dataDNSDGP.map((object) => {
         if (object.province == province) {
           return {
@@ -662,8 +705,7 @@ const CreateKpiModal = (props) => {
         } else return object;
       });
       setDataDNSDGP(tempData);
-    }
-    else if(id == "TB_PLAT_TT"){
+    } else if (id == "TB_PLAT_TT") {
       const tempData = dataTbPlatTT.map((object) => {
         if (object.province == province) {
           return {
@@ -725,16 +767,16 @@ const CreateKpiModal = (props) => {
             const tempDataDNSDGP = dataDNSDGP.map((object, index) => {
               return {
                 ...object,
-                value: object.value ? object.value  : 0,
+                value: object.value ? object.value : 0,
               };
-            }); 
+            });
 
             const tempDataTbPlatTT = dataTbPlatTT.map((object, index) => {
               return {
                 ...object,
-                value: object.value ? object.value  : 0,
+                value: object.value ? object.value : 0,
               };
-            }); 
+            });
             try {
               console.log("values", values);
               const info = {
@@ -746,6 +788,12 @@ const CreateKpiModal = (props) => {
                   tempDataDNSDGP,
                   tempDataTbPlatTT
                 ),
+                dateUpdateFiber: dateUpdateFiber.toISOString(),
+                dateUpdateDthuMass: dateUpdateDthuMass.toISOString(),
+                dateUpdateDthuDuan: dateUpdateDthuDuan.toISOString(),
+                dateUpdateDthuGps: dateUpdateDthuGps.toISOString(),
+                dateUpdateTbPlatTT: dateUpdateTbPlatTT.toISOString(),
+                dateUpdateGpMbf: dateUpdateGpMbf.toISOString(),
               };
               setLoadingCreateManualKpi(true);
               const result = await fetch("/api/create-manual-list-kpi", {
@@ -812,7 +860,7 @@ const CreateKpiModal = (props) => {
                               style={{
                                 paddingLeft: "10px",
                                 paddingRight: "10px",
-                                 whiteSpace: "nowrap"
+                                whiteSpace: "nowrap",
                               }}
                             >
                               {" "}
@@ -826,6 +874,7 @@ const CreateKpiModal = (props) => {
                           <th className="bg-green-secondary">DNO</th>
                           <th className="bg-green-secondary">KON</th>
                           <th className="bg-green-secondary">Tổng</th>
+                          <th className="bg-green-secondary">Ngày cập nhật</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -858,6 +907,14 @@ const CreateKpiModal = (props) => {
                                 />
                               </td>
                             ))}
+                           <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateFiber}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateFiber(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td>Dthu Mass</td>
@@ -888,6 +945,14 @@ const CreateKpiModal = (props) => {
                               />
                             </td>
                           ))}
+                           <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateDthuMass}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateDthuMass(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td>Dthu Dự án</td>
@@ -917,6 +982,14 @@ const CreateKpiModal = (props) => {
                               />
                             </td>
                           ))}
+                           <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateDthuDuan}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateDthuDuan(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td>Dthu GPS</td>
@@ -946,6 +1019,14 @@ const CreateKpiModal = (props) => {
                               />
                             </td>
                           ))}
+                           <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateDthuGps}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateDthuGps(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td>Tỷ lệ DN sử dụng GP MobiFone</td>
@@ -975,6 +1056,14 @@ const CreateKpiModal = (props) => {
                               />
                             </td>
                           ))}
+                          <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateGpMbf}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateGpMbf(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                         <tr>
                           <td>TB Plat tương tác</td>
@@ -1004,6 +1093,14 @@ const CreateKpiModal = (props) => {
                               />
                             </td>
                           ))}
+                          <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateTbPlatTT}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateTbPlatTT(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
                         </tr>
                       </tbody>
                     </table>
