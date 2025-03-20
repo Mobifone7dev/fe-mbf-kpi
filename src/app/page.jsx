@@ -4799,7 +4799,7 @@ const Page = () => {
                 TBTT PTM Hạ tầng số
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -5229,7 +5229,7 @@ const Page = () => {
                 TBTT PTM Nội dung số
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -5658,7 +5658,7 @@ const Page = () => {
                 TBTS PTM (thoại)
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -6097,7 +6097,7 @@ const Page = () => {
                 TB PTM M2M
               </td>
               <td rowSpan={4} className="kpi-dvt">thuê bao</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -8899,7 +8899,7 @@ const Page = () => {
                 Đơn kỳ
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -9321,7 +9321,7 @@ const Page = () => {
                 Dài kỳ
               </td>
               <td rowSpan={4} className="kpi-dvt">%</td>
-              <td className="cell-number">KHT </td>
+              <td className="text-sub4 kpi-kht">KHT</td>
               <td className="cell-number">
                 {loadingPlan ? (
                   <LoadingComponent />

@@ -246,6 +246,81 @@ const initTbPlatTT = [
     value: 0,
   },
 ];
+const initSLC2C = [
+  {
+    id: "SL_C2C",
+    province: "KHO",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "DLA",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "GLA",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "PYE",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "DNO",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "KON",
+    value: 0,
+  },
+  {
+    id: "SL_C2C",
+    province: "CTY7",
+    value: 0,
+  },
+];
+
+const initTYLEGDC2C = [
+  {
+    id: "TYLE_GD_C2C",
+    province: "KHO",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "DLA",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "GLA",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "PYE",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "DNO",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "KON",
+    value: 0,
+  },
+  {
+    id: "TYLE_GD_C2C",
+    province: "CTY7",
+    value: 0,
+  },
+];
 const CreateKpiModal = (props) => {
   const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
   const [loadingCreateManualKpi, setLoadingCreateManualKpi] = useState(false);
@@ -257,16 +332,21 @@ const CreateKpiModal = (props) => {
   const [dataGps, setDataGps] = useState(initDataGps);
   const [dataDNSDGP, setDataDNSDGP] = useState(initDNSDGP);
   const [dataTbPlatTT, setDataTbPlatTT] = useState(initTbPlatTT);
+  const [dataSLC2C, setDataSLC2C] = useState(initSLC2C);
+  const [dataTYLEGDC2C, setDataTYLEGDC2C] = useState(initTYLEGDC2C);
+
 
   const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] =
     useState({ initDNSDGP });
-  const [loadingPlan, setLoadingPlan] = useState(false);
   const [EXEC_DTHU_FIBER, SET_EXEC_DTHU_FIBER] = useState({});
   const [EXEC_DTHU_MASS, SET_EXEC_DTHU_MASS] = useState({});
   const [EXEC_DTHU_DUAN, SET_EXEC_DTHU_DUAN] = useState({});
   const [EXEC_DTHU_GPS, SET_EXEC_DTHU_GPS] = useState({});
   const [loadingExecKpi, setLoadingExecKpi] = useState(false);
   const [EXEC_TB_PLAT_TT, SET_EXEC_TB_PLAT_TT] = useState({ initTbPlatTT });
+  const [EXEC_SL_C2C, SET_EXEC_SL_C2C] = useState({ initSLC2C });
+  const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({ initTYLEGDC2C });
+
 
   const [dateUpdateFiber, setDateUpdateFiber] = useState(new Date());
   const [dateUpdateTbPlatTT, setDateUpdateTbPlatTT] = useState(new Date());
@@ -274,8 +354,9 @@ const CreateKpiModal = (props) => {
   const [dateUpdateDthuDuan, setDateUpdateDthuDuan] = useState(new Date());
   const [dateUpdateDthuGps, setDateUpdateDthuGps] = useState(new Date());
   const [dateUpdateGpMbf, setDateUpdateGpMbf] = useState(new Date());
+  const [dateUpdateSLC2C, setDateUpdateSLC2C] = useState(new Date());
+  const [dateUpdateTYLEGDC2C, setDateUpdateTYLEGDC2C] = useState(new Date());
 
-  const handleSubmit = async (e) => {};
   const handleClose = async (e) => {
     props.handleClose();
   };
@@ -311,6 +392,12 @@ const CreateKpiModal = (props) => {
     if (Object.keys(EXEC_TB_PLAT_TT).length > 0) {
       setInitTbPlatTT();
     }
+    if (Object.keys(EXEC_SL_C2C).length > 0) {
+      setInitSLC2C();
+    }
+    if (Object.keys(EXEC_TYLE_GD_C2C).length > 0) {
+      setInitTYLEGDC2C();
+    }
   }, [
     EXEC_DTHU_FIBER,
     EXEC_DTHU_DUAN,
@@ -318,6 +405,8 @@ const CreateKpiModal = (props) => {
     EXEC_DTHU_GPS,
     EXEC_TI_LE_DN_SU_DUNG_GP_MBF,
     EXEC_TB_PLAT_TT,
+    EXEC_SL_C2C,
+    EXEC_TYLE_GD_C2C
   ]);
 
   const setInitFiber = () => {
@@ -577,6 +666,85 @@ const CreateKpiModal = (props) => {
     });
     setDataTbPlatTT(tempData);
   };
+
+  const setInitSLC2C = () => {
+    let tempData = [];
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.KHO ? EXEC_SL_C2C.KHO : 0,
+      province: "KHO",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.DLA ? EXEC_SL_C2C.DLA : 0,
+      province: "DLA",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.GLA ? EXEC_SL_C2C.GLA : 0,
+      province: "GLA",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.PYE ? EXEC_SL_C2C.PYE : 0,
+      province: "PYE",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.DNO ? EXEC_SL_C2C.DNO : 0,
+      province: "DNO",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.KON ? EXEC_SL_C2C.KON : 0,
+      province: "KON",
+    });
+    tempData.push({
+      id: "SL_C2C",
+      value: EXEC_SL_C2C.CTY7 ? EXEC_SL_C2C.CTY7 : 0,
+      province: "CTY7",
+    });
+    setDataSLC2C(tempData);
+  };
+  const setInitTYLEGDC2C = () => {
+    let tempData = [];
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.KHO ? EXEC_TYLE_GD_C2C.KHO : 0,
+      province: "KHO",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.DLA ? EXEC_TYLE_GD_C2C.DLA : 0,
+      province: "DLA",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.GLA ? EXEC_TYLE_GD_C2C.GLA : 0,
+      province: "GLA",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.PYE ? EXEC_TYLE_GD_C2C.PYE : 0,
+      province: "PYE",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.DNO ? EXEC_TYLE_GD_C2C.DNO : 0,
+      province: "DNO",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.KON ? EXEC_TYLE_GD_C2C.KON : 0,
+      province: "KON",
+    });
+    tempData.push({
+      id: "TYLE_GD_C2C",
+      value: EXEC_TYLE_GD_C2C.CTY7 ? EXEC_TYLE_GD_C2C.CTY7 : 0,
+      province: "CTY7",
+    });
+    setDataTYLEGDC2C(tempData);
+  };
   const getExecKpi = (month) => {
     setLoadingExecKpi(true);
     fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
@@ -587,6 +755,8 @@ const CreateKpiModal = (props) => {
       resetGps();
       resetDNSDGP();
       resetTBPlatTT();
+      resetSLC2C();
+      resetTYLEGDC2C();
       const data = await res.json();
       if (data && data.result) {
         if (data.result.length > 0) {
@@ -627,6 +797,18 @@ const CreateKpiModal = (props) => {
                 setDateUpdateTbPlatTT(new Date(object["LAST_DATE"]));
               }
             }
+            if (object["TEN_CHI_TIEU"] == "SL_C2C") {
+              SET_EXEC_SL_C2C(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateSLC2C(new Date(object["LAST_DATE"]));
+              }
+            }
+            if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
+              SET_EXEC_TYLE_GD_C2C(object);
+              if (object["LAST_DATE"]) {
+                setDateUpdateTYLEGDC2C(new Date(object["LAST_DATE"]));
+              }
+            }
           });
         }
       }
@@ -647,13 +829,17 @@ const CreateKpiModal = (props) => {
   const resetDNSDGP = () => {
     SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(initDNSDGP);
   };
-
   const resetTBPlatTT = () => {
     SET_EXEC_TB_PLAT_TT(initTbPlatTT);
   };
+  const resetSLC2C = () => {
+    SET_EXEC_SL_C2C(initSLC2C);
+  };
+  const resetTYLEGDC2C = () => {
+    SET_EXEC_TYLE_GD_C2C(initTYLEGDC2C);
+  };
 
   const handleValueUpdate = (id, valueInput, province) => {
-    console.log("id, valueInput, province", id, valueInput, province);
     if (id == "DTHU_FIBER") {
       const tempData = dataFiber.map((object) => {
         if (object.province == province) {
@@ -715,6 +901,27 @@ const CreateKpiModal = (props) => {
         } else return object;
       });
       setDataTbPlatTT(tempData);
+    } else if (id == "SL_C2C") {
+      const tempData = dataSLC2C.map((object) => {
+        if (object.province == province) {
+          return {
+            ...object,
+            value: valueInput,
+          };
+        } else return object;
+      });
+      setDataSLC2C(tempData);
+    }
+    else if (id == "TYLE_GD_C2C") {
+      const tempData = dataTYLEGDC2C.map((object) => {
+        if (object.province == province) {
+          return {
+            ...object,
+            value: valueInput,
+          };
+        } else return object;
+      });
+      setDataTYLEGDC2C(tempData);
     }
   };
 
@@ -777,6 +984,19 @@ const CreateKpiModal = (props) => {
                 value: object.value ? object.value : 0,
               };
             });
+
+            const tempDataSLC2C= dataSLC2C.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value : 0,
+              };
+            });
+            const tempDataTYLEGDC2C= dataTYLEGDC2C.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value : 0,
+              };
+            });
             try {
               console.log("values", values);
               const info = {
@@ -786,7 +1006,9 @@ const CreateKpiModal = (props) => {
                   tempDataDuan,
                   tempDataGps,
                   tempDataDNSDGP,
-                  tempDataTbPlatTT
+                  tempDataTbPlatTT,
+                  tempDataSLC2C,
+                  tempDataTYLEGDC2C,
                 ),
                 dateUpdateFiber: dateUpdateFiber.toISOString(),
                 dateUpdateDthuMass: dateUpdateDthuMass.toISOString(),
@@ -794,6 +1016,10 @@ const CreateKpiModal = (props) => {
                 dateUpdateDthuGps: dateUpdateDthuGps.toISOString(),
                 dateUpdateTbPlatTT: dateUpdateTbPlatTT.toISOString(),
                 dateUpdateGpMbf: dateUpdateGpMbf.toISOString(),
+                dateUpdateSLC2C: dateUpdateSLC2C.toISOString(),
+                dateUpdateTYLEGDC2C: dateUpdateTYLEGDC2C.toISOString(),
+
+
               };
               setLoadingCreateManualKpi(true);
               const result = await fetch("/api/create-manual-list-kpi", {
@@ -1098,6 +1324,73 @@ const CreateKpiModal = (props) => {
                               selected={dateUpdateTbPlatTT}
                               dateFormat = {"dd/MM/yyyy"}
                               onChange={(date) => setDateUpdateTbPlatTT(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Số lượng điểm C2C
+                          </td>
+                          <td style={{paddingLeft:'10px'}}>điểm</td>
+                          {dataSLC2C.map((object, index) => (
+                            <td key={index + `_SL_C2C`}>
+                              <input
+                                className="form-control input-kpi"
+                                value={object.value}
+                                type="number"
+                                onChange={(e) =>
+                                  handleValueUpdate(
+                                    object.id,
+                                    e.target.value,
+                                    object.province
+                                  )
+                                }
+                              />
+                            </td>
+                          ))}
+                          <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateSLC2C}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateSLC2C(date)}
+                              customInput={<CustomDateInput />}
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Tỷ Lệ GD C2C
+                          </td>
+                          <td>
+                            <span
+                              style={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                              }}
+                            >
+                              %
+                            </span>
+                          </td>
+                          {dataTYLEGDC2C.map((object, index) => (
+                            <td key={index + `_TYLE_GD_C2C`}>
+                              <input
+                                className="form-control input-kpi"
+                                value={object.value}
+                                type="number"
+                                onChange={(e) =>
+                                  handleValueUpdate(
+                                    object.id,
+                                    e.target.value,
+                                    object.province
+                                  )
+                                }
+                              />
+                            </td>
+                          ))}
+                          <td className="pt-2">
+                            <DatePicker
+                              selected={dateUpdateTYLEGDC2C}
+                              dateFormat = {"dd/MM/yyyy"}
+                              onChange={(date) => setDateUpdateTYLEGDC2C(date)}
                               customInput={<CustomDateInput />}
                             />
                           </td>
