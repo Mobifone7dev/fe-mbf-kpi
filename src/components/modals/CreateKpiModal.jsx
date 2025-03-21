@@ -17,6 +17,8 @@ import { changeFormatDateFirstDateInMonth } from "../../until/functions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomDateInput from "../../components/widgets/datePickers/CustomDateInput";
+import { handleGetExecKpi ,createManualApiList} from "../../lib/api";
+
 var x = new Date();
 
 const INIT_KPI_VALUES = {
@@ -747,7 +749,7 @@ const CreateKpiModal = (props) => {
   };
   const getExecKpi = (month) => {
     setLoadingExecKpi(true);
-    fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
+    handleGetExecKpi(month).then(async (res) => {
       setLoadingExecKpi(false);
       resetFiber();
       resetMass();
@@ -1022,13 +1024,7 @@ const CreateKpiModal = (props) => {
 
               };
               setLoadingCreateManualKpi(true);
-              const result = await fetch("/api/create-manual-list-kpi", {
-                method: "POST",
-                headers: {
-                  "Content-type": "application/json",
-                },
-                body: JSON.stringify(info),
-              });
+              const result = await createManualApiList(info)
               setLoadingCreateManualKpi(false);
               const isCreated = await result.json();
               if (isCreated) {

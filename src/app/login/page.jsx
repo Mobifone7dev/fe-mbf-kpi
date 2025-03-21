@@ -54,6 +54,10 @@ const Page = () => {
       } else {
         const user = await result.json();
         console.log("user", user);
+        // cookies().set("accessToken",
+        //   user.accessToken,
+        // );
+        await localStorage.setItem("accessToken",user.accessToken);
         await signIn("credentials", {
           email: newStringEmail,
           password,

@@ -11,6 +11,7 @@ import LoadingComponent from "@components/loading/LoadingComponent";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { handleGetPlanKpi,handleGetExecKpi } from "../lib/api";
 import {
   convertToFloat2Fixed,
   getFormattedDate,
@@ -130,7 +131,7 @@ const Page = () => {
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
     resetPlan();
-    fetch(`api/get-plan-kpi?month=${month}`).then(async (res) => {
+    handleGetPlanKpi(month).then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
       if (data && data.result) {
@@ -219,7 +220,7 @@ const Page = () => {
   const getExecKpi = (month) => {
     setLoadingExec(true);
     resetExec();
-    fetch(`api/get-exec-kpi?month=${month}`).then(async (res) => {
+    handleGetExecKpi(month).then(async (res) => {
       setLoadingExec(false);
       const data = await res.json();
       console.log("data", data);
