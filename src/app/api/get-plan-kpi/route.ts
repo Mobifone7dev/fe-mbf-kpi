@@ -6,8 +6,8 @@ import { signOut } from "next-auth/react";
 import { getQSParamFromURL } from "../../../until/functions";
 
 export async function GET(request: Request, response: Response) {
-    const URL = "http://localhost:8104";
-
+    // const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+    const URL ='"http://localhost:8104';
     const month = getQSParamFromURL("month", request.url);    
     console.log("URL", URL+`/dashboard/dashboard-plan-kpi?month=${month}`)
     let res;
@@ -16,7 +16,7 @@ export async function GET(request: Request, response: Response) {
         
         res = await fetch(
             URL+`/dashboard/dashboard-plan-kpi?month=${month}`,    
-            { headers: {"Authorization" : `Bearer ${cookies().get("accessToken")?.value}`} })
+            { headers: {"Authorization" : `Bearer ${cookies().get("accessToken")?.value}`}})
             if(res.status == 403) {
                 signOut({ redirect: false });
                 redirect("/login");
