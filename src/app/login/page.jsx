@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 import Button from "react-bootstrap-button-loader";
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 const ReCAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 export const LOGIN_URL = `${API_URL}/login`;
 const Page = () => {

@@ -6,7 +6,7 @@ import { getQSParamFromURL } from "../../../until/functions";
 
 export async function GET(request: Request) {
     try {
-        const URL = process.env.NEXTAUTH_APP_API_URL;
+        const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
         if (!URL) {
             console.error("❌ Lỗi: NEXTAUTH_APP_API_URL không được định nghĩa");
             return NextResponse.json({ message: "API URL không được định nghĩa" }, { status: 500 });

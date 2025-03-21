@@ -4,7 +4,7 @@ import { FormRetailData } from '@/types/formRetailTypes';
 import axios from 'axios';
 import { useSession } from 'next-auth/react'; // Hook của next-auth
 const defaultCenter = { lat: 12.6883602, lng: 108.0557606 };
-const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL;
+const API_URL_FORM = process.env.NEXTAUTH_APP_API_URL_SSL;
 
 export const useFormData = () => {
   

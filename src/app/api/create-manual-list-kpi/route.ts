@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 import { getQSParamFromURL } from "../../../until/functions";
 
 export async function POST(request: Request, response: Response) {
-    const URL = process.env.NEXTAUTH_APP_API_URL;
+    const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
     const postData = await request.json();
     console.log("postData", postData);
     let res;

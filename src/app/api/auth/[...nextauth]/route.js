@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { login } from "@/lib/api";
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 export const LOGIN_URL = `${API_URL}/login`;
 import { cookies } from "next/headers";
 

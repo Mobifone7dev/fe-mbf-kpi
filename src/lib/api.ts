@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 
 export const GET_USER_BY_ACCESSTOKEN_URL = `${API_URL}/verify_token`;
 // export const LOGIN_URL = `${API_URL}/sys-user/login`
@@ -24,10 +24,6 @@ axios.interceptors.response.use(
 // Server should return AuthModel
 export async function login(email: string, password: string) {
   console.log('LOGIN_URL', LOGIN_URL, email, password)
-  // return postData(LOGIN_URL, {
-  //   username: email,
-  //   password,
-  // });
 
   const result = await fetch(LOGIN_URL, {
     method: "POST",// *GET, POST, PUT, DELETE, etc

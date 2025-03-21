@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXTAUTH_APP_API_URL;
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 const CHECK_PACKAGE_URL = `${API_URL}/website/package`;
 const CHECK_TYPE_URL = `${API_URL}/website/type`;
 
