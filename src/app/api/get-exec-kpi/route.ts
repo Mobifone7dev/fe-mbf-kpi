@@ -7,7 +7,7 @@ import { getQSParamFromURL } from "../../../until/functions";
 
 export async function GET(request: Request, response: Response) {
     // const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
-    const URL = '"http://localhost:8104';
+    const URL = 'http://localhost:8104';
 
     const month = getQSParamFromURL("month", request.url);    
     console.log("URL", URL+`/dashboard/dashboard-exec-kpi?month=${month}`)
