@@ -57,7 +57,9 @@ const Page = () => {
         // cookies().set("accessToken",
         //   user.accessToken,
         // );
-        await localStorage.setItem("accessToken",user.accessToken);
+         localStorage.setItem("accessToken",user.accessToken);
+         localStorage.setItem("user", user);
+
         await signIn("credentials", {
           email: newStringEmail,
           password,
