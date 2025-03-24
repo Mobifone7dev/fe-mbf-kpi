@@ -11,7 +11,7 @@ import LoadingComponent from "@components/loading/LoadingComponent";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { handleGetPlanKpi,handleGetExecKpi } from "../lib/api";
+import { handleGetPlanKpi,handleGetExecKpi,handleGetExecKpiExcel } from "../lib/api";
 import {
   convertToFloat2Fixed,
   getFormattedDate,
@@ -314,67 +314,55 @@ const Page = () => {
 
   const handleDownloadExcel = async (kpiType, provincePt = "") => {
     if (!selectedDate) {
-      console.error("Lỗi: Chưa chọn tháng!");
+      console.error("🚨 Lỗi: Chưa chọn tháng!");
+      alert("Vui lòng chọn tháng trước khi tải Excel.");
       return;
     }
-
+  
     const formattedMonth = new Date(selectedDate)
       .toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" })
       .replace(" ", "/");
-
+  
     try {
       alert("🔄 Đang tải file Excel...");
-
-      // Xây dựng URL động
-      const provinceQuery = provincePt ? `&provincePt=${provincePt}` : ""; // 🔥 Đúng key BE yêu cầu
-
-      const apiUrl = `/api/export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}${provinceQuery}`;
-
-      console.log("📌 Gửi request đến API:", apiUrl);
-
-      const response = await fetch(apiUrl);
-
-      if (!response.ok) {
-        throw new Error(`Lỗi tải dữ liệu từ server: ${response.statusText}`);
+  
+      // 🛠️ Gọi API từ api.ts
+      let data = await handleGetExecKpiExcel(formattedMonth, kpiType, provincePt);
+  
+      console.log("📌 Phản hồi từ API trước khi kiểm tra:", data);
+  
+      // Nếu dữ liệu là Response object, cần parse JSON
+      if (data instanceof Response) {
+        console.warn("⚠️ Dữ liệu từ API là Response object, cần parse JSON");
+        data = await data.json();
       }
-
-      const data = await response.json();
-      console.log("📌 Dữ liệu nhận được:", data);
-
-      if (!data.result || data.result.length === 0) {
+  
+      console.log("📌 Dữ liệu đã parse JSON:", data);
+  
+      // Kiểm tra dữ liệu trả về
+      if (!data || !data.result || !Array.isArray(data.result) || data.result.length === 0) {
+        console.error("🚨 Không có dữ liệu hợp lệ từ API:", data);
         throw new Error("Không có dữ liệu để xuất Excel");
       }
-
-      // Chuyển đổi JSON thành worksheet
+  
+      // ✅ Chuyển đổi JSON thành worksheet
       const worksheet = XLSX.utils.json_to_sheet(data.result);
-
-      // Tạo workbook và gán worksheet vào
+  
+      // ✅ Tạo workbook và gán worksheet vào
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "KPI Data");
-
-      // Lấy giờ phút giây hiện tại
+  
+      // ✅ Lấy thời gian hiện tại để đặt tên file
       const now = new Date();
-      const timeStamp = now
-        .toLocaleTimeString("en-GB", { hour12: false })
-        .replace(/:/g, "-");
-
-      // Xây dựng tên file
+      const timeStamp = now.toLocaleTimeString("en-GB", { hour12: false }).replace(/:/g, "-");
       const provinceSuffix = provincePt ? `_${provincePt}` : "";
-      const fileName = `KPI_${kpiType}${provinceSuffix}_${formattedMonth.replace(
-        "/",
-        "-"
-      )}_${timeStamp}.xlsx`;
-
-      // Xuất file Excel
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
-      const excelBlob = new Blob([excelBuffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-
-      // Lưu file xuống
+      const fileName = `KPI_${kpiType}${provinceSuffix}_${formattedMonth.replace("/", "-")}_${timeStamp}.xlsx`;
+  
+      // ✅ Xuất file Excel
+      const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+      const excelBlob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+  
+      // ✅ Lưu file xuống
       saveAs(excelBlob, fileName);
       alert("✅ Tải file Excel thành công!");
       console.log("✅ Tải xuống thành công! File:", fileName);
@@ -383,6 +371,8 @@ const Page = () => {
       console.error("❌ Lỗi khi tải Excel:", error);
     }
   };
+  
+  
 
   const resetPlan = () => {
     SET_PLAN_DTHU_TKC_HTS({});
