@@ -231,3 +231,54 @@ export async function handleGetExecKpi(month: string) {
     );
   }
 }
+
+
+export async function handleGetExecKpiExcel(month: string, kpiType: string, provincePt: string = "") {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  
+  // Chuyển từ "MM/YYYY" → "01/MM/YYYY"
+  const formattedMonth = `01/${month.replace("-", "/")}`; // Chuyển "03-2025" → "01/03/2025"
+  const provinceQuery = provincePt ? `&provincePt=${provincePt}` : "";
+  const apiUrl = `${URL}/dashboard/dashboard-export-excel-exec-kpi?month=${formattedMonth}&kpiType=${kpiType}${provinceQuery}`;
+
+  console.log("📌 Gửi request đến API:", apiUrl);
+
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    console.log("📌 Token:", token);
+
+    const res = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.status === 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+      return;
+    }
+
+    const data = await res.json();
+    console.log("📌 Phản hồi đầy đủ từ API:", data);
+
+    if (res.ok && Array.isArray(data.result) && data.result.length > 0) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("📌 Lỗi từ server: Không có dữ liệu");
+      return Response.json({ success: false, message: "Không có dữ liệu Excel" });
+    }
+  } catch (e) {
+    console.error("❌ Lỗi khi tải dữ liệu Excel:", e);
+    return Response.json(
+      { message: "Lỗi khi tải dữ liệu Excel", error: e },
+      { status: 500 }
+    );
+  }
+}
