@@ -21,20 +21,38 @@ const Page = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [verified, setVerified] = useState(false);
+  let captcha;
+
   function checkIfEmailInString(text) {
     var re =
       /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     return re.test(text);
   }
+  const setCaptchaRef = (ref) => {
+    if (ref) {
+      return (captcha = ref);
+    }
+  };
+  const resetCaptcha = () => {
+    // maybe set it till after is submitted
+    captcha.reset();
+  };
+  useEffect(()=>{
+    console.log("verify", verified)
+  },[verified])
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     let newStringEmail = email;
     if (!checkIfEmailInString(email)) {
       newStringEmail = email + "@mobifone.vn";
     }
+    if (!verified) {
+      setError("Invalid captcha or resubmit captcha");
+      return;
+    }
     try {
       setLoading(true);
-      console.log("LOGIN_URL", LOGIN_URL);
       const result = await fetch(LOGIN_URL, {
         rejectUnauthorized: false,
         method: "POST", // *GET, POST, PUT, DELETE, etc
@@ -53,10 +71,6 @@ const Page = () => {
         return;
       } else {
         const user = await result.json();
-        console.log("user", user);
-        // cookies().set("accessToken",
-        //   user.accessToken,
-        // );
          localStorage.setItem("accessToken",user.accessToken);
          localStorage.setItem("user", user);
 
@@ -75,41 +89,12 @@ const Page = () => {
     } catch (error) {
       setError("Invalid credentials");
       setLoading(false);
+      resetCaptcha();
+      setVerified(false);
       return null;
     }
-  };
-  useEffect(() => {}, []);
-  const handleNextClick = (e) => {
-    e.preventDefault();
-    let re =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(email)) {
-      const pageBox = document.querySelector(".page-box");
-      const loginTitle = document.querySelector(".loginTitle-text");
-      pageBox?.classList.add("active-pass");
-      if (loginTitle != undefined) {
-        loginTitle.innerHTML = "Wellcome";
-      }
-      setLoginTitle(email);
-      setErrorEmail("");
-    } else {
-      setErrorEmail("Kiểm tra lại định dạng email");
-    }
-
-    // const passwordInput = document.querySelector<HTMLInputElement>(".password");
-    // if (passwordInput) {
-    //   passwordInput.focus();
-    // }
-  };
-  const handleBackClick = (e) => {
-    e.preventDefault();
-    const pageBox = document.querySelector(".page-box");
-    pageBox?.classList.remove("active-pass");
-    const loginTitle = document.querySelector(".loginTitle-text");
-    if (loginTitle != undefined) {
-      loginTitle.innerHTML = "Login";
-    }
-  };
+  }; 
+ 
   const handleShowPass = (e) => {
     let isChecked = e.target.checked;
     if (isChecked) {
@@ -117,7 +102,25 @@ const Page = () => {
     } else {
       setTypePassword("password");
     }
-    console.log(e);
+  };
+  const onRecaptchaChange = async (value) => {
+    const res = await axios.post("/api/recaptchaSubmit", {
+      gRecaptchaToken: value,
+    });
+
+      if(res &&res.success ){
+        console.log("check", res, res.success, verified)
+        setVerified(true);
+      }else {
+        if (res && res.data && res.data.success) {
+          setVerified(true);
+        } else {
+          setVerified(false);
+        }
+  
+      }
+     
+    
   };
 
   return (
@@ -166,6 +169,14 @@ const Page = () => {
                     {errorEmail}
                   </div>
                 )}
+                 <div style={{ marginTop: "20px" }}>
+                  {/* Google reCAPTCHA */}
+                  <ReCAPTCHA
+                    sitekey={ReCAPTCHA_SITE_KEY} // Replace with your Google reCAPTCHA Site Key
+                    onChange={onRecaptchaChange}
+                    ref={(r) => setCaptchaRef(r)}
+                  />
+                </div>
                 <div className="forgot show">
                   <label>
                     <input
