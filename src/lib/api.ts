@@ -232,6 +232,43 @@ export async function handleGetExecKpi(month: string) {
   }
 }
 
+export async function handleGetWebUser(userEmail: string) {
+
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("URL", URL + `/user-role/web-user?userEmail=${userEmail}`)
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    console.log("token", token)
+
+    res = await fetch(
+      URL + `/user-role/web-user?userEmail=${userEmail}`,
+      { headers: { "Authorization": `Bearer ${token}` } })
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json()
+    if (res) {
+      return Response.json({
+        success: true, result: data.result
+      });
+    } else {
+      console.log('res', res)
+      return Response.json({ success: false });
+    }
+
+  } catch (e) {
+    console.log(e)
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+
+}
+
 
 export async function handleGetExecKpiExcel(month: string, kpiType: string, provincePt: string = "") {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;

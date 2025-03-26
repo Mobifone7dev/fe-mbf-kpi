@@ -72,7 +72,7 @@ const Page = () => {
       } else {
         const user = await result.json();
          localStorage.setItem("accessToken",user.accessToken);
-         localStorage.setItem("user", user);
+         localStorage.setItem("user", JSON.stringify(user));
 
         await signIn("credentials", {
           email: newStringEmail,
