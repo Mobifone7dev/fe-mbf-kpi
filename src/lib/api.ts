@@ -266,6 +266,84 @@ export async function handleGetWebUser(userEmail: string) {
       { status: 500 }
     );
   }
+}
+
+export async function handleGetUserRole(userEmail: string) {
+
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("URL", URL + `/user-role/get-user-role?userEmail=${userEmail}`)
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    console.log("token", token)
+
+    res = await fetch(
+      URL + `/user-role/get-user-role?userEmail=${userEmail}`,
+      { headers: { "Authorization": `Bearer ${token}` } })
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json()
+    if (res) {
+      return Response.json({
+        success: true, result: data.roles
+      });
+    } else {
+      console.log('res', res)
+      return Response.json({ success: false });
+    }
+
+  } catch (e) {
+    console.log(e)
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
+
+export async function handleUpdateUseRole(postData: any) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("postData", postData);
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    console.log("token", token)
+    res = await fetch(
+      URL + `/user-role/update-user-role`,
+      {
+        method: 'POST',
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(postData)
+
+      })
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json()
+    if (res) {
+      return Response.json({
+        success: true, result: data.result
+      });
+    } else {
+      console.log('res', res)
+      return Response.json({ success: false });
+    }
+
+  } catch (e) {
+    console.log(e)
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
 
 }
 

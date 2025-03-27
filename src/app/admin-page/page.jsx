@@ -2,16 +2,22 @@
 <time datetime="2016-10-25" suppressHydrationWarning />;
 import { redirect } from "next/navigation";
 import SearchHeader from "../../components/widgets/search/SearchHeader";
-import {handleGetWebUser} from "../../lib/api";
+import { handleGetWebUser } from "../../lib/api";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
+import UpdateRoleModal from "@components/modals/UpdateRoleModal";
 
 const Page = () => {
   const [textSearch, setTextSearch] = useState();
-  const[searchUsers, setSearchUsers] = useState([]);
+  const [searchUsers, setSearchUsers] = useState([]);
+  const [show, setShow] = useState(false);
+  const [selectedUser, setSelectedUser] = useState();
+  const [adminPageRole, setAdminPageRole] = useState({});
+  const [loadingRole, setLoadingRole] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [newStringEmail, setNewStringEmail] = useState("");
 
-  let [adminPageRole, setAdminPageRole] = useState({});
   useEffect(() => {
     try {
       const user = localStorage.getItem("user")
@@ -29,73 +35,103 @@ const Page = () => {
       redirect("/login");
     }
   }, []);
+  useEffect(() => {
+    if (adminPageRole) {
+      setLoadingRole(false);
+    }
+  }, [adminPageRole]);
+  useEffect(() => {
+    if (selectedUser) {
+      setShow(!show);
+    }
+  }, [selectedUser]);
   function checkIfEmailInString(text) {
     var re =
       /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     return re.test(text);
   }
+  async function getWebUser(newStringEmail) {
+    setLoading(true);
+    handleGetWebUser(newStringEmail).then(async (res) => {
+      setLoading(false);
+      const data = await res.json();
+      console.log("data", data);
+      if (data && data.result) {
+        setSearchUsers(data.result);
+      }
+    });
+  }
 
   if (adminPageRole && adminPageRole.SELECT_ROLE && adminPageRole.EDIT_ROLE) {
     return (
-      <div>
+      <div className="admin-page">
         <h4>Tìm kiếm user</h4>
         <SearchHeader
           textSearch={textSearch}
           textHolder="Nhập email ..."
           callback={(e) => {
-            let newStringEmail ='';
             if (!checkIfEmailInString(e)) {
-                newStringEmail = e + "@mobifone.vn";
-              }
-            handleGetWebUser(newStringEmail).then(async (res)=>{
-            const data =  await res.json();
-            console.log("data", data)
-            if(data &&data.result){
-                setSearchUsers(data.result)
+              setNewStringEmail(e + "@mobifone.vn");
+              getWebUser(e + "@mobifone.vn");
+            } else {
+              getWebUser(e);
             }
-
-            })
           }}
         />
         <div className="table-user mt-2">
-        <table className="table table-responsive  align-middle gs-0 gy-3">
-          <thead>
-            <tr className={`table-head`}>
-              <th>Province</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Trạng thái</th>
-              <th>Thêm quyền menu</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-                searchUsers&&searchUsers.length > 0 ? (
-                    searchUsers.map((object, index)=>(
-                        <tr key={index}>
-                        <td>{object&&object["PROVINCE"]}</td>
-                        <td>{object&&object["USER_NAME"]}</td>
-                        <td>{object&&object["USER_EMAIL"]}</td>
-                        <td>{object&&object["STATUS"] ? "Hoạt động": "Không hoạt động"}</td>
-                        <td><Button>Thêm quyền menu</Button></td>
-                      </tr>
-                    ))
-
-                ):null
-            }
-           
-          </tbody>
-        </table>
-
+          <table className="table table-striped table-hover table-responsive  align-middle gs-0 gy-3">
+            <thead>
+              <tr className={`table-head`}>
+                <th>Province</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Trạng thái</th>
+                <th>Thêm quyền menu</th>
+              </tr>
+            </thead>
+            <tbody>
+              {searchUsers && searchUsers.length > 0
+                ? searchUsers.map((object, index) => (
+                    <tr key={index}>
+                      <td>{object && object["PROVINCE"]}</td>
+                      <td>{object && object["USER_NAME"]}</td>
+                      <td>{object && object["USER_EMAIL"]}</td>
+                      <td>
+                        {object && object["STATUS"]
+                          ? "Hoạt động"
+                          : "Không hoạt động"}
+                      </td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            setSelectedUser(object);
+                          }}
+                        >
+                          Thêm quyền menu
+                        </Button>
+                      </td>
+                    </tr>
+                  ))
+                : null}
+            </tbody>
+          </table>
         </div>
-        
+        <UpdateRoleModal
+          selectedUser={selectedUser}
+          show={show}
+          handleClose={() => {
+            setShow(false);
+            setSelectedUser();
+            getWebUser(newStringEmail);
+          }}
+        />
       </div>
     );
   } else {
     return (
       <>
         <h1 style={{ color: "red", textAlign: "center" }}>
-          Bạn không có quyền thực hiện chức năng này
+          {loadingRole ? "" : "Bạn không có quyền thực hiện chức năng này"}
         </h1>
       </>
     );
