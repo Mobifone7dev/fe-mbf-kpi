@@ -12,6 +12,7 @@ import CreateKpiModal from "@components/modals/CreateKpiModal";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { handleGetPlanKpi,handleGetExecKpi,handleGetExecKpiExcel } from "../lib/api";
+import {convertKeyToProvinceObject} from "../lib/utils";
 import {
   convertToFloat2Fixed,
   getFormattedDate,
@@ -92,17 +93,42 @@ const Page = () => {
   const [EXEC_SL_C2C, SET_EXEC_SL_C2C] = useState({});
   const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] =
     useState({});
-
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [loadingExec, setLoadingExec] = useState(false);
-
   // usetate value
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [province, setProvince] = useState({value:"",label:"Không xác định"});
+  const [kpiPageRole, setkpiPageRole] = useState();
 
   useEffect(() => {
-    getPlanKpi(changeFormatDateFirstDateInMonth(x));
-    getExecKpi(changeFormatDateFirstDateInMonth(x));
+    try {
+      const user = localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user"))
+        : null;
+        console.log("user", user);
+      if (user && user.roles) {
+        if (user.roles.find((object) => (object.menu_id = "1"))) {
+          setkpiPageRole(user.roles.find((object) => (object.menu_id = "1")));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      redirect("/login");
+    }
   }, []);
+  useEffect(()=>{
+    console.log("kpiPageRole", kpiPageRole);
+    if(kpiPageRole&&kpiPageRole.PROVINCE&&kpiPageRole.PROVINCE.length> 0){
+      setProvince(convertKeyToProvinceObject(kpiPageRole.PROVINCE))
+    }
+  },[kpiPageRole])
+
+
+
+  useEffect(() => {
+    getPlanKpi(changeFormatDateFirstDateInMonth(x), province.value);
+    getExecKpi(changeFormatDateFirstDateInMonth(x), province.value);
+  }, [province]);
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -110,8 +136,8 @@ const Page = () => {
       return;
     }
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    getPlanKpi(date);
-    getExecKpi(date);
+    getPlanKpi(date, province.value);
+    getExecKpi(date, province.value);
   }, [selectedDate]);
   const handleSticky = () => {
     // const header = document.querySelector('.header') as any
@@ -128,10 +154,10 @@ const Page = () => {
     };
   });
 
-  const getPlanKpi = (month) => {
+  const getPlanKpi = (month, province) => {
     setLoadingPlan(true);
     resetPlan();
-    handleGetPlanKpi(month).then(async (res) => {
+    handleGetPlanKpi(month, province).then(async (res) => {
       setLoadingPlan(false);
       const data = await res.json();
       if (data && data.result) {
@@ -217,10 +243,10 @@ const Page = () => {
     });
   };
 
-  const getExecKpi = (month) => {
+  const getExecKpi = (month, province) => {
     setLoadingExec(true);
     resetExec();
-    handleGetExecKpi(month).then(async (res) => {
+    handleGetExecKpi(month, province).then(async (res) => {
       setLoadingExec(false);
       const data = await res.json();
       console.log("data", data);
@@ -444,7 +470,7 @@ const Page = () => {
   }
 
   return (
-    <div className="dashboard-kpi">
+    kpiPageRole ? <div className="dashboard-kpi">
       <div className="d-flex select-filter mt-2">
         <Formik
           enableReinitialize={true}
@@ -10522,7 +10548,7 @@ const Page = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </div> : <></>
   );
 };
 

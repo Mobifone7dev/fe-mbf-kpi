@@ -53,7 +53,7 @@ const Page = () => {
   async function getWebUser(newStringEmail) {
     setLoading(true);
     handleGetWebUser(newStringEmail).then(async (res) => {
-      setLoading(false);
+      setLoading(false);  
       const data = await res.json();
       console.log("data", data);
       if (data && data.result) {

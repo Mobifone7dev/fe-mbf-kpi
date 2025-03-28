@@ -159,18 +159,18 @@ export async function createManualApiList(postData: any) {
   }
 
 }
-export async function handleGetPlanKpi(month: string) {
+export async function handleGetPlanKpi(month: string, province? : string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`)
   let res;
   const token = localStorage.getItem("accessToken");
-
+  const urlApi  = province&&province.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${province}` :  URL + `/dashboard/dashboard-plan-kpi?month=${month}`;
   try {
     console.log("token", token)
 
     res = await fetch(
-      URL + `/dashboard/dashboard-plan-kpi?month=${month}`,
+      urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403) {
       signOut({ redirect: false });
@@ -196,7 +196,7 @@ export async function handleGetPlanKpi(month: string) {
 
 }
 
-export async function handleGetExecKpi(month: string) {
+export async function handleGetExecKpi(month: string, province?  :string) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 
   console.log("URL", URL + `/dashboard/dashboard-exec-kpi?month=${month}`)
@@ -205,9 +205,9 @@ export async function handleGetExecKpi(month: string) {
 
   try {
     console.log("token", token)
-
+const urlApi = province&&province.length > 0 ? URL + `/dashboard/dashboard-exec-kpi?month=${month}&&province=${province}` : URL + `/dashboard/dashboard-exec-kpi?month=${month}`;
     res = await fetch(
-      URL + `/dashboard/dashboard-exec-kpi?month=${month}`,
+      urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403) {
       signOut({ redirect: false });

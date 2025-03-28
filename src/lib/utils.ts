@@ -63,3 +63,19 @@ export const getSources = (data: Data[], role: string, index: number) => {
   }
   return [];
 };
+
+export const convertKeyToProvinceObject = (key: string) => {
+  switch (key) {
+    case "KHO": return { value: "KHO", label: "Khánh Hòa" };
+    case "DLA": return { value: "DLA", label: "Đăk Lăk" };
+    case "GLA": return { value: "GLA", label: "Gia Lai" };
+    case "PYE": return { value: "PYE", label: "Phú Yên" };
+    case "DNO": return { value: "DNO", label: "Đăk Nông" };
+    case "KON": return { value: "KON", label: "Kon Tum" };
+    case "CTY7": return { value: "CTY7", label: "VP Công ty" };
+
+    default:
+      return { value: "", label: "Không xác định" }
+  }
+
+}
