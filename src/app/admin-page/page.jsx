@@ -70,6 +70,7 @@ const Page = () => {
           textSearch={textSearch}
           textHolder="Nhập email ..."
           callback={(e) => {
+            setSelectedUser();
             if (!checkIfEmailInString(e)) {
               setNewStringEmail(e + "@mobifone.vn");
               getWebUser(e + "@mobifone.vn");
