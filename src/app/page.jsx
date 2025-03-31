@@ -105,7 +105,6 @@ const Page = () => {
       const user = localStorage.getItem("user")
         ? JSON.parse(localStorage.getItem("user"))
         : null;
-        console.log("user", user);
       if (user && user.roles) {
         if (user.roles.find((object) => (object.menu_id = "1"))) {
           setkpiPageRole(user.roles.find((object) => (object.menu_id = "1")));
@@ -249,7 +248,6 @@ const Page = () => {
     handleGetExecKpi(month, province).then(async (res) => {
       setLoadingExec(false);
       const data = await res.json();
-      console.log("data", data);
       if (data.result.length > 0) {
         data.result.map((object, index) => {
           if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
@@ -462,13 +460,6 @@ const Page = () => {
   };
   const [show, setShow] = useState(false);
 
-  {
-    console.log(
-      "LAST_DATE getDate HTS :",
-      new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate()
-    );
-  }
-
   return (
     kpiPageRole ? <div className="dashboard-kpi">
       <div className="d-flex select-filter mt-2">
@@ -507,10 +498,8 @@ const Page = () => {
                           } else {
                             indexDate = e.getDate();
                           }
-                          console.log("indexDate", indexDate);
                           setIndexDateInMonth(indexDate);
                           const sumDate = daysInMonth(e);
-                          console.log("sumdate", sumDate);
                           setSumDateInMonth(sumDate);
                           setInitValues({
                             ...initValues,

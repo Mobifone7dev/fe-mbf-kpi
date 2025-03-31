@@ -70,13 +70,18 @@ const Page = () => {
           textSearch={textSearch}
           textHolder="Nhập email ..."
           callback={(e) => {
+            
             setSelectedUser();
-            if (!checkIfEmailInString(e)) {
-              setNewStringEmail(e + "@mobifone.vn");
-              getWebUser(e + "@mobifone.vn");
-            } else {
-              getWebUser(e);
+            if(e.length > 0){
+              if (!checkIfEmailInString(e)) {
+                setNewStringEmail(e + "@mobifone.vn");
+                getWebUser(e + "@mobifone.vn");
+              } else {
+                setNewStringEmail(e)
+                getWebUser(e);
+              }
             }
+            
           }}
         />
         <div className="table-user mt-2">
@@ -122,8 +127,8 @@ const Page = () => {
           show={show}
           handleClose={() => {
             setShow(false);
-            setSelectedUser();
             getWebUser(newStringEmail);
+            setSelectedUser();
           }}
         />
       </div>

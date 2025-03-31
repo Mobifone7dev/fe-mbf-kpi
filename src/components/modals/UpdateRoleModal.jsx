@@ -44,24 +44,25 @@ const  provinceList = [
   }
 
 ]
-const initDataRoles = [
-  {
-    MENU_ID: "1",
-    MENU_NAME: "DASHBOARD_KPI",
-    SELECT_ROLE: 0,
-    EDIT_ROLE: 0,
-    TTOAN_ROLE: 0,
-  },
-  {
-    MENU_ID: "2",
-    MENU_NAME: "ADMIN_PAGE",
-    SELECT_ROLE: 0,
-    EDIT_ROLE: 0,
-    TTOAN_ROLE: 0,
-  },
-];
+
 
 const UpdateRoleModal = (props) => {
+  const initDataRoles = [
+    {
+      MENU_ID: "1",
+      MENU_NAME: "DASHBOARD_KPI",
+      SELECT_ROLE: 0,
+      EDIT_ROLE: 0,
+      TTOAN_ROLE: 0,
+    },
+    {
+      MENU_ID: "2",
+      MENU_NAME: "ADMIN_PAGE",
+      SELECT_ROLE: 0,
+      EDIT_ROLE: 0,
+      TTOAN_ROLE: 0,
+    },
+  ];
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [selectedUser, setSelectdUser] = useState(props.selectedUser);
@@ -109,8 +110,9 @@ const UpdateRoleModal = (props) => {
     }
   };
   const resetModal = () => {
+    console.log("reset modal", initDataRoles)
     setDataRoles(initDataRoles);
-    setSelectdUser()
+    setSelectdUser();
     setProvince({value:"",label:"Không xác định"});
   }
 
@@ -118,7 +120,7 @@ const UpdateRoleModal = (props) => {
     if (user && user["USER_EMAIL"]) {
       const res = await handleGetUserRole(user["USER_EMAIL"]);
       const data = await res.json();
-      if (data && data.result && data.result.length > 0) {
+      if (data && data.result ) {
         const userRoles = data.result;
         const copyDataRoles = [...dataRoles];
         for (const role of userRoles) {
@@ -135,7 +137,10 @@ const UpdateRoleModal = (props) => {
             };
           }
         }
+
         setDataRoles(copyDataRoles);
+      }else{
+        setDataRoles(initDataRoles);
       }
     }
   };
