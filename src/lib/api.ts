@@ -124,7 +124,6 @@ export async function createManualApiList(postData: any) {
   const token = localStorage.getItem("accessToken");
 
   try {
-    console.log("token", token)
     res = await fetch(
       URL + `/dashboard/dashboard-create-manual-list-kpi`,
       {
@@ -167,8 +166,6 @@ export async function handleGetPlanKpi(month: string, province? : string) {
   const token = localStorage.getItem("accessToken");
   const urlApi  = province&&province.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${province}` :  URL + `/dashboard/dashboard-plan-kpi?month=${month}`;
   try {
-    console.log("token", token)
-
     res = await fetch(
       urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
@@ -198,14 +195,11 @@ export async function handleGetPlanKpi(month: string, province? : string) {
 
 export async function handleGetExecKpi(month: string, province?  :string) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
-
-  console.log("URL", URL + `/dashboard/dashboard-exec-kpi?month=${month}`)
   let res;
   const token = localStorage.getItem("accessToken");
 
   try {
-    console.log("token", token)
-const urlApi = province&&province.length > 0 ? URL + `/dashboard/dashboard-exec-kpi?month=${month}&&province=${province}` : URL + `/dashboard/dashboard-exec-kpi?month=${month}`;
+    const urlApi = province && province.length > 0 ? URL + `/dashboard/dashboard-exec-kpi?month=${month}&&province=${province}` : URL + `/dashboard/dashboard-exec-kpi?month=${month}`;
     res = await fetch(
       urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
@@ -235,13 +229,10 @@ const urlApi = province&&province.length > 0 ? URL + `/dashboard/dashboard-exec-
 export async function handleGetWebUser(userEmail: string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
-  console.log("URL", URL + `/user-role/web-user?userEmail=${userEmail}`)
   let res;
   const token = localStorage.getItem("accessToken");
 
   try {
-    console.log("token", token)
-
     res = await fetch(
       URL + `/user-role/web-user?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
@@ -271,13 +262,10 @@ export async function handleGetWebUser(userEmail: string) {
 export async function handleGetUserRole(userEmail: string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
-  console.log("URL", URL + `/user-role/get-user-role?userEmail=${userEmail}`)
   let res;
   const token = localStorage.getItem("accessToken");
 
   try {
-    console.log("token", token)
-
     res = await fetch(
       URL + `/user-role/get-user-role?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
@@ -311,7 +299,6 @@ export async function handleUpdateUseRole(postData: any) {
   const token = localStorage.getItem("accessToken");
 
   try {
-    console.log("token", token)
     res = await fetch(
       URL + `/user-role/update-user-role`,
       {
