@@ -4103,7 +4103,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
               6.1
             </td>
             <td rowSpan={4} className="text-sub3 cell-kpi">
-              Số lượng điểm C2C
+              Số lượng điểm C2C<span style={{color:"red"}}>*</span>
             </td>
             <td rowSpan={4} className="kpi-dvt">
               điểm
@@ -4940,7 +4940,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
               6.3
             </td>
             <td rowSpan={4} className="text-sub3 cell-kpi">
-              Tỷ lệ Điểm bán C2C có phát sinh giao dịch
+              Tỷ lệ Điểm bán C2C có phát sinh giao dịch<span style={{color:"red"}}>*</span>
             </td>
             <td rowSpan={4} className="kpi-dvt">
               thuê bao
@@ -11231,7 +11231,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             </td>
             <td rowSpan={4} className="text-sub2 cell-kpi">
               Số lượng hợp đồng dịch vụ GPS kí mới KHDN
-              <span style={{ color: "red" }}>*</span>)
+              <span style={{ color: "red" }}>*</span>
             </td>
             <td rowSpan={4} className="kpi-dvt">
               hợp đồng
