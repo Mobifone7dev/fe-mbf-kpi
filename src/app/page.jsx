@@ -97,7 +97,6 @@ const Page = () => {
       firstUpdate.current = false;
       return;
     }
-    console.log("selectedDate.getTime()", selectedDate.getMonth())
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     getPlanKpi(date, province.value);
     getExecKpi(date, province.value);
