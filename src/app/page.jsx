@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
 import TableDashboardT03 from "@components/tables/TableDashboardT03";
 import TableDashboardT04 from "@components/tables/TableDashboardT04";
-
+import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import {
