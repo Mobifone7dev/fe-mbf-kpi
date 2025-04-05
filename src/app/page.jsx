@@ -59,16 +59,21 @@ const Page = () => {
 
   useEffect(() => {
     try {
-      const user = localStorage.getItem("user")
+      const user = localStorage.getItem("user")&&JSON.parse(localStorage.getItem("user"))
         ? JSON.parse(localStorage.getItem("user"))
         : null;
       if (user && user.roles) {
         if (user.roles.find((object) => (object.menu_id = "1"))) {
           setkpiPageRole(user.roles.find((object) => (object.menu_id = "1")));
         }
+      }else {
+        localStorage.removeItem("user");
+        redirect("/login");
+
       }
     } catch (error) {
       console.log(error);
+      localStorage.removeItem("user");
       redirect("/login");
     }
   }, []);
