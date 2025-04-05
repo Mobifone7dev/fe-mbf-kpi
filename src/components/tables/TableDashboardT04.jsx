@@ -42,7 +42,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
   const [PLAN_TILE_N_1_DONKY, SET_PLAN_TILE_N_1_DONKY] = useState({});
   const [PLAN_TILE_N_1_DAIKY, SET_PLAN_TILE_N_1_DAIKY] = useState({});
   const [PLAN_TILE_MNP, SET_PLAN_TILE_MNP] = useState({});
-  const [PLAN_TI_LE_DN_SU_DUNG_GP_MBF, SET_PLAN_TI_LE_DN_SU_DUNG_GP_MBF] =
+  const [PLAN_SL_HD_GPS_KHDN, SET_PLAN_SL_HD_GPS_KHDN] =
     useState({});
   // kpi thuc hien
   // //////////////////////////////////////////////////////////////
@@ -71,8 +71,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
   const [EXEC_SL_PTM_TBTT_HTS, SET_EXEC_SL_PTM_TBTT_HTS] = useState({});
   const [EXEC_TILE_MNP, SET_EXEC_TILE_MNP] = useState({});
   const [EXEC_SL_C2C, SET_EXEC_SL_C2C] = useState({});
-  const [EXEC_TI_LE_DN_SU_DUNG_GP_MBF, SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF] =
-    useState({});
+  const [EXEC_SL_HD_GPS_KHDN, SET_EXEC_SL_HD_GPS_KHDN] = useState({});
+
   const [isSticky, setIsSticky] = useState(props.isSticky);
   const [kpiPointKHO, setKpiPointKHO] = useState(8); //bao gom co 2 chi tieu th chi dao cua lddv và tang truong doanh thu quan tri 5+3
   const [kpiPointDLA, setKpiPointDLA] = useState(0);
@@ -132,12 +132,13 @@ const TableDashboardT04 = forwardRef((props, ref) => {
       SET_PLAN_TILE_N_1_DAIKY({});
       SET_PLAN_TILE_MNP({});
       SET_PLAN_SL_C2C({});
+      SET_PLAN_SL_HD_GPS_KHDN({});
       SET_PLAN_DTHU_CLOUD_DC({});
       SET_PLAN_DTHU_GPS({});
       SET_PLAN_DTHU_MASS({});
       SET_PLAN_DTHU_DUAN({});
       SET_PLAN_SL_TBTS_PTM_THOAI({});
-      SET_PLAN_TI_LE_DN_SU_DUNG_GP_MBF({});
+      SET_PLAN_SL_HD_GPS_KHDN({});
     },
     resetExec() {
       SET_EXEC_DTHU_TKC_HTS({});
@@ -159,12 +160,13 @@ const TableDashboardT04 = forwardRef((props, ref) => {
       SET_EXEC_SL_PTM_TBTT_HTS({});
       SET_EXEC_TILE_MNP({});
       SET_EXEC_SL_C2C({});
+      SET_EXEC_SL_HD_GPS_KHDN({});
       SET_EXEC_DTHU_CLOUD_DC({});
       SET_EXEC_DTHU_GPS({});
       SET_EXEC_DTHU_MASS({});
       SET_EXEC_DTHU_DUAN({});
       SET_EXEC_SL_TBTS_PTM_THOAI({});
-      SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF({});
+      SET_EXEC_SL_HD_GPS_KHDN({});
     },
     caculateKpiKHO() {
       handleCaculateKpiKHO();
@@ -197,6 +199,9 @@ const TableDashboardT04 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "SL_C2C") {
           SET_PLAN_SL_C2C(object);
         }
+        if (object["TEN_CHI_TIEU"] == "SL_HD_GPS_KHDN") {
+            SET_PLAN_SL_HD_GPS_KHDN(object);
+          }
         if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
           SET_PLAN_SL_TB_C2C(object);
         }
@@ -244,8 +249,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
           SET_PLAN_TILE_MNP(object);
         }
-        if (object["TEN_CHI_TIEU"] == "TI_LE_DN_SU_DUNG_GP_MBF") {
-          SET_PLAN_TI_LE_DN_SU_DUNG_GP_MBF(object);
+        if (object["TEN_CHI_TIEU"] == "SL_HD_GPS_KHDN") {
+          SET_PLAN_SL_HD_GPS_KHDN(object);
         }
       });
     }
@@ -344,13 +349,16 @@ const TableDashboardT04 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "SL_C2C") {
           SET_EXEC_SL_C2C(object);
         }
+        if (object["TEN_CHI_TIEU"] == "SL_HD_GPS_KHDN") {
+            SET_EXEC_SL_HD_GPS_KHDN(object);
+          }
 
         if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
           SET_EXEC_TILE_MNP(object);
         }
 
-        if (object["TEN_CHI_TIEU"] == "TI_LE_DN_SU_DUNG_GP_MBF") {
-          SET_EXEC_TI_LE_DN_SU_DUNG_GP_MBF(object);
+        if (object["TEN_CHI_TIEU"] == "SL_HD_GPS_KHDN") {
+          SET_EXEC_SL_HD_GPS_KHDN(object);
         }
       });
     }
@@ -806,18 +814,18 @@ const TableDashboardT04 = forwardRef((props, ref) => {
           sumKpiKHO += kpi_TILE_MNP;
         }
 
-        if (object.nameKpi == "TI_LE_DN_SU_DUNG_GP_MBF") {
+        if (object.nameKpi == "SL_HD_GPS_KHDN") {
           const uocTh = parseFloat(
-            (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO * 100) /
-              PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+            (EXEC_SL_HD_GPS_KHDN.KHO * 100) /
+              PLAN_SL_HD_GPS_KHDN.KHO
           );
-          const kpi_TI_LE_DN_SU_DUNG_GP_MBF =
-            PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO == 0
+          const kpi_SL_HD_GPS_KHDN =
+            PLAN_SL_HD_GPS_KHDN.KHO == 0
               ? (object.point * object.maxPercent) / 100
               : uocTh > 120
               ? (object.point * object.maxPercent) / 100
               : (uocTh / 100) * object.point;
-          sumKpiKHO += kpi_TI_LE_DN_SU_DUNG_GP_MBF;
+          sumKpiKHO += kpi_SL_HD_GPS_KHDN;
         }
         setKpiPointKHO(sumKpiKHO);
       });
@@ -11240,8 +11248,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
+              ) : PLAN_SL_HD_GPS_KHDN.KHO ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.KHO)
               ) : (
                 ""
               )}
@@ -11249,8 +11257,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
+              ) : PLAN_SL_HD_GPS_KHDN.DLA ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.DLA)
               ) : (
                 ""
               )}
@@ -11258,8 +11266,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
+              ) : PLAN_SL_HD_GPS_KHDN.GLA ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.GLA)
               ) : (
                 ""
               )}
@@ -11267,8 +11275,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
+              ) : PLAN_SL_HD_GPS_KHDN.PYE ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.PYE)
               ) : (
                 ""
               )}
@@ -11276,8 +11284,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
+              ) : PLAN_SL_HD_GPS_KHDN.DNO ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.DNO)
               ) : (
                 ""
               )}
@@ -11285,8 +11293,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON)
+              ) : PLAN_SL_HD_GPS_KHDN.KON ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.KON)
               ) : (
                 ""
               )}
@@ -11294,8 +11302,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingPlan ? (
                 <LoadingComponent />
-              ) : PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
-                convertToFloat2FixedNumber(PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
+              ) : PLAN_SL_HD_GPS_KHDN.CTY7 ? (
+                convertToFloat2FixedNumber(PLAN_SL_HD_GPS_KHDN.CTY7)
               ) : (
                 ""
               )}
@@ -11304,9 +11312,9 @@ const TableDashboardT04 = forwardRef((props, ref) => {
               CNS
               <br />
               <span>
-                {EXEC_TI_LE_DN_SU_DUNG_GP_MBF.LAST_DATE
+                {EXEC_SL_HD_GPS_KHDN.LAST_DATE
                   ? getFormattedDate(
-                      new Date(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.LAST_DATE)
+                      new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
                     )
                   : ""}
               </span>
@@ -11317,8 +11325,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO)
+              ) : EXEC_SL_HD_GPS_KHDN.KHO ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.KHO)
               ) : (
                 ""
               )}
@@ -11326,8 +11334,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA)
+              ) : EXEC_SL_HD_GPS_KHDN.DLA ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.DLA)
               ) : (
                 ""
               )}
@@ -11335,8 +11343,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA)
+              ) : EXEC_SL_HD_GPS_KHDN.GLA ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.GLA)
               ) : (
                 ""
               )}
@@ -11344,8 +11352,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE)
+              ) : EXEC_SL_HD_GPS_KHDN.PYE ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.PYE)
               ) : (
                 ""
               )}
@@ -11353,8 +11361,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO)
+              ) : EXEC_SL_HD_GPS_KHDN.DNO ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.DNO)
               ) : (
                 ""
               )}
@@ -11362,8 +11370,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON)
+              ) : EXEC_SL_HD_GPS_KHDN.KON ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.KON)
               ) : (
                 ""
               )}
@@ -11371,8 +11379,8 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
-                convertToFloat2FixedNumber(EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7)
+              ) : EXEC_SL_HD_GPS_KHDN.CTY7 ? (
+                convertToFloat2FixedNumber(EXEC_SL_HD_GPS_KHDN.CTY7)
               ) : (
                 ""
               )}
@@ -11383,11 +11391,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
+              ) : EXEC_SL_HD_GPS_KHDN.KHO &&
+                PLAN_SL_HD_GPS_KHDN.KHO ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+                  (EXEC_SL_HD_GPS_KHDN.KHO * 100) /
+                    PLAN_SL_HD_GPS_KHDN.KHO
                 )
               ) : (
                 ""
@@ -11396,11 +11404,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
+              ) : EXEC_SL_HD_GPS_KHDN.DLA &&
+                PLAN_SL_HD_GPS_KHDN.DLA ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA
+                  (EXEC_SL_HD_GPS_KHDN.DLA * 100) /
+                    PLAN_SL_HD_GPS_KHDN.DLA
                 )
               ) : (
                 ""
@@ -11409,11 +11417,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
+              ) : EXEC_SL_HD_GPS_KHDN.GLA &&
+                PLAN_SL_HD_GPS_KHDN.GLA ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA
+                  (EXEC_SL_HD_GPS_KHDN.GLA * 100) /
+                    PLAN_SL_HD_GPS_KHDN.GLA
                 )
               ) : (
                 ""
@@ -11422,11 +11430,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
+              ) : EXEC_SL_HD_GPS_KHDN.PYE &&
+                PLAN_SL_HD_GPS_KHDN.PYE ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE
+                  (EXEC_SL_HD_GPS_KHDN.PYE * 100) /
+                    PLAN_SL_HD_GPS_KHDN.PYE
                 )
               ) : (
                 ""
@@ -11435,11 +11443,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
+              ) : EXEC_SL_HD_GPS_KHDN.DNO &&
+                PLAN_SL_HD_GPS_KHDN.DNO ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO
+                  (EXEC_SL_HD_GPS_KHDN.DNO * 100) /
+                    PLAN_SL_HD_GPS_KHDN.DNO
                 )
               ) : (
                 ""
@@ -11448,11 +11456,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
+              ) : EXEC_SL_HD_GPS_KHDN.KON &&
+                PLAN_SL_HD_GPS_KHDN.KON ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON
+                  (EXEC_SL_HD_GPS_KHDN.KON * 100) /
+                    PLAN_SL_HD_GPS_KHDN.KON
                 )
               ) : (
                 ""
@@ -11461,11 +11469,11 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
+              ) : EXEC_SL_HD_GPS_KHDN.CTY7 &&
+                PLAN_SL_HD_GPS_KHDN.CTY7 ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7
+                  (EXEC_SL_HD_GPS_KHDN.CTY7 * 100) /
+                    PLAN_SL_HD_GPS_KHDN.CTY7
                 )
               ) : (
                 ""
@@ -11478,8 +11486,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+                  ((EXEC_SL_HD_GPS_KHDN.KHO /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.KHO
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11487,11 +11504,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO ? (
+              ) : EXEC_SL_HD_GPS_KHDN.KHO && PLAN_SL_HD_GPS_KHDN.KHO ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KHO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KHO
+                  ((EXEC_SL_HD_GPS_KHDN.KHO /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.KHO
                 )
               ) : (
                 ""
@@ -11500,8 +11525,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA
+                  ((EXEC_SL_HD_GPS_KHDN.DLA /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.DLA
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11509,11 +11543,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA ? (
+              ) : EXEC_SL_HD_GPS_KHDN.DLA && PLAN_SL_HD_GPS_KHDN.DLA ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DLA
+                  ((EXEC_SL_HD_GPS_KHDN.DLA /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.DLA
                 )
               ) : (
                 ""
@@ -11522,8 +11564,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA
+                  ((EXEC_SL_HD_GPS_KHDN.GLA /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.GLA
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11531,11 +11582,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA ? (
+              ) : EXEC_SL_HD_GPS_KHDN.GLA && PLAN_SL_HD_GPS_KHDN.GLA ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.GLA * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.GLA
+                  ((EXEC_SL_HD_GPS_KHDN.GLA /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.GLA
                 )
               ) : (
                 ""
@@ -11544,8 +11603,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE
+                  ((EXEC_SL_HD_GPS_KHDN.PYE /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.PYE
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11553,11 +11621,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE ? (
+              ) : EXEC_SL_HD_GPS_KHDN.PYE && PLAN_SL_HD_GPS_KHDN.PYE ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.PYE * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.PYE
+                  ((EXEC_SL_HD_GPS_KHDN.PYE /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.PYE
                 )
               ) : (
                 ""
@@ -11566,8 +11642,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO
+                  ((EXEC_SL_HD_GPS_KHDN.DNO /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.DNO
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11575,11 +11660,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO ? (
+              ) : EXEC_SL_HD_GPS_KHDN.DNO && PLAN_SL_HD_GPS_KHDN.DNO ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.DNO * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.DNO
+                  ((EXEC_SL_HD_GPS_KHDN.DNO /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.DNO
                 )
               ) : (
                 ""
@@ -11588,8 +11681,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON
+                  ((EXEC_SL_HD_GPS_KHDN.KON /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.KON
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11597,11 +11699,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON ? (
+              ) : EXEC_SL_HD_GPS_KHDN.KON && PLAN_SL_HD_GPS_KHDN.KON ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.KON * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.KON
+                  ((EXEC_SL_HD_GPS_KHDN.KON /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.KON
                 )
               ) : (
                 ""
@@ -11610,8 +11720,17 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7
+                  ((EXEC_SL_HD_GPS_KHDN.CTY7 /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.CTY7
                 ) > 100
                   ? "bg-green"
                   : "bg-red"
@@ -11619,11 +11738,19 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             >
               {loadingExec || loadingPlan ? (
                 <LoadingComponent />
-              ) : EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 &&
-                PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 ? (
+              ) : EXEC_SL_HD_GPS_KHDN.CTY7 && PLAN_SL_HD_GPS_KHDN.CTY7 ? (
                 convertToFloat2Fixed(
-                  (EXEC_TI_LE_DN_SU_DUNG_GP_MBF.CTY7 * 100) /
-                    PLAN_TI_LE_DN_SU_DUNG_GP_MBF.CTY7
+                  ((EXEC_SL_HD_GPS_KHDN.CTY7 /
+                    (new Date(
+                      selectedDate.getFullYear(),
+                      selectedDate.getMonth() + 1,
+                      0
+                    ) < new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE)
+                      ? sumDateInMonth
+                      : new Date(EXEC_SL_HD_GPS_KHDN.LAST_DATE).getDate())) *
+                    sumDateInMonth *
+                    100) /
+                    PLAN_SL_HD_GPS_KHDN.CTY7
                 )
               ) : (
                 ""
