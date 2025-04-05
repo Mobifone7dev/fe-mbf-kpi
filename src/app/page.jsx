@@ -228,7 +228,7 @@ const Page = () => {
 
   const [show, setShow] = useState(false);
 
-  return kpiPageRole ? (
+  return (
     <div className="dashboard-kpi">
       <div className="d-flex select-filter mt-2">
         <Formik
@@ -329,11 +329,8 @@ const Page = () => {
         />
       )}
     </div>
-  ) : (
-    <>{kpiPageRole? Object.keys(kpiPageRole).map(function(key) { return <div key={key}>Key: {key}, Value: {yourObject[key]}</div>}):<></>}
-      
-    </>
-  );
+  )
+  
 };
 
 export default Page;
