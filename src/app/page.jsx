@@ -330,7 +330,7 @@ const Page = () => {
       )}
     </div>
   ) : (
-    <>{Object.keys(kpiPageRole).map(function(key) { return <div key={key}>Key: {key}, Value: {yourObject[key]}</div>; })}
+    <>{kpiPageRole? Object.keys(kpiPageRole).map(function(key) { return <div key={key}>Key: {key}, Value: {yourObject[key]}</div>}):<></>}
       
     </>
   );
