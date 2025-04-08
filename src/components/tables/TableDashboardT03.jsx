@@ -17,7 +17,11 @@ import {
   daysInMonth,
   changeFormatDateFirstDateInMonth,
 } from "../../until/functions.js";
-
+import {
+  handleGetExecKpiExcel,
+} from "../../lib/api";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 const TableDashboardT03 = forwardRef((props, ref) => {
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
@@ -758,7 +762,84 @@ const TableDashboardT03 = forwardRef((props, ref) => {
       });
     }
   };
+  const handleDownloadExcel = async (kpiType, provincePt = "") => {
+    if (!selectedDate) {
+      console.error("🚨 Lỗi: Chưa chọn tháng!");
+      alert("Vui lòng chọn tháng trước khi tải Excel.");
+      return;
+    }
 
+    const formattedMonth = new Date(selectedDate)
+      .toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" })
+      .replace(" ", "/");
+
+    try {
+      alert("🔄 Đang tải file Excel...");
+
+      // 🛠️ Gọi API từ api.ts
+      let data = await handleGetExecKpiExcel(
+        formattedMonth,
+        kpiType,
+        provincePt
+      );
+
+      console.log("📌 Phản hồi từ API trước khi kiểm tra:", data);
+
+      // Nếu dữ liệu là Response object, cần parse JSON
+      if (data instanceof Response) {
+        console.warn("⚠️ Dữ liệu từ API là Response object, cần parse JSON");
+        data = await data.json();
+      }
+
+      console.log("📌 Dữ liệu đã parse JSON:", data);
+
+      // Kiểm tra dữ liệu trả về
+      if (
+        !data ||
+        !data.result ||
+        !Array.isArray(data.result) ||
+        data.result.length === 0
+      ) {
+        console.error("🚨 Không có dữ liệu hợp lệ từ API:", data);
+        throw new Error("Không có dữ liệu để xuất Excel");
+      }
+
+      // ✅ Chuyển đổi JSON thành worksheet
+      const worksheet = XLSX.utils.json_to_sheet(data.result);
+
+      // ✅ Tạo workbook và gán worksheet vào
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "KPI Data");
+
+      // ✅ Lấy thời gian hiện tại để đặt tên file
+      const now = new Date();
+      const timeStamp = now
+        .toLocaleTimeString("en-GB", { hour12: false })
+        .replace(/:/g, "-");
+      const provinceSuffix = provincePt ? `_${provincePt}` : "";
+      const fileName = `KPI_${kpiType}${provinceSuffix}_${formattedMonth.replace(
+        "/",
+        "-"
+      )}_${timeStamp}.xlsx`;
+
+      // ✅ Xuất file Excel
+      const excelBuffer = XLSX.write(workbook, {
+        bookType: "xlsx",
+        type: "array",
+      });
+      const excelBlob = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      // ✅ Lưu file xuống
+      saveAs(excelBlob, fileName);
+      alert("✅ Tải file Excel thành công!");
+      console.log("✅ Tải xuống thành công! File:", fileName);
+    } catch (error) {
+      alert(`❌ Lỗi khi tải Excel: ${error.message}`);
+      console.error("❌ Lỗi khi tải Excel:", error);
+    }
+  };
   return (
     <div className="table-kpi">
       <table className=" table-responsive  align-middle gs-0 gy-3">
