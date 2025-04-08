@@ -315,6 +315,7 @@ const Page = () => {
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
           isSticky={isSticky}
+
         />
       ) : (
         <TableDashboardT04
@@ -326,6 +327,7 @@ const Page = () => {
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
           isSticky={isSticky}
+
         />
       )}
     </div>
