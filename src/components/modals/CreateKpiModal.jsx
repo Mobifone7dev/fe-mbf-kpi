@@ -1443,7 +1443,7 @@ const CreateKpiModal = (props) => {
                           </td>
                         </tr>
                         <tr>
-                          <td>Dthu Dự án</td>
+                          <td>{initKpiValues.selectKpiMonth.getMonth() < 3 ? "Dthu Dự án":"DT GPS(IoT, Cyber, mobiEdu, Dự án ..)"}</td>
                           <td>
                             <span
                               style={{

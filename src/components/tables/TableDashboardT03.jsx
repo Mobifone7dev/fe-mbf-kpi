@@ -13,7 +13,6 @@ import {
   convertToFloat2Fixed,
   getFormattedDate,
   convertToFloat2FixedNumber,
-  formatIntegerWithCommas,
   daysInMonth,
   changeFormatDateFirstDateInMonth,
 } from "../../until/functions.js";
@@ -3924,7 +3923,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.KHO)
+                convertToFloat2Fixed(PLAN_SL_C2C.KHO)
               ) : (
                 ""
               )}
@@ -3933,7 +3932,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.DLA)
+                convertToFloat2Fixed(PLAN_SL_C2C.DLA)
               ) : (
                 ""
               )}
@@ -3942,7 +3941,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.GLA)
+                convertToFloat2Fixed(PLAN_SL_C2C.GLA)
               ) : (
                 ""
               )}
@@ -3951,7 +3950,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.PYE)
+                convertToFloat2Fixed(PLAN_SL_C2C.PYE)
               ) : (
                 ""
               )}
@@ -3960,7 +3959,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.DNO)
+                convertToFloat2Fixed(PLAN_SL_C2C.DNO)
               ) : (
                 ""
               )}
@@ -3969,7 +3968,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.KON ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.KON)
+                convertToFloat2Fixed(PLAN_SL_C2C.KON)
               ) : (
                 ""
               )}
@@ -3978,7 +3977,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_C2C.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_C2C.CTY7)
+                convertToFloat2Fixed(PLAN_SL_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -3999,7 +3998,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.KHO)
+                convertToFloat2Fixed(EXEC_SL_C2C.KHO)
               ) : (
                 ""
               )}
@@ -4008,7 +4007,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.DLA)
+                convertToFloat2Fixed(EXEC_SL_C2C.DLA)
               ) : (
                 ""
               )}
@@ -4017,7 +4016,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.GLA)
+                convertToFloat2Fixed(EXEC_SL_C2C.GLA)
               ) : (
                 ""
               )}
@@ -4026,7 +4025,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.PYE)
+                convertToFloat2Fixed(EXEC_SL_C2C.PYE)
               ) : (
                 ""
               )}
@@ -4035,7 +4034,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.DNO)
+                convertToFloat2Fixed(EXEC_SL_C2C.DNO)
               ) : (
                 ""
               )}
@@ -4044,7 +4043,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.KON ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.KON)
+                convertToFloat2Fixed(EXEC_SL_C2C.KON)
               ) : (
                 ""
               )}
@@ -4053,7 +4052,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_C2C.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_C2C.CTY7)
+                convertToFloat2Fixed(EXEC_SL_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -4253,7 +4252,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.KHO)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.KHO)
               ) : (
                 ""
               )}
@@ -4262,7 +4261,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.DLA)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA)
               ) : (
                 ""
               )}
@@ -4271,7 +4270,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.GLA)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.GLA)
               ) : (
                 ""
               )}
@@ -4280,7 +4279,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.PYE)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.PYE)
               ) : (
                 ""
               )}
@@ -4289,7 +4288,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.DNO)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.DNO)
               ) : (
                 ""
               )}
@@ -4298,7 +4297,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.KON ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.KON)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.KON)
               ) : (
                 ""
               )}
@@ -4307,7 +4306,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_C2C.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_TB_C2C.CTY7)
+                convertToFloat2Fixed(PLAN_SL_TB_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -4328,7 +4327,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.KHO)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.KHO)
               ) : (
                 ""
               )}
@@ -4337,7 +4336,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.DLA)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.DLA)
               ) : (
                 ""
               )}
@@ -4346,7 +4345,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.GLA)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.GLA)
               ) : (
                 ""
               )}
@@ -4355,7 +4354,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.PYE)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.PYE)
               ) : (
                 ""
               )}
@@ -4365,7 +4364,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.DNO)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.DNO)
               ) : (
                 ""
               )}
@@ -4374,7 +4373,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.KON ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.KON)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.KON)
               ) : (
                 ""
               )}
@@ -4383,7 +4382,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_C2C.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_TB_C2C.CTY7)
+                convertToFloat2Fixed(EXEC_SL_TB_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -4705,7 +4704,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.KHO ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.KHO)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.KHO)
               ) : (
                 ""
               )}
@@ -4714,7 +4713,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.DLA ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.DLA)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA)
               ) : (
                 ""
               )}
@@ -4723,7 +4722,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.GLA ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.GLA)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.GLA)
               ) : (
                 ""
               )}
@@ -4732,7 +4731,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.PYE ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.PYE)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.PYE)
               ) : (
                 ""
               )}
@@ -4741,7 +4740,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.DNO ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.DNO)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DNO)
               ) : (
                 ""
               )}
@@ -4750,7 +4749,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.KON ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.KON)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.KON)
               ) : (
                 ""
               )}
@@ -4759,7 +4758,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TYLE_GD_C2C.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TYLE_GD_C2C.CTY7)
+                convertToFloat2Fixed(PLAN_TYLE_GD_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -4780,7 +4779,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.KHO ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.KHO)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.KHO)
               ) : (
                 ""
               )}
@@ -4789,7 +4788,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.DLA ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.DLA)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA)
               ) : (
                 ""
               )}
@@ -4798,7 +4797,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.GLA ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.GLA)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.GLA)
               ) : (
                 ""
               )}
@@ -4807,7 +4806,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.PYE ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.PYE)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.PYE)
               ) : (
                 ""
               )}
@@ -4816,7 +4815,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.DNO ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.DNO)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DNO)
               ) : (
                 ""
               )}
@@ -4825,7 +4824,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.KON ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.KON)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.KON)
               ) : (
                 ""
               )}
@@ -4834,7 +4833,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TYLE_GD_C2C.CTY7 ? (
-                formatIntegerWithCommas(EXEC_TYLE_GD_C2C.CTY7)
+                convertToFloat2Fixed(EXEC_TYLE_GD_C2C.CTY7)
               ) : (
                 ""
               )}
@@ -5077,7 +5076,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.KHO)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.KHO)
               ) : (
                 ""
               )}
@@ -5086,7 +5085,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.DLA)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.DLA)
               ) : (
                 ""
               )}
@@ -5095,7 +5094,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.GLA)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.GLA)
               ) : (
                 ""
               )}
@@ -5104,7 +5103,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.PYE)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.PYE)
               ) : (
                 ""
               )}
@@ -5113,7 +5112,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.DNO)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.DNO)
               ) : (
                 ""
               )}
@@ -5122,7 +5121,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.KON ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.KON)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.KON)
               ) : (
                 ""
               )}
@@ -5131,7 +5130,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_HTS.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_HTS.CTY7)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_HTS.CTY7)
               ) : (
                 ""
               )}
@@ -5155,7 +5154,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.KHO)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.KHO)
               ) : (
                 ""
               )}
@@ -5167,7 +5166,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.DLA)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.DLA)
               ) : (
                 ""
               )}
@@ -5179,7 +5178,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.GLA)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.GLA)
               ) : (
                 ""
               )}
@@ -5191,7 +5190,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.PYE)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.PYE)
               ) : (
                 ""
               )}
@@ -5203,7 +5202,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.DNO)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.DNO)
               ) : (
                 ""
               )}
@@ -5215,7 +5214,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.KON ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.KON)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.KON)
               ) : (
                 ""
               )}
@@ -5228,7 +5227,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_HTS.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_HTS.CTY7)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_HTS.CTY7)
               ) : (
                 ""
               )}
@@ -5549,7 +5548,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.KHO)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.KHO)
               ) : (
                 ""
               )}
@@ -5558,7 +5557,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.DLA)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.DLA)
               ) : (
                 ""
               )}
@@ -5567,7 +5566,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.GLA)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.GLA)
               ) : (
                 ""
               )}
@@ -5576,7 +5575,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.PYE)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.PYE)
               ) : (
                 ""
               )}
@@ -5585,7 +5584,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.DNO)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.DNO)
               ) : (
                 ""
               )}
@@ -5594,7 +5593,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.KON ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.KON)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.KON)
               ) : (
                 ""
               )}
@@ -5603,7 +5602,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_PTM_TBTT_NDS.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_PTM_TBTT_NDS.CTY7)
+                convertToFloat2Fixed(PLAN_SL_PTM_TBTT_NDS.CTY7)
               ) : (
                 ""
               )}
@@ -5627,7 +5626,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.KHO)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.KHO)
               ) : (
                 ""
               )}
@@ -5639,7 +5638,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.DLA)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.DLA)
               ) : (
                 ""
               )}
@@ -5651,7 +5650,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.GLA)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.GLA)
               ) : (
                 ""
               )}
@@ -5663,7 +5662,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.PYE)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.PYE)
               ) : (
                 ""
               )}
@@ -5675,7 +5674,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.DNO)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.DNO)
               ) : (
                 ""
               )}
@@ -5687,7 +5686,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.KON ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.KON)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.KON)
               ) : (
                 ""
               )}
@@ -5700,7 +5699,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_PTM_TBTT_NDS.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_PTM_TBTT_NDS.CTY7)
+                convertToFloat2Fixed(EXEC_SL_PTM_TBTT_NDS.CTY7)
               ) : (
                 ""
               )}
@@ -6021,7 +6020,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.KHO)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.KHO)
               ) : (
                 ""
               )}
@@ -6030,7 +6029,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.DLA)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA)
               ) : (
                 ""
               )}
@@ -6039,7 +6038,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.GLA)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.GLA)
               ) : (
                 ""
               )}
@@ -6048,7 +6047,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.PYE)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.PYE)
               ) : (
                 ""
               )}
@@ -6057,7 +6056,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.DNO)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DNO)
               ) : (
                 ""
               )}
@@ -6066,7 +6065,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.KON ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.KON)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.KON)
               ) : (
                 ""
               )}
@@ -6075,7 +6074,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TBTS_PTM_THOAI.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_TBTS_PTM_THOAI.CTY7)
+                convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.CTY7)
               ) : (
                 ""
               )}
@@ -6099,7 +6098,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.KHO)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.KHO)
               ) : (
                 ""
               )}
@@ -6111,7 +6110,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.DLA)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.DLA)
               ) : (
                 ""
               )}
@@ -6123,7 +6122,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.GLA)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.GLA)
               ) : (
                 ""
               )}
@@ -6135,7 +6134,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.PYE)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.PYE)
               ) : (
                 ""
               )}
@@ -6147,7 +6146,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.DNO)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.DNO)
               ) : (
                 ""
               )}
@@ -6159,7 +6158,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.KON ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.KON)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.KON)
               ) : (
                 ""
               )}
@@ -6172,7 +6171,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_SL_TBTS_PTM_THOAI.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_TBTS_PTM_THOAI.CTY7)
+                convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.CTY7)
               ) : (
                 ""
               )}
@@ -6500,7 +6499,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.KHO ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.KHO)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.KHO)
               ) : (
                 ""
               )}
@@ -6509,7 +6508,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.DLA ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.DLA)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA)
               ) : (
                 ""
               )}
@@ -6518,7 +6517,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.GLA ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.GLA)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.GLA)
               ) : (
                 ""
               )}
@@ -6527,7 +6526,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.PYE ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.PYE)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.PYE)
               ) : (
                 ""
               )}
@@ -6536,7 +6535,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.DNO ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.DNO)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DNO)
               ) : (
                 ""
               )}
@@ -6545,7 +6544,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.KON ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.KON)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.KON)
               ) : (
                 ""
               )}
@@ -6554,7 +6553,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_SL_TB_PTM_M2M.CTY7 ? (
-                formatIntegerWithCommas(PLAN_SL_TB_PTM_M2M.CTY7)
+                convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.CTY7)
               ) : (
                 ""
               )}
@@ -6578,7 +6577,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.KHO ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.KHO)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.KHO)
               ) : (
                 ""
               )}
@@ -6590,7 +6589,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.DLA ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.DLA)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.DLA)
               ) : (
                 ""
               )}
@@ -6602,7 +6601,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.GLA ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.GLA)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.GLA)
               ) : (
                 ""
               )}
@@ -6614,7 +6613,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.PYE ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.PYE)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.PYE)
               ) : (
                 ""
               )}
@@ -6626,7 +6625,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.DNO ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.DNO)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.DNO)
               ) : (
                 ""
               )}
@@ -6638,7 +6637,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.KON ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.KON)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.KON)
               ) : (
                 ""
               )}
@@ -6651,7 +6650,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_SL_TB_PTM_M2M.CTY7 ? (
-                formatIntegerWithCommas(EXEC_SL_TB_PTM_M2M.CTY7)
+                convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.CTY7)
               ) : (
                 ""
               )}
@@ -6976,7 +6975,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.KHO ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.KHO)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.KHO)
               ) : (
                 ""
               )}
@@ -6985,7 +6984,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.DLA ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.DLA)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA)
               ) : (
                 ""
               )}
@@ -6994,7 +6993,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.GLA ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.GLA)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.GLA)
               ) : (
                 ""
               )}
@@ -7003,7 +7002,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.PYE ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.PYE)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.PYE)
               ) : (
                 ""
               )}
@@ -7012,7 +7011,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.DNO ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.DNO)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DNO)
               ) : (
                 ""
               )}
@@ -7021,7 +7020,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.KON ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.KON)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.KON)
               ) : (
                 ""
               )}
@@ -7030,7 +7029,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_SAYMEE.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_SAYMEE.CTY7)
+                convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.CTY7)
               ) : (
                 ""
               )}
@@ -7054,7 +7053,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.KHO ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.KHO)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.KHO)
               ) : (
                 ""
               )}
@@ -7066,7 +7065,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.DLA ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.DLA)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.DLA)
               ) : (
                 ""
               )}
@@ -7078,7 +7077,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.GLA ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.GLA)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.GLA)
               ) : (
                 ""
               )}
@@ -7090,7 +7089,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.PYE ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.PYE)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.PYE)
               ) : (
                 ""
               )}
@@ -7102,7 +7101,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.DNO ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.DNO)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.DNO)
               ) : (
                 ""
               )}
@@ -7114,7 +7113,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.KON ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.KON)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.KON)
               ) : (
                 ""
               )}
@@ -7127,7 +7126,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_SAYMEE.CTY7 ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_SAYMEE.CTY7)
+                convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.CTY7)
               ) : (
                 ""
               )}
@@ -7448,7 +7447,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.KHO ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.KHO)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.KHO)
               ) : (
                 ""
               )}
@@ -7457,7 +7456,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.DLA ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.DLA)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA)
               ) : (
                 ""
               )}
@@ -7466,7 +7465,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.GLA ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.GLA)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.GLA)
               ) : (
                 ""
               )}
@@ -7475,7 +7474,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.PYE ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.PYE)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.PYE)
               ) : (
                 ""
               )}
@@ -7484,7 +7483,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.DNO ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.DNO)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DNO)
               ) : (
                 ""
               )}
@@ -7493,7 +7492,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.KON ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.KON)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.KON)
               ) : (
                 ""
               )}
@@ -7502,7 +7501,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PTM_FIBER.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TB_PTM_FIBER.CTY7)
+                convertToFloat2Fixed(PLAN_TB_PTM_FIBER.CTY7)
               ) : (
                 ""
               )}
@@ -7523,7 +7522,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.KHO ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.KHO)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KHO)
               ) : (
                 ""
               )}
@@ -7532,7 +7531,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.DLA ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.DLA)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DLA)
               ) : (
                 ""
               )}
@@ -7541,7 +7540,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.GLA ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.GLA)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.GLA)
               ) : (
                 ""
               )}
@@ -7550,7 +7549,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.PYE ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.PYE)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.PYE)
               ) : (
                 ""
               )}
@@ -7559,7 +7558,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.DNO ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.DNO)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DNO)
               ) : (
                 ""
               )}
@@ -7568,7 +7567,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.KON ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.KON)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KON)
               ) : (
                 ""
               )}
@@ -7577,7 +7576,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PTM_FIBER.CTY7 ? (
-                formatIntegerWithCommas(EXEC_TB_PTM_FIBER.CTY7)
+                convertToFloat2Fixed(EXEC_TB_PTM_FIBER.CTY7)
               ) : (
                 ""
               )}
@@ -7900,7 +7899,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.KHO ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.KHO)
+                convertToFloat2Fixed(PLAN_TB_VLR.KHO)
               ) : (
                 ""
               )}
@@ -7909,7 +7908,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.DLA ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.DLA)
+                convertToFloat2Fixed(PLAN_TB_VLR.DLA)
               ) : (
                 ""
               )}
@@ -7918,7 +7917,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.GLA ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.GLA)
+                convertToFloat2Fixed(PLAN_TB_VLR.GLA)
               ) : (
                 ""
               )}
@@ -7927,7 +7926,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.PYE ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.PYE)
+                convertToFloat2Fixed(PLAN_TB_VLR.PYE)
               ) : (
                 ""
               )}
@@ -7936,7 +7935,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.DNO ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.DNO)
+                convertToFloat2Fixed(PLAN_TB_VLR.DNO)
               ) : (
                 ""
               )}
@@ -7954,7 +7953,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_VLR.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TB_VLR.CTY7)
+                convertToFloat2Fixed(PLAN_TB_VLR.CTY7)
               ) : (
                 ""
               )}
@@ -7975,7 +7974,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.KHO ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.KHO)
+                convertToFloat2Fixed(EXEC_TB_VLR.KHO)
               ) : (
                 ""
               )}
@@ -7984,7 +7983,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.DLA ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.DLA)
+                convertToFloat2Fixed(EXEC_TB_VLR.DLA)
               ) : (
                 ""
               )}
@@ -7993,7 +7992,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.GLA ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.GLA)
+                convertToFloat2Fixed(EXEC_TB_VLR.GLA)
               ) : (
                 ""
               )}
@@ -8002,7 +8001,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.PYE ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.PYE)
+                convertToFloat2Fixed(EXEC_TB_VLR.PYE)
               ) : (
                 ""
               )}
@@ -8011,7 +8010,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.DNO ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.DNO)
+                convertToFloat2Fixed(EXEC_TB_VLR.DNO)
               ) : (
                 ""
               )}
@@ -8020,7 +8019,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.KON ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.KON)
+                convertToFloat2Fixed(EXEC_TB_VLR.KON)
               ) : (
                 ""
               )}
@@ -8029,7 +8028,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : EXEC_TB_VLR.CTY7 ? (
-                formatIntegerWithCommas(EXEC_TB_VLR.CTY7)
+                convertToFloat2Fixed(EXEC_TB_VLR.CTY7)
               ) : (
                 ""
               )}
@@ -8228,7 +8227,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.KHO ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.KHO)
+                convertToFloat2Fixed(PLAN_TB_PSC.KHO)
               ) : (
                 ""
               )}
@@ -8237,7 +8236,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.DLA ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.DLA)
+                convertToFloat2Fixed(PLAN_TB_PSC.DLA)
               ) : (
                 ""
               )}
@@ -8246,7 +8245,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.GLA ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.GLA)
+                convertToFloat2Fixed(PLAN_TB_PSC.GLA)
               ) : (
                 ""
               )}
@@ -8255,7 +8254,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.PYE ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.PYE)
+                convertToFloat2Fixed(PLAN_TB_PSC.PYE)
               ) : (
                 ""
               )}
@@ -8264,7 +8263,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.DNO ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.DNO)
+                convertToFloat2Fixed(PLAN_TB_PSC.DNO)
               ) : (
                 ""
               )}
@@ -8273,7 +8272,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.KON ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.KON)
+                convertToFloat2Fixed(PLAN_TB_PSC.KON)
               ) : (
                 ""
               )}
@@ -8282,7 +8281,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TB_PSC.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TB_PSC.CTY7)
+                convertToFloat2Fixed(PLAN_TB_PSC.CTY7)
               ) : (
                 ""
               )}
@@ -8303,7 +8302,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.KHO ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.KHO)
+                convertToFloat2Fixed(EXEC_TB_PSC.KHO)
               ) : (
                 ""
               )}
@@ -8312,7 +8311,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.DLA ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.DLA)
+                convertToFloat2Fixed(EXEC_TB_PSC.DLA)
               ) : (
                 ""
               )}
@@ -8321,7 +8320,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.GLA ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.GLA)
+                convertToFloat2Fixed(EXEC_TB_PSC.GLA)
               ) : (
                 ""
               )}
@@ -8330,7 +8329,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.PYE ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.PYE)
+                convertToFloat2Fixed(EXEC_TB_PSC.PYE)
               ) : (
                 ""
               )}
@@ -8339,7 +8338,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.DNO ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.DNO)
+                convertToFloat2Fixed(EXEC_TB_PSC.DNO)
               ) : (
                 ""
               )}
@@ -8348,7 +8347,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.KON ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.KON)
+                convertToFloat2Fixed(EXEC_TB_PSC.KON)
               ) : (
                 ""
               )}
@@ -8357,7 +8356,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TB_PSC.CTY7 ? (
-                formatIntegerWithCommas(EXEC_TB_PSC.CTY7)
+                convertToFloat2Fixed(EXEC_TB_PSC.CTY7)
               ) : (
                 ""
               )}
@@ -10187,7 +10186,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.KHO ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.KHO)
+                convertToFloat2Fixed(PLAN_TILE_MNP.KHO)
               ) : (
                 ""
               )}
@@ -10196,7 +10195,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.DLA ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.DLA)
+                convertToFloat2Fixed(PLAN_TILE_MNP.DLA)
               ) : (
                 ""
               )}
@@ -10205,7 +10204,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.GLA ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.GLA)
+                convertToFloat2Fixed(PLAN_TILE_MNP.GLA)
               ) : (
                 ""
               )}
@@ -10214,7 +10213,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.PYE ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.PYE)
+                convertToFloat2Fixed(PLAN_TILE_MNP.PYE)
               ) : (
                 ""
               )}
@@ -10223,7 +10222,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.DNO ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.DNO)
+                convertToFloat2Fixed(PLAN_TILE_MNP.DNO)
               ) : (
                 ""
               )}
@@ -10232,7 +10231,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.KON ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.KON)
+                convertToFloat2Fixed(PLAN_TILE_MNP.KON)
               ) : (
                 ""
               )}
@@ -10241,7 +10240,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingPlan ? (
                 <LoadingComponent />
               ) : PLAN_TILE_MNP.CTY7 ? (
-                formatIntegerWithCommas(PLAN_TILE_MNP.CTY7)
+                convertToFloat2Fixed(PLAN_TILE_MNP.CTY7)
               ) : (
                 ""
               )}
@@ -10262,7 +10261,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.KHO ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.KHO)
+                convertToFloat2Fixed(EXEC_TILE_MNP.KHO)
               ) : (
                 ""
               )}
@@ -10271,7 +10270,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.DLA ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.DLA)
+                convertToFloat2Fixed(EXEC_TILE_MNP.DLA)
               ) : (
                 ""
               )}
@@ -10280,7 +10279,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.GLA ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.GLA)
+                convertToFloat2Fixed(EXEC_TILE_MNP.GLA)
               ) : (
                 ""
               )}
@@ -10290,7 +10289,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.PYE ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.PYE)
+                convertToFloat2Fixed(EXEC_TILE_MNP.PYE)
               ) : (
                 ""
               )}
@@ -10299,7 +10298,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.DNO ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.DNO)
+                convertToFloat2Fixed(EXEC_TILE_MNP.DNO)
               ) : (
                 ""
               )}
@@ -10308,7 +10307,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.KON ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.KON)
+                convertToFloat2Fixed(EXEC_TILE_MNP.KON)
               ) : (
                 ""
               )}
@@ -10317,7 +10316,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
               {loadingExec ? (
                 <LoadingComponent />
               ) : EXEC_TILE_MNP.CT7 ? (
-                formatIntegerWithCommas(EXEC_TILE_MNP.CTY7)
+                convertToFloat2Fixed(EXEC_TILE_MNP.CTY7)
               ) : (
                 ""
               )}
