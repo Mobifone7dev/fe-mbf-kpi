@@ -259,7 +259,6 @@ const TableDashboardT03 = forwardRef((props, ref) => {
     setPlanData(props.planData);
   }, [props.planData]);
   useEffect(() => {
-    console.log("execData", props.execData);
     setExecData(props.execData);
   }, [props.execData]);
 
