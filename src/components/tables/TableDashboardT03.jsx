@@ -7672,7 +7672,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.KHO * 100) / PLAN_TB_PTM_FIBER.KHO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -7683,7 +7683,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
 
@@ -7695,7 +7695,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.GLA * 100) / PLAN_TB_PTM_FIBER.GLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -7706,7 +7706,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.PYE * 100) / PLAN_TB_PTM_FIBER.PYE
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -7717,7 +7717,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DNO * 100) / PLAN_TB_PTM_FIBER.DNO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -7728,7 +7728,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.KON * 100) / PLAN_TB_PTM_FIBER.KON
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -7739,7 +7739,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
           </tr>
@@ -7773,7 +7773,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.KHO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -7804,7 +7804,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -7835,7 +7835,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.GLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
 
@@ -7867,7 +7867,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.PYE
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -7898,7 +7898,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.DNO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -7929,7 +7929,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.KON
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -7960,7 +7960,7 @@ const TableDashboardT03 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.CTY7
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
           </tr>

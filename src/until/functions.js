@@ -23,7 +23,7 @@ export function getQSParamFromURL(key, url) {
   return urlParams.get(key);
 }
 export const convertToFloat2Fixed = (number) => {
-  if (!Number(number)) return "0";
+  if (!Number(number)) return 0;
 
   const num = parseFloat(number);
   const formatted = num.toLocaleString("en-US", {

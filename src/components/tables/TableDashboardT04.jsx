@@ -8134,7 +8134,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.KHO ? (
+              ) : EXEC_TB_PTM_FIBER.KHO != null ||EXEC_TB_PTM_FIBER.KHO != undefined  ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KHO)
               ) : (
                 ""
@@ -8143,7 +8143,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.DLA ? (
+              ) :  EXEC_TB_PTM_FIBER.DLA != null ||EXEC_TB_PTM_FIBER.DLA != undefined  ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DLA)
               ) : (
                 ""
@@ -8152,7 +8152,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.GLA ? (
+              ) :  EXEC_TB_PTM_FIBER.GLA != null ||EXEC_TB_PTM_FIBER.GLA != undefined ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.GLA)
               ) : (
                 ""
@@ -8161,7 +8161,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.PYE ? (
+              ) : EXEC_TB_PTM_FIBER.PYE != null ||EXEC_TB_PTM_FIBER.PYE != undefined ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.PYE)
               ) : (
                 ""
@@ -8170,7 +8170,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.DNO ? (
+              ) :  EXEC_TB_PTM_FIBER.DNO != null ||EXEC_TB_PTM_FIBER.DNO != undefined ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.DNO)
               ) : (
                 ""
@@ -8179,7 +8179,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.KON ? (
+              ) :  EXEC_TB_PTM_FIBER.KON != null ||EXEC_TB_PTM_FIBER.KON != undefined ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.KON)
               ) : (
                 ""
@@ -8188,7 +8188,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td className="cell-number">
               {loadingExec ? (
                 <LoadingComponent />
-              ) : EXEC_TB_PTM_FIBER.CTY7 ? (
+              ) :  EXEC_TB_PTM_FIBER.CTY7 != null ||EXEC_TB_PTM_FIBER.CTY7 != undefined ? (
                 convertToFloat2Fixed(EXEC_TB_PTM_FIBER.CTY7)
               ) : (
                 ""
@@ -8205,7 +8205,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.KHO * 100) / PLAN_TB_PTM_FIBER.KHO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -8216,7 +8216,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
 
@@ -8228,7 +8228,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.GLA * 100) / PLAN_TB_PTM_FIBER.GLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -8239,7 +8239,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.PYE * 100) / PLAN_TB_PTM_FIBER.PYE
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -8250,7 +8250,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DNO * 100) / PLAN_TB_PTM_FIBER.DNO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -8261,7 +8261,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.KON * 100) / PLAN_TB_PTM_FIBER.KON
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td className="cell-number">
@@ -8272,7 +8272,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                   (EXEC_TB_PTM_FIBER.DLA * 100) / PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
           </tr>
@@ -8353,7 +8353,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.DLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -8392,7 +8392,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.GLA
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
 
@@ -8432,7 +8432,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.PYE
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -8471,7 +8471,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.DNO
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -8510,7 +8510,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.KON
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
             <td
@@ -8549,7 +8549,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
                     PLAN_TB_PTM_FIBER.CTY7
                 )
               ) : (
-                ""
+                "0"
               )}
             </td>
           </tr>
