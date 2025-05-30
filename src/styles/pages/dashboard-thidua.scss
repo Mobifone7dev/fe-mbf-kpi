@@ -3,6 +3,7 @@
   @media (max-width: 480px) {
     padding: 0;
   }
+
   table th,
   td {
     font-size: 14px;
@@ -27,7 +28,7 @@
         .title-sub {
           background-color: #fbe2d5;
         }
-        .title-sub2{
+        .title-sub2 {
           background-color: #caedfb;
         }
       }
@@ -47,6 +48,34 @@
       position: sticky;
       left: 0;
       z-index: 1;
+    }
+  }
+  .table-sum {
+    width: 900px;
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+    tbody {
+      tr {
+        td {
+          font-weight: 500;
+          font-size: 14px;
+        }
+      }
+      tr:nth-child(1),
+      tr:nth-child(6),
+      tr:nth-child(11),
+      tr:nth-child(24) {
+        td {
+          background-color: #caedfb;
+        }
+      }
+       tr:nth-child(14),
+        tr:nth-child(19){
+        td {
+          background-color: #beb8b5;
+        }
+       }
     }
   }
 }
