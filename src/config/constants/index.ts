@@ -57,6 +57,10 @@ const menuCategory = [
     label: "Trang chủ",
     link: "/",
   },
+  {
+    label: "Dashboard thi đua",
+    link: "/dashboard-thidua",
+  }
 
 ];
 

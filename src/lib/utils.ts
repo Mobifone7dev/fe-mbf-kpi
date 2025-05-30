@@ -79,6 +79,16 @@ export const convertKeyToProvinceObject = (key: string) => {
   }
 
 }
+export const formatCurrencyVND = (amount: number | null) => {
+  if (amount === null || amount === undefined) {
+    return "0 đ"; // Trả về giá trị mặc định nếu amount là null hoặc undefined
+  }
+  return new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+    maximumFractionDigits: 0, // không hiển thị số lẻ
+  }).format(amount);
+}
 
 export const convertIndexToDate = (index: number) => {
   console.log("Index: ", index);
