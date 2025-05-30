@@ -40,7 +40,6 @@ function TablePTMM2M(props) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log("data", data);
       let dataQuantityM2MKHO = { province: "KHO", data: [] };
       let dataQuantityM2MDLA = { province: "DLA", data: [] };
       let dataQuantityM2MGLA = { province: "GLA", data: [] };

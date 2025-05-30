@@ -42,7 +42,6 @@ function TableMobiAgri(props) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log("data", data);
       let dataQuantityAgriKHO = { province: "KHO", data: [] };
       let dataQuantityAgriDLA = { province: "DLA", data: [] };
       let dataQuantityAgriGLA = { province: "GLA", data: [] };
@@ -83,7 +82,6 @@ function TableMobiAgri(props) {
         throw new Error("Network response was not ok");
       }
       const dataDthu = await responseDthu.json();
-      console.log("dataDthu", dataDthu);
       let dataDthuAgriKHO = { province: "KHO", data: [] };
       let dataDthuAgriDLA = { province: "DLA", data: [] };
       let dataDthuAgriGLA = { province: "GLA", data: [] };

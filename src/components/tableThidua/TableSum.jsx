@@ -1,13 +1,65 @@
+"use client";
+import { convertIndexToDateM2M, formatCurrencyVND } from "../../lib/utils";
+
+import { useEffect } from "react";
+const kpiData = {
+  CLOUD: [
+    { province: "KHO", data: 530 },
+    { province: "DLA", data: 194 },
+    { province: "GLA", data: 149 },
+    { province: "PYE", data: 82 },
+    { province: "DNO", data: 70 },
+    { province: "KON", data: 63 },
+  ],
+  IOT: [
+    { province: "KHO", data: 262 },
+    { province: "DLA", data: 228 },
+    { province: "GLA", data: 192 },
+    { province: "PYE", data: 155 },
+    { province: "DNO", data: 146 },
+    { province: "KON", data: 120 },
+  ],
+  AGRI_DTHU: [
+    { province: "KHO", data: 295363636 },
+    { province: "DLA", data: 155000000 },
+    { province: "GLA", data: 155000000 },
+    { province: "PYE", data: 74272727 },
+    { province: "DNO", data: 72636364 },
+    { province: "KON", data: 65909091 },
+  ],
+  AGRI_SL: [
+    { province: "KHO", data: 3249 },
+    { province: "DLA", data: 1705 },
+    { province: "GLA", data: 1705 },
+    { province: "PYE", data: 817 },
+    { province: "DNO", data: 799 },
+    { province: "KON", data: 725 },
+  ],
+  M2M: [
+    { province: "KHO", data: 480 },
+    { province: "DLA", data: 320 },
+    { province: "GLA", data: 310 },
+    { province: "PYE", data: 170 },
+    { province: "DNO", data: 162 },
+    { province: "KON", data: 158 },
+  ],
+};
 export function TableSum(props) {
+  useEffect(() => {
+    console.log("check", kpiData.CLOUD[0]);
+  }, []);
   return (
     <>
-      <h5 className="mb-2 text-center mt-2">Bảng tổng hợp thi đua 23/05 - 30/06</h5>
+      <h5 className="mb-2 text-center mt-2">
+        Bảng tổng hợp thi đua 23/05 - 30/06
+      </h5>
       <div className="table-responsive  d-flex justify-content-center aligns-item-center">
         <table className="table table-bordered table-sum">
           <thead>
             <tr>
               <th>STT</th>
               <th>Nội dung</th>
+              <th>Đơn vị</th>
               <th>Khánh Hòa</th>
               <th>Đắk Lắk</th>
               <th>Gia Lai</th>
@@ -21,24 +73,27 @@ export function TableSum(props) {
             <tr>
               <td>1</td>
               <td>Doanh thu Cloud</td>
-              {Array.from({ length: 7 }).map((_, i) => (
+              {Array.from({ length: 8 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
+              <td style={{ fontStyle: "italic" }}>triệu đồng</td>
               {Array.from({
                 length: 7,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-center">
+                  {kpiData && kpiData.CLOUD[i] && kpiData.CLOUD[i].data}
+                </td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -47,7 +102,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -56,32 +111,37 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
-                <tr>
+            <tr>
               <td>2</td>
               <td>Doanh thu IoT</td>
-              {Array.from({ length: 7 }).map((_, i) => (
+
+              {Array.from({ length: 8 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
+              <td style={{ fontStyle: "italic" }}>triệu đồng</td>
+
               {Array.from({
                 length: 7,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-center">
+                  {kpiData && kpiData.IOT[i] && kpiData.IOT[i].data}
+                </td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -90,7 +150,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -99,7 +159,7 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -107,16 +167,17 @@ export function TableSum(props) {
             <tr>
               <td>3</td>
               <td>Platform Agri</td>
+              <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
-          
+
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -125,14 +186,15 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
-             <tr>
+            <tr>
               <td>3.1</td>
               <td>Thuê bao PTM Plaform Agri</td>
+              <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -140,17 +202,21 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
+              <td style={{ fontStyle: "italic" }}>Thuê bao</td>
+
               {Array.from({
                 length: 7,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-center">
+                  {kpiData && kpiData.AGRI_SL[i] && kpiData.AGRI_SL[i].data}
+                </td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -159,7 +225,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -168,14 +234,15 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
-             <tr>
+            <tr>
               <td>3.2</td>
               <td>Doanh thu PTM Plaform Agri</td>
+              <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -183,17 +250,22 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
+              <td style={{ fontStyle: "italic" }}>Triệu đồng</td>
               {Array.from({
                 length: 7,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-center">
+                  {kpiData && kpiData.AGRI_DTHU[i] && kpiData.AGRI_DTHU[i].data
+                    ? kpiData.AGRI_DTHU[i].data / 1000000
+                    : ""}
+                </td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -202,7 +274,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -211,14 +283,15 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
             </tr>
-                <tr>
+            <tr>
               <td>4</td>
               <td>Thuê bao PTM M2M</td>
+              <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -226,17 +299,21 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
+              <td style={{ fontStyle: "italic" }}>Thuê bao</td>
+
               {Array.from({
                 length: 7,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-center">
+                  {kpiData && kpiData.M2M[i] && kpiData.M2M[i].data}
+                </td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -245,7 +322,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}
@@ -254,7 +331,7 @@ export function TableSum(props) {
               <td></td>
               <td>Xếp hạng</td>
               {Array.from({
-                length: 7,
+                length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-center"></td>
               ))}

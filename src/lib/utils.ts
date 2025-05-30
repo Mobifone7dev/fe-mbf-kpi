@@ -91,7 +91,6 @@ export const formatCurrencyVND = (amount: number | null) => {
 }
 
 export const convertIndexToDate = (index: number) => {
-  console.log("Index: ", index);
   switch (index) {
     case 0:
       return "23/05";
@@ -180,7 +179,6 @@ export const convertIndexToDate = (index: number) => {
 }
 
 export const convertIndexToDateM2M = (index: number) => {
-  console.log("Index: ", index);
   switch (index) {
     case 0:
       return "26/05";
