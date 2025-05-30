@@ -210,7 +210,7 @@ function TableMobiAgri(props) {
                       const objectProvince = dataQuantityAgri[index];
                       return (
                         <tr key={index}>
-                          <td className="text-left">{index + 1}</td>
+                          <td className="text-left"></td>
                           <td className="text-left">
                             {objectProvince.province}
                           </td>
@@ -259,7 +259,7 @@ function TableMobiAgri(props) {
                       const objectProvince = dataDthuAgri[index];
                       return (
                         <tr key={index}>
-                          <td className="text-left">{index + 1}</td>
+                          <td className="text-left"></td>
                           <td className="text-left">
                             {objectProvince.province}
                           </td>
