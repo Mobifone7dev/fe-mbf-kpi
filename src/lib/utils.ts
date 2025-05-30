@@ -79,3 +79,93 @@ export const convertKeyToProvinceObject = (key: string) => {
   }
 
 }
+
+export const convertIndexToDate = (index: number) => {
+  console.log("Index: ", index);
+  switch (index) {
+    case 0:
+      return "23/05";
+    case 1:
+      return "24/05";
+    case 2:
+      return "25/05";
+    case 3:
+      return "26/05";
+    case 4:
+      return "27/05";
+
+    case 5:
+      return "28/05";
+    case 6:
+      return "29/05";
+    case 7:
+      return "30/05";
+    case 8:
+      return "31/05";
+    case 9:
+      return "01/06";
+    case 10:
+      return "02/06";
+    case 11:
+      return "03/06";
+    case 12:
+      return "04/06";
+    case 13:
+      return "05/06";
+    case 14:
+      return "06/06";
+    case 15:
+      return "07/06";
+    case 16:
+      return "08/06";
+    case 17:
+      return "09/06";
+    case 18:
+      return "10/06";
+    case 19:
+      return "11/06";
+    case 20:
+      return "12/06";
+    case 21:
+      return "13/06";
+    case 22:
+      return "14/06";
+    case 23:
+      return "15/06";
+    case 24:
+      return "16/06";
+    case 25:
+      return "17/06";
+    case 26:
+      return "18/06";
+    case 27:
+      return "19/06";
+    case 28:
+      return "20/06";
+    case 29:
+      return "21/06";
+    case 30:
+      return "22/06";
+    case 31:
+      return "23/06";
+    case 32:
+      return "24/06";
+    case 33:
+      return "25/06";
+    case 34:
+      return "26/06";
+    case 35:
+      return "27/06";
+    case 36:
+      return "28/06";
+    case 37:
+      return "29/06";
+    case 38:
+      return "30/06";
+
+    default:
+      return ""
+  }
+
+}
+

@@ -120,3 +120,1766 @@ export const kpiData = [
     maxPercent: 105,
   },
 ];
+export const dataRawKpi =
+  [
+    {
+      "CLOUD": [
+        {
+          province: "KHO",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "DLA",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "GLA",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "PYE",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "DNO",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "KON",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        }
+      ]
+    },
+    {
+      "AGRI": [
+        {
+          province: "KHO",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "DLA",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "GLA",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "PYE",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "DNO",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        },
+        {
+          province: "KON",
+          data: [
+            {
+              date: "2025-05-27",
+              quantity: 100,
+            },
+            {
+              date: "2025-05-28",
+              quantity: 150,
+            },
+            {
+              date: "2025-05-29",
+              quantity: 200,
+            },
+            {
+              date: "2025-05-30",
+              quantity: 250,
+            },
+            {
+              date: "2025-05-31",
+              quantity: 300,
+            },
+            {
+              date: "2025-06-01",
+              quantity: 350,
+            },
+            {
+              date: "2025-06-02",
+              quantity: 400,
+            },
+            {
+              date: "2025-06-03",
+              quantity: 450,
+            },
+            {
+              date: "2025-06-04",
+              quantity: 500,
+            },
+            {
+              date: "2025-06-05",
+              quantity: 550,
+            },
+            {
+              date: "2025-06-06",
+              quantity: 600,
+            },
+            {
+              date: "2025-06-07",
+              quantity: 650,
+            },
+            {
+              date: "2025-06-08",
+              quantity: 700,
+            },
+            {
+              date: "2025-06-09",
+              quantity: 750,
+            },
+            {
+              date: "2025-06-10",
+              quantity: 800,
+            },
+            {
+              date: "2025-06-11",
+              quantity: 850,
+            },
+            {
+              date: "2025-06-12",
+              quantity: 900,
+            },
+            {
+              date: "2025-06-13",
+              quantity: 950,
+            },
+            {
+              date: "2025-06-14",
+              quantity: 1000,
+            },
+            {
+              date: "2025-06-15",
+              quantity: 1050,
+            },
+            {
+              date: "2025-06-16",
+              quantity: 1100,
+            },
+            {
+              date: "2025-06-17",
+              quantity: 1150,
+            },
+            {
+              date: "2025-06-18",
+              quantity: 1200,
+            },
+            {
+              date: "2025-06-19",
+              quantity: 1250,
+            },
+            {
+              date: "2025-06-20",
+              quantity: 1300,
+            },
+            {
+              date: "2025-06-21",
+              quantity: 1350,
+            },
+            {
+              date: "2025-06-22",
+              quantity: 1400,
+            },
+            {
+              date: "2025-06-23",
+              quantity: 1450,
+            },
+            {
+              date: "2025-06-24",
+              quantity: 1500,
+            },
+            {
+              date: "2025-06-25",
+              quantity: 1550,
+            },
+            {
+              date: "2025-06-26",
+              quantity: 1600,
+            },
+            {
+              date: "2025-06-27",
+              quantity: 1650,
+            },
+            {
+              date: "2025-06-28",
+              quantity: 1700,
+            },
+            {
+              date: "2025-06-29",
+              quantity: 1750,
+            },
+            {
+              date: "2025-06-30",
+              quantity: 1800,
+            }
+
+          ]
+        }
+      ]
+    }
+  ]
