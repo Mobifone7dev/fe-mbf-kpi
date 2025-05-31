@@ -1882,4 +1882,46 @@ export const dataRawKpi =
         }
       ]
     }
-  ]
+  ];
+  export const kpiSummaryData = {
+    CLOUD: [
+      { province: "KHO", data: 530 },
+      { province: "DLA", data: 194 },
+      { province: "GLA", data: 149 },
+      { province: "PYE", data: 82 },
+      { province: "DNO", data: 70 },
+      { province: "KON", data: 63 },
+    ],
+    IOT: [
+      { province: "KHO", data: 262 },
+      { province: "DLA", data: 228 },
+      { province: "GLA", data: 192 },
+      { province: "PYE", data: 155 },
+      { province: "DNO", data: 146 },
+      { province: "KON", data: 120 },
+    ],
+    AGRI_DTHU: [
+      { province: "KHO", data: 295363636 },
+      { province: "DLA", data: 155000000 },
+      { province: "GLA", data: 155000000 },
+      { province: "PYE", data: 74272727 },
+      { province: "DNO", data: 72636364 },
+      { province: "KON", data: 65909091 },
+    ],
+    AGRI_SL: [
+      { province: "KHO", data: 3249 },
+      { province: "DLA", data: 1705 },
+      { province: "GLA", data: 1705 },
+      { province: "PYE", data: 817 },
+      { province: "DNO", data: 799 },
+      { province: "KON", data: 725 },
+    ],
+    M2M: [
+      { province: "KHO", data: 480 },
+      { province: "DLA", data: 320 },
+      { province: "GLA", data: 310 },
+      { province: "PYE", data: 170 },
+      { province: "DNO", data: 162 },
+      { province: "KON", data: 158 },
+    ],
+  };

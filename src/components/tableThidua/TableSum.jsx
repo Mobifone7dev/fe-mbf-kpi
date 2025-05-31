@@ -1,53 +1,49 @@
 "use client";
 import { convertIndexToDateM2M, formatCurrencyVND } from "../../lib/utils";
+import { useRecoilState } from "recoil";
+import { kpiSummaryData as kpiData } from "../../lib/rawData";
+import {
+  counterSumAgriQuantity,
+  counterAgriQuantityKHO,
+  counterAgriQuantityDLA,
+  counterAgriQuantityGLA,
+  counterAgriQuantityPYE,
+  counterAgriQuantityDNO,
+  counterAgriQuantityKON,
+} from "../../lib/states/counter";
 
 import { useEffect } from "react";
-const kpiData = {
-  CLOUD: [
-    { province: "KHO", data: 530 },
-    { province: "DLA", data: 194 },
-    { province: "GLA", data: 149 },
-    { province: "PYE", data: 82 },
-    { province: "DNO", data: 70 },
-    { province: "KON", data: 63 },
-  ],
-  IOT: [
-    { province: "KHO", data: 262 },
-    { province: "DLA", data: 228 },
-    { province: "GLA", data: 192 },
-    { province: "PYE", data: 155 },
-    { province: "DNO", data: 146 },
-    { province: "KON", data: 120 },
-  ],
-  AGRI_DTHU: [
-    { province: "KHO", data: 295363636 },
-    { province: "DLA", data: 155000000 },
-    { province: "GLA", data: 155000000 },
-    { province: "PYE", data: 74272727 },
-    { province: "DNO", data: 72636364 },
-    { province: "KON", data: 65909091 },
-  ],
-  AGRI_SL: [
-    { province: "KHO", data: 3249 },
-    { province: "DLA", data: 1705 },
-    { province: "GLA", data: 1705 },
-    { province: "PYE", data: 817 },
-    { province: "DNO", data: 799 },
-    { province: "KON", data: 725 },
-  ],
-  M2M: [
-    { province: "KHO", data: 480 },
-    { province: "DLA", data: 320 },
-    { province: "GLA", data: 310 },
-    { province: "PYE", data: 170 },
-    { province: "DNO", data: 162 },
-    { province: "KON", data: 158 },
-  ],
-};
+
+const sumPlanCloud = 1088;
+const sumPlanIOT = 1103;
+const sumAgriDthu = 818181818;
+const sumAgriQuantity = 9000;
+const sumM2MQuantity = 1600;
 export function TableSum(props) {
+  const [counterLocalSumAgriQuantity, setCounterLocalSumAgriQuantity] =
+    useRecoilState(counterSumAgriQuantity);
+  const [counterLocalAgriQuantityKHO, setCounterLocalAgriQuantityKHO] =
+    useRecoilState(counterAgriQuantityKHO);
+  const [counterLocalAgriQuantityDLA, setCounterLocalAgriQuantityDLA] =
+    useRecoilState(counterAgriQuantityDLA);
+  const [counterLocalAgriQuantityGLA, setCounterLocalAgriQuantityGLA] =
+    useRecoilState(counterAgriQuantityGLA);
+  const [counterLocalAgriQuantityPYE, setCounterLocalAgriQuantityPYE] =
+    useRecoilState(counterAgriQuantityPYE);
+  const [counterLocalAgriQuantityDNO, setCounterLocalAgriQuantityDNO] =
+    useRecoilState(counterAgriQuantityDNO);
+  const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
+    useRecoilState(counterAgriQuantityKON);
+
   useEffect(() => {
-    console.log("check", kpiData.CLOUD[0]);
+    // console.log(
+    //   "check",
+    //   parseFloat(
+    //     (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data
+    //   ).toFixed(2)
+    // );
   }, []);
+
   return (
     <>
       <h5 className="mb-2 text-center mt-2">
@@ -74,7 +70,7 @@ export function TableSum(props) {
               <td>1</td>
               <td>Doanh thu Cloud</td>
               {Array.from({ length: 8 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -82,12 +78,13 @@ export function TableSum(props) {
               <td>Kế hoạch thi đua</td>
               <td style={{ fontStyle: "italic" }}>triệu đồng</td>
               {Array.from({
-                length: 7,
+                length: 6,
               }).map((_, i) => (
-                <td key={i} className="text-center">
+                <td key={i} className="text-right">
                   {kpiData && kpiData.CLOUD[i] && kpiData.CLOUD[i].data}
                 </td>
               ))}
+              <td>{sumPlanCloud}</td>
             </tr>
             <tr>
               <td></td>
@@ -95,7 +92,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -104,7 +101,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -113,7 +110,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -121,7 +118,7 @@ export function TableSum(props) {
               <td>Doanh thu IoT</td>
 
               {Array.from({ length: 8 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -130,12 +127,13 @@ export function TableSum(props) {
               <td style={{ fontStyle: "italic" }}>triệu đồng</td>
 
               {Array.from({
-                length: 7,
+                length: 6,
               }).map((_, i) => (
-                <td key={i} className="text-center">
+                <td key={i} className="text-right">
                   {kpiData && kpiData.IOT[i] && kpiData.IOT[i].data}
                 </td>
               ))}
+              <td className="text-right">{sumPlanIOT}</td>
             </tr>
             <tr>
               <td></td>
@@ -143,16 +141,17 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
+
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -161,7 +160,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -169,7 +168,7 @@ export function TableSum(props) {
               <td>Platform Agri</td>
               <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
 
@@ -179,7 +178,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -188,7 +187,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -196,7 +195,7 @@ export function TableSum(props) {
               <td>Thuê bao PTM Plaform Agri</td>
               <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -205,30 +204,99 @@ export function TableSum(props) {
               <td style={{ fontStyle: "italic" }}>Thuê bao</td>
 
               {Array.from({
-                length: 7,
+                length: 6,
               }).map((_, i) => (
-                <td key={i} className="text-center">
+                <td key={i} className="text-right">
                   {kpiData && kpiData.AGRI_SL[i] && kpiData.AGRI_SL[i].data}
                 </td>
               ))}
+              <td className="text-right">{sumAgriQuantity}</td>
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
-              {Array.from({
-                length: 8,
+              <td></td>
+              <td className="text-right">{counterLocalAgriQuantityKHO}</td>
+              <td className="text-right">{counterLocalAgriQuantityDLA}</td>
+              <td className="text-right">{counterLocalAgriQuantityGLA}</td>
+              <td className="text-right">{counterLocalAgriQuantityPYE}</td>
+              <td className="text-right">{counterLocalAgriQuantityDNO}</td>
+              <td className="text-right">{counterLocalAgriQuantityKON}</td>
+
+              {/* {Array.from({
+                length: 5,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
-              ))}
+                <td key={i} className="text-right"></td>
+              ))} */}
+              <td className="text-right">{counterLocalSumAgriQuantity}</td>
             </tr>
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
-              {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-center"></td>
-              ))}
+              <td></td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityKHO * 100) /
+                      kpiData.AGRI_SL[0].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityDLA * 100) /
+                      kpiData.AGRI_SL[1].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityGLA * 100) /
+                      kpiData.AGRI_SL[2].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityPYE * 100) /
+                      kpiData.AGRI_SL[3].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityDNO * 100) /
+                      kpiData.AGRI_SL[4].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalAgriQuantityKON * 100) /
+                      kpiData.AGRI_SL[5].data
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+               <td className="text-right text-danger">
+                <span>
+                  {parseFloat(
+                    (counterLocalSumAgriQuantity * 100) /
+                      sumAgriQuantity
+                  ).toFixed(2)}
+                </span>{" "}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
             </tr>
             <tr>
               <td></td>
@@ -236,7 +304,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -244,7 +312,7 @@ export function TableSum(props) {
               <td>Doanh thu PTM Plaform Agri</td>
               <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -252,14 +320,15 @@ export function TableSum(props) {
               <td>Kế hoạch thi đua</td>
               <td style={{ fontStyle: "italic" }}>Triệu đồng</td>
               {Array.from({
-                length: 7,
+                length: 6,
               }).map((_, i) => (
-                <td key={i} className="text-center">
+                <td key={i} className="text-right">
                   {kpiData && kpiData.AGRI_DTHU[i] && kpiData.AGRI_DTHU[i].data
                     ? kpiData.AGRI_DTHU[i].data / 1000000
                     : ""}
                 </td>
               ))}
+              <td>{sumAgriDthu / 1000000}</td>
             </tr>
             <tr>
               <td></td>
@@ -267,7 +336,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -276,7 +345,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -285,7 +354,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -293,7 +362,7 @@ export function TableSum(props) {
               <td>Thuê bao PTM M2M</td>
               <td></td>
               {Array.from({ length: 7 }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -302,12 +371,13 @@ export function TableSum(props) {
               <td style={{ fontStyle: "italic" }}>Thuê bao</td>
 
               {Array.from({
-                length: 7,
+                length: 6,
               }).map((_, i) => (
-                <td key={i} className="text-center">
+                <td key={i} className="text-right">
                   {kpiData && kpiData.M2M[i] && kpiData.M2M[i].data}
                 </td>
               ))}
+              <td>{sumM2MQuantity}</td>
             </tr>
             <tr>
               <td></td>
@@ -315,7 +385,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -324,7 +394,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
             <tr>
@@ -333,7 +403,7 @@ export function TableSum(props) {
               {Array.from({
                 length: 8,
               }).map((_, i) => (
-                <td key={i} className="text-center"></td>
+                <td key={i} className="text-right"></td>
               ))}
             </tr>
           </tbody>

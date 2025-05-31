@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Layout from "../components/layout/Layout";
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+import RecoilProvider from '../lib/states/RecoilRootWrapper';
 
 const RootLayout = async ({ children }) => {
   const session = await getServerSession(authOptions);
@@ -45,9 +46,11 @@ const RootLayout = async ({ children }) => {
           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
           crossOrigin="anonymous"
         ></script>
-        <AuthProvider>
-          {session ? <Layout>{children}</Layout> : children}
-        </AuthProvider>
+        <RecoilProvider>
+          <AuthProvider>
+            {session ? <Layout>{children}</Layout> : children}
+          </AuthProvider>
+        </RecoilProvider>
       </body>
     </html>
   );

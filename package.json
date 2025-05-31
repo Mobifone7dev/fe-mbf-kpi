@@ -61,6 +61,7 @@
     "react-topbar-progress-indicator": "^4.1.1",
     "react-wrap-balancer": "^1.0.0",
     "react-xml-parser": "^1.1.8",
+    "recoil": "^0.7.7",
     "sass": "^1.67.0",
     "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",

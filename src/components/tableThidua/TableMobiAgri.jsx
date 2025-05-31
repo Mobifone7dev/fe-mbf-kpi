@@ -3,9 +3,19 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { dataRawKpi } from "../../lib/rawData";
-import { convertIndexToDate ,formatCurrencyVND} from "../../lib/utils";
+import { convertIndexToDate, formatCurrencyVND } from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
+import { useRecoilState } from "recoil";
+import {
+  counterSumAgriQuantity,
+  counterAgriQuantityKHO,
+  counterAgriQuantityDLA,
+  counterAgriQuantityGLA,
+  counterAgriQuantityPYE,
+  counterAgriQuantityDNO,
+  counterAgriQuantityKON,
+} from "../../lib/states/counter";
 
 function TableMobiAgri(props) {
   const [loadingMobiAgri, setLoadingMobiAgri] = useState(true);
@@ -13,10 +23,57 @@ function TableMobiAgri(props) {
   const [dataQuantityAgri, setDataQuantityAgri] = useState([]);
   const [dataDthuAgri, setDataDthuAgri] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
-
+  const [counterLocalSumAgriQuantity, setCounteLocalSumArgriQuantity] =
+    useRecoilState(counterSumAgriQuantity);
+  const [counterLocalAgriQuantityKHO, setCounteLocalArgriQuantityKHO] =
+    useRecoilState(counterAgriQuantityKHO);
+  const [counterLocalAgriQuantityDLA, setCounteLocalArgriQuantityDLA] =
+    useRecoilState(counterAgriQuantityDLA);
+  const [counterLocalAgriQuantityGLA, setCounteLocalArgriQuantityGLA] =
+    useRecoilState(counterAgriQuantityGLA);
+    const [counterLocalAgriQuantityPYE, setCounteLocalArgriQuantityPYE] =
+    useRecoilState(counterAgriQuantityPYE);
+    const [counterLocalAgriQuantityDNO, setCounteLocalArgriQuantityDNO] =
+    useRecoilState(counterAgriQuantityDNO);
+    const [counterLocalAgriQuantityKON, setCounteLocalArgriQuantityKON] =
+    useRecoilState(counterAgriQuantityKON);
   useEffect(() => {
     getDataAgri();
   }, []);
+  useEffect(() => {
+    let sumQuantity = 0;
+    dataQuantityAgri &&
+      dataQuantityAgri.length > 0 &&
+      dataQuantityAgri.map((item, index) => {
+        const objectProvince = item;
+        const quantity = objectProvince.data.reduce(
+          (acc, curr) => acc + curr.QUANTITY ?? 0,
+          0
+        );
+        if (objectProvince.province == "KHO") {
+          setCounteLocalArgriQuantityKHO(quantity);
+        }
+        if (objectProvince.province == "DLA") {
+          setCounteLocalArgriQuantityDLA(quantity);
+        }
+        if (objectProvince.province == "GLA") {
+          setCounteLocalArgriQuantityGLA(quantity);
+        }
+        if (objectProvince.province == "PYE") {
+          setCounteLocalArgriQuantityPYE(quantity);
+        }
+         if (objectProvince.province == "DNO") {
+          setCounteLocalArgriQuantityDNO(quantity);
+        }
+         if (objectProvince.province == "KON") {
+          setCounteLocalArgriQuantityKON(quantity);
+        }
+
+        sumQuantity += quantity;
+      });
+
+    setCounteLocalSumArgriQuantity(sumQuantity);
+  }, [dataQuantityAgri]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -32,6 +89,7 @@ function TableMobiAgri(props) {
       setVisibleColumns(10); // Limit to 10 columns
     }
   };
+
   const getDataAgri = async () => {
     setLoadingMobiAgri(true);
     try {
@@ -180,7 +238,7 @@ function TableMobiAgri(props) {
                       <th
                         key={i}
                         className={
-                          i <= visibleColumns ? "text-center" : "d-none"
+                          i <= visibleColumns ? "text-right" : "d-none"
                         }
                       >
                         {convertIndexToDate(i)}
@@ -206,6 +264,10 @@ function TableMobiAgri(props) {
                     dataQuantityAgri.length > 0 &&
                     dataQuantityAgri.map((item, index) => {
                       const objectProvince = dataQuantityAgri[index];
+                      const quantity = objectProvince.data.reduce(
+                        (acc, curr) => acc + curr.QUANTITY ?? 0,
+                        0
+                      );
                       return (
                         <tr key={index}>
                           <td className="text-left"></td>
@@ -217,7 +279,7 @@ function TableMobiAgri(props) {
                               key={dayIndex}
                               className={
                                 dayIndex < visibleColumns
-                                  ? "text-center"
+                                  ? "text-right"
                                   : "d-none"
                               }
                             >
@@ -230,25 +292,25 @@ function TableMobiAgri(props) {
                             <td
                               key={objectProvince.data.length + i}
                               //   className={
-                              //     i + 5 <= visibleColumns ? "text-center" : "d-none"
+                              //     i + 5 <= visibleColumns ? "text-right" : "d-none"
                               //   }
                               className="text-center p-0"
                             ></td>
                           ))}
-                          <td className="text-center">
+                          <td className="text-right">
                             {objectProvince.data.reduce(
-                              (acc, curr) => acc + curr.QUANTITY,
+                              (acc, curr) => acc + curr.QUANTITY ?? 0,
                               0
                             )}
                           </td>
                         </tr>
                       );
                     })}
-                   
+
                   <tr>
                     <td className="text-left title-sub2">3.2</td>
                     <td colSpan={41} className="text-left title-sub2">
-                       Doanh thu tập TB PTM Platform Agri
+                      Doanh thu tập TB PTM Platform Agri
                     </td>
                   </tr>
                   {dataDthuAgri &&
@@ -266,7 +328,7 @@ function TableMobiAgri(props) {
                               key={dayIndex}
                               className={
                                 dayIndex < visibleColumns
-                                  ? "text-center"
+                                  ? "text-right"
                                   : "d-none"
                               }
                             >
@@ -278,22 +340,23 @@ function TableMobiAgri(props) {
                           }).map((_, i) => (
                             <td
                               key={objectProvince.data.length + i}
-                                // className={
-                                //   i + 8 <= visibleColumns ? "text-center" : "d-none"
-                                // }
+                              // className={
+                              //   i + 8 <= visibleColumns ? "text-right" : "d-none"
+                              // }
                               className="text-center p-0"
                             ></td>
                           ))}
-                          <td className="text-center">
-                            {formatCurrencyVND(objectProvince.data.reduce(
-                              (acc, curr) => acc + curr.DT,
-                              0
-                            ))}
+                          <td className="text-right">
+                            {formatCurrencyVND(
+                              objectProvince.data.reduce(
+                                (acc, curr) => acc + curr.DT ?? 0,
+                                0
+                              )
+                            )}
                           </td>
                         </tr>
                       );
                     })}
-                  
                 </tbody>
               </table>
             </div>

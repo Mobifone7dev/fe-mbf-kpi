@@ -141,7 +141,7 @@ function TablePTMM2M(props) {
                       <th
                         key={i}
                         className={
-                          i <= visibleColumns ? "text-center" : "d-none"
+                          i <= visibleColumns ? "text-right" : "d-none"
                         }
                       >
                         {convertIndexToDateM2M(i)}
@@ -172,7 +172,7 @@ function TablePTMM2M(props) {
                               key={dayIndex}
                               className={
                                 dayIndex < visibleColumns
-                                  ? "text-center"
+                                  ? "text-right"
                                   : "d-none"
                               }
                             >
@@ -187,9 +187,9 @@ function TablePTMM2M(props) {
                               className="text-center p-0"
                             ></td>
                           ))}
-                          <td className="text-center">
+                          <td className="text-right">
                             {objectProvince.data.reduce(
-                              (acc, curr) => acc + curr.QUANTITY,
+                              (acc, curr) => acc + curr.QUANTITY ?? 0,
                               0
                             )}
                           </td>
