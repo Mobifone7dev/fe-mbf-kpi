@@ -1,5 +1,9 @@
 "use client";
-import { convertIndexToDateM2M, formatCurrencyVND } from "../../lib/utils";
+import {
+  convertIndexToDateM2M,
+  formatCurrencyVND,
+  getRanking,
+} from "../../lib/utils";
 import { useRecoilState } from "recoil";
 import { kpiSummaryData as kpiData } from "../../lib/rawData";
 import {
@@ -12,7 +16,7 @@ import {
   counterAgriQuantityKON,
 } from "../../lib/states/counter";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const sumPlanCloud = 1088;
 const sumPlanIOT = 1103;
@@ -34,15 +38,65 @@ export function TableSum(props) {
     useRecoilState(counterAgriQuantityDNO);
   const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
     useRecoilState(counterAgriQuantityKON);
+  const [arrayPercentQuantityAgri, setArrayPercentQuantityAgri] = useState([]);
 
   useEffect(() => {
     // console.log(
     //   "check",
+    //   counterLocalAgriQuantityKHO,
+    //   kpiData.AGRI_SL[0].data,
     //   parseFloat(
     //     (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data
     //   ).toFixed(2)
     // );
-  }, []);
+    if (
+      counterLocalAgriQuantityKHO ||
+      counterLocalAgriQuantityDLA ||
+      counterLocalAgriQuantityGLA ||
+      counterLocalAgriQuantityPYE ||
+      counterLocalAgriQuantityDNO ||
+      counterLocalAgriQuantityKON
+    ) {
+      setArrayPercentQuantityAgri([
+        parseFloat(
+          (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriQuantityDLA * 100) / kpiData.AGRI_SL[1].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriQuantityGLA * 100) / kpiData.AGRI_SL[2].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriQuantityPYE * 100) / kpiData.AGRI_SL[3].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriQuantityDNO * 100) / kpiData.AGRI_SL[4].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriQuantityKON * 100) / kpiData.AGRI_SL[5].data
+        ).toFixed(2),
+      ]);
+    }
+  }, [
+    counterLocalAgriQuantityKHO,
+    counterLocalAgriQuantityDLA,
+    counterLocalAgriQuantityGLA,
+    counterLocalAgriQuantityPYE,
+    counterLocalAgriQuantityDNO,
+    counterLocalAgriQuantityKON,
+  ]);
+  const [isSticky, setisSticky] = useState(false);
+  const handleSticky = () => {
+    const scrollTop = window.scrollY;
+    scrollTop > 60 && scrollTop < 1350 ? setisSticky(true) : setisSticky(false);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleSticky);
+    return () => {
+      window.removeEventListener("scroll", handleSticky);
+    };
+  });
 
   return (
     <>
@@ -51,7 +105,7 @@ export function TableSum(props) {
       </h5>
       <div className="table-responsive  d-flex justify-content-center aligns-item-center">
         <table className="table table-bordered table-sum">
-          <thead>
+          <thead className={` ${isSticky && "is-sticky"}`}>
             <tr>
               <th>STT</th>
               <th>Nội dung</th>
@@ -65,7 +119,7 @@ export function TableSum(props) {
               <th>Tổng</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={` ${isSticky && "is-sticky"}`}>
             <tr>
               <td>1</td>
               <td>Doanh thu Cloud</td>
@@ -84,7 +138,7 @@ export function TableSum(props) {
                   {kpiData && kpiData.CLOUD[i] && kpiData.CLOUD[i].data}
                 </td>
               ))}
-              <td>{sumPlanCloud}</td>
+              <td className='text-right'>{sumPlanCloud}</td>
             </tr>
             <tr>
               <td></td>
@@ -234,7 +288,7 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               <td></td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityKHO * 100) /
@@ -243,7 +297,7 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityDLA * 100) /
@@ -252,7 +306,7 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityGLA * 100) /
@@ -261,7 +315,7 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityPYE * 100) /
@@ -270,7 +324,7 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityDNO * 100) /
@@ -279,7 +333,7 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
                     (counterLocalAgriQuantityKON * 100) /
@@ -288,11 +342,10 @@ export function TableSum(props) {
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
               </td>
-               <td className="text-right text-danger">
+              <td className="text-right text-danger">
                 <span>
                   {parseFloat(
-                    (counterLocalSumAgriQuantity * 100) /
-                      sumAgriQuantity
+                    (counterLocalSumAgriQuantity * 100) / sumAgriQuantity
                   ).toFixed(2)}
                 </span>{" "}
                 <span style={{ fontStyle: "italic" }}>%</span>
@@ -301,12 +354,68 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Xếp hạng</td>
-              {Array.from({
+              {/* {Array.from({
                 length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-right"></td>
-              ))}
+              ))} */}
+              <td></td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityKHO * 100) /
+                      kpiData.AGRI_SL[0].data
+                  ).toFixed(2)
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityDLA * 100) /
+                      kpiData.AGRI_SL[1].data
+                  ).toFixed(2)
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityGLA * 100) /
+                      kpiData.AGRI_SL[2].data
+                  ).toFixed(2)
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityPYE * 100) /
+                      kpiData.AGRI_SL[3].data
+                  ).toFixed(2)
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityDNO * 100) /
+                      kpiData.AGRI_SL[4].data
+                  ).toFixed(2)
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentQuantityAgri,
+                  parseFloat(
+                    (counterLocalAgriQuantityKON * 100) /
+                      kpiData.AGRI_SL[5].data
+                  ).toFixed(2)
+                )}
+              </td>
             </tr>
+
             <tr>
               <td>3.2</td>
               <td>Doanh thu PTM Plaform Agri</td>

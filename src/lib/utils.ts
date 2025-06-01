@@ -89,6 +89,17 @@ export const formatCurrencyVND = (amount: number | null) => {
     maximumFractionDigits: 0, // không hiển thị số lẻ
   }).format(amount);
 }
+export const getRanking = (array: number[], value: number): number | null => {
+  if (!array.includes(value)) return null
+
+  // Tạo mảng mới đã sắp xếp giảm dần
+  const sorted = [...array].sort((a, b) => b - a)
+
+  // Tìm vị trí đầu tiên của giá trị
+  const rank = sorted.indexOf(value) + 1
+
+  return rank
+}
 
 export const convertIndexToDate = (index: number) => {
   switch (index) {
