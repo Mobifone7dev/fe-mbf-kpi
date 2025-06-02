@@ -3,76 +3,74 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { dataRawKpi } from "../../lib/rawData";
-import { convertIndexToDateM2M, formatCurrencyVND } from "../../lib/utils";
+import { convertIndexToDateCloud, formatCurrencyVND } from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
 import { useRecoilState } from "recoil";
 import {
-  counterSumM2MQuantity,
-  counterM2MQuantityKHO,
-  counterM2MQuantityDLA,
-  counterM2MQuantityGLA,
-  counterM2MQuantityPYE,
-  counterM2MQuantityDNO,
-  counterM2MQuantityKON,
+  counterSumCloudDthu,
+  counterCloudDthuKHO,
+  counterCloudDthuDLA,
+  counterCloudDthuGLA,
+  counterCloudDthuPYE,
+  counterCloudDthuDNO,
+  counterCloudDthuKON,
 } from "../../lib/states/counter";
-function TablePTMM2M(props) {
-  const [loadingM2M, setLoadingM2M] = useState(true);
-  const [dataQuantityM2M, setDataQuantityM2M] = useState([]);
+import FormCloud from "./FormCloud";
+function TableCloud(props) {
+  const [loadingCloud, setLoadingCloud] = useState(false);
+  const [dataDthuCloud, setDataDthuCloud] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
 
-  const [counterLocalSumM2MQuantity, setCounterLocalSumM2MQuantity] =
-    useRecoilState(counterSumM2MQuantity);
-  const [counterLocalM2MQuantityKHO, setCounterLocalM2MQuantityKHO] =
-    useRecoilState(counterM2MQuantityKHO);
-  const [counterLocalM2MQuantityDLA, setCounterLocalM2MQuantityDLA] =
-    useRecoilState(counterM2MQuantityDLA);
-  const [counterLocalM2MQuantityGLA, setCounterLocalM2MQuantityGLA] =
-    useRecoilState(counterM2MQuantityGLA);
-  const [counterLocalM2MQuantityPYE, setCounterLocalM2MQuantityPYE] =
-    useRecoilState(counterM2MQuantityPYE);
-  const [counterLocalM2MQuantityDNO, setCounterLocalM2MQuantityDNO] =
-    useRecoilState(counterM2MQuantityDNO);
-  const [counterLocalM2MQuantityKON, setCounterLocalM2MQuantityKON] =
-    useRecoilState(counterM2MQuantityKON);
+  const [counterLocalSumCloudDthu, setCounterLocalSumCloudDthu] =
+    useRecoilState(counterSumCloudDthu);
+  const [counterLocalCloudDthuKHO, setCounterLocalCloudDthuKHO] =
+    useRecoilState(counterCloudDthuKHO);
+  const [counterLocalCloudDthuDLA, setCounterLocalCloudDthuDLA] =
+    useRecoilState(counterCloudDthuDLA);
+  const [counterLocalCloudDthuGLA, setCounterLocalCloudDthuGLA] =
+    useRecoilState(counterCloudDthuGLA);
+  const [counterLocalCloudDthuPYE, setCounterLocalCloudDthuPYE] =
+    useRecoilState(counterCloudDthuPYE);
+  const [counterLocalCloudDthuDNO, setCounterLocalCloudDthuDNO] =
+    useRecoilState(counterCloudDthuDNO);
+  const [counterLocalCloudDthuKON, setCounterLocalCloudDthuKON] =
+    useRecoilState(counterCloudDthuKON);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    getDataM2M();
+    getDataCloud();
   }, []);
   useEffect(() => {
-    let sumQuantity = 0;
-    dataQuantityM2M &&
-      dataQuantityM2M.length > 0 &&
-      dataQuantityM2M.map((item, index) => {
-        const quantity = item.data.reduce(
-          (acc, curr) => acc + curr.QUANTITY ?? 0,
-          0
-        );
+    let sumDthu = 0;
+    dataDthuCloud &&
+      dataDthuCloud.length > 0 &&
+      dataDthuCloud.map((item, index) => {
+        const Dthu = item.data.reduce((acc, curr) => acc + curr.Dthu ?? 0, 0);
         if (item.province == "KHO") {
-
-          setCounterLocalM2MQuantityKHO(quantity);
+          setCounterLocalCloudDthuKHO(Dthu);
         }
         if (item.province == "DLA") {
-          setCounterLocalM2MQuantityDLA(quantity);
+          setCounterLocalCloudDthuDLA(Dthu);
         }
         if (item.province == "GLA") {
-          setCounterLocalM2MQuantityGLA(quantity);
+          setCounterLocalCloudDthuGLA(Dthu);
         }
         if (item.province == "PYE") {
-          setCounterLocalM2MQuantityPYE(quantity);
+          setCounterLocalCloudDthuPYE(Dthu);
         }
         if (item.province == "DNO") {
-          setCounterLocalM2MQuantityDNO(quantity);
+          setCounterLocalCloudDthuDNO(Dthu);
         }
         if (item.province == "KON") {
-          setCounterLocalM2MQuantityKON(quantity);
+          setCounterLocalCloudDthuKON(Dthu);
         }
 
-        sumQuantity += quantity;
+        sumDthu += Dthu;
       });
 
-    setCounterLocalSumM2MQuantity(sumQuantity);
-  }, [dataQuantityM2M]);
+    setCounterLocalSumCloudDthu(sumDthu);
+  }, [dataDthuCloud]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -88,62 +86,64 @@ function TablePTMM2M(props) {
       setVisibleColumns(10); // Limit to 10 columns
     }
   };
-  const getDataM2M = async () => {
-    setLoadingM2M(true);
-    try {
-      const response = await fetch(
-        `${API_URL}/dashboard-thidua/sl-thidua-M2M` // Replace with your actual API endpoint
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      let dataQuantityM2MKHO = { province: "KHO", data: [] };
-      let dataQuantityM2MDLA = { province: "DLA", data: [] };
-      let dataQuantityM2MGLA = { province: "GLA", data: [] };
-      let dataQuantityM2MPYE = { province: "PYE", data: [] };
-      let dataQuantityM2MDNO = { province: "DNO", data: [] };
-      let dataQuantityM2MKON = { province: "KON", data: [] };
-
-      if (data && data.data && data.data.length > 0) {
-        data.data.forEach((item) => {
-          if (item.PROVINCE_PT === "KHO") {
-            dataQuantityM2MKHO.data.push(item);
-          } else if (item.PROVINCE_PT === "DLA") {
-            dataQuantityM2MDLA.data.push(item);
-          } else if (item.PROVINCE_PT === "GLA") {
-            dataQuantityM2MGLA.data.push(item);
-          } else if (item.PROVINCE_PT === "PYE") {
-            dataQuantityM2MPYE.data.push(item);
-          } else if (item.PROVINCE_PT === "DNO") {
-            dataQuantityM2MDNO.data.push(item);
-          } else if (item.PROVINCE_PT === "KON") {
-            dataQuantityM2MKON.data.push(item);
-          }
-        });
-        setDataQuantityM2M([
-          dataQuantityM2MKHO,
-          dataQuantityM2MDLA,
-          dataQuantityM2MGLA,
-          dataQuantityM2MPYE,
-          dataQuantityM2MDNO,
-          dataQuantityM2MKON,
-        ]);
-      }
-
-      setLoadingM2M(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoadingM2M(false);
-      return;
-    }
+  const getDataCloud = async () => {
+    // setLoadingCloud(true);
+    // try {
+    //   const response = await fetch(
+    //     `${API_URL}/dashboard-thidua/sl-thidua-Cloud` // Replace with your actual API endpoint
+    //   );
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+    //   const data = await response.json();
+    //   let dataDthuCloudKHO = { province: "KHO", data: [] };
+    //   let dataDthuCloudDLA = { province: "DLA", data: [] };
+    //   let dataDthuCloudGLA = { province: "GLA", data: [] };
+    //   let dataDthuCloudPYE = { province: "PYE", data: [] };
+    //   let dataDthuCloudDNO = { province: "DNO", data: [] };
+    //   let dataDthuCloudKON = { province: "KON", data: [] };
+    //   if (data && data.data && data.data.length > 0) {
+    //     data.data.forEach((item) => {
+    //       if (item.PROVINCE_PT === "KHO") {
+    //         dataDthuCloudKHO.data.push(item);
+    //       } else if (item.PROVINCE_PT === "DLA") {
+    //         dataDthuCloudDLA.data.push(item);
+    //       } else if (item.PROVINCE_PT === "GLA") {
+    //         dataDthuCloudGLA.data.push(item);
+    //       } else if (item.PROVINCE_PT === "PYE") {
+    //         dataDthuCloudPYE.data.push(item);
+    //       } else if (item.PROVINCE_PT === "DNO") {
+    //         dataDthuCloudDNO.data.push(item);
+    //       } else if (item.PROVINCE_PT === "KON") {
+    //         dataDthuCloudKON.data.push(item);
+    //       }
+    //     });
+    //     setDataDthuCloud([
+    //       dataDthuCloudKHO,
+    //       dataDthuCloudDLA,
+    //       dataDthuCloudGLA,
+    //       dataDthuCloudPYE,
+    //       dataDthuCloudDNO,
+    //       dataDthuCloudKON,
+    //     ]);
+    //   }
+    //   setLoadingCloud(false);
+    // } catch (error) {
+    //   console.error("Error fetching data:", error);
+    //   setLoadingCloud(false);
+    //   return;
+    // }
+  };
+  const handleOpenPopup = () => {
+    console.log("check")
+     setShow(true);
   };
 
   return (
     <div className="dashboard-thidua">
-      <div className="M2M-section">
-        {/* <h4>MobiM2M platform</h4> */}
-        {loadingM2M ? (
+      <div className="cloud-section">
+        {/* <h4>MobiCloud platform</h4> */}
+        {loadingCloud ? (
           <Spinner
             animation="grow"
             variant="primary"
@@ -168,9 +168,17 @@ function TablePTMM2M(props) {
               >
                 {`Thu nhỏ bảng  <<`}
               </button>
+
+              <button
+                className="btn btn-outline-primary me-5 ms-5"
+                onClick={handleOpenPopup}
+              >
+                {" "}
+                Thêm dữ liệu
+              </button>
             </div>
             <div className="table-responsive">
-              <table className=" table table-M2M align-middle table-bordered gs-0 gy-3 table-frozen">
+              <table className=" table table-Cloud align-middle table-bordered gs-0 gy-3 table-frozen">
                 <thead>
                   <tr>
                     <th rowSpan={2} className="text-center align-middle">
@@ -197,10 +205,10 @@ function TablePTMM2M(props) {
                       <th
                         key={i}
                         className={
-                          i < visibleColumns ? "text-right" : "hiden-colum"
+                          i <= visibleColumns ? "text-right" : "d-none"
                         }
                       >
-                        {i < visibleColumns ? convertIndexToDateM2M(i):''}
+                        {convertIndexToDateCloud(i)}
                       </th>
                     ))}
                   </tr>
@@ -209,14 +217,14 @@ function TablePTMM2M(props) {
                   <tr>
                     <td className="text-left title-sub">4</td>
                     <td colSpan={41} className="text-left title-sub">
-                      Số lượng thuê bao PTM M2M
+                      Số lượng thuê bao Cloud Cloud
                     </td>
                   </tr>
 
-                  {dataQuantityM2M &&
-                    dataQuantityM2M.length > 0 &&
-                    dataQuantityM2M.map((item, index) => {
-                      const objectProvince = dataQuantityM2M[index];
+                  {dataDthuCloud &&
+                    dataDthuCloud.length > 0 &&
+                    dataDthuCloud.map((item, index) => {
+                      const objectProvince = dataDthuCloud[index];
                       return (
                         <tr key={index}>
                           <td className="text-left"></td>
@@ -229,10 +237,10 @@ function TablePTMM2M(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "hiden-colum"
+                                  : "d-none"
                               }
                             >
-                              {day.QUANTITY}
+                              {day.Dthu}
                             </td>
                           ))}
                           {Array.from({
@@ -245,7 +253,7 @@ function TablePTMM2M(props) {
                           ))}
                           <td className="text-right">
                             {objectProvince.data.reduce(
-                              (acc, curr) => acc + curr.QUANTITY ?? 0,
+                              (acc, curr) => acc + curr.Dthu ?? 0,
                               0
                             )}
                           </td>
@@ -258,8 +266,11 @@ function TablePTMM2M(props) {
           </>
         )}
       </div>
+      <FormCloud show={show} handleClose={()=>{
+        setShow(false)
+      }}/>
     </div>
   );
 }
 
-export default TablePTMM2M;
+export default TableCloud;

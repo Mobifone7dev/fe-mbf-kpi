@@ -143,4 +143,16 @@
       }
     }
   }
+
+  .fix-colum {
+    position: sticky;
+    right: 0;
+    background: white;
+    z-index: 1;
+  }
+  .hiden-colum{
+    visibility: 0;
+    padding: 0;
+  }
+
 }

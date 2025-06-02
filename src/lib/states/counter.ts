@@ -87,3 +87,33 @@ export const counterM2MQuantityKON = atom({
   default: 0,          // initial value
 })
 
+
+export const counterSumCloudDthu = atom({
+  key: 'counterSumCloudDthu', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuKHO = atom({
+  key: 'counterCloudDthuKHO', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuDLA = atom({
+  key: 'counterCloudDthuDLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuGLA = atom({
+  key: 'counterCloudDthuGLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuPYE = atom({
+  key: 'counterCloudDthuPYE', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuDNO = atom({
+  key: 'counterCloudDthuDNO', // unique ID
+  default: 0,          // initial value
+})
+export const counterCloudDthuKON = atom({
+  key: 'counterCloudDthuKON', // unique ID
+  default: 0,          // initial value
+})
+

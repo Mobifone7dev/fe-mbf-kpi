@@ -29,7 +29,7 @@ function TableMobiAgri(props) {
   const [data, setData] = useState(dataRawKpi);
   const [dataQuantityAgri, setDataQuantityAgri] = useState([]);
   const [dataDthuAgri, setDataDthuAgri] = useState([]);
-  const [visibleColumns, setVisibleColumns] = useState(8);
+  const [visibleColumns, setVisibleColumns] = useState(9);
   const [counterLocalSumAgriQuantity, setCounterLocalSumAgriQuantity] =
     useRecoilState(counterSumAgriQuantity);
   const [counterLocalAgriQuantityKHO, setCounterLocalAgriQuantityKHO] =
@@ -282,21 +282,24 @@ function TableMobiAgri(props) {
                     <th colSpan={30} className="text-center align-middle">
                       Lũy kế tháng 06
                     </th>
-                    <th rowSpan={2} className="text-center  align-middle">
+                    <th
+                      rowSpan={2}
+                      className="text-center  align-middle"
+                    >
                       Thực hiện lũy kế
                     </th>
                   </tr>
                   <tr>
                     {Array.from({
-                      length: 40,
+                      length: 39,
                     }).map((_, i) => (
                       <th
                         key={i}
                         className={
-                          i <= visibleColumns ? "text-right" : "d-none"
+                          i < visibleColumns ? "text-right" : "hiden-colum"
                         }
                       >
-                        {convertIndexToDate(i)}
+                        {i < visibleColumns ? convertIndexToDate(i): ''}
                       </th>
                     ))}
                   </tr>
@@ -333,20 +336,17 @@ function TableMobiAgri(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "d-none"
+                                  : "hiden-colum"
                               }
                             >
-                              {day.QUANTITY}
+                              {dayIndex < visibleColumns ? day.QUANTITY : ""}
                             </td>
                           ))}
                           {Array.from({
-                            length: 40 - item.data.length,
+                            length: 39 - item.data.length,
                           }).map((_, i) => (
                             <td
                               key={item.data.length + i}
-                              //   className={
-                              //     i + 5 <= visibleColumns ? "text-right" : "d-none"
-                              //   }
                               className="text-center p-0"
                             ></td>
                           ))}
@@ -355,7 +355,7 @@ function TableMobiAgri(props) {
                       );
                     })}
 
-                  <tr>
+                  {/* <tr>
                     <td className="text-left title-sub2">3.2</td>
                     <td colSpan={41} className="text-left title-sub2">
                       Doanh thu tập TB PTM Platform Agri
@@ -377,19 +377,19 @@ function TableMobiAgri(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "d-none"
+                                  : "hiden-colum"
                               }
                             >
                               {formatCurrencyVND(day.DT)}
                             </td>
                           ))}
                           {Array.from({
-                            length: 40 - objectProvince.data.length,
+                            length: 41 - objectProvince.data.length,
                           }).map((_, i) => (
                             <td
                               key={objectProvince.data.length + i}
                               // className={
-                              //   i + 8 <= visibleColumns ? "text-right" : "d-none"
+                              //   i + 8 <= visibleColumns ? "text-right" : "hiden-colum"
                               // }
                               className="text-center p-0"
                             ></td>
@@ -404,7 +404,7 @@ function TableMobiAgri(props) {
                           </td>
                         </tr>
                       );
-                    })}
+                    })} */}
                 </tbody>
               </table>
             </div>
