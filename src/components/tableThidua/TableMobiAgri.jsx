@@ -38,14 +38,14 @@ function TableMobiAgri(props) {
     useRecoilState(counterAgriQuantityDLA);
   const [counterLocalAgriQuantityGLA, setCounterLocalAgriQuantityGLA] =
     useRecoilState(counterAgriQuantityGLA);
-    const [counterLocalAgriQuantityPYE, setCounterLocalAgriQuantityPYE] =
+  const [counterLocalAgriQuantityPYE, setCounterLocalAgriQuantityPYE] =
     useRecoilState(counterAgriQuantityPYE);
-    const [counterLocalAgriQuantityDNO, setCounterLocalAgriQuantityDNO] =
+  const [counterLocalAgriQuantityDNO, setCounterLocalAgriQuantityDNO] =
     useRecoilState(counterAgriQuantityDNO);
-    const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
+  const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
     useRecoilState(counterAgriQuantityKON);
 
-    const [counterLocalSumAgriDthu, setCounterLocalSumAgriDthu] =
+  const [counterLocalSumAgriDthu, setCounterLocalSumAgriDthu] =
     useRecoilState(counterSumAgriDthu);
   const [counterLocalAgriDthuKHO, setCounterLocalAgriDthuKHO] =
     useRecoilState(counterAgriDthuKHO);
@@ -53,11 +53,11 @@ function TableMobiAgri(props) {
     useRecoilState(counterAgriDthuDLA);
   const [counterLocalAgriDthuGLA, setCounterLocalAgriDthuGLA] =
     useRecoilState(counterAgriDthuGLA);
-    const [counterLocalAgriDthuPYE, setCounterLocalAgriDthuPYE] =
+  const [counterLocalAgriDthuPYE, setCounterLocalAgriDthuPYE] =
     useRecoilState(counterAgriDthuPYE);
-    const [counterLocalAgriDthuDNO, setCounterLocalAgriDthuDNO] =
+  const [counterLocalAgriDthuDNO, setCounterLocalAgriDthuDNO] =
     useRecoilState(counterAgriDthuDNO);
-    const [counterLocalAgriDthuKON, setCounterLocalAgriDthuKON] =
+  const [counterLocalAgriDthuKON, setCounterLocalAgriDthuKON] =
     useRecoilState(counterAgriDthuKON);
   useEffect(() => {
     getDataAgri();
@@ -84,10 +84,10 @@ function TableMobiAgri(props) {
         if (objectProvince.province == "PYE") {
           setCounterLocalAgriQuantityPYE(quantity);
         }
-         if (objectProvince.province == "DNO") {
+        if (objectProvince.province == "DNO") {
           setCounterLocalAgriQuantityDNO(quantity);
         }
-         if (objectProvince.province == "KON") {
+        if (objectProvince.province == "KON") {
           setCounterLocalAgriQuantityKON(quantity);
         }
 
@@ -117,10 +117,10 @@ function TableMobiAgri(props) {
         if (objectProvince.province == "PYE") {
           setCounterLocalAgriDthuPYE(dt);
         }
-         if (objectProvince.province == "DNO") {
+        if (objectProvince.province == "DNO") {
           setCounterLocalAgriDthuDNO(dt);
         }
-         if (objectProvince.province == "KON") {
+        if (objectProvince.province == "KON") {
           setCounterLocalAgriDthuKON(dt);
         }
 
@@ -322,19 +322,11 @@ function TableMobiAgri(props) {
                         (acc, curr) => acc + curr.QUANTITY ?? 0,
                         0
                       );
-                      item.data.map((o)=>{
-                        console.log(o.QUANTITY)
 
-                      })
-                      // console.log('lenght', item.data.length)
-                      
-                      
                       return (
                         <tr key={index}>
                           <td className="text-left"></td>
-                          <td className="text-left">
-                            {item.province}
-                          </td>
+                          <td className="text-left">{item.province}</td>
                           {item.data.map((day, dayIndex) => (
                             <td
                               key={dayIndex}
@@ -358,9 +350,7 @@ function TableMobiAgri(props) {
                               className="text-center p-0"
                             ></td>
                           ))}
-                          <td className="text-right">
-                           {quantity}
-                          </td>
+                          <td className="text-right">{quantity}</td>
                         </tr>
                       );
                     })}
