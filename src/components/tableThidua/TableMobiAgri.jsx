@@ -355,7 +355,7 @@ function TableMobiAgri(props) {
                       );
                     })}
 
-                  {/* <tr>
+                  <tr>
                     <td className="text-left title-sub2">3.2</td>
                     <td colSpan={41} className="text-left title-sub2">
                       Doanh thu tập TB PTM Platform Agri
@@ -404,7 +404,7 @@ function TableMobiAgri(props) {
                           </td>
                         </tr>
                       );
-                    })} */}
+                    })}
                 </tbody>
               </table>
             </div>
