@@ -384,13 +384,10 @@ function TableMobiAgri(props) {
                             </td>
                           ))}
                           {Array.from({
-                            length: 41 - objectProvince.data.length,
+                            length: 39 - objectProvince.data.length,
                           }).map((_, i) => (
                             <td
                               key={objectProvince.data.length + i}
-                              // className={
-                              //   i + 8 <= visibleColumns ? "text-right" : "hiden-colum"
-                              // }
                               className="text-center p-0"
                             ></td>
                           ))}
