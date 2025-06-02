@@ -14,6 +14,20 @@ import {
   counterAgriQuantityPYE,
   counterAgriQuantityDNO,
   counterAgriQuantityKON,
+  counterSumAgriDthu,
+  counterAgriDthuKHO,
+  counterAgriDthuDLA,
+  counterAgriDthuGLA,
+  counterAgriDthuPYE,
+  counterAgriDthuDNO,
+  counterAgriDthuKON,
+  counterSumM2MQuantity,
+  counterM2MQuantityKHO,
+  counterM2MQuantityDLA,
+  counterM2MQuantityGLA,
+  counterM2MQuantityPYE,
+  counterM2MQuantityDNO,
+  counterM2MQuantityKON,
 } from "../../lib/states/counter";
 
 import { useEffect, useState } from "react";
@@ -40,15 +54,40 @@ export function TableSum(props) {
     useRecoilState(counterAgriQuantityKON);
   const [arrayPercentQuantityAgri, setArrayPercentQuantityAgri] = useState([]);
 
+  const [counterLocalSumAgriDthu, setCounterLocalSumAgriDthu] =
+    useRecoilState(counterSumAgriDthu);
+  const [counterLocalAgriDthuKHO, setCounterLocalAgriDthuKHO] =
+    useRecoilState(counterAgriDthuKHO);
+  const [counterLocalAgriDthuDLA, setCounterLocalAgriDthuDLA] =
+    useRecoilState(counterAgriDthuDLA);
+  const [counterLocalAgriDthuGLA, setCounterLocalAgriDthuGLA] =
+    useRecoilState(counterAgriDthuGLA);
+  const [counterLocalAgriDthuPYE, setCounterLocalAgriDthuPYE] =
+    useRecoilState(counterAgriDthuPYE);
+  const [counterLocalAgriDthuDNO, setCounterLocalAgriDthuDNO] =
+    useRecoilState(counterAgriDthuDNO);
+  const [counterLocalAgriDthuKON, setCounterLocalAgriDthuKON] =
+    useRecoilState(counterAgriDthuKON);
+  const [arrayPercentDthuAgri, setArrayPercentDthuAgri] = useState([]);
+
+
+//    const [counterLocalSumM2MQuantity, setCounterLocalSumM2MQuantity] =
+//     useRecoilState(counterSumM2MQuantity);
+//   const [counterLocalM2MQuantityKHO, setCounterLocalM2MQuantityKHO] =
+//     useRecoilState(counterM2MQuantityKHO);
+//   const [counterLocalM2MQuantityDLA, setCounterLocalM2MQuantityDLA] =
+//     useRecoilState(counterM2MQuantityDLA);
+//   const [counterLocalM2MQuantityGLA, setCounterLocalM2MQuantityGLA] =
+//     useRecoilState(counterM2MQuantityGLA);
+//   const [counterLocalM2MQuantityPYE, setCounterLocalM2MQuantityPYE] =
+//     useRecoilState(counterM2MQuantityPYE);
+//   const [counterLocalM2MQuantityDNO, setCounterLocalM2MQuantityDNO] =
+//     useRecoilState(counterM2MQuantityDNO);
+//   const [counterLocalM2MQuantityKON, setCounterLocalM2MQuantityKON] =
+//     useRecoilState(counterM2MQuantityKON);
+//   const [arrayPercentQuantityM2M, setArrayPercentQuantityM2M] = useState([]);
+
   useEffect(() => {
-    // console.log(
-    //   "check",
-    //   counterLocalAgriQuantityKHO,
-    //   kpiData.AGRI_SL[0].data,
-    //   parseFloat(
-    //     (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data
-    //   ).toFixed(2)
-    // );
     if (
       counterLocalAgriQuantityKHO ||
       counterLocalAgriQuantityDLA ||
@@ -85,6 +124,45 @@ export function TableSum(props) {
     counterLocalAgriQuantityPYE,
     counterLocalAgriQuantityDNO,
     counterLocalAgriQuantityKON,
+  ]);
+
+  useEffect(() => {
+    if (
+      counterLocalAgriDthuKHO ||
+      counterLocalAgriDthuDLA ||
+      counterLocalAgriDthuGLA ||
+      counterLocalAgriDthuPYE ||
+      counterLocalAgriDthuDNO ||
+      counterLocalAgriDthuKON
+    ) {
+      setArrayPercentDthuAgri([
+        parseFloat(
+          (counterLocalAgriDthuKHO * 100) / kpiData.AGRI_DTHU[0].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriDthuDLA * 100) / kpiData.AGRI_DTHU[1].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriDthuGLA * 100) / kpiData.AGRI_DTHU[2].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriDthuPYE * 100) / kpiData.AGRI_DTHU[3].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriDthuDNO * 100) / kpiData.AGRI_DTHU[4].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalAgriDthuKON * 100) / kpiData.AGRI_DTHU[5].data
+        ).toFixed(2),
+      ]);
+    }
+  }, [
+    counterLocalAgriDthuKHO,
+    counterLocalAgriDthuDLA,
+    counterLocalAgriDthuGLA,
+    counterLocalAgriDthuPYE,
+    counterLocalAgriDthuDNO,
+    counterLocalAgriDthuKON,
   ]);
   const [isSticky, setisSticky] = useState(false);
   const handleSticky = () => {
@@ -138,7 +216,7 @@ export function TableSum(props) {
                   {kpiData && kpiData.CLOUD[i] && kpiData.CLOUD[i].data}
                 </td>
               ))}
-              <td className='text-right'>{sumPlanCloud}</td>
+              <td className="text-right">{sumPlanCloud}</td>
             </tr>
             <tr>
               <td></td>
@@ -437,25 +515,80 @@ export function TableSum(props) {
                     : ""}
                 </td>
               ))}
-              <td>{sumAgriDthu / 1000000}</td>
+              <td className="text-right">{sumAgriDthu / 1000000}</td>
             </tr>
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
-              {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-right"></td>
-              ))}
+              <td></td>
+              <td className="text-right">
+                {counterLocalAgriDthuKHO / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalAgriDthuDLA / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalAgriDthuGLA / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalAgriDthuPYE / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalAgriDthuDNO / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalAgriDthuKON / 1000000}
+              </td>
+              <td className="text-right">
+                {counterLocalSumAgriDthu / 1000000}
+              </td>
             </tr>
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
-              {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-right"></td>
-              ))}
+              <td></td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuKHO * 100) / kpiData.AGRI_DTHU[0].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuDLA * 100) / kpiData.AGRI_DTHU[1].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuGLA * 100) / kpiData.AGRI_DTHU[2].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuPYE * 100) / kpiData.AGRI_DTHU[3].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuDNO * 100) / kpiData.AGRI_DTHU[4].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalAgriDthuKON * 100) / kpiData.AGRI_DTHU[5].data
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalSumAgriDthu * 100) / sumAgriDthu
+                ).toFixed(2)}
+                <span style={{ fontStyle: "italic" }}>%</span>
+              </td>
             </tr>
             <tr>
               <td></td>
@@ -486,7 +619,7 @@ export function TableSum(props) {
                   {kpiData && kpiData.M2M[i] && kpiData.M2M[i].data}
                 </td>
               ))}
-              <td>{sumM2MQuantity}</td>
+              <td className="text-right">{sumM2MQuantity}</td>
             </tr>
             <tr>
               <td></td>

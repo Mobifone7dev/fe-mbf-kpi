@@ -6,15 +6,75 @@ import { dataRawKpi } from "../../lib/rawData";
 import { convertIndexToDateM2M ,formatCurrencyVND} from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
-
+import { useRecoilState } from "recoil";
+import {
+  counterSumM2MQuantity,
+  counterM2MQuantityKHO,
+  counterM2MQuantityDLA,
+  counterM2MQuantityGLA,
+  counterM2MQuantityPYE,
+  counterM2MQuantityDNO,
+  counterM2MQuantityKON,
+ 
+} from "../../lib/states/counter";
 function TablePTMM2M(props) {
   const [loadingM2M, setLoadingM2M] = useState(true);
   const [dataQuantityM2M, setDataQuantityM2M] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
 
+    const [counterLocalSumM2MQuantity, setCounterLocalSumM2MQuantity] =
+      useRecoilState(counterSumM2MQuantity);
+    const [counterLocalM2MQuantityKHO, setCounterLocalM2MQuantityKHO] =
+      useRecoilState(counterM2MQuantityKHO);
+    const [counterLocalM2MQuantityDLA, setCounterLocalM2MQuantityDLA] =
+      useRecoilState(counterM2MQuantityDLA);
+    const [counterLocalM2MQuantityGLA, setCounterLocalM2MQuantityGLA] =
+      useRecoilState(counterM2MQuantityGLA);
+      const [counterLocalM2MQuantityPYE, setCounterLocalM2MQuantityPYE] =
+      useRecoilState(counterM2MQuantityPYE);
+      const [counterLocalM2MQuantityDNO, setCounterLocalM2MQuantityDNO] =
+      useRecoilState(counterM2MQuantityDNO);
+      const [counterLocalM2MQuantityKON, setCounterLocalM2MQuantityKON] =
+      useRecoilState(counterM2MQuantityKON);
+
   useEffect(() => {
     getDataM2M();
   }, []);
+  useEffect(()=>{
+
+     let sumQuantity = 0;
+    dataQuantityM2M &&
+      dataQuantityM2M.length > 0 &&
+      dataQuantityM2M.map((item, index) => {
+        const objectProvince = item;
+        const quantity = objectProvince.data.reduce(
+          (acc, curr) => acc + curr.QUANTITY ?? 0,
+          0
+        );
+        if (objectProvince.province == "KHO") {
+          setCounterLocalM2MQuantityKHO(quantity);
+        }
+        if (objectProvince.province == "DLA") {
+          setCounterLocalM2MQuantityDLA(quantity);
+        }
+        if (objectProvince.province == "GLA") {
+          setCounterLocalM2MQuantityGLA(quantity);
+        }
+        if (objectProvince.province == "PYE") {
+          setCounterLocalM2MQuantityPYE(quantity);
+        }
+         if (objectProvince.province == "DNO") {
+          setCounterLocalM2MQuantityDNO(quantity);
+        }
+         if (objectProvince.province == "KON") {
+          setCounterLocalM2MQuantityKON(quantity);
+        }
+
+        sumQuantity += quantity;
+      });
+
+    setCounterLocalSumM2MQuantity(sumQuantity);
+  },[dataQuantityM2M])
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;

@@ -15,6 +15,13 @@ import {
   counterAgriQuantityPYE,
   counterAgriQuantityDNO,
   counterAgriQuantityKON,
+  counterSumAgriDthu,
+  counterAgriDthuKHO,
+  counterAgriDthuDLA,
+  counterAgriDthuGLA,
+  counterAgriDthuPYE,
+  counterAgriDthuDNO,
+  counterAgriDthuKON,
 } from "../../lib/states/counter";
 
 function TableMobiAgri(props) {
@@ -23,20 +30,35 @@ function TableMobiAgri(props) {
   const [dataQuantityAgri, setDataQuantityAgri] = useState([]);
   const [dataDthuAgri, setDataDthuAgri] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
-  const [counterLocalSumAgriQuantity, setCounteLocalSumArgriQuantity] =
+  const [counterLocalSumAgriQuantity, setCounterLocalSumAgriQuantity] =
     useRecoilState(counterSumAgriQuantity);
-  const [counterLocalAgriQuantityKHO, setCounteLocalArgriQuantityKHO] =
+  const [counterLocalAgriQuantityKHO, setCounterLocalAgriQuantityKHO] =
     useRecoilState(counterAgriQuantityKHO);
-  const [counterLocalAgriQuantityDLA, setCounteLocalArgriQuantityDLA] =
+  const [counterLocalAgriQuantityDLA, setCounterLocalAgriQuantityDLA] =
     useRecoilState(counterAgriQuantityDLA);
-  const [counterLocalAgriQuantityGLA, setCounteLocalArgriQuantityGLA] =
+  const [counterLocalAgriQuantityGLA, setCounterLocalAgriQuantityGLA] =
     useRecoilState(counterAgriQuantityGLA);
-    const [counterLocalAgriQuantityPYE, setCounteLocalArgriQuantityPYE] =
+    const [counterLocalAgriQuantityPYE, setCounterLocalAgriQuantityPYE] =
     useRecoilState(counterAgriQuantityPYE);
-    const [counterLocalAgriQuantityDNO, setCounteLocalArgriQuantityDNO] =
+    const [counterLocalAgriQuantityDNO, setCounterLocalAgriQuantityDNO] =
     useRecoilState(counterAgriQuantityDNO);
-    const [counterLocalAgriQuantityKON, setCounteLocalArgriQuantityKON] =
+    const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
     useRecoilState(counterAgriQuantityKON);
+
+    const [counterLocalSumAgriDthu, setCounterLocalSumAgriDthu] =
+    useRecoilState(counterSumAgriDthu);
+  const [counterLocalAgriDthuKHO, setCounterLocalAgriDthuKHO] =
+    useRecoilState(counterAgriDthuKHO);
+  const [counterLocalAgriDthuDLA, setCounterLocalAgriDthuDLA] =
+    useRecoilState(counterAgriDthuDLA);
+  const [counterLocalAgriDthuGLA, setCounterLocalAgriDthuGLA] =
+    useRecoilState(counterAgriDthuGLA);
+    const [counterLocalAgriDthuPYE, setCounterLocalAgriDthuPYE] =
+    useRecoilState(counterAgriDthuPYE);
+    const [counterLocalAgriDthuDNO, setCounterLocalAgriDthuDNO] =
+    useRecoilState(counterAgriDthuDNO);
+    const [counterLocalAgriDthuKON, setCounterLocalAgriDthuKON] =
+    useRecoilState(counterAgriDthuKON);
   useEffect(() => {
     getDataAgri();
   }, []);
@@ -51,29 +73,62 @@ function TableMobiAgri(props) {
           0
         );
         if (objectProvince.province == "KHO") {
-          setCounteLocalArgriQuantityKHO(quantity);
+          setCounterLocalAgriQuantityKHO(quantity);
         }
         if (objectProvince.province == "DLA") {
-          setCounteLocalArgriQuantityDLA(quantity);
+          setCounterLocalAgriQuantityDLA(quantity);
         }
         if (objectProvince.province == "GLA") {
-          setCounteLocalArgriQuantityGLA(quantity);
+          setCounterLocalAgriQuantityGLA(quantity);
         }
         if (objectProvince.province == "PYE") {
-          setCounteLocalArgriQuantityPYE(quantity);
+          setCounterLocalAgriQuantityPYE(quantity);
         }
          if (objectProvince.province == "DNO") {
-          setCounteLocalArgriQuantityDNO(quantity);
+          setCounterLocalAgriQuantityDNO(quantity);
         }
          if (objectProvince.province == "KON") {
-          setCounteLocalArgriQuantityKON(quantity);
+          setCounterLocalAgriQuantityKON(quantity);
         }
 
         sumQuantity += quantity;
       });
 
-    setCounteLocalSumArgriQuantity(sumQuantity);
-  }, [dataQuantityAgri]);
+    setCounterLocalSumAgriQuantity(sumQuantity);
+
+    let sumDthu = 0;
+    dataDthuAgri &&
+      dataDthuAgri.length > 0 &&
+      dataDthuAgri.map((item, index) => {
+        const objectProvince = item;
+        const dt = objectProvince.data.reduce(
+          (acc, curr) => acc + curr.DT ?? 0,
+          0
+        );
+        if (objectProvince.province == "KHO") {
+          setCounterLocalAgriDthuKHO(dt);
+        }
+        if (objectProvince.province == "DLA") {
+          setCounterLocalAgriDthuDLA(dt);
+        }
+        if (objectProvince.province == "GLA") {
+          setCounterLocalAgriDthuGLA(dt);
+        }
+        if (objectProvince.province == "PYE") {
+          setCounterLocalAgriDthuPYE(dt);
+        }
+         if (objectProvince.province == "DNO") {
+          setCounterLocalAgriDthuDNO(dt);
+        }
+         if (objectProvince.province == "KON") {
+          setCounterLocalAgriDthuKON(dt);
+        }
+
+        sumDthu += dt;
+      });
+
+    setCounterLocalSumAgriDthu(sumDthu);
+  }, [dataQuantityAgri, dataDthuAgri]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -233,7 +288,7 @@ function TableMobiAgri(props) {
                   </tr>
                   <tr>
                     {Array.from({
-                      length: 39,
+                      length: 40,
                     }).map((_, i) => (
                       <th
                         key={i}
@@ -263,18 +318,24 @@ function TableMobiAgri(props) {
                   {dataQuantityAgri &&
                     dataQuantityAgri.length > 0 &&
                     dataQuantityAgri.map((item, index) => {
-                      const objectProvince = dataQuantityAgri[index];
-                      const quantity = objectProvince.data.reduce(
+                      const quantity = item.data.reduce(
                         (acc, curr) => acc + curr.QUANTITY ?? 0,
                         0
                       );
+                      item.data.map((o)=>{
+                        console.log(o.QUANTITY)
+
+                      })
+                      // console.log('lenght', item.data.length)
+                      
+                      
                       return (
                         <tr key={index}>
                           <td className="text-left"></td>
                           <td className="text-left">
-                            {objectProvince.province}
+                            {item.province}
                           </td>
-                          {objectProvince.data.map((day, dayIndex) => (
+                          {item.data.map((day, dayIndex) => (
                             <td
                               key={dayIndex}
                               className={
@@ -287,10 +348,10 @@ function TableMobiAgri(props) {
                             </td>
                           ))}
                           {Array.from({
-                            length: 39 - objectProvince.data.length,
+                            length: 40 - item.data.length,
                           }).map((_, i) => (
                             <td
-                              key={objectProvince.data.length + i}
+                              key={item.data.length + i}
                               //   className={
                               //     i + 5 <= visibleColumns ? "text-right" : "d-none"
                               //   }
@@ -298,10 +359,7 @@ function TableMobiAgri(props) {
                             ></td>
                           ))}
                           <td className="text-right">
-                            {objectProvince.data.reduce(
-                              (acc, curr) => acc + curr.QUANTITY ?? 0,
-                              0
-                            )}
+                           {quantity}
                           </td>
                         </tr>
                       );
@@ -336,7 +394,7 @@ function TableMobiAgri(props) {
                             </td>
                           ))}
                           {Array.from({
-                            length: 39 - objectProvince.data.length,
+                            length: 40 - objectProvince.data.length,
                           }).map((_, i) => (
                             <td
                               key={objectProvince.data.length + i}
