@@ -117,3 +117,58 @@ export const counterCloudDthuKON = atom({
   default: 0,          // initial value
 })
 
+
+export const counterCloudDthuKHOT4 = atom({
+  key: 'counterCloudDthuKHOT4', // unique ID
+  default: 46200000,          // initial value
+})
+export const counterCloudDthuDLAT4 = atom({
+  key: 'counterCloudDthuDLAT4', // unique ID
+  default: 65300000,          // initial value
+})
+
+export const counterCloudDthuGLAT4 = atom({
+  key: 'counterCloudDthuGLAT4', // unique ID
+  default: 70000000,          // initial value
+})
+export const counterCloudDthuPYET4 = atom({
+  key: 'counterCloudDthuPYET4', // unique ID
+  default: 60000000,          // initial value
+})
+export const counterCloudDthuDNOT4 = atom({
+  key: 'counterCloudDthuDNOT4', // unique ID
+  default: 122300000,          // initial value
+})
+export const counterCloudDthuKONT4 = atom({
+  key: 'counterCloudDthuKONT4', // unique ID
+  default: 44500000,          // initial value
+})
+
+export const counterCloudDthuKHOT5 = atom({
+  key: 'counterCloudDthuKHOT5', // unique ID
+  default: 53600000,          // initial value
+})
+
+export const counterCloudDthuDLAT5 = atom({
+  key: 'counterCloudDthuDLAT5', // unique ID
+  default: 78300000,          // initial value
+})
+
+export const counterCloudDthuGLAT5 = atom({
+  key: 'counterCloudDthuGLAT5', // unique ID
+  default: 70500000,          // initial value
+})
+
+export const counterCloudDthuPYET5 = atom({
+  key: 'counterCloudDthuPYET5', // unique ID
+  default: 30700000,          // initial value
+})
+
+export const counterCloudDthuDNOT5 = atom({
+  key: 'counterCloudDthuDNOT5', // unique ID
+  default: 24200000,          // initial value
+})
+export const counterCloudDthuKONT5 = atom({
+  key: 'counterCloudDthuKONT5', // unique ID
+  default: 44700000,          // initial value
+})

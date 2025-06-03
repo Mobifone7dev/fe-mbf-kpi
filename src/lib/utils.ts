@@ -273,65 +273,65 @@ export const convertIndexToDateM2M = (index: number) => {
 export const convertIndexToDateCloud = (index: number) => {
   switch (index) {
     
-    case 1:
+    case 0:
       return "01/06";
-    case 2:
+    case 1:
       return "02/06";
-    case 3:
+    case 2:
       return "03/06";
-    case 4:
+    case 3:
       return "04/06";
-    case 5:
+    case 4:
       return "05/06";
-    case 6:
+    case 5:
       return "06/06";
-    case 7:
+    case 6:
       return "07/06";
-    case 8:
+    case 7:
       return "08/06";
-    case 9:
+    case 8:
       return "09/06";
-    case 10:
+    case 9:
       return "10/06";
-    case 11:
+    case 10:
       return "11/06";
-    case 12:
+    case 11:
       return "12/06";
-    case 13:
+    case 12:
       return "13/06";
-    case 14:
+    case 13:
       return "14/06";
-    case 15:
+    case 14:
       return "15/06";
-    case 16:
+    case 15:
       return "16/06";
-    case 17:
+    case 16:
       return "17/06";
-    case 18:
+    case 17:
       return "18/06";
-    case 19:
+    case 18:
       return "19/06";
-    case 20:
+    case 19:
       return "20/06";
-    case 21:
+    case 20:
       return "21/06";
-    case 22:
+    case 21:
       return "22/06";
-    case 23:
+    case 22:
       return "23/06";
-    case 24:
+    case 23:
       return "24/06";
-    case 25:
+    case 24:
       return "25/06";
-    case 26:
+    case 25:
       return "26/06";
-    case 27:
+    case 26:
       return "27/06";
-    case 28:
+    case 27:
       return "28/06";
-    case 29:
+    case 28:
       return "29/06";
-    case 30:
+    case 29:
       return "30/06";
     default:
       return ""

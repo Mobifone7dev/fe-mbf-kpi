@@ -5,15 +5,17 @@ import { useEffect, useState, useRef } from "react";
 import { DatePickerField } from "../../components/widgets/datePickers/DatePickerField";
 import * as Yup from "yup";
 import moment from "moment";
-import { ErrorMessage, Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik, Field } from "formik";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "react-bootstrap/Button";
 import CustomDateInput from "../../components/widgets/datePickers/CustomDateInput";
 import DatePicker from "react-datepicker";
+import { formatDate } from "date-fns";
+const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 
 const INIT_VALUES = {
   date: new Date(),
-  amountKHO: 0,
+  amountKHO: 15,
   amountDLA: 0,
   amountGLA: 0,
   amountPYE: 0,
@@ -26,12 +28,14 @@ export function FormCloud(props) {
   const [initValues, setInitValues] = useState(INIT_VALUES);
   const formSchema = Yup.object().shape({});
   const [loading, setLoading] = useState(false);
+  const formikRef = useRef();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setWidthWindow(window.innerWidth);
     }
   }, []);
+  
   useEffect(() => {
     setShow(props.show);
   }, [props.show]);
@@ -43,7 +47,6 @@ export function FormCloud(props) {
   };
   const reset = () => {};
 
-  const handleSubmit = () => {};
   return (
     <Modal
       size={widthWindow > 768 ? "md" : "sm"}
@@ -54,18 +57,99 @@ export function FormCloud(props) {
       onHide={() => handleClose(false)}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Thêm doanh thu Cloud</Modal.Title>
+        <Modal.Title>Thêm doanh thu Cloud(VND)</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Formik
           enableReinitialize={true}
           initialValues={initValues}
+                  innerRef={formikRef}
           validationSchema={formSchema}
           onSubmit={async (values, { resetForm }) => {
             // setInitValues({
             //   date: values.date,
             //   amountKHO: values.amountKHO
             // });
+            const {
+              date,
+              amountKHO,
+              amountDLA,
+              amountGLA,
+              amountPYE,
+              amountDNO,
+              amountKON,
+            } = values;
+            if (
+              date !== undefined &&
+              amountKHO !== undefined &&
+              amountDLA !== undefined &&
+              amountGLA !== undefined &&
+              amountPYE !== undefined &&
+              amountDNO !== undefined &&
+              amountKON !== undefined
+            ) {
+              const formattedDate = `${String(date.getDate()).padStart(
+                2,
+                "0"
+              )}-${String(date.getMonth() + 1).padStart(
+                2,
+                "0"
+              )}-${date.getFullYear()}`;
+
+              const kpiList = [
+                {
+                  province: "KHO",
+                  amount: amountKHO,
+                  date: formattedDate,
+                },
+                {
+                  province: "DLA",
+                  amount: amountDLA,
+                  date: formattedDate,
+                },
+                {
+                  province: "GLA",
+                  amount: amountGLA,
+                  date: formattedDate,
+                },
+                {
+                  province: "PYE",
+                  amount: amountPYE,
+                  date: formattedDate,
+                },
+                {
+                  province: "DNO",
+                  amount: amountDNO,
+                  date: formattedDate,
+                },
+                {
+                  province: "KON",
+                  amount: amountKON,
+                  date: formattedDate,
+                },
+              ];
+              try {
+                setLoading(true);
+
+                const response = await fetch(
+                  `${API_URL}/dashboard-thidua/dthu-thidua-cloud`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ kpiList: kpiList }),
+                  } // Replace with your actual API endpoint
+                );
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                const result = await response.json();
+                console.log("result",result)
+              } catch (error) {
+                throw new Error("error", error);
+              }
+            }
           }}
         >
           {(formikProps) => {
@@ -82,7 +166,7 @@ export function FormCloud(props) {
                       </label>
 
                       <DatePickerField
-                        showMonthYearPicker={true}
+                        showMonthYearPicker={false}
                         name={`date`}
                         dateFormat="dd/MM/yyyy"
                         disabled={false}
@@ -96,105 +180,98 @@ export function FormCloud(props) {
                       ></DatePickerField>
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountKHO"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     KHO:
+                        KHO:
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={`amountKHO`}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountKHO: e,
-                          })
-                        }
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountDLA"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     DLA:
+                        DLA:
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={"amountDLA"}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountDLA: e,
-                          })
-                        }
+                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountGLA"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     GLA:
+                        GLA:
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={"amountGLA"}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountGLA: e,
-                          })
-                        }
+                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountPYE"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     PYE:
+                        PYE :
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={"amountPYE"}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountPYE: e,
-                          })
-                        }
+                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountDNO"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     DNO:
+                        DNO:
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={"amountDNO"}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountDNO: e,
-                          })
-                        }
+                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
-                      <label className="form-label fw-bold me-2 pt-2" htmlFor="amount">
+                      <label
+                        className="form-label fw-bold me-2 pt-2"
+                        htmlFor="amountKON"
+                        style={{ minWidth: "50px" }}
+                      >
                         {" "}
-                     KON:
+                        KON:
                       </label>
-                      <input
+                      <Field
                         className="form-control"
                         name={"amountKON"}
                         type="number"
-                        onChange={(e) =>
-                          setInitValues({
-                            ...initValues,
-                            amountKON: e,
-                          })
-                        }
+                      
                       />
                     </div>
                   </div>
@@ -213,7 +290,9 @@ export function FormCloud(props) {
           >
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={()=>{
+            formikRef.current.handleSubmit()
+          }}>
             {loading ? "Saving ..." : "Save"}
           </Button>
         </div>

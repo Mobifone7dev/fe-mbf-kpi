@@ -28,6 +28,25 @@ import {
   counterM2MQuantityPYE,
   counterM2MQuantityDNO,
   counterM2MQuantityKON,
+  counterSumCloudDthu,
+  counterCloudDthuKHO,
+  counterCloudDthuDLA,
+  counterCloudDthuGLA,
+  counterCloudDthuPYE,
+  counterCloudDthuDNO,
+  counterCloudDthuKON,
+  counterCloudDthuKHOT4,
+  counterCloudDthuDLAT4,
+  counterCloudDthuGLAT4,
+  counterCloudDthuPYET4,
+  counterCloudDthuDNOT4,
+  counterCloudDthuKONT4,
+  counterCloudDthuKHOT5,
+  counterCloudDthuDLAT5,
+  counterCloudDthuGLAT5,
+  counterCloudDthuPYET5,
+  counterCloudDthuDNOT5,
+  counterCloudDthuKONT5,
 } from "../../lib/states/counter";
 
 import { useEffect, useState } from "react";
@@ -86,6 +105,48 @@ export function TableSum(props) {
     useRecoilState(counterM2MQuantityKON);
   const [arrayPercentQuantityM2M, setArrayPercentQuantityM2M] = useState([]);
   const [arrayPercentAgriAvg, setArrayPercentAgriAvg] = useState([]);
+
+  const [counterLocalSumCloudDthu, setCounterLocalSumCloudDthu] =
+    useRecoilState(counterSumCloudDthu);
+  const [counterLocalCloudDthuKHO, setCounterLocalCloudDthuKHO] =
+    useRecoilState(counterCloudDthuKHO);
+  const [counterLocalCloudDthuDLA, setCounterLocalCloudDthuDLA] =
+    useRecoilState(counterCloudDthuDLA);
+  const [counterLocalCloudDthuGLA, setCounterLocalCloudDthuGLA] =
+    useRecoilState(counterCloudDthuGLA);
+  const [counterLocalCloudDthuPYE, setCounterLocalCloudDthuPYE] =
+    useRecoilState(counterCloudDthuPYE);
+  const [counterLocalCloudDthuDNO, setCounterLocalCloudDthuDNO] =
+    useRecoilState(counterCloudDthuDNO);
+  const [counterLocalCloudDthuKON, setCounterLocalCloudDthuKON] =
+    useRecoilState(counterCloudDthuKON);
+  const [arrayPercentDthuCloud, setArrayPercentDthuCloud] = useState([]);
+
+  const [counterLocalCloudDthuKHOT4, setCounterLocalCloudDthuKHOT4] =
+    useRecoilState(counterCloudDthuKHOT4);
+  const [counterLocalCloudDthuDLAT4, setCounterLocalCloudDthuDLAT4] =
+    useRecoilState(counterCloudDthuDLAT4);
+  const [counterLocalCloudDthuGLAT4, setCounterLocalCloudDthuGLAT4] =
+    useRecoilState(counterCloudDthuGLAT4);
+  const [counterLocalCloudDthuPYET4, setCounterLocalCloudDthuPYET4] =
+    useRecoilState(counterCloudDthuPYET4);
+  const [counterLocalCloudDthuDNOT4, setCounterLocalCloudDthuDNOT4] =
+    useRecoilState(counterCloudDthuDNOT4);
+  const [counterLocalCloudDthuKONT4, setCounterLocalCloudDthuKONT4] =
+    useRecoilState(counterCloudDthuKONT4);
+
+  const [counterLocalCloudDthuKHOT5, setCounterLocalCloudDthuKHOT5] =
+    useRecoilState(counterCloudDthuKHOT5);
+  const [counterLocalCloudDthuDLAT5, setCounterLocalCloudDthuDLAT5] =
+    useRecoilState(counterCloudDthuDLAT5);
+  const [counterLocalCloudDthuGLAT5, setCounterLocalCloudDthuGLAT5] =
+    useRecoilState(counterCloudDthuGLAT5);
+  const [counterLocalCloudDthuPYET5, setCounterLocalCloudDthuPYET5] =
+    useRecoilState(counterCloudDthuPYET5);
+  const [counterLocalCloudDthuDNOT5, setCounterLocalCloudDthuDNOT5] =
+    useRecoilState(counterCloudDthuDNOT5);
+  const [counterLocalCloudDthuKONT5, setCounterLocalCloudDthuKONT5] =
+    useRecoilState(counterCloudDthuKONT5);
 
   useEffect(() => {
     setArrayPercentAgriAvg([
@@ -173,7 +234,6 @@ export function TableSum(props) {
     counterLocalAgriQuantityDNO,
     counterLocalAgriQuantityKON,
   ]);
- 
 
   useEffect(() => {
     if (
@@ -252,6 +312,45 @@ export function TableSum(props) {
     counterLocalAgriDthuDNO,
     counterLocalAgriDthuKON,
   ]);
+
+  useEffect(() => {
+    if (
+      counterLocalCloudDthuKHO ||
+      counterLocalCloudDthuDLA ||
+      counterLocalCloudDthuGLA ||
+      counterLocalCloudDthuPYE ||
+      counterLocalCloudDthuDNO ||
+      counterLocalCloudDthuKON
+    ) {
+      setArrayPercentDthuCloud([
+        parseFloat(
+          (counterLocalCloudDthuKHO * 100) / kpiData.CLOUD[0].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalCloudDthuDLA * 100) / kpiData.CLOUD[1].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalCloudDthuGLA * 100) / kpiData.CLOUD[2].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalCloudDthuPYE * 100) / kpiData.CLOUD[3].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalCloudDthuDNO * 100) / kpiData.CLOUD[4].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalCloudDthuKON * 100) / kpiData.CLOUD[5].data
+        ).toFixed(2),
+      ]);
+    }
+  }, [
+    counterLocalCloudDthuKHO,
+    counterLocalCloudDthuDLA,
+    counterLocalCloudDthuGLA,
+    counterLocalCloudDthuPYE,
+    counterLocalCloudDthuDNO,
+    counterLocalCloudDthuKON,
+  ]);
   const [isSticky, setisSticky] = useState(false);
   const handleSticky = () => {
     const scrollTop = window.scrollY;
@@ -309,23 +408,125 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
-              {Array.from({
+              <td></td>
+              {/* {Array.from({
                 length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-right"></td>
-              ))}
+              ))} */}
+              <td className="text-right">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuKHO) +
+                    counterLocalCloudDthuKHOT4 +
+                    counterLocalCloudDthuKHOT5) /
+                    1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalCloudDthuDLA) / 1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalCloudDthuGLA) / 1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalCloudDthuPYE) / 1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalCloudDthuDNO) / 1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalCloudDthuKON) / 1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(
+                  parseInt(counterLocalSumCloudDthu) / 1000000
+                ).toFixed(2)}
+              </td>
             </tr>
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
-              {Array.from({
+              <td></td>
+              {/* {Array.from({
                 length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-right"></td>
-              ))}
+              ))} */}
               {/* <td className="text-right text-danger">
                 
+                
               </td> */}
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuKHO) +
+                    counterLocalCloudDthuKHOT4 +
+                    counterLocalCloudDthuKHOT5) /
+                    (kpiData.CLOUD[0].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuDLA) +
+                    counterLocalCloudDthuDLAT4 +
+                    counterLocalCloudDthuDLAT5) /
+                    (kpiData.CLOUD[1].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuGLA) +
+                    counterLocalCloudDthuGLAT4 +
+                    counterLocalCloudDthuGLAT5) /
+                    (kpiData.CLOUD[2].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuPYE) +
+                    counterLocalCloudDthuPYET4 +
+                    counterLocalCloudDthuPYET5) /
+                    (kpiData.CLOUD[3].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuDNO) +
+                    counterLocalCloudDthuDNOT4 +
+                    counterLocalCloudDthuDNOT5) /
+                    (kpiData.CLOUD[4].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuKON) +
+                    counterLocalCloudDthuKONT4 +
+                    counterLocalCloudDthuKONT5) /
+                    (kpiData.CLOUD[5].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalSumCloudDthu / (sumPlanCloud * 1000000)) * 100
+                ).toFixed(2)}
+                <span> %</span>
+              </td>
             </tr>
             <tr>
               <td></td>
