@@ -49,7 +49,6 @@ function TablePTMM2M(props) {
           0
         );
         if (item.province == "KHO") {
-
           setCounterLocalM2MQuantityKHO(quantity);
         }
         if (item.province == "DLA") {
@@ -200,7 +199,7 @@ function TablePTMM2M(props) {
                           i < visibleColumns ? "text-right" : "hiden-colum"
                         }
                       >
-                        {i < visibleColumns ? convertIndexToDateM2M(i):''}
+                        {i < visibleColumns ? convertIndexToDateM2M(i) : ""}
                       </th>
                     ))}
                   </tr>

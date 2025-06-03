@@ -172,3 +172,89 @@ export const counterCloudDthuKONT5 = atom({
   key: 'counterCloudDthuKONT5', // unique ID
   default: 44700000,          // initial value
 })
+
+
+export const counterSumIOTDthu = atom({
+  key: 'counterSumIOTDthu', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuKHO = atom({
+  key: 'counterIOTDthuKHO', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuDLA = atom({
+  key: 'counterIOTDthuDLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuGLA = atom({
+  key: 'counterIOTDthuGLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuPYE = atom({
+  key: 'counterIOTDthuPYE', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuDNO = atom({
+  key: 'counterIOTDthuDNO', // unique ID
+  default: 0,          // initial value
+})
+export const counterIOTDthuKON = atom({
+  key: 'counterIOTDthuKON', // unique ID
+  default: 0,          // initial value
+})
+
+
+export const counterIOTDthuKHOT4 = atom({
+  key: 'counterIOTDthuKHOT4', // unique ID
+  default: 46200000,          // initial value
+})
+export const counterIOTDthuDLAT4 = atom({
+  key: 'counterIOTDthuDLAT4', // unique ID
+  default: 65300000,          // initial value
+})
+
+export const counterIOTDthuGLAT4 = atom({
+  key: 'counterIOTDthuGLAT4', // unique ID
+  default: 70000000,          // initial value
+})
+export const counterIOTDthuPYET4 = atom({
+  key: 'counterIOTDthuPYET4', // unique ID
+  default: 60000000,          // initial value
+})
+export const counterIOTDthuDNOT4 = atom({
+  key: 'counterIOTDthuDNOT4', // unique ID
+  default: 122300000,          // initial value
+})
+export const counterIOTDthuKONT4 = atom({
+  key: 'counterIOTDthuKONT4', // unique ID
+  default: 44500000,          // initial value
+})
+
+export const counterIOTDthuKHOT5 = atom({
+  key: 'counterIOTDthuKHOT5', // unique ID
+  default: 53600000,          // initial value
+})
+
+export const counterIOTDthuDLAT5 = atom({
+  key: 'counterIOTDthuDLAT5', // unique ID
+  default: 78300000,          // initial value
+})
+
+export const counterIOTDthuGLAT5 = atom({
+  key: 'counterIOTDthuGLAT5', // unique ID
+  default: 70500000,          // initial value
+})
+
+export const counterIOTDthuPYET5 = atom({
+  key: 'counterIOTDthuPYET5', // unique ID
+  default: 30700000,          // initial value
+})
+
+export const counterIOTDthuDNOT5 = atom({
+  key: 'counterIOTDthuDNOT5', // unique ID
+  default: 24200000,          // initial value
+})
+export const counterIOTDthuKONT5 = atom({
+  key: 'counterIOTDthuKONT5', // unique ID
+  default: 44700000,          // initial value
+})

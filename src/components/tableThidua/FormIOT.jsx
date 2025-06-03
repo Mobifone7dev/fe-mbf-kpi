@@ -22,7 +22,7 @@ const INIT_VALUES = {
   amountDNO: 0,
   amountKON: 0,
 };
-export function FormCloud(props) {
+export function FormIOT(props) {
   const [show, setShow] = useState(props.show);
   const [widthWindow, setWidthWindow] = useState(0);
   const [initValues, setInitValues] = useState(INIT_VALUES);
@@ -60,7 +60,7 @@ export function FormCloud(props) {
       onHide={() => handleClose(false)}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Thêm doanh thu Cloud(VND)</Modal.Title>
+        <Modal.Title>Thêm doanh thu IOT(VND)</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Formik
@@ -135,7 +135,7 @@ export function FormCloud(props) {
                 setLoading(true);
 
                 const response = await fetch(
-                  `${API_URL}/dashboard-thidua/dthu-thidua-cloud`,
+                  `${API_URL}/dashboard-thidua/dthu-thidua-iot`,
                   {
                     method: "POST",
                     headers: {
@@ -307,4 +307,4 @@ export function FormCloud(props) {
   );
 }
 
-export default FormCloud;
+export default FormIOT;

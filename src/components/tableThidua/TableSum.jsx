@@ -47,6 +47,25 @@ import {
   counterCloudDthuPYET5,
   counterCloudDthuDNOT5,
   counterCloudDthuKONT5,
+  counterSumIOTDthu,
+  counterIOTDthuKHO,
+  counterIOTDthuDLA,
+  counterIOTDthuGLA,
+  counterIOTDthuPYE,
+  counterIOTDthuDNO,
+  counterIOTDthuKON,
+  counterIOTDthuKHOT4,
+  counterIOTDthuDLAT4,
+  counterIOTDthuGLAT4,
+  counterIOTDthuPYET4,
+  counterIOTDthuDNOT4,
+  counterIOTDthuKONT4,
+  counterIOTDthuKHOT5,
+  counterIOTDthuDLAT5,
+  counterIOTDthuGLAT5,
+  counterIOTDthuPYET5,
+  counterIOTDthuDNOT5,
+  counterIOTDthuKONT5,
 } from "../../lib/states/counter";
 
 import { useEffect, useState } from "react";
@@ -71,7 +90,13 @@ export function TableSum(props) {
     useRecoilState(counterAgriQuantityDNO);
   const [counterLocalAgriQuantityKON, setCounterLocalAgriQuantityKON] =
     useRecoilState(counterAgriQuantityKON);
-  const [arrayPercentQuantityAgri, setArrayPercentQuantityAgri] = useState([]);
+  const [arrayPercentQuantityAgri1, setArrayPercentQuantityAgri1] = useState(
+    []
+  );
+
+  const [arrayPercentQuantityAgri2, setArrayPercentQuantityAgri2] = useState(
+    []
+  );
 
   const [counterLocalSumAgriDthu, setCounterLocalSumAgriDthu] =
     useRecoilState(counterSumAgriDthu);
@@ -87,7 +112,8 @@ export function TableSum(props) {
     useRecoilState(counterAgriDthuDNO);
   const [counterLocalAgriDthuKON, setCounterLocalAgriDthuKON] =
     useRecoilState(counterAgriDthuKON);
-  const [arrayPercentDthuAgri, setArrayPercentDthuAgri] = useState([]);
+  const [arrayPercentDthuAgri1, setArrayPercentDthuAgri1] = useState([]);
+  const [arrayPercentDthuAgri2, setArrayPercentDthuAgri2] = useState([]);
 
   const [counterLocalSumM2MQuantity, setCounterLocalSumM2MQuantity] =
     useRecoilState(counterSumM2MQuantity);
@@ -103,8 +129,11 @@ export function TableSum(props) {
     useRecoilState(counterM2MQuantityDNO);
   const [counterLocalM2MQuantityKON, setCounterLocalM2MQuantityKON] =
     useRecoilState(counterM2MQuantityKON);
-  const [arrayPercentQuantityM2M, setArrayPercentQuantityM2M] = useState([]);
-  const [arrayPercentAgriAvg, setArrayPercentAgriAvg] = useState([]);
+  const [arrayPercentQuantityM2M1, setArrayPercentQuantityM2M1] = useState([]);
+  const [arrayPercentQuantityM2M2, setArrayPercentQuantityM2M2] = useState([]);
+
+  const [arrayPercentAgriAvg1, setArrayPercentAgriAvg1] = useState([]);
+  const [arrayPercentAgriAvg2, setArrayPercentAgriAvg2] = useState([]);
 
   const [counterLocalSumCloudDthu, setCounterLocalSumCloudDthu] =
     useRecoilState(counterSumCloudDthu);
@@ -120,7 +149,6 @@ export function TableSum(props) {
     useRecoilState(counterCloudDthuDNO);
   const [counterLocalCloudDthuKON, setCounterLocalCloudDthuKON] =
     useRecoilState(counterCloudDthuKON);
-  const [arrayPercentDthuCloud, setArrayPercentDthuCloud] = useState([]);
 
   const [counterLocalCloudDthuKHOT4, setCounterLocalCloudDthuKHOT4] =
     useRecoilState(counterCloudDthuKHOT4);
@@ -148,8 +176,55 @@ export function TableSum(props) {
   const [counterLocalCloudDthuKONT5, setCounterLocalCloudDthuKONT5] =
     useRecoilState(counterCloudDthuKONT5);
 
+  const [arrayPercentCloud1, setArrayPercentCloud1] = useState([]);
+  const [arrayPercentCloud2, setArrayPercentCloud2] = useState([]);
+
+  const [counterLocalSumIOTDthu, setCounterLocalSumIOTDthu] =
+    useRecoilState(counterSumIOTDthu);
+  const [counterLocalIOTDthuKHO, setCounterLocalIOTDthuKHO] =
+    useRecoilState(counterIOTDthuKHO);
+  const [counterLocalIOTDthuDLA, setCounterLocalIOTDthuDLA] =
+    useRecoilState(counterIOTDthuDLA);
+  const [counterLocalIOTDthuGLA, setCounterLocalIOTDthuGLA] =
+    useRecoilState(counterIOTDthuGLA);
+  const [counterLocalIOTDthuPYE, setCounterLocalIOTDthuPYE] =
+    useRecoilState(counterIOTDthuPYE);
+  const [counterLocalIOTDthuDNO, setCounterLocalIOTDthuDNO] =
+    useRecoilState(counterIOTDthuDNO);
+  const [counterLocalIOTDthuKON, setCounterLocalIOTDthuKON] =
+    useRecoilState(counterIOTDthuKON);
+
+  const [counterLocalIOTDthuKHOT4, setCounterLocalIOTDthuKHOT4] =
+    useRecoilState(counterIOTDthuKHOT4);
+  const [counterLocalIOTDthuDLAT4, setCounterLocalIOTDthuDLAT4] =
+    useRecoilState(counterIOTDthuDLAT4);
+  const [counterLocalIOTDthuGLAT4, setCounterLocalIOTDthuGLAT4] =
+    useRecoilState(counterIOTDthuGLAT4);
+  const [counterLocalIOTDthuPYET4, setCounterLocalIOTDthuPYET4] =
+    useRecoilState(counterIOTDthuPYET4);
+  const [counterLocalIOTDthuDNOT4, setCounterLocalIOTDthuDNOT4] =
+    useRecoilState(counterIOTDthuDNOT4);
+  const [counterLocalIOTDthuKONT4, setCounterLocalIOTDthuKONT4] =
+    useRecoilState(counterIOTDthuKONT4);
+
+  const [counterLocalIOTDthuKHOT5, setCounterLocalIOTDthuKHOT5] =
+    useRecoilState(counterIOTDthuKHOT5);
+  const [counterLocalIOTDthuDLAT5, setCounterLocalIOTDthuDLAT5] =
+    useRecoilState(counterIOTDthuDLAT5);
+  const [counterLocalIOTDthuGLAT5, setCounterLocalIOTDthuGLAT5] =
+    useRecoilState(counterIOTDthuGLAT5);
+  const [counterLocalIOTDthuPYET5, setCounterLocalIOTDthuPYET5] =
+    useRecoilState(counterIOTDthuPYET5);
+  const [counterLocalIOTDthuDNOT5, setCounterLocalIOTDthuDNOT5] =
+    useRecoilState(counterIOTDthuDNOT5);
+  const [counterLocalIOTDthuKONT5, setCounterLocalIOTDthuKONT5] =
+    useRecoilState(counterIOTDthuKONT5);
+
+  const [arrayPercentIOT1, setArrayPercentIOT1] = useState([]);
+  const [arrayPercentIOT2, setArrayPercentIOT2] = useState([]);
+
   useEffect(() => {
-    setArrayPercentAgriAvg([
+    setArrayPercentAgriAvg1([
       parseFloat(
         ((counterLocalAgriDthuKHO * 100) / kpiData.AGRI_DTHU[0].data +
           (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data) /
@@ -165,6 +240,18 @@ export function TableSum(props) {
           (counterLocalAgriQuantityGLA * 100) / kpiData.AGRI_SL[2].data) /
           2
       ).toFixed(2),
+    ]);
+  }, [
+    counterLocalAgriQuantityKHO,
+    counterLocalAgriQuantityDLA,
+    counterLocalAgriQuantityGLA,
+    counterLocalAgriDthuKHO,
+    counterLocalAgriDthuDLA,
+    counterLocalAgriDthuGLA,
+  ]);
+
+  useEffect(() => {
+    setArrayPercentAgriAvg2([
       parseFloat(
         ((counterLocalAgriDthuPYE * 100) / kpiData.AGRI_DTHU[3].data +
           (counterLocalAgriQuantityPYE * 100) / kpiData.AGRI_SL[3].data) /
@@ -182,15 +269,9 @@ export function TableSum(props) {
       ).toFixed(2),
     ]);
   }, [
-    counterLocalAgriQuantityKHO,
-    counterLocalAgriQuantityDLA,
-    counterLocalAgriQuantityGLA,
     counterLocalAgriQuantityPYE,
     counterLocalAgriQuantityDNO,
     counterLocalAgriQuantityKON,
-    counterLocalAgriDthuKHO,
-    counterLocalAgriDthuDLA,
-    counterLocalAgriDthuGLA,
     counterLocalAgriDthuPYE,
     counterLocalAgriDthuDNO,
     counterLocalAgriDthuKON,
@@ -200,12 +281,9 @@ export function TableSum(props) {
     if (
       counterLocalAgriQuantityKHO ||
       counterLocalAgriQuantityDLA ||
-      counterLocalAgriQuantityGLA ||
-      counterLocalAgriQuantityPYE ||
-      counterLocalAgriQuantityDNO ||
-      counterLocalAgriQuantityKON
+      counterLocalAgriQuantityGLA
     ) {
-      setArrayPercentQuantityAgri([
+      setArrayPercentQuantityAgri1([
         parseFloat(
           (counterLocalAgriQuantityKHO * 100) / kpiData.AGRI_SL[0].data
         ).toFixed(2),
@@ -215,6 +293,21 @@ export function TableSum(props) {
         parseFloat(
           (counterLocalAgriQuantityGLA * 100) / kpiData.AGRI_SL[2].data
         ).toFixed(2),
+      ]);
+    }
+  }, [
+    counterLocalAgriQuantityKHO,
+    counterLocalAgriQuantityDLA,
+    counterLocalAgriQuantityGLA,
+  ]);
+
+  useEffect(() => {
+    if (
+      counterLocalAgriQuantityPYE ||
+      counterLocalAgriQuantityDNO ||
+      counterLocalAgriQuantityKON
+    ) {
+      setArrayPercentQuantityAgri2([
         parseFloat(
           (counterLocalAgriQuantityPYE * 100) / kpiData.AGRI_SL[3].data
         ).toFixed(2),
@@ -227,33 +320,17 @@ export function TableSum(props) {
       ]);
     }
   }, [
-    counterLocalAgriQuantityKHO,
-    counterLocalAgriQuantityDLA,
-    counterLocalAgriQuantityGLA,
     counterLocalAgriQuantityPYE,
     counterLocalAgriQuantityDNO,
     counterLocalAgriQuantityKON,
   ]);
-
   useEffect(() => {
     if (
-      counterLocalM2MQuantityKHO ||
-      counterLocalM2MQuantityDLA ||
-      counterLocalM2MQuantityGLA ||
       counterLocalM2MQuantityPYE ||
       counterLocalM2MQuantityDNO ||
       counterLocalM2MQuantityKON
     ) {
-      setArrayPercentQuantityM2M([
-        parseFloat(
-          (counterLocalM2MQuantityKHO * 100) / kpiData.M2M[0].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalM2MQuantityDLA * 100) / kpiData.M2M[1].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalM2MQuantityGLA * 100) / kpiData.M2M[2].data
-        ).toFixed(2),
+      setArrayPercentQuantityM2M2([
         parseFloat(
           (counterLocalM2MQuantityPYE * 100) / kpiData.M2M[3].data
         ).toFixed(2),
@@ -266,9 +343,30 @@ export function TableSum(props) {
       ]);
     }
   }, [
-    counterLocalM2MQuantityKHO,
-    counterLocalM2MQuantityDLA,
-    counterLocalM2MQuantityGLA,
+    counterLocalM2MQuantityPYE,
+    counterLocalM2MQuantityDNO,
+    counterLocalM2MQuantityKON,
+  ]);
+
+  useEffect(() => {
+    if (
+      counterLocalM2MQuantityKHO ||
+      counterLocalM2MQuantityDLA ||
+      counterLocalM2MQuantityGLA
+    ) {
+      setArrayPercentQuantityM2M1([
+        parseFloat(
+          (counterLocalM2MQuantityKHO * 100) / kpiData.M2M[0].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalM2MQuantityDLA * 100) / kpiData.M2M[1].data
+        ).toFixed(2),
+        parseFloat(
+          (counterLocalM2MQuantityGLA * 100) / kpiData.M2M[2].data
+        ).toFixed(2),
+      ]);
+    }
+  }, [
     counterLocalM2MQuantityPYE,
     counterLocalM2MQuantityDNO,
     counterLocalM2MQuantityKON,
@@ -278,12 +376,9 @@ export function TableSum(props) {
     if (
       counterLocalAgriDthuKHO ||
       counterLocalAgriDthuDLA ||
-      counterLocalAgriDthuGLA ||
-      counterLocalAgriDthuPYE ||
-      counterLocalAgriDthuDNO ||
-      counterLocalAgriDthuKON
+      counterLocalAgriDthuGLA
     ) {
-      setArrayPercentDthuAgri([
+      setArrayPercentDthuAgri1([
         parseFloat(
           (counterLocalAgriDthuKHO * 100) / kpiData.AGRI_DTHU[0].data
         ).toFixed(2),
@@ -293,6 +388,21 @@ export function TableSum(props) {
         parseFloat(
           (counterLocalAgriDthuGLA * 100) / kpiData.AGRI_DTHU[2].data
         ).toFixed(2),
+      ]);
+    }
+  }, [
+    counterLocalAgriDthuKHO,
+    counterLocalAgriDthuDLA,
+    counterLocalAgriDthuGLA,
+  ]);
+
+  useEffect(() => {
+    if (
+      counterLocalAgriDthuPYE ||
+      counterLocalAgriDthuDNO ||
+      counterLocalAgriDthuKON
+    ) {
+      setArrayPercentDthuAgri2([
         parseFloat(
           (counterLocalAgriDthuPYE * 100) / kpiData.AGRI_DTHU[3].data
         ).toFixed(2),
@@ -305,52 +415,110 @@ export function TableSum(props) {
       ]);
     }
   }, [
-    counterLocalAgriDthuKHO,
-    counterLocalAgriDthuDLA,
-    counterLocalAgriDthuGLA,
     counterLocalAgriDthuPYE,
     counterLocalAgriDthuDNO,
     counterLocalAgriDthuKON,
   ]);
 
   useEffect(() => {
-    if (
-      counterLocalCloudDthuKHO ||
-      counterLocalCloudDthuDLA ||
-      counterLocalCloudDthuGLA ||
-      counterLocalCloudDthuPYE ||
-      counterLocalCloudDthuDNO ||
-      counterLocalCloudDthuKON
-    ) {
-      setArrayPercentDthuCloud([
-        parseFloat(
-          (counterLocalCloudDthuKHO * 100) / kpiData.CLOUD[0].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalCloudDthuDLA * 100) / kpiData.CLOUD[1].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalCloudDthuGLA * 100) / kpiData.CLOUD[2].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalCloudDthuPYE * 100) / kpiData.CLOUD[3].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalCloudDthuDNO * 100) / kpiData.CLOUD[4].data
-        ).toFixed(2),
-        parseFloat(
-          (counterLocalCloudDthuKON * 100) / kpiData.CLOUD[5].data
-        ).toFixed(2),
-      ]);
-    }
+    setArrayPercentCloud1([
+      parseFloat(
+        (parseInt(counterLocalCloudDthuKHO) +
+          counterLocalCloudDthuKHOT4 +
+          counterLocalCloudDthuKHOT5) /
+          (kpiData.CLOUD[0].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalCloudDthuDLA) +
+          counterLocalCloudDthuDLAT4 +
+          counterLocalCloudDthuDLAT5) /
+          (kpiData.CLOUD[1].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalCloudDthuGLA) +
+          counterLocalCloudDthuGLAT4 +
+          counterLocalCloudDthuGLAT5) /
+          (kpiData.CLOUD[2].data * 1000000)
+      ).toFixed(2) * 100,
+    ]);
   }, [
     counterLocalCloudDthuKHO,
     counterLocalCloudDthuDLA,
     counterLocalCloudDthuGLA,
-    counterLocalCloudDthuPYE,
-    counterLocalCloudDthuDNO,
-    counterLocalCloudDthuKON,
   ]);
+
+  useEffect(() => {
+    setArrayPercentCloud2([
+      parseFloat(
+        (parseInt(counterLocalCloudDthuPYE) +
+          counterLocalCloudDthuPYET4 +
+          counterLocalCloudDthuPYET5) /
+          (kpiData.CLOUD[3].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalCloudDthuDNO) +
+          counterLocalCloudDthuDNOT4 +
+          counterLocalCloudDthuDNOT5) /
+          (kpiData.CLOUD[4].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalCloudDthuKON) +
+          counterLocalCloudDthuKONT4 +
+          counterLocalCloudDthuKONT5) /
+          (kpiData.CLOUD[5].data * 1000000)
+      ).toFixed(2) * 100,
+    ]);
+  }, [
+    counterLocalCloudDthuKHO,
+    counterLocalCloudDthuDLA,
+    counterLocalCloudDthuGLA,
+  ]);
+
+  useEffect(() => {
+    setArrayPercentIOT1([
+      parseFloat(
+        (parseInt(counterLocalIOTDthuKHO) +
+          counterLocalIOTDthuKHOT4 +
+          counterLocalIOTDthuKHOT5) /
+          (kpiData.IOT[0].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalIOTDthuDLA) +
+          counterLocalIOTDthuDLAT4 +
+          counterLocalIOTDthuDLAT5) /
+          (kpiData.IOT[1].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalIOTDthuGLA) +
+          counterLocalIOTDthuGLAT4 +
+          counterLocalIOTDthuGLAT5) /
+          (kpiData.IOT[2].data * 1000000)
+      ).toFixed(2) * 100,
+    ]);
+  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA]);
+
+  useEffect(() => {
+    setArrayPercentIOT2([
+      parseFloat(
+        (parseInt(counterLocalIOTDthuPYE) +
+          counterLocalIOTDthuPYET4 +
+          counterLocalIOTDthuPYET5) /
+          (kpiData.IOT[3].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalIOTDthuDNO) +
+          counterLocalIOTDthuDNOT4 +
+          counterLocalIOTDthuDNOT5) /
+          (kpiData.IOT[4].data * 1000000)
+      ).toFixed(2) * 100,
+      parseFloat(
+        (parseInt(counterLocalIOTDthuKON) +
+          counterLocalIOTDthuKONT4 +
+          counterLocalIOTDthuKONT5) /
+          (kpiData.IOT[5].data * 1000000)
+      ).toFixed(2) * 100,
+    ]);
+  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA]);
   const [isSticky, setisSticky] = useState(false);
   const handleSticky = () => {
     const scrollTop = window.scrollY;
@@ -531,17 +699,81 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Xếp hạng</td>
+              <td></td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud1,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuKHO) +
+                      counterLocalCloudDthuKHOT4 +
+                      counterLocalCloudDthuKHOT5) /
+                      (kpiData.CLOUD[0].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
 
-              {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-right"></td>
-              ))}
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud1,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuDLA) +
+                      counterLocalCloudDthuDLAT4 +
+                      counterLocalCloudDthuDLAT5) /
+                      (kpiData.CLOUD[1].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud1,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuGLA) +
+                      counterLocalCloudDthuGLAT4 +
+                      counterLocalCloudDthuGLAT5) /
+                      (kpiData.CLOUD[2].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud2,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuPYE) +
+                      counterLocalCloudDthuPYET4 +
+                      counterLocalCloudDthuPYET5) /
+                      (kpiData.CLOUD[3].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud2,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuDNO) +
+                      counterLocalCloudDthuDNOT4 +
+                      counterLocalCloudDthuDNOT5) /
+                      (kpiData.CLOUD[4].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCloud2,
+                  parseFloat(
+                    (parseInt(counterLocalCloudDthuKON) +
+                      counterLocalCloudDthuKONT4 +
+                      counterLocalCloudDthuKONT5) /
+                      (kpiData.CLOUD[5].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Doanh thu IoT</td>
-
+              <td>Doanh thu IOT</td>
               {Array.from({ length: 8 }).map((_, i) => (
                 <td key={i} className="text-right"></td>
               ))}
@@ -550,7 +782,6 @@ export function TableSum(props) {
               <td></td>
               <td>Kế hoạch thi đua</td>
               <td style={{ fontStyle: "italic" }}>triệu đồng</td>
-
               {Array.from({
                 length: 6,
               }).map((_, i) => (
@@ -563,30 +794,200 @@ export function TableSum(props) {
             <tr>
               <td></td>
               <td>Lũy kế thực hiện</td>
-              {Array.from({
+              <td></td>
+              {/* {Array.from({
                 length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-right"></td>
-              ))}
+              ))} */}
+              <td className="text-right">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuKHO) +
+                    counterLocalIOTDthuKHOT4 +
+                    counterLocalIOTDthuKHOT5) /
+                    1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalIOTDthuDLA) / 1000000).toFixed(
+                  2
+                )}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalIOTDthuGLA) / 1000000).toFixed(
+                  2
+                )}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalIOTDthuPYE) / 1000000).toFixed(
+                  2
+                )}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalIOTDthuDNO) / 1000000).toFixed(
+                  2
+                )}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalIOTDthuKON) / 1000000).toFixed(
+                  2
+                )}
+              </td>
+              <td className="text-right">
+                {parseFloat(parseInt(counterLocalSumIOTDthu) / 1000000).toFixed(
+                  2
+                )}
+              </td>
             </tr>
             <tr>
               <td></td>
               <td>%THKH thi đua</td>
-
-              {Array.from({
+              <td></td>
+              {/* {Array.from({
                 length: 8,
               }).map((_, i) => (
                 <td key={i} className="text-right"></td>
-              ))}
+              ))} */}
+              {/* <td className="text-right text-danger">
+                
+                
+              </td> */}
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuKHO) +
+                    counterLocalIOTDthuKHOT4 +
+                    counterLocalIOTDthuKHOT5) /
+                    (kpiData.IOT[0].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuDLA) +
+                    counterLocalIOTDthuDLAT4 +
+                    counterLocalIOTDthuDLAT5) /
+                    (kpiData.IOT[1].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuGLA) +
+                    counterLocalIOTDthuGLAT4 +
+                    counterLocalIOTDthuGLAT5) /
+                    (kpiData.IOT[2].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuPYE) +
+                    counterLocalIOTDthuPYET4 +
+                    counterLocalIOTDthuPYET5) /
+                    (kpiData.IOT[3].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuDNO) +
+                    counterLocalIOTDthuDNOT4 +
+                    counterLocalIOTDthuDNOT5) /
+                    (kpiData.IOT[4].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuKON) +
+                    counterLocalIOTDthuKONT4 +
+                    counterLocalIOTDthuKONT5) /
+                    (kpiData.IOT[5].data * 1000000)
+                ).toFixed(2) * 100}
+                <span> %</span>
+              </td>
+              <td className="text-right text-danger">
+                {parseFloat(
+                  (counterLocalSumIOTDthu / (sumPlanIOT * 1000000)) * 100
+                ).toFixed(2)}
+                <span> %</span>
+              </td>
             </tr>
             <tr>
               <td></td>
               <td>Xếp hạng</td>
-              {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-right"></td>
-              ))}
+              <td></td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT1,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuKHO) +
+                      counterLocalIOTDthuKHOT4 +
+                      counterLocalIOTDthuKHOT5) /
+                      (kpiData.IOT[0].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT1,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuDLA) +
+                      counterLocalIOTDthuDLAT4 +
+                      counterLocalIOTDthuDLAT5) /
+                      (kpiData.IOT[1].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT1,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuGLA) +
+                      counterLocalIOTDthuGLAT4 +
+                      counterLocalIOTDthuGLAT5) /
+                      (kpiData.IOT[2].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT2,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuPYE) +
+                      counterLocalIOTDthuPYET4 +
+                      counterLocalIOTDthuPYET5) /
+                      (kpiData.IOT[3].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT2,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuDNO) +
+                      counterLocalIOTDthuDNOT4 +
+                      counterLocalIOTDthuDNOT5) /
+                      (kpiData.IOT[4].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentIOT2,
+                  parseFloat(
+                    (parseInt(counterLocalIOTDthuKON) +
+                      counterLocalIOTDthuKONT4 +
+                      counterLocalIOTDthuKONT5) /
+                      (kpiData.IOT[5].data * 1000000)
+                  ).toFixed(2) * 100
+                )}
+              </td>
             </tr>
             <tr>
               <td>3</td>
@@ -664,7 +1065,7 @@ export function TableSum(props) {
               <td></td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg1,
                   parseFloat(
                     ((counterLocalAgriDthuKHO * 100) /
                       kpiData.AGRI_DTHU[0].data +
@@ -676,7 +1077,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg1,
                   parseFloat(
                     ((counterLocalAgriDthuDLA * 100) /
                       kpiData.AGRI_DTHU[1].data +
@@ -688,7 +1089,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg1,
                   parseFloat(
                     ((counterLocalAgriDthuGLA * 100) /
                       kpiData.AGRI_DTHU[2].data +
@@ -700,7 +1101,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg2,
                   parseFloat(
                     ((counterLocalAgriDthuPYE * 100) /
                       kpiData.AGRI_DTHU[3].data +
@@ -712,7 +1113,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg2,
                   parseFloat(
                     ((counterLocalAgriDthuDNO * 100) /
                       kpiData.AGRI_DTHU[4].data +
@@ -724,7 +1125,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentAgriAvg,
+                  arrayPercentAgriAvg2,
                   parseFloat(
                     ((counterLocalAgriDthuKON * 100) /
                       kpiData.AGRI_DTHU[5].data +
@@ -853,7 +1254,7 @@ export function TableSum(props) {
               <td></td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri1,
                   parseFloat(
                     (counterLocalAgriQuantityKHO * 100) /
                       kpiData.AGRI_SL[0].data
@@ -862,7 +1263,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri1,
                   parseFloat(
                     (counterLocalAgriQuantityDLA * 100) /
                       kpiData.AGRI_SL[1].data
@@ -871,7 +1272,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri1,
                   parseFloat(
                     (counterLocalAgriQuantityGLA * 100) /
                       kpiData.AGRI_SL[2].data
@@ -880,7 +1281,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri2,
                   parseFloat(
                     (counterLocalAgriQuantityPYE * 100) /
                       kpiData.AGRI_SL[3].data
@@ -889,7 +1290,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri2,
                   parseFloat(
                     (counterLocalAgriQuantityDNO * 100) /
                       kpiData.AGRI_SL[4].data
@@ -898,7 +1299,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityAgri,
+                  arrayPercentQuantityAgri2,
                   parseFloat(
                     (counterLocalAgriQuantityKON * 100) /
                       kpiData.AGRI_SL[5].data
@@ -1011,7 +1412,7 @@ export function TableSum(props) {
               <td></td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri1,
                   parseFloat(
                     (counterLocalAgriDthuKHO * 100) / kpiData.AGRI_DTHU[0].data
                   ).toFixed(2)
@@ -1019,7 +1420,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri1,
                   parseFloat(
                     (counterLocalAgriDthuDLA * 100) / kpiData.AGRI_DTHU[1].data
                   ).toFixed(2)
@@ -1027,7 +1428,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri1,
                   parseFloat(
                     (counterLocalAgriDthuGLA * 100) / kpiData.AGRI_DTHU[2].data
                   ).toFixed(2)
@@ -1035,7 +1436,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri2,
                   parseFloat(
                     (counterLocalAgriDthuPYE * 100) / kpiData.AGRI_DTHU[3].data
                   ).toFixed(2)
@@ -1043,7 +1444,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri2,
                   parseFloat(
                     (counterLocalAgriDthuDNO * 100) / kpiData.AGRI_DTHU[4].data
                   ).toFixed(2)
@@ -1051,7 +1452,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentDthuAgri,
+                  arrayPercentDthuAgri2,
                   parseFloat(
                     (counterLocalAgriDthuKON * 100) / kpiData.AGRI_DTHU[5].data
                   ).toFixed(2)
@@ -1148,7 +1549,7 @@ export function TableSum(props) {
               <td></td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M1,
                   parseFloat(
                     (counterLocalM2MQuantityKHO * 100) / kpiData.M2M[0].data
                   ).toFixed(2)
@@ -1156,7 +1557,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M1,
                   parseFloat(
                     (counterLocalM2MQuantityDLA * 100) / kpiData.M2M[1].data
                   ).toFixed(2)
@@ -1164,7 +1565,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M1,
                   parseFloat(
                     (counterLocalM2MQuantityGLA * 100) / kpiData.M2M[2].data
                   ).toFixed(2)
@@ -1172,7 +1573,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M2,
                   parseFloat(
                     (counterLocalM2MQuantityPYE * 100) / kpiData.M2M[3].data
                   ).toFixed(2)
@@ -1180,7 +1581,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M2,
                   parseFloat(
                     (counterLocalM2MQuantityDNO * 100) / kpiData.M2M[4].data
                   ).toFixed(2)
@@ -1188,7 +1589,7 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {getRanking(
-                  arrayPercentQuantityM2M,
+                  arrayPercentQuantityM2M2,
                   parseFloat(
                     (counterLocalM2MQuantityKON * 100) / kpiData.M2M[5].data
                   ).toFixed(2)

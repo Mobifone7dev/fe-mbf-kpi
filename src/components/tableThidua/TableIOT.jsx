@@ -3,126 +3,126 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { dataRawKpi } from "../../lib/rawData";
-import { convertIndexToDateCloud, formatCurrencyVND } from "../../lib/utils";
+import { convertIndexToDateIOT, formatCurrencyVND } from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
 import { useRecoilState } from "recoil";
 import {
-  counterSumCloudDthu,
-  counterCloudDthuKHO,
-  counterCloudDthuDLA,
-  counterCloudDthuGLA,
-  counterCloudDthuPYE,
-  counterCloudDthuDNO,
-  counterCloudDthuKON,
-  counterCloudDthuKHOT4,
-  counterCloudDthuDLAT4,
-  counterCloudDthuGLAT4,
-  counterCloudDthuPYET4,
-  counterCloudDthuDNOT4,
-  counterCloudDthuKONT4,
-  counterCloudDthuKHOT5,
-  counterCloudDthuDLAT5,
-  counterCloudDthuGLAT5,
-  counterCloudDthuPYET5,
-  counterCloudDthuDNOT5,
-  counterCloudDthuKONT5,
+  counterSumIOTDthu,
+  counterIOTDthuKHO,
+  counterIOTDthuDLA,
+  counterIOTDthuGLA,
+  counterIOTDthuPYE,
+  counterIOTDthuDNO,
+  counterIOTDthuKON,
+  counterIOTDthuKHOT4,
+  counterIOTDthuDLAT4,
+  counterIOTDthuGLAT4,
+  counterIOTDthuPYET4,
+  counterIOTDthuDNOT4,
+  counterIOTDthuKONT4,
+  counterIOTDthuKHOT5,
+  counterIOTDthuDLAT5,
+  counterIOTDthuGLAT5,
+  counterIOTDthuPYET5,
+  counterIOTDthuDNOT5,
+  counterIOTDthuKONT5,
 } from "../../lib/states/counter";
-import FormCloud from "./FormCloud";
-function TableCloud(props) {
-  const [loadingCloud, setLoadingCloud] = useState(false);
-  const [dataDthuCloud, setDataDthuCloud] = useState([]);
+import FormIOT from "./FormIOT";
+function TableIOT(props) {
+  const [loadingIOT, setLoadingIOT] = useState(false);
+  const [dataDthuIOT, setDataDthuIOT] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
 
-  const [counterLocalSumCloudDthu, setCounterLocalSumCloudDthu] =
-    useRecoilState(counterSumCloudDthu);
-  const [counterLocalCloudDthuKHO, setCounterLocalCloudDthuKHO] =
-    useRecoilState(counterCloudDthuKHO);
-  const [counterLocalCloudDthuDLA, setCounterLocalCloudDthuDLA] =
-    useRecoilState(counterCloudDthuDLA);
-  const [counterLocalCloudDthuGLA, setCounterLocalCloudDthuGLA] =
-    useRecoilState(counterCloudDthuGLA);
-  const [counterLocalCloudDthuPYE, setCounterLocalCloudDthuPYE] =
-    useRecoilState(counterCloudDthuPYE);
-  const [counterLocalCloudDthuDNO, setCounterLocalCloudDthuDNO] =
-    useRecoilState(counterCloudDthuDNO);
-  const [counterLocalCloudDthuKON, setCounterLocalCloudDthuKON] =
-    useRecoilState(counterCloudDthuKON);
+  const [counterLocalSumIOTDthu, setCounterLocalSumIOTDthu] =
+    useRecoilState(counterSumIOTDthu);
+  const [counterLocalIOTDthuKHO, setCounterLocalIOTDthuKHO] =
+    useRecoilState(counterIOTDthuKHO);
+  const [counterLocalIOTDthuDLA, setCounterLocalIOTDthuDLA] =
+    useRecoilState(counterIOTDthuDLA);
+  const [counterLocalIOTDthuGLA, setCounterLocalIOTDthuGLA] =
+    useRecoilState(counterIOTDthuGLA);
+  const [counterLocalIOTDthuPYE, setCounterLocalIOTDthuPYE] =
+    useRecoilState(counterIOTDthuPYE);
+  const [counterLocalIOTDthuDNO, setCounterLocalIOTDthuDNO] =
+    useRecoilState(counterIOTDthuDNO);
+  const [counterLocalIOTDthuKON, setCounterLocalIOTDthuKON] =
+    useRecoilState(counterIOTDthuKON);
   const [show, setShow] = useState(false);
-  const [counterLocalCloudDthuKHOT4, setCounterLocalCloudDthuKHOT4] =
-    useRecoilState(counterCloudDthuKHOT4);
-  const [counterLocalCloudDthuDLAT4, setCounterLocalCloudDthuDLAT4] =
-    useRecoilState(counterCloudDthuDLAT4);
-  const [counterLocalCloudDthuGLAT4, setCounterLocalCloudDthuGLAT4] =
-    useRecoilState(counterCloudDthuGLAT4);
-  const [counterLocalCloudDthuPYET4, setCounterLocalCloudDthuPYET4] =
-    useRecoilState(counterCloudDthuPYET4);
-  const [counterLocalCloudDthuDNOT4, setCounterLocalCloudDthuDNOT4] =
-    useRecoilState(counterCloudDthuDNOT4);
-  const [counterLocalCloudDthuKONT4, setCounterLocalCloudDthuKONT4] =
-    useRecoilState(counterCloudDthuKONT4);
+  const [counterLocalIOTDthuKHOT4, setCounterLocalIOTDthuKHOT4] =
+    useRecoilState(counterIOTDthuKHOT4);
+  const [counterLocalIOTDthuDLAT4, setCounterLocalIOTDthuDLAT4] =
+    useRecoilState(counterIOTDthuDLAT4);
+  const [counterLocalIOTDthuGLAT4, setCounterLocalIOTDthuGLAT4] =
+    useRecoilState(counterIOTDthuGLAT4);
+  const [counterLocalIOTDthuPYET4, setCounterLocalIOTDthuPYET4] =
+    useRecoilState(counterIOTDthuPYET4);
+  const [counterLocalIOTDthuDNOT4, setCounterLocalIOTDthuDNOT4] =
+    useRecoilState(counterIOTDthuDNOT4);
+  const [counterLocalIOTDthuKONT4, setCounterLocalIOTDthuKONT4] =
+    useRecoilState(counterIOTDthuKONT4);
 
-  const [counterLocalCloudDthuKHOT5, setCounterLocalCloudDthuKHOT5] =
-    useRecoilState(counterCloudDthuKHOT5);
-  const [counterLocalCloudDthuDLAT5, setCounterLocalCloudDthuDLAT5] =
-    useRecoilState(counterCloudDthuDLAT5);
-  const [counterLocalCloudDthuGLAT5, setCounterLocalCloudDthuGLAT5] =
-    useRecoilState(counterCloudDthuGLAT5);
-  const [counterLocalCloudDthuPYET5, setCounterLocalCloudDthuPYET5] =
-    useRecoilState(counterCloudDthuPYET5);
-  const [counterLocalCloudDthuDNOT5, setCounterLocalCloudDthuDNOT5] =
-    useRecoilState(counterCloudDthuDNOT5);
-  const [counterLocalCloudDthuKONT5, setCounterLocalCloudDthuKONT5] =
-    useRecoilState(counterCloudDthuKONT5);
+  const [counterLocalIOTDthuKHOT5, setCounterLocalIOTDthuKHOT5] =
+    useRecoilState(counterIOTDthuKHOT5);
+  const [counterLocalIOTDthuDLAT5, setCounterLocalIOTDthuDLAT5] =
+    useRecoilState(counterIOTDthuDLAT5);
+  const [counterLocalIOTDthuGLAT5, setCounterLocalIOTDthuGLAT5] =
+    useRecoilState(counterIOTDthuGLAT5);
+  const [counterLocalIOTDthuPYET5, setCounterLocalIOTDthuPYET5] =
+    useRecoilState(counterIOTDthuPYET5);
+  const [counterLocalIOTDthuDNOT5, setCounterLocalIOTDthuDNOT5] =
+    useRecoilState(counterIOTDthuDNOT5);
+  const [counterLocalIOTDthuKONT5, setCounterLocalIOTDthuKONT5] =
+    useRecoilState(counterIOTDthuKONT5);
 
   useEffect(() => {
-    getDataCloud();
+    getDataIOT();
   }, []);
   useEffect(() => {
     let sumDthu = 0;
-    dataDthuCloud &&
-      dataDthuCloud.length > 0 &&
-      dataDthuCloud.map((item, index) => {
+    dataDthuIOT &&
+      dataDthuIOT.length > 0 &&
+      dataDthuIOT.map((item, index) => {
         const AMOUNT = item.data.reduce(
           (acc, curr) => acc + parseInt(curr.AMOUNT),
           0
         );
         if (item.province == "KHO") {
-          setCounterLocalCloudDthuKHO(AMOUNT);
+          setCounterLocalIOTDthuKHO(AMOUNT);
         }
         if (item.province == "DLA") {
-          setCounterLocalCloudDthuDLA(AMOUNT);
+          setCounterLocalIOTDthuDLA(AMOUNT);
         }
         if (item.province == "GLA") {
-          setCounterLocalCloudDthuGLA(AMOUNT);
+          setCounterLocalIOTDthuGLA(AMOUNT);
         }
         if (item.province == "PYE") {
-          setCounterLocalCloudDthuPYE(AMOUNT);
+          setCounterLocalIOTDthuPYE(AMOUNT);
         }
         if (item.province == "DNO") {
-          setCounterLocalCloudDthuDNO(AMOUNT);
+          setCounterLocalIOTDthuDNO(AMOUNT);
         }
         if (item.province == "KON") {
-          setCounterLocalCloudDthuKON(AMOUNT);
+          setCounterLocalIOTDthuKON(AMOUNT);
         }
         sumDthu = sumDthu + parseInt(AMOUNT);
       });
-    setCounterLocalSumCloudDthu(
+    setCounterLocalSumIOTDthu(
       sumDthu +
-        counterLocalCloudDthuKHOT4 +
-        counterLocalCloudDthuDLAT4 +
-        counterLocalCloudDthuGLAT4 +
-        counterLocalCloudDthuPYET4 +
-        counterLocalCloudDthuDNOT4 +
-        counterLocalCloudDthuKONT4 +
-        counterLocalCloudDthuKHOT5 +
-        counterLocalCloudDthuDLAT5 +
-        counterLocalCloudDthuGLAT5 +
-        counterLocalCloudDthuPYET5 +
-        counterLocalCloudDthuDNOT5 +
-        counterLocalCloudDthuKONT5
+        counterLocalIOTDthuKHOT4 +
+        counterLocalIOTDthuDLAT4 +
+        counterLocalIOTDthuGLAT4 +
+        counterLocalIOTDthuPYET4 +
+        counterLocalIOTDthuDNOT4 +
+        counterLocalIOTDthuKONT4 +
+        counterLocalIOTDthuKHOT5 +
+        counterLocalIOTDthuDLAT5 +
+        counterLocalIOTDthuGLAT5 +
+        counterLocalIOTDthuPYET5 +
+        counterLocalIOTDthuDNOT5 +
+        counterLocalIOTDthuKONT5
     );
-  }, [dataDthuCloud]);
+  }, [dataDthuIOT]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -138,51 +138,51 @@ function TableCloud(props) {
       setVisibleColumns(10); // Limit to 10 columns
     }
   };
-  const getDataCloud = async () => {
-    setLoadingCloud(true);
+  const getDataIOT = async () => {
+    setLoadingIOT(true);
     try {
       const response = await fetch(
-        `${API_URL}/dashboard-thidua/dthu-thidua-cloud` // Replace with your actual API endpoint
+        `${API_URL}/dashboard-thidua/dthu-thidua-iot` // Replace with your actual API endpoint
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      let dataDthuCloudKHO = { province: "KHO", data: [] };
-      let dataDthuCloudDLA = { province: "DLA", data: [] };
-      let dataDthuCloudGLA = { province: "GLA", data: [] };
-      let dataDthuCloudPYE = { province: "PYE", data: [] };
-      let dataDthuCloudDNO = { province: "DNO", data: [] };
-      let dataDthuCloudKON = { province: "KON", data: [] };
+      let dataDthuIOTKHO = { province: "KHO", data: [] };
+      let dataDthuIOTDLA = { province: "DLA", data: [] };
+      let dataDthuIOTGLA = { province: "GLA", data: [] };
+      let dataDthuIOTPYE = { province: "PYE", data: [] };
+      let dataDthuIOTDNO = { province: "DNO", data: [] };
+      let dataDthuIOTKON = { province: "KON", data: [] };
       if (data && data.data && data.data.length > 0) {
         data.data.forEach((item) => {
           if (item.PROVINCE === "KHO") {
-            dataDthuCloudKHO.data.push(item);
+            dataDthuIOTKHO.data.push(item);
           } else if (item.PROVINCE === "DLA") {
-            dataDthuCloudDLA.data.push(item);
+            dataDthuIOTDLA.data.push(item);
           } else if (item.PROVINCE === "GLA") {
-            dataDthuCloudGLA.data.push(item);
+            dataDthuIOTGLA.data.push(item);
           } else if (item.PROVINCE === "PYE") {
-            dataDthuCloudPYE.data.push(item);
+            dataDthuIOTPYE.data.push(item);
           } else if (item.PROVINCE === "DNO") {
-            dataDthuCloudDNO.data.push(item);
+            dataDthuIOTDNO.data.push(item);
           } else if (item.PROVINCE === "KON") {
-            dataDthuCloudKON.data.push(item);
+            dataDthuIOTKON.data.push(item);
           }
         });
-        setDataDthuCloud([
-          dataDthuCloudKHO,
-          dataDthuCloudDLA,
-          dataDthuCloudGLA,
-          dataDthuCloudPYE,
-          dataDthuCloudDNO,
-          dataDthuCloudKON,
+        setDataDthuIOT([
+          dataDthuIOTKHO,
+          dataDthuIOTDLA,
+          dataDthuIOTGLA,
+          dataDthuIOTPYE,
+          dataDthuIOTDNO,
+          dataDthuIOTKON,
         ]);
       }
-      setLoadingCloud(false);
+      setLoadingIOT(false);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setLoadingCloud(false);
+      setLoadingIOT(false);
       return;
     }
   };
@@ -192,9 +192,9 @@ function TableCloud(props) {
 
   return (
     <div className="dashboard-thidua">
-      <div className="cloud-section">
-        {/* <h4>MobiCloud platform</h4> */}
-        {loadingCloud ? (
+      <div className="IOT-section">
+        {/* <h4>MobiIOT platform</h4> */}
+        {loadingIOT ? (
           <Spinner
             animation="grow"
             variant="primary"
@@ -225,11 +225,11 @@ function TableCloud(props) {
                 onClick={handleOpenPopup}
               >
                 {" "}
-                Thêm dữ liệu Cloud
+                Thêm dữ liệu IOT
               </button>
             </div>
             <div className="table-responsive">
-              <table className=" table table-Cloud align-middle table-bordered gs-0 gy-3 table-frozen">
+              <table className=" table table-IOT align-middle table-bordered gs-0 gy-3 table-frozen">
                 <thead>
                   <tr>
                     <th rowSpan={2} className="text-center align-middle">
@@ -261,23 +261,23 @@ function TableCloud(props) {
                           i < visibleColumns ? "text-right" : "hiden-colum"
                         }
                       >
-                        {i < visibleColumns ? convertIndexToDateCloud(i) : ""}
+                        {i < visibleColumns ? convertIndexToDateIOT(i) : ""}
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="text-left title-sub">1</td>
+                    <td className="text-left title-sub">2</td>
                     <td colSpan={41} className="text-left title-sub">
-                      Doanh thu Cloud
+                      Doanh thu IOT
                     </td>
                   </tr>
 
-                  {dataDthuCloud &&
-                    dataDthuCloud.length > 0 &&
-                    dataDthuCloud.map((item, index) => {
-                      const objectProvince = dataDthuCloud[index];
+                  {dataDthuIOT &&
+                    dataDthuIOT.length > 0 &&
+                    dataDthuIOT.map((item, index) => {
+                      const objectProvince = dataDthuIOT[index];
                       let sumDthu = objectProvince.data.reduce((acc, curr) => {
                         return acc + parseInt(curr.AMOUNT);
                       }, 0);
@@ -288,60 +288,60 @@ function TableCloud(props) {
                       if (index == 0) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuKHOT4 +
-                          counterLocalCloudDthuKHOT5;
+                          counterLocalIOTDthuKHOT4 +
+                          counterLocalIOTDthuKHOT5;
                       } else if (index == 1) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuDLAT4 +
-                          counterLocalCloudDthuDLAT5;
+                          counterLocalIOTDthuDLAT4 +
+                          counterLocalIOTDthuDLAT5;
                       } else if (index == 2) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuGLAT4 +
-                          counterLocalCloudDthuGLAT5;
+                          counterLocalIOTDthuGLAT4 +
+                          counterLocalIOTDthuGLAT5;
                       } else if (index == 3) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuPYET4 +
-                          counterLocalCloudDthuPYET5;
+                          counterLocalIOTDthuPYET4 +
+                          counterLocalIOTDthuPYET5;
                       } else if (index == 4) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuDNOT4 +
-                          counterLocalCloudDthuDNOT5;
+                          counterLocalIOTDthuDNOT4 +
+                          counterLocalIOTDthuDNOT5;
                       } else if (index == 5) {
                         lkSum =
                           sumDthu +
-                          counterLocalCloudDthuKONT4 +
-                          counterLocalCloudDthuKONT5;
+                          counterLocalIOTDthuKONT4 +
+                          counterLocalIOTDthuKONT5;
                       }
 
                       if (index == 0) {
-                        lkT4 = counterLocalCloudDthuKHOT4;
+                        lkT4 = counterLocalIOTDthuKHOT4;
                       } else if (index == 1) {
-                        lkT4 = counterLocalCloudDthuDLAT4;
+                        lkT4 = counterLocalIOTDthuDLAT4;
                       } else if (index == 2) {
-                        lkT4 = counterLocalCloudDthuGLAT4;
+                        lkT4 = counterLocalIOTDthuGLAT4;
                       } else if (index == 3) {
-                        lkT4 = counterLocalCloudDthuPYET4;
+                        lkT4 = counterLocalIOTDthuPYET4;
                       } else if (index == 4) {
-                        lkT4 = counterLocalCloudDthuDNOT4;
+                        lkT4 = counterLocalIOTDthuDNOT4;
                       } else if (index == 5) {
-                        lkT4 = counterLocalCloudDthuKONT4;
+                        lkT4 = counterLocalIOTDthuKONT4;
                       }
                       if (index == 0) {
-                        lkT5 = counterLocalCloudDthuKHOT5;
+                        lkT5 = counterLocalIOTDthuKHOT5;
                       } else if (index == 1) {
-                        lkT5 = counterLocalCloudDthuDLAT5;
+                        lkT5 = counterLocalIOTDthuDLAT5;
                       } else if (index == 2) {
-                        lkT5 = counterLocalCloudDthuGLAT5;
+                        lkT5 = counterLocalIOTDthuGLAT5;
                       } else if (index == 3) {
-                        lkT5 = counterLocalCloudDthuPYET5;
+                        lkT5 = counterLocalIOTDthuPYET5;
                       } else if (index == 4) {
-                        lkT5 = counterLocalCloudDthuDNOT5;
+                        lkT5 = counterLocalIOTDthuDNOT5;
                       } else if (index == 5) {
-                        lkT5 = counterLocalCloudDthuKONT5;
+                        lkT5 = counterLocalIOTDthuKONT5;
                       }
 
                       return (
@@ -384,12 +384,12 @@ function TableCloud(props) {
           </>
         )}
       </div>
-      <FormCloud
+      <FormIOT
         show={show}
         handleClose={(isReset) => {
           setShow(false);
           if (isReset) {
-            getDataCloud();
+            getDataIOT();
           }
         }}
       />
@@ -397,4 +397,4 @@ function TableCloud(props) {
   );
 }
 
-export default TableCloud;
+export default TableIOT;
