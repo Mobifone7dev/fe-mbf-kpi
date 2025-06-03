@@ -35,9 +35,75 @@ export function FormCloud(props) {
       setWidthWindow(window.innerWidth);
     }
   }, []);
-  
+
+  const hanleLoadData = async (date) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/dashboard-thidua/dthu-thidua-cloud-detail?date=${date}` // Replace with your actual API endpoint
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      console.log("result", result);
+      const data = result.data;
+      if (data && data.length > 0) {
+        let amountKHO = 0;
+        let amountDLA = 0;
+        let amountGLA = 0;
+        let amountPYE = 0;
+        let amountDNO = 0;
+        let amountKON = 0;
+
+        data.map((item, index) => {
+          if (item.PROVINCE == "KHO") {
+            amountKHO = item.AMOUNT ?? 0;
+          } else if (item.PROVINCE == "DLA") {
+            amountDLA = item.AMOUNT ?? 0;
+          } else if (item.PROVINCE == "GLA") {
+            amountGLA = item.AMOUNT ?? 0;
+          } else if (item.PROVINCE == "PYE") {
+            amountPYE = item.AMOUNT ?? 0;
+          } else if (item.PROVINCE == "DNO") {
+            amountDNO = item.AMOUNT ?? 0;
+          } else if (item.PROVINCE == "KON") {
+            amountKON = item.AMOUNT ?? 0;
+          }
+        });
+        // console.log(amountKHO, amountDLA, amountDNO);
+        setInitValues({
+          ...initValues,
+          amountKHO,
+          amountDLA,
+          amountGLA,
+          amountPYE,
+          amountDNO,
+          amountKON,
+          date: parseDateFromDDMMYYYY(date),
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  function parseDateFromDDMMYYYY(str) {
+    const [day, month, year] = str.split("-");
+    return new Date(`${year}-${month}-${day}`);
+  }
+
   useEffect(() => {
     setShow(props.show);
+    if (props.show) {
+      const formattedDate = `${String(new Date().getDate()).padStart(
+        2,
+        "0"
+      )}-${String(new Date().getMonth() + 1).padStart(
+        2,
+        "0"
+      )}-${new Date().getFullYear()}`;
+      hanleLoadData(formattedDate);
+    }
   }, [props.show]);
   const handleClose = (isReset) => {
     if (isReset) {
@@ -46,7 +112,6 @@ export function FormCloud(props) {
     props.handleClose(isReset);
   };
   const reset = () => {
-
     setInitValues(INIT_VALUES);
   };
 
@@ -66,13 +131,9 @@ export function FormCloud(props) {
         <Formik
           enableReinitialize={true}
           initialValues={initValues}
-                  innerRef={formikRef}
+          innerRef={formikRef}
           validationSchema={formSchema}
           onSubmit={async (values, { resetForm }) => {
-            // setInitValues({
-            //   date: values.date,
-            //   amountKHO: values.amountKHO
-            // });
             const {
               date,
               amountKHO,
@@ -151,7 +212,6 @@ export function FormCloud(props) {
                 setLoading(false);
                 reset();
                 props.handleClose(true);
-                console.log("result",result)
               } catch (error) {
                 throw new Error("error", error);
               }
@@ -182,6 +242,16 @@ export function FormCloud(props) {
                             ...initValues,
                             date: e,
                           });
+
+                          const formattedDate = `${String(e.getDate()).padStart(
+                            2,
+                            "0"
+                          )}-${String(e.getMonth() + 1).padStart(
+                            2,
+                            "0"
+                          )}-${e.getFullYear()}`;
+                          console.log("formattedDate", formattedDate);
+                          hanleLoadData(formattedDate);
                         }}
                       ></DatePickerField>
                     </div>
@@ -213,7 +283,6 @@ export function FormCloud(props) {
                         className="form-control"
                         name={"amountDLA"}
                         type="number"
-                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
@@ -229,7 +298,6 @@ export function FormCloud(props) {
                         className="form-control"
                         name={"amountGLA"}
                         type="number"
-                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
@@ -245,7 +313,6 @@ export function FormCloud(props) {
                         className="form-control"
                         name={"amountPYE"}
                         type="number"
-                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
@@ -261,7 +328,6 @@ export function FormCloud(props) {
                         className="form-control"
                         name={"amountDNO"}
                         type="number"
-                       
                       />
                     </div>
                     <div className="form-group d-flex  justify-content-center align-items-center">
@@ -277,7 +343,6 @@ export function FormCloud(props) {
                         className="form-control"
                         name={"amountKON"}
                         type="number"
-                      
                       />
                     </div>
                   </div>
@@ -296,9 +361,12 @@ export function FormCloud(props) {
           >
             Close
           </Button>
-          <Button variant="primary" onClick={()=>{
-            formikRef.current.handleSubmit()
-          }}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              formikRef.current.handleSubmit();
+            }}
+          >
             {loading ? "Saving ..." : "Save"}
           </Button>
         </div>

@@ -196,7 +196,7 @@ function TablePTMM2M(props) {
                       <th
                         key={i}
                         className={
-                          i < visibleColumns ? "text-right" : "hiden-colum"
+                          i < visibleColumns ? "text-right" : "hiden-colum "
                         }
                       >
                         {i < visibleColumns ? convertIndexToDateM2M(i) : ""}
@@ -228,7 +228,7 @@ function TablePTMM2M(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "hiden-colum"
+                                  : "hiden-colum "
                               }
                             >
                               {day.QUANTITY}

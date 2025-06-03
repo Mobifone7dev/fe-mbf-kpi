@@ -296,7 +296,7 @@ function TableMobiAgri(props) {
                       <th
                         key={i}
                         className={
-                          i < visibleColumns ? "text-right" : "hiden-colum"
+                          i < visibleColumns ? "text-right" : "hiden-colum "
                         }
                       >
                         {i < visibleColumns ? convertIndexToDate(i): ''}
@@ -336,7 +336,7 @@ function TableMobiAgri(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "hiden-colum"
+                                  : "hiden-colum "
                               }
                             >
                               {dayIndex < visibleColumns ? day.QUANTITY : ""}
@@ -377,7 +377,7 @@ function TableMobiAgri(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "hiden-colum"
+                                  : "hiden-colum "
                               }
                             >
                               {formatCurrencyVND(day.DT)}

@@ -258,7 +258,7 @@ function TableCloud(props) {
                       <th
                         key={`${i} + th`}
                         className={
-                          i < visibleColumns ? "text-right" : "hiden-colum"
+                          i < visibleColumns ? "text-right" : "hiden-colum "
                         }
                       >
                         {i < visibleColumns ? convertIndexToDateCloud(i) : ""}
@@ -358,7 +358,7 @@ function TableCloud(props) {
                               className={
                                 dayIndex < visibleColumns
                                   ? "text-right"
-                                  : "hiden-colum"
+                                  : "hiden-colum  "
                               }
                             >
                               {formatCurrencyVND(parseFloat(day.AMOUNT))}
