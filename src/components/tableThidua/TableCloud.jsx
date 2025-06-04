@@ -83,14 +83,18 @@ function TableCloud(props) {
     dataDthuCloud &&
       dataDthuCloud.length > 0 &&
       dataDthuCloud.map((item, index) => {
-        const AMOUNT = item.data.reduce(
-          (acc, curr) => acc + parseInt(curr.AMOUNT),
-          0
-        );
+        const AMOUNT = item.data.reduce((acc, curr) => {
+          // if (curr.PROVINCE == "DLA") {
+          //   console.log("DLA", curr.AMOUNT);
+          // }
+
+          return acc + parseInt(curr.AMOUNT);
+        }, 0);
         if (item.province == "KHO") {
           setCounterLocalCloudDthuKHO(AMOUNT);
         }
         if (item.province == "DLA") {
+          console.log("DLA", AMOUNT);
           setCounterLocalCloudDthuDLA(AMOUNT);
         }
         if (item.province == "GLA") {

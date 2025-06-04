@@ -592,27 +592,43 @@ export function TableSum(props) {
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCloudDthuDLA) / 1000000
+                  (parseInt(counterLocalCloudDthuDLA) +
+                    counterLocalCloudDthuDLAT4 +
+                    counterLocalCloudDthuDLAT5) /
+                    1000000
+                ).toFixed(2)}
+              </td>
+              <td className="text-right">
+                {}
+                {parseFloat(
+                  (parseInt(counterLocalCloudDthuGLA) +
+                    counterLocalCloudDthuGLAT4 +
+                    counterLocalCloudDthuGLAT5) /
+                    1000000
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCloudDthuGLA) / 1000000
+                  (parseInt(counterLocalCloudDthuPYE) +
+                    counterLocalCloudDthuPYET4 +
+                    counterLocalCloudDthuPYET5) /
+                    1000000
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCloudDthuPYE) / 1000000
+                  (parseInt(counterLocalCloudDthuDNO) +
+                    counterLocalCloudDthuDNOT4 +
+                    counterLocalCloudDthuDNOT5) /
+                    1000000
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCloudDthuDNO) / 1000000
-                ).toFixed(2)}
-              </td>
-              <td className="text-right">
-                {parseFloat(
-                  parseInt(counterLocalCloudDthuKON) / 1000000
+                  (parseInt(counterLocalCloudDthuKON) +
+                    counterLocalCloudDthuKONT4 +
+                    counterLocalCloudDthuKONT5) /
+                    1000000
                 ).toFixed(2)}
               </td>
               <td className="text-right">
@@ -625,61 +641,52 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               <td></td>
-            
-                
+
               <td className="text-right text-danger">
-                {parseFloat(
-                  (parseInt(counterLocalCloudDthuKHO) +
+                {parseFloat(((parseInt(counterLocalCloudDthuKHO) +
                     counterLocalCloudDthuKHOT4 +
                     counterLocalCloudDthuKHOT5) /
-                    (kpiData.CLOUD[0].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[0].data * 1000000)) * 100).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCloudDthuDLA) +
+                  ((parseInt(counterLocalCloudDthuDLA) +
                     counterLocalCloudDthuDLAT4 +
                     counterLocalCloudDthuDLAT5) /
-                    (kpiData.CLOUD[1].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[1].data * 1000000)) *
+                    100
+                ).toFixed(2)}
+
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(
-                  (parseInt(counterLocalCloudDthuGLA) +
+                {parseFloat(((parseInt(counterLocalCloudDthuGLA) +
                     counterLocalCloudDthuGLAT4 +
                     counterLocalCloudDthuGLAT5) /
-                    (kpiData.CLOUD[2].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[2].data * 1000000)) * 100).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(
-                  (parseInt(counterLocalCloudDthuPYE) +
+                {parseFloat(((parseInt(counterLocalCloudDthuPYE) +
                     counterLocalCloudDthuPYET4 +
                     counterLocalCloudDthuPYET5) /
-                    (kpiData.CLOUD[3].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[3].data * 1000000)) * 100).toFixed(2)}
                 <span> %</span>
               </td>
 
               <td className="text-right text-danger">
-                {parseFloat(
-                  (parseInt(counterLocalCloudDthuDNO) +
+                {parseFloat(((parseInt(counterLocalCloudDthuDNO) +
                     counterLocalCloudDthuDNOT4 +
                     counterLocalCloudDthuDNOT5) /
-                    (kpiData.CLOUD[4].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[4].data * 1000000)) * 100).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(
-                  (parseInt(counterLocalCloudDthuKON) +
+                {parseFloat(((parseInt(counterLocalCloudDthuKON) +
                     counterLocalCloudDthuKONT4 +
                     counterLocalCloudDthuKONT5) /
-                    (kpiData.CLOUD[5].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.CLOUD[5].data * 1000000)) * 100).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
