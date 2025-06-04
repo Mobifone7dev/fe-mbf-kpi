@@ -643,10 +643,13 @@ export function TableSum(props) {
               <td></td>
 
               <td className="text-right text-danger">
-                {parseFloat(((parseInt(counterLocalCloudDthuKHO) +
+                {parseFloat(
+                  ((parseInt(counterLocalCloudDthuKHO) +
                     counterLocalCloudDthuKHOT4 +
                     counterLocalCloudDthuKHOT5) /
-                    (kpiData.CLOUD[0].data * 1000000)) * 100).toFixed(2)}
+                    (kpiData.CLOUD[0].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
@@ -661,32 +664,44 @@ export function TableSum(props) {
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(((parseInt(counterLocalCloudDthuGLA) +
+                {parseFloat(
+                  ((parseInt(counterLocalCloudDthuGLA) +
                     counterLocalCloudDthuGLAT4 +
                     counterLocalCloudDthuGLAT5) /
-                    (kpiData.CLOUD[2].data * 1000000)) * 100).toFixed(2)}
+                    (kpiData.CLOUD[2].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(((parseInt(counterLocalCloudDthuPYE) +
+                {parseFloat(
+                  ((parseInt(counterLocalCloudDthuPYE) +
                     counterLocalCloudDthuPYET4 +
                     counterLocalCloudDthuPYET5) /
-                    (kpiData.CLOUD[3].data * 1000000)) * 100).toFixed(2)}
+                    (kpiData.CLOUD[3].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
 
               <td className="text-right text-danger">
-                {parseFloat(((parseInt(counterLocalCloudDthuDNO) +
+                {parseFloat(
+                  ((parseInt(counterLocalCloudDthuDNO) +
                     counterLocalCloudDthuDNOT4 +
                     counterLocalCloudDthuDNOT5) /
-                    (kpiData.CLOUD[4].data * 1000000)) * 100).toFixed(2)}
+                    (kpiData.CLOUD[4].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
-                {parseFloat(((parseInt(counterLocalCloudDthuKON) +
+                {parseFloat(
+                  ((parseInt(counterLocalCloudDthuKON) +
                     counterLocalCloudDthuKONT4 +
                     counterLocalCloudDthuKONT5) /
-                    (kpiData.CLOUD[5].data * 1000000)) * 100).toFixed(2)}
+                    (kpiData.CLOUD[5].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
@@ -809,29 +824,44 @@ export function TableSum(props) {
                 ).toFixed(2)}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalIOTDthuDLA) / 1000000).toFixed(
-                  2
-                )}
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuDLA) +
+                    counterLocalIOTDthuDLAT4 +
+                    counterLocalIOTDthuDLAT5) /
+                    1000000
+                ).toFixed(2)}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalIOTDthuGLA) / 1000000).toFixed(
-                  2
-                )}
+                 {parseFloat(
+                  (parseInt(counterLocalIOTDthuGLA) +
+                    counterLocalIOTDthuGLAT4 +
+                    counterLocalIOTDthuGLAT5) /
+                    1000000
+                ).toFixed(2)}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalIOTDthuPYE) / 1000000).toFixed(
-                  2
-                )}
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuPYE) +
+                    counterLocalIOTDthuPYET4 +
+                    counterLocalIOTDthuPYET5) /
+                    1000000
+                ).toFixed(2)}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalIOTDthuDNO) / 1000000).toFixed(
-                  2
-                )}
+                {parseFloat(
+                  (parseInt(counterLocalIOTDthuDNO) +
+                    counterLocalIOTDthuDNOT4 +
+                    counterLocalIOTDthuDNOT5) /
+                    1000000
+                ).toFixed(2)}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalIOTDthuKON) / 1000000).toFixed(
-                  2
-                )}
+                 {parseFloat(
+                  (parseInt(counterLocalIOTDthuKON) +
+                    counterLocalIOTDthuKONT4 +
+                    counterLocalIOTDthuKONT5) /
+                    1000000
+                ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(parseInt(counterLocalSumIOTDthu) / 1000000).toFixed(
@@ -854,57 +884,63 @@ export function TableSum(props) {
               </td> */}
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuKHO) +
+                  ((parseInt(counterLocalIOTDthuKHO) +
                     counterLocalIOTDthuKHOT4 +
                     counterLocalIOTDthuKHOT5) /
-                    (kpiData.IOT[0].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[0].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuDLA) +
+                  ((parseInt(counterLocalIOTDthuDLA) +
                     counterLocalIOTDthuDLAT4 +
                     counterLocalIOTDthuDLAT5) /
-                    (kpiData.IOT[1].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[1].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuGLA) +
+                  ((parseInt(counterLocalIOTDthuGLA) +
                     counterLocalIOTDthuGLAT4 +
                     counterLocalIOTDthuGLAT5) /
-                    (kpiData.IOT[2].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[2].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuPYE) +
+                  ((parseInt(counterLocalIOTDthuPYE) +
                     counterLocalIOTDthuPYET4 +
                     counterLocalIOTDthuPYET5) /
-                    (kpiData.IOT[3].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[3].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
 
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuDNO) +
+                  ((parseInt(counterLocalIOTDthuDNO) +
                     counterLocalIOTDthuDNOT4 +
                     counterLocalIOTDthuDNOT5) /
-                    (kpiData.IOT[4].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[4].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalIOTDthuKON) +
+                  ((parseInt(counterLocalIOTDthuKON) +
                     counterLocalIOTDthuKONT4 +
                     counterLocalIOTDthuKONT5) /
-                    (kpiData.IOT[5].data * 1000000)
-                ).toFixed(2) * 100}
+                    (kpiData.IOT[5].data * 1000000)) *
+                    100
+                ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
