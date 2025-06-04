@@ -70,7 +70,7 @@ export function FormIOT(props) {
       const result = await response.json();
       console.log("result", result);
       const data = result.data;
-      if (data && data.length > 0) {
+      if (data) {
         let amountKHO = 0;
         let amountDLA = 0;
         let amountGLA = 0;

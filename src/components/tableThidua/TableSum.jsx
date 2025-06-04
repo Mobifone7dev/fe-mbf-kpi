@@ -625,15 +625,8 @@ export function TableSum(props) {
               <td></td>
               <td>%THKH thi đua</td>
               <td></td>
-              {/* {Array.from({
-                length: 8,
-              }).map((_, i) => (
-                <td key={i} className="text-right"></td>
-              ))} */}
-              {/* <td className="text-right text-danger">
+            
                 
-                
-              </td> */}
               <td className="text-right text-danger">
                 {parseFloat(
                   (parseInt(counterLocalCloudDthuKHO) +

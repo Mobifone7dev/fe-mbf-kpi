@@ -380,7 +380,7 @@ function TableMobiAgri(props) {
                                   : "hiden-colum "
                               }
                             >
-                              {formatCurrencyVND(day.DT)}
+                              { dayIndex < visibleColumns ? formatCurrencyVND(day.DT): ""}
                             </td>
                           ))}
                           {Array.from({

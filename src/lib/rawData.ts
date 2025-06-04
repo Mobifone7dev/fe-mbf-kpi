@@ -1904,9 +1904,9 @@ export const dataRawKpi =
       { province: "KHO", data: 295363636 },
       { province: "DLA", data: 155000000 },
       { province: "GLA", data: 155000000 },
-      { province: "PYE", data: 74272727 },
+      { province: "PYE", data: 65909091 },
       { province: "DNO", data: 72636364 },
-      { province: "KON", data: 65909091 },
+      { province: "KON", data: 74272721 },
     ],
     AGRI_SL: [
       { province: "KHO", data: 3249 },
