@@ -231,7 +231,7 @@ function TablePTMM2M(props) {
                                   : "hiden-colum "
                               }
                             >
-                              {day.QUANTITY}
+                              {dayIndex < visibleColumns ? day.QUANTITY : ""}
                             </td>
                           ))}
                           {Array.from({
