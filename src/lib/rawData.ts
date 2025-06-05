@@ -1912,9 +1912,9 @@ export const dataRawKpi =
       { province: "KHO", data: 3249 },
       { province: "DLA", data: 1705 },
       { province: "GLA", data: 1705 },
-      { province: "PYE", data: 817 },
+      { province: "PYE", data: 725 },
       { province: "DNO", data: 799 },
-      { province: "KON", data: 725 },
+      { province: "KON", data: 817 },
     ],
     M2M: [
       { province: "KHO", data: 480 },
