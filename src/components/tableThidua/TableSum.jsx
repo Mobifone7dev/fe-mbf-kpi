@@ -367,9 +367,9 @@ export function TableSum(props) {
       ]);
     }
   }, [
-    counterLocalM2MQuantityPYE,
-    counterLocalM2MQuantityDNO,
-    counterLocalM2MQuantityKON,
+    counterLocalM2MQuantityKHO,
+    counterLocalM2MQuantityDLA,
+    counterLocalM2MQuantityGLA,
   ]);
 
   useEffect(() => {
@@ -441,11 +441,7 @@ export function TableSum(props) {
           (kpiData.CLOUD[2].data * 1000000)
       ).toFixed(2) * 100,
     ]);
-  }, [
-    counterLocalCloudDthuKHO,
-    counterLocalCloudDthuDLA,
-    counterLocalCloudDthuGLA,
-  ]);
+  }, [counterLocalCloudDthuKHO, counterLocalCloudDthuDLA, counterLocalCloudDthuGLA, counterLocalCloudDthuKHOT4, counterLocalCloudDthuKHOT5, counterLocalCloudDthuDLAT4, counterLocalCloudDthuDLAT5, counterLocalCloudDthuGLAT4, counterLocalCloudDthuGLAT5]);
 
   useEffect(() => {
     setArrayPercentCloud2([
@@ -468,11 +464,7 @@ export function TableSum(props) {
           (kpiData.CLOUD[5].data * 1000000)
       ).toFixed(2) * 100,
     ]);
-  }, [
-    counterLocalCloudDthuKHO,
-    counterLocalCloudDthuDLA,
-    counterLocalCloudDthuGLA,
-  ]);
+  }, [counterLocalCloudDthuKHO, counterLocalCloudDthuDLA, counterLocalCloudDthuGLA, counterLocalCloudDthuPYE, counterLocalCloudDthuPYET4, counterLocalCloudDthuPYET5, counterLocalCloudDthuDNO, counterLocalCloudDthuDNOT4, counterLocalCloudDthuDNOT5, counterLocalCloudDthuKON, counterLocalCloudDthuKONT4, counterLocalCloudDthuKONT5]);
 
   useEffect(() => {
     setArrayPercentIOT1([
@@ -495,7 +487,7 @@ export function TableSum(props) {
           (kpiData.IOT[2].data * 1000000)
       ).toFixed(2) * 100,
     ]);
-  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA]);
+  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA, counterLocalIOTDthuKHOT4, counterLocalIOTDthuKHOT5, counterLocalIOTDthuDLAT4, counterLocalIOTDthuDLAT5, counterLocalIOTDthuGLAT4, counterLocalIOTDthuGLAT5]);
 
   useEffect(() => {
     setArrayPercentIOT2([
@@ -518,7 +510,7 @@ export function TableSum(props) {
           (kpiData.IOT[5].data * 1000000)
       ).toFixed(2) * 100,
     ]);
-  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA]);
+  }, [counterLocalIOTDthuKHO, counterLocalIOTDthuDLA, counterLocalIOTDthuGLA, counterLocalIOTDthuPYE, counterLocalIOTDthuPYET4, counterLocalIOTDthuPYET5, counterLocalIOTDthuDNO, counterLocalIOTDthuDNOT4, counterLocalIOTDthuDNOT5, counterLocalIOTDthuKON, counterLocalIOTDthuKONT4, counterLocalIOTDthuKONT5]);
   const [isSticky, setisSticky] = useState(false);
   const handleSticky = () => {
     const scrollTop = window.scrollY;

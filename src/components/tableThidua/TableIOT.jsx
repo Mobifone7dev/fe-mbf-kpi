@@ -83,10 +83,16 @@ function TableIOT(props) {
     dataDthuIOT &&
       dataDthuIOT.length > 0 &&
       dataDthuIOT.map((item, index) => {
-        const AMOUNT = item.data.reduce(
-          (acc, curr) => acc + parseInt(curr.AMOUNT),
-          0
-        );
+       const AMOUNT = item.data.reduce((acc, curr) => {
+          // if (curr.PROVINCE == "DLA") {
+          //   console.log("DLA", curr.AMOUNT);
+          // }
+          // console.log("check",curr.AMOUNT, curr.AMOUNT !== null )
+
+          return acc +  curr.AMOUNT &&curr.AMOUNT !== null ? parseInt(curr.AMOUNT) : 0;
+
+          
+        }, 0);
         if (item.province == "KHO") {
           setCounterLocalIOTDthuKHO(AMOUNT);
         }

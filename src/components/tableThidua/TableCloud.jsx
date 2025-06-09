@@ -76,7 +76,7 @@ function TableCloud(props) {
     useRecoilState(counterCloudDthuKONT5);
 
   useEffect(() => {
-    getDataCloud();
+     getDataCloud();
   }, []);
   useEffect(() => {
     let sumDthu = 0;
@@ -87,30 +87,42 @@ function TableCloud(props) {
           // if (curr.PROVINCE == "DLA") {
           //   console.log("DLA", curr.AMOUNT);
           // }
+          // console.log("check",curr.AMOUNT, curr.AMOUNT !== null )
 
-          return acc + parseInt(curr.AMOUNT);
+          return acc +  curr.AMOUNT &&curr.AMOUNT !== null ? parseInt(curr.AMOUNT) : 0;
+
+          
         }, 0);
+
+          let amountKHO = 0;
+        let amountDLA = 0;
+        let amountGLA = 0;
+        let amountPYE = 0;
+        let amountDNO = 0;
+        let amountKON = 0;
         if (item.province == "KHO") {
-          setCounterLocalCloudDthuKHO(AMOUNT);
+          amountKHO = AMOUNT ?? 0;
         }
         if (item.province == "DLA") {
-          console.log("DLA", AMOUNT);
-          setCounterLocalCloudDthuDLA(AMOUNT);
+          amountDLA = AMOUNT ?? 0;
         }
         if (item.province == "GLA") {
-          setCounterLocalCloudDthuGLA(AMOUNT);
+          amountGLA = AMOUNT ?? 0;
         }
         if (item.province == "PYE") {
-          setCounterLocalCloudDthuPYE(AMOUNT);
+          amountPYE = AMOUNT ?? 0;
         }
         if (item.province == "DNO") {
-          setCounterLocalCloudDthuDNO(AMOUNT);
+          amountDNO = AMOUNT ?? 0;
         }
         if (item.province == "KON") {
-          setCounterLocalCloudDthuKON(AMOUNT);
+          amountKON = AMOUNT ?? 0;
         }
+        console.log("amount", AMOUNT)
         sumDthu = sumDthu + parseInt(AMOUNT);
       });
+
+     
     setCounterLocalSumCloudDthu(
       sumDthu +
         counterLocalCloudDthuKHOT4 +
@@ -126,7 +138,7 @@ function TableCloud(props) {
         counterLocalCloudDthuDNOT5 +
         counterLocalCloudDthuKONT5
     );
-  }, [dataDthuCloud]);
+  }, [ dataDthuCloud]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
