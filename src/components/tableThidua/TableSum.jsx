@@ -223,6 +223,10 @@ export function TableSum(props) {
   const [arrayPercentIOT1, setArrayPercentIOT1] = useState([]);
   const [arrayPercentIOT2, setArrayPercentIOT2] = useState([]);
 
+  useEffect(()=>{
+    console.log("check counterLocalIOTDthuKHO", counterLocalIOTDthuKHO)
+  },[counterIOTDthuKHO])
+
   useEffect(() => {
     setArrayPercentAgriAvg1([
       parseFloat(

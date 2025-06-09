@@ -76,7 +76,7 @@ function TableCloud(props) {
     useRecoilState(counterCloudDthuKONT5);
 
   useEffect(() => {
-     getDataCloud();
+    getDataCloud();
   }, []);
   useEffect(() => {
     let sumDthu = 0;
@@ -89,40 +89,33 @@ function TableCloud(props) {
           // }
           // console.log("check",curr.AMOUNT, curr.AMOUNT !== null )
 
-          return acc +  curr.AMOUNT &&curr.AMOUNT !== null ? parseInt(curr.AMOUNT) : 0;
-
-          
+          return curr.AMOUNT && curr.AMOUNT !== null
+            ? acc + parseInt(curr.AMOUNT)
+            : acc;
         }, 0);
 
-          let amountKHO = 0;
-        let amountDLA = 0;
-        let amountGLA = 0;
-        let amountPYE = 0;
-        let amountDNO = 0;
-        let amountKON = 0;
         if (item.province == "KHO") {
-          amountKHO = AMOUNT ?? 0;
+          console.log("check local", AMOUNT);
+          setCounterLocalCloudDthuKHO(AMOUNT);
         }
         if (item.province == "DLA") {
-          amountDLA = AMOUNT ?? 0;
+          setCounterLocalCloudDthuDLA(AMOUNT);
         }
         if (item.province == "GLA") {
-          amountGLA = AMOUNT ?? 0;
+          setCounterLocalCloudDthuGLA(AMOUNT);
         }
         if (item.province == "PYE") {
-          amountPYE = AMOUNT ?? 0;
+          setCounterLocalCloudDthuPYE(AMOUNT);
         }
         if (item.province == "DNO") {
-          amountDNO = AMOUNT ?? 0;
+          setCounterLocalCloudDthuDNO(AMOUNT);
         }
         if (item.province == "KON") {
-          amountKON = AMOUNT ?? 0;
+          setCounterLocalCloudDthuKON(AMOUNT);
         }
-        console.log("amount", AMOUNT)
         sumDthu = sumDthu + parseInt(AMOUNT);
       });
 
-     
     setCounterLocalSumCloudDthu(
       sumDthu +
         counterLocalCloudDthuKHOT4 +
@@ -138,7 +131,7 @@ function TableCloud(props) {
         counterLocalCloudDthuDNOT5 +
         counterLocalCloudDthuKONT5
     );
-  }, [ dataDthuCloud]);
+  }, [dataDthuCloud]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;

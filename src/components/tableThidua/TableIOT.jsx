@@ -83,15 +83,15 @@ function TableIOT(props) {
     dataDthuIOT &&
       dataDthuIOT.length > 0 &&
       dataDthuIOT.map((item, index) => {
-       const AMOUNT = item.data.reduce((acc, curr) => {
+        const AMOUNT = item.data.reduce((acc, curr) => {
           // if (curr.PROVINCE == "DLA") {
           //   console.log("DLA", curr.AMOUNT);
           // }
           // console.log("check",curr.AMOUNT, curr.AMOUNT !== null )
 
-          return acc +  curr.AMOUNT &&curr.AMOUNT !== null ? parseInt(curr.AMOUNT) : 0;
-
-          
+          return curr.AMOUNT && curr.AMOUNT !== null
+            ? acc + parseInt(curr.AMOUNT)
+            : acc;
         }, 0);
         if (item.province == "KHO") {
           setCounterLocalIOTDthuKHO(AMOUNT);
@@ -113,6 +113,7 @@ function TableIOT(props) {
         }
         sumDthu = sumDthu + parseInt(AMOUNT);
       });
+    // console.log("sumDthu",sumDthu)
     setCounterLocalSumIOTDthu(
       sumDthu +
         counterLocalIOTDthuKHOT4 +
