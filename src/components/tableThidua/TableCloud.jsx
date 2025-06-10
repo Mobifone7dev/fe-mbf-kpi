@@ -370,7 +370,7 @@ function TableCloud(props) {
                                   : "hiden-colum  "
                               }
                             >
-                              {formatCurrencyVND(parseFloat(day.AMOUNT))}
+                              {dayIndex < visibleColumns ? formatCurrencyVND(parseFloat(day.AMOUNT)) : ""}
                             </td>
                           ))}
                           {Array.from({
