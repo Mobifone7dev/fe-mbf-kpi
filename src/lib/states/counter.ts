@@ -232,29 +232,29 @@ export const counterIOTDthuKONT4 = atom({
 
 export const counterIOTDthuKHOT5 = atom({
   key: 'counterIOTDthuKHOT5', // unique ID
-  default: 53600000,          // initial value
+  default: 70852458,          // initial value
 })
 
 export const counterIOTDthuDLAT5 = atom({
   key: 'counterIOTDthuDLAT5', // unique ID
-  default: 78300000,          // initial value
+  default: 80320399,          // initial value
 })
 
 export const counterIOTDthuGLAT5 = atom({
   key: 'counterIOTDthuGLAT5', // unique ID
-  default: 70500000,          // initial value
+  default: 85197585,          // initial value
 })
 
 export const counterIOTDthuPYET5 = atom({
   key: 'counterIOTDthuPYET5', // unique ID
-  default: 30700000,          // initial value
+  default: 31723398,          // initial value
 })
 
 export const counterIOTDthuDNOT5 = atom({
   key: 'counterIOTDthuDNOT5', // unique ID
-  default: 24200000,          // initial value
+  default: 25331700,          // initial value
 })
 export const counterIOTDthuKONT5 = atom({
   key: 'counterIOTDthuKONT5', // unique ID
-  default: 44700000,          // initial value
+  default: 49054320,          // initial value
 })
