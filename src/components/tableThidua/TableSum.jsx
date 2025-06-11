@@ -1194,12 +1194,12 @@ export function TableSum(props) {
               <td></td>
               <td>Lũy kế thực hiện</td>
               <td></td>
-              <td className="text-right">{counterLocalAgriQuantityKHO}</td>
-              <td className="text-right">{counterLocalAgriQuantityDLA}</td>
-              <td className="text-right">{counterLocalAgriQuantityGLA}</td>
-              <td className="text-right">{counterLocalAgriQuantityPYE}</td>
-              <td className="text-right">{counterLocalAgriQuantityDNO}</td>
-              <td className="text-right">{counterLocalAgriQuantityKON}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityKHO).toFixed(2)}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityDLA).toFixed(2)}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityGLA).toFixed(2)}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityPYE).toFixed(2)}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityDNO).toFixed(2)}</td>
+              <td className="text-right">{parseFloat(counterLocalAgriQuantityKON).toFixed(2)}</td>
 
               {/* {Array.from({
                 length: 5,
@@ -1370,25 +1370,25 @@ export function TableSum(props) {
               <td>Lũy kế thực hiện</td>
               <td></td>
               <td className="text-right">
-                {counterLocalAgriDthuKHO / 1000000}
+                {parseFloat(counterLocalAgriDthuKHO / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalAgriDthuDLA / 1000000}
+                {parseFloat(counterLocalAgriDthuDLA / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalAgriDthuGLA / 1000000}
+                {parseFloat(counterLocalAgriDthuGLA / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalAgriDthuPYE / 1000000}
+                {parseFloat(counterLocalAgriDthuPYE / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalAgriDthuDNO / 1000000}
+                {parseFloat(counterLocalAgriDthuDNO / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalAgriDthuKON / 1000000}
+                {parseFloat(counterLocalAgriDthuKON / 1000000).toFixed(2)}
               </td>
               <td className="text-right">
-                {counterLocalSumAgriDthu / 1000000}
+                {parseFloat(counterLocalSumAgriDthu / 1000000).toFixed(2)}
               </td>
             </tr>
             <tr>
