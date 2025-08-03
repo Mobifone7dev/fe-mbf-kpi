@@ -8,8 +8,12 @@ import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
+import CreateKpiT08Modal from "@components/modals/CreateKpiT08Modal";
+
 import TableDashboardT03 from "@components/tables/TableDashboardT03";
 import TableDashboardT04 from "@components/tables/TableDashboardT04";
+import TableDashboardT08 from "@components/tables/TableDashboardT08";
+
 import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
@@ -259,6 +263,7 @@ const Page = () => {
                         dateFormat="MM/yyyy"
                         disabled={false}
                         callbackSetDate={(e) => {
+                      console.log("Selected date:", e.getMonth());
                           setSelectedDate(e);
                           let indexDate;
                           if (e < new Date()) {
@@ -295,7 +300,16 @@ const Page = () => {
             Thêm Kpi đã thực hiện
           </Button>
 
-          <CreateKpiModal
+          {/* <CreateKpiModal
+            show={show}
+            handleClose={() => {
+              setShow(false);
+              const date = changeFormatDateFirstDateInMonth(selectedDate);
+              getExecKpi(date);
+            }}
+          /> */}
+
+            <CreateKpiT08Modal
             show={show}
             handleClose={() => {
               setShow(false);
@@ -305,6 +319,7 @@ const Page = () => {
           />
         </div>
       </div>
+       {/* selectDate se cham hon 1 thang */}
       { selectedDate.getMonth()  < 3? (
         <TableDashboardT03
           ref={childRef}
@@ -317,7 +332,7 @@ const Page = () => {
           isSticky={isSticky}
 
         />
-      ) : (
+      ) : selectedDate.getMonth()  < 7 ?  (
         <TableDashboardT04
           ref={childRef}
           planData={planData}
@@ -329,7 +344,19 @@ const Page = () => {
           isSticky={isSticky}
 
         />
-      )}
+      ) : 
+        <TableDashboardT08
+          ref={childRef}
+          planData={planData}
+          execData={execData}
+          loadingExec={loadingExec}
+          loadingPlan={loadingPlan}
+          selectedDate={selectedDate}
+          sumDateInMonth={sumDateInMonth}
+          isSticky={isSticky}
+
+        />
+      }
     </div>
   )
   
