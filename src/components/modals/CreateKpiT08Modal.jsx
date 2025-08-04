@@ -1225,16 +1225,16 @@ const CreateKpiT08Modal = (props) => {
                 value: object.value ? object.value : 0,
               };
             });
-            const now = new Date();
-            if (
-              now.getMonth() !== values.selectKpiMonth.getMonth() ||
-              now.getFullYear() != values.selectKpiMonth.getFullYear()
-            ) {
-              setErrorDiv("Chỉ được tạo kpi cho tháng hiện tại");
-              return;
-            }else {
-              setErrorDiv("");
-            }
+            // const now = new Date();
+            // if (
+            //   now.getMonth() !== values.selectKpiMonth.getMonth() ||
+            //   now.getFullYear() != values.selectKpiMonth.getFullYear()
+            // ) {
+            //   setErrorDiv("Chỉ được tạo kpi cho tháng hiện tại");
+            //   return;
+            // }else {
+            //   setErrorDiv("");
+            // }
             try {
               const info = {
                 month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
