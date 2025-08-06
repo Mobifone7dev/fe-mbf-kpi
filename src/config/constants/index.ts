@@ -57,9 +57,10 @@ const menuCategory = [
     label: "Trang chủ",
     link: "/",
   },
+
   {
-    label: "Dashboard thi đua",
-    link: "/dashboard-thidua",
+    label: "Dashboard thi đua Tháng 08 ",
+    link: "/dashboard-thidua-t08",
   }
 
 ];
@@ -5732,7 +5733,7 @@ const arrayPackage5G = [
     agriculture: "",
     budget: "",
   },
-  
+
   {
     code: "12TK135",
     price: 1620000,
@@ -5935,7 +5936,7 @@ const arrayPackage5G = [
     agriculture: "",
     budget: "",
   },
-  
+
 
   {
     code: "12KC150",
@@ -6540,8 +6541,8 @@ const arrayPackage5G = [
     agriculture: "",
     budget: "",
   },
-  
-  
+
+
   {
     code: "12ST135",
     price: 1620000,

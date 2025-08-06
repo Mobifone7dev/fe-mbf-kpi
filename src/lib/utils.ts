@@ -409,3 +409,141 @@ export const convertIndexToDateIOT = (index: number) => {
 
 }
 
+export const convertIndexToDateLTT = (index: number) => {
+  switch (index) {
+
+    case 0:
+      return "01/08";
+    case 1:
+      return "02/08";
+    case 2:
+      return "03/08";
+    case 3:
+      return "04/08";
+    case 4:
+      return "05/08";
+    case 5:
+      return "06/08";
+    case 6:
+      return "07/08";
+    case 7:
+      return "08/08";
+    case 8:
+      return "09/08";
+    case 9:
+      return "10/08";
+    case 10:
+      return "11/08";
+    case 11:
+      return "12/08";
+    case 12:
+      return "13/08";
+    case 13:
+      return "14/08";
+    case 14:
+      return "15/08";
+    case 15:
+      return "16/08";
+    case 16:
+      return "17/08";
+    case 17:
+      return "18/08";
+    case 18:
+      return "19/08";
+    case 19:
+      return "20/08";
+    case 20:
+      return "21/08";
+    case 21:
+      return "22/08";
+    case 22:
+      return "23/08";
+    case 23:
+      return "24/08";
+    case 24:
+      return "25/08";
+    case 25:
+      return "26/08";
+    case 26:
+      return "27/08";
+    case 27:
+      return "28/08";
+    case 28:
+      return "29/08";
+    case 29:
+      return "30/08";
+    default:
+      return ""
+  }
+
+}
+export const convertIndexToDateCamera = (index: number) => {
+  switch (index) {
+
+    case 0:
+      return "01/08";
+    case 1:
+      return "02/08";
+    case 2:
+      return "03/08";
+    case 3:
+      return "04/08";
+    case 4:
+      return "05/08";
+    case 5:
+      return "06/08";
+    case 6:
+      return "07/08";
+    case 7:
+      return "08/08";
+    case 8:
+      return "09/08";
+    case 9:
+      return "10/08";
+    case 10:
+      return "11/08";
+    case 11:
+      return "12/08";
+    case 12:
+      return "13/08";
+    case 13:
+      return "14/08";
+    case 14:
+      return "15/08";
+    case 15:
+      return "16/08";
+    case 16:
+      return "17/08";
+    case 17:
+      return "18/08";
+    case 18:
+      return "19/08";
+    case 19:
+      return "20/08";
+    case 20:
+      return "21/08";
+    case 21:
+      return "22/08";
+    case 22:
+      return "23/08";
+    case 23:
+      return "24/08";
+    case 24:
+      return "25/08";
+    case 25:
+      return "26/08";
+    case 26:
+      return "27/08";
+    case 27:
+      return "28/08";
+    case 28:
+      return "29/08";
+    case 29:
+      return "30/08";
+    default:
+      return ""
+  }
+
+}
+
+
