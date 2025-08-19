@@ -3,49 +3,49 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { dataRawKpi } from "../../lib/rawData";
-import { convertIndexToDateLTT, formatCurrencyVND } from "../../lib/utils";
+import { convertIndexToDateLTT} from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
 import { useRecoilState } from "recoil";
 import {
-  counterSumLTTDthu,
-  counterLTTDthuKHO,
-  counterLTTDthuDLA,
-  counterLTTDthuGLA,
-  counterLTTDthuPYE,
-  counterLTTDthuDNO,
-  counterLTTDthuKON
+  counterSumLTTSL,
+  counterLTTSLKHO,
+  counterLTTSLDLA,
+  counterLTTSLGLA,
+  counterLTTSLPYE,
+  counterLTTSLDNO,
+  counterLTTSLKON
 } from "../../lib/states/counter";
 import FormLTT from "./FormLTT";
 function TableLTT(props) {
   const [loadingLTT, setLoadingLTT] = useState(false);
-  const [dataDthuLTT, setDataDthuLTT] = useState([]);
+  const [dataSLLTT, setDataSLLTT] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
 
-  const [counterLocalSumLTTDthu, setCounterLocalSumLTTDthu] =
-    useRecoilState(counterSumLTTDthu);
-  const [counterLocalLTTDthuKHO, setCounterLocalLTTDthuKHO] =
-    useRecoilState(counterLTTDthuKHO);
-  const [counterLocalLTTDthuDLA, setCounterLocalLTTDthuDLA] =
-    useRecoilState(counterLTTDthuDLA);
-  const [counterLocalLTTDthuGLA, setCounterLocalLTTDthuGLA] =
-    useRecoilState(counterLTTDthuGLA);
-  const [counterLocalLTTDthuPYE, setCounterLocalLTTDthuPYE] =
-    useRecoilState(counterLTTDthuPYE);
-  const [counterLocalLTTDthuDNO, setCounterLocalLTTDthuDNO] =
-    useRecoilState(counterLTTDthuDNO);
-  const [counterLocalLTTDthuKON, setCounterLocalLTTDthuKON] =
-    useRecoilState(counterLTTDthuKON);
+  const [counterLocalSumLTTSL, setCounterLocalSumLTTSL] =
+    useRecoilState(counterSumLTTSL);
+  const [counterLocalLTTSLKHO, setCounterLocalLTTSLKHO] =
+    useRecoilState(counterLTTSLKHO);
+  const [counterLocalLTTSLDLA, setCounterLocalLTTSLDLA] =
+    useRecoilState(counterLTTSLDLA);
+  const [counterLocalLTTSLGLA, setCounterLocalLTTSLGLA] =
+    useRecoilState(counterLTTSLGLA);
+  const [counterLocalLTTSLPYE, setCounterLocalLTTSLPYE] =
+    useRecoilState(counterLTTSLPYE);
+  const [counterLocalLTTSLDNO, setCounterLocalLTTSLDNO] =
+    useRecoilState(counterLTTSLDNO);
+  const [counterLocalLTTSLKON, setCounterLocalLTTSLKON] =
+    useRecoilState(counterLTTSLKON);
   const [show, setShow] = useState(false);
  
   useEffect(() => {
     getDataLTT();
   }, []);
   useEffect(() => {
-    let sumDthu = 0;
-    dataDthuLTT &&
-      dataDthuLTT.length > 0 &&
-      dataDthuLTT.map((item, index) => {
+    let sumSL = 0;
+    dataSLLTT &&
+      dataSLLTT.length > 0 &&
+      dataSLLTT.map((item, index) => {
         const AMOUNT = item.data.reduce((acc, curr) => {
 
           return curr.AMOUNT && curr.AMOUNT !== null
@@ -55,30 +55,30 @@ function TableLTT(props) {
 
         if (item.province == "KHO") {
           console.log("check local", AMOUNT);
-          setCounterLocalLTTDthuKHO(AMOUNT);
+          setCounterLocalLTTSLKHO(AMOUNT);
         }
         if (item.province == "DLA") {
-          setCounterLocalLTTDthuDLA(AMOUNT);
+          setCounterLocalLTTSLDLA(AMOUNT);
         }
         if (item.province == "GLA") {
-          setCounterLocalLTTDthuGLA(AMOUNT);
+          setCounterLocalLTTSLGLA(AMOUNT);
         }
         if (item.province == "PYE") {
-          setCounterLocalLTTDthuPYE(AMOUNT);
+          setCounterLocalLTTSLPYE(AMOUNT);
         }
         if (item.province == "DNO") {
-          setCounterLocalLTTDthuDNO(AMOUNT);
+          setCounterLocalLTTSLDNO(AMOUNT);
         }
         if (item.province == "KON") {
-          setCounterLocalLTTDthuKON(AMOUNT);
+          setCounterLocalLTTSLKON(AMOUNT);
         }
-        sumDthu = sumDthu + parseInt(AMOUNT);
+        sumSL = sumSL + parseInt(AMOUNT);
       });
 
-    setCounterLocalSumLTTDthu(
-      sumDthu
+    setCounterLocalSumLTTSL(
+      sumSL
     );
-  }, [dataDthuLTT]);
+  }, [dataSLLTT]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -98,41 +98,41 @@ function TableLTT(props) {
     setLoadingLTT(true);
     try {
       const response = await fetch(
-        `${API_URL}/dashboard-thidua-t08/dthu-thidua-ltt` // Replace with your actual API endpoint
+        `${API_URL}/dashboard-thidua-t08/sl-thidua-ltt` // Replace with your actual API endpoint
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      let dataDthuLTTKHO = { province: "KHO", data: [] };
-      let dataDthuLTTDLA = { province: "DLA", data: [] };
-      let dataDthuLTTGLA = { province: "GLA", data: [] };
-      let dataDthuLTTPYE = { province: "PYE", data: [] };
-      let dataDthuLTTDNO = { province: "DNO", data: [] };
-      let dataDthuLTTKON = { province: "KON", data: [] };
+      let dataSLLTTKHO = { province: "KHO", data: [] };
+      let dataSLLTTDLA = { province: "DLA", data: [] };
+      let dataSLLTTGLA = { province: "GLA", data: [] };
+      let dataSLLTTPYE = { province: "PYE", data: [] };
+      let dataSLLTTDNO = { province: "DNO", data: [] };
+      let dataSLLTTKON = { province: "KON", data: [] };
       if (data && data.data && data.data.length > 0) {
         data.data.forEach((item) => {
           if (item.PROVINCE === "KHO") {
-            dataDthuLTTKHO.data.push(item);
+            dataSLLTTKHO.data.push(item);
           } else if (item.PROVINCE === "DLA") {
-            dataDthuLTTDLA.data.push(item);
+            dataSLLTTDLA.data.push(item);
           } else if (item.PROVINCE === "GLA") {
-            dataDthuLTTGLA.data.push(item);
+            dataSLLTTGLA.data.push(item);
           } else if (item.PROVINCE === "PYE") {
-            dataDthuLTTPYE.data.push(item);
+            dataSLLTTPYE.data.push(item);
           } else if (item.PROVINCE === "DNO") {
-            dataDthuLTTDNO.data.push(item);
+            dataSLLTTDNO.data.push(item);
           } else if (item.PROVINCE === "KON") {
-            dataDthuLTTKON.data.push(item);
+            dataSLLTTKON.data.push(item);
           }
         });
-        setDataDthuLTT([
-          dataDthuLTTKHO,
-          dataDthuLTTDLA,
-          dataDthuLTTGLA,
-          dataDthuLTTPYE,
-          dataDthuLTTDNO,
-          dataDthuLTTKON,
+        setDataSLLTT([
+          dataSLLTTKHO,
+          dataSLLTTDLA,
+          dataSLLTTGLA,
+          dataSLLTTPYE,
+          dataSLLTTDNO,
+          dataSLLTTKON,
         ]);
       }
       setLoadingLTT(false);
@@ -225,14 +225,14 @@ function TableLTT(props) {
                     </td>
                   </tr>
 
-                  {dataDthuLTT &&
-                    dataDthuLTT.length > 0 &&
-                    dataDthuLTT.map((item, index) => {
-                      const objectProvince = dataDthuLTT[index];
-                      let sumDthu = objectProvince.data.reduce((acc, curr) => {
+                  {dataSLLTT &&
+                    dataSLLTT.length > 0 &&
+                    dataSLLTT.map((item, index) => {
+                      const objectProvince = dataSLLTT[index];
+                      let sumSL = objectProvince.data.reduce((acc, curr) => {
                         return acc + parseInt(curr.AMOUNT);
                       }, 0);
-                      let lkSum = sumDthu;
+                      let lkSum = sumSL;
                       return (
                         <tr key={`${index} + tr`}>
                           <td className="text-left"></td>
@@ -248,7 +248,7 @@ function TableLTT(props) {
                                   : "hiden-colum  "
                               }
                             >
-                              {dayIndex < visibleColumns ? formatCurrencyVND(parseFloat(day.AMOUNT)) : ""}
+                              {dayIndex < visibleColumns ?parseFloat(day.AMOUNT) : ""}
                             </td>
                           ))}
                           {Array.from({
@@ -260,7 +260,7 @@ function TableLTT(props) {
                             ></td>
                           ))}
                           <td className="text-right">
-                            {formatCurrencyVND(lkSum)}
+                            {lkSum}
                           </td>
                         </tr>
                       );

@@ -7,59 +7,59 @@ import {
 import { useRecoilState } from "recoil";
 import { kpiSummaryDataT08 as kpiData } from "../../lib/rawData";
 import {
-  counterSumLTTDthu,
-  counterLTTDthuKHO,
-  counterLTTDthuDLA,
-  counterLTTDthuGLA,
-  counterLTTDthuPYE,
-  counterLTTDthuDNO,
-  counterLTTDthuKON,
-  counterSumCameraDthu,
-  counterCameraDthuKHO,
-  counterCameraDthuDLA,
-  counterCameraDthuGLA,
-  counterCameraDthuPYE,
-  counterCameraDthuDNO,
-  counterCameraDthuKON,
+  counterSumLTTSL,
+  counterLTTSLKHO,
+  counterLTTSLDLA,
+  counterLTTSLGLA,
+  counterLTTSLPYE,
+  counterLTTSLDNO,
+  counterLTTSLKON,
+  counterSumCameraSL,
+  counterCameraSLKHO,
+  counterCameraSLDLA,
+  counterCameraSLGLA,
+  counterCameraSLPYE,
+  counterCameraSLDNO,
+  counterCameraSLKON,
 } from "../../lib/states/counter";
 
 import { useEffect, useState } from "react";
 
-const sumPlanLTT = 550;
-const sumPlanCamera = 450;
+const sumPlanLTT = 1000;
+const sumPlanCamera = 490;
 
 export function TableSumT08(props) {
-  const [counterLocalSumLTTDthu, setCounterLocalSumLTTDthu] =
-    useRecoilState(counterSumLTTDthu);
-  const [counterLocalLTTDthuKHO, setCounterLocalLTTDthuKHO] =
-    useRecoilState(counterLTTDthuKHO);
-  const [counterLocalLTTDthuDLA, setCounterLocalLTTDthuDLA] =
-    useRecoilState(counterLTTDthuDLA);
-  const [counterLocalLTTDthuGLA, setCounterLocalLTTDthuGLA] =
-    useRecoilState(counterLTTDthuGLA);
-  const [counterLocalLTTDthuPYE, setCounterLocalLTTDthuPYE] =
-    useRecoilState(counterLTTDthuPYE);
-  const [counterLocalLTTDthuDNO, setCounterLocalLTTDthuDNO] =
-    useRecoilState(counterLTTDthuDNO);
-  const [counterLocalLTTDthuKON, setCounterLocalLTTDthuKON] =
-    useRecoilState(counterLTTDthuKON);
+  const [counterLocalSumLTTSL, setCounterLocalSumLTTSL] =
+    useRecoilState(counterSumLTTSL);
+  const [counterLocalLTTSLKHO, setCounterLocalLTTSLKHO] =
+    useRecoilState(counterLTTSLKHO);
+  const [counterLocalLTTSLDLA, setCounterLocalLTTSLDLA] =
+    useRecoilState(counterLTTSLDLA);
+  const [counterLocalLTTSLGLA, setCounterLocalLTTSLGLA] =
+    useRecoilState(counterLTTSLGLA);
+  const [counterLocalLTTSLPYE, setCounterLocalLTTSLPYE] =
+    useRecoilState(counterLTTSLPYE);
+  const [counterLocalLTTSLDNO, setCounterLocalLTTSLDNO] =
+    useRecoilState(counterLTTSLDNO);
+  const [counterLocalLTTSLKON, setCounterLocalLTTSLKON] =
+    useRecoilState(counterLTTSLKON);
 
   const [arrayPercentLTT, setArrayPercentLTT] = useState([]);
 
-  const [counterLocalSumCameraDthu, setCounterLocalSumCameraDthu] =
-    useRecoilState(counterSumCameraDthu);
-  const [counterLocalCameraDthuKHO, setCounterLocalCameraDthuKHO] =
-    useRecoilState(counterCameraDthuKHO);
-  const [counterLocalCameraDthuDLA, setCounterLocalCameraDthuDLA] =
-    useRecoilState(counterCameraDthuDLA);
-  const [counterLocalCameraDthuGLA, setCounterLocalCameraDthuGLA] =
-    useRecoilState(counterCameraDthuGLA);
-  const [counterLocalCameraDthuPYE, setCounterLocalCameraDthuPYE] =
-    useRecoilState(counterCameraDthuPYE);
-  const [counterLocalCameraDthuDNO, setCounterLocalCameraDthuDNO] =
-    useRecoilState(counterCameraDthuDNO);
-  const [counterLocalCameraDthuKON, setCounterLocalCameraDthuKON] =
-    useRecoilState(counterCameraDthuKON);
+  const [counterLocalSumCameraSL, setCounterLocalSumCameraSL] =
+    useRecoilState(counterSumCameraSL);
+  const [counterLocalCameraSLKHO, setCounterLocalCameraSLKHO] =
+    useRecoilState(counterCameraSLKHO);
+  const [counterLocalCameraSLDLA, setCounterLocalCameraSLDLA] =
+    useRecoilState(counterCameraSLDLA);
+  const [counterLocalCameraSLGLA, setCounterLocalCameraSLGLA] =
+    useRecoilState(counterCameraSLGLA);
+  const [counterLocalCameraSLPYE, setCounterLocalCameraSLPYE] =
+    useRecoilState(counterCameraSLPYE);
+  const [counterLocalCameraSLDNO, setCounterLocalCameraSLDNO] =
+    useRecoilState(counterCameraSLDNO);
+  const [counterLocalCameraSLKON, setCounterLocalCameraSLKON] =
+    useRecoilState(counterCameraSLKON);
 
   const [arrayPercentCamera, setArrayPercentCamera] = useState([]);
 
@@ -68,61 +68,61 @@ export function TableSumT08(props) {
    
     setArrayPercentLTT([
       parseFloat(
-        parseInt(counterLocalLTTDthuKHO) / (kpiData.LTT[0].data * 1000000)
+        parseInt(counterLocalLTTSLKHO) / (kpiData.LTT[0].data )
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalLTTDthuDLA) / (kpiData.LTT[1].data * 1000000)
+        parseInt(counterLocalLTTSLDLA) / (kpiData.LTT[1].data )
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalLTTDthuGLA) / (kpiData.LTT[2].data * 1000000)
+        parseInt(counterLocalLTTSLGLA) / (kpiData.LTT[2].data )
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalLTTDthuPYE) / (kpiData.LTT[3].data * 1000000)
+        parseInt(counterLocalLTTSLPYE) / (kpiData.LTT[3].data )
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalLTTDthuDNO) / (kpiData.LTT[4].data * 1000000)
+        parseInt(counterLocalLTTSLDNO) / (kpiData.LTT[4].data )
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalLTTDthuKON) / (kpiData.LTT[5].data * 1000000)
+        parseInt(counterLocalLTTSLKON) / (kpiData.LTT[5].data )
       ).toFixed(2) * 100,
     ]);
   }, [
-    counterLocalLTTDthuKHO,
-    counterLocalLTTDthuDLA,
-    counterLocalLTTDthuGLA,
-    counterLocalLTTDthuPYE,
-    counterLocalLTTDthuDNO,
-    counterLocalLTTDthuKON,
+    counterLocalLTTSLKHO,
+    counterLocalLTTSLDLA,
+    counterLocalLTTSLGLA,
+    counterLocalLTTSLPYE,
+    counterLocalLTTSLDNO,
+    counterLocalLTTSLKON,
   ]);
 
   useEffect(() => {
     setArrayPercentCamera([
       parseFloat(
-        parseInt(counterLocalCameraDthuKHO) / (kpiData.CAMERA[0].data * 1000000)
+        parseInt(counterLocalCameraSLKHO) / (kpiData.CAMERA[0].data)
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalCameraDthuDLA) / (kpiData.CAMERA[1].data * 1000000)
+        parseInt(counterLocalCameraSLDLA) / (kpiData.CAMERA[1].data)
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalCameraDthuGLA) / (kpiData.CAMERA[2].data * 1000000)
+        parseInt(counterLocalCameraSLGLA) / (kpiData.CAMERA[2].data)
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalCameraDthuPYE) / (kpiData.CAMERA[3].data * 1000000)
+        parseInt(counterLocalCameraSLPYE) / (kpiData.CAMERA[3].data)
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalCameraDthuDNO) / (kpiData.CAMERA[4].data * 1000000)
+        parseInt(counterLocalCameraSLDNO) / (kpiData.CAMERA[4].data)
       ).toFixed(2) * 100,
       parseFloat(
-        parseInt(counterLocalCameraDthuKON) / (kpiData.CAMERA[5].data * 1000000)
+        parseInt(counterLocalCameraSLKON) / (kpiData.CAMERA[5].data)
       ).toFixed(2) * 100,
     ]);
   }, [
-    counterLocalCameraDthuKHO,
-    counterLocalCameraDthuDLA,
-    counterLocalCameraDthuGLA,
-    counterLocalCameraDthuPYE,
-    counterLocalCameraDthuDNO,
-    counterLocalCameraDthuKON,
+    counterLocalCameraSLKHO,
+    counterLocalCameraSLDLA,
+    counterLocalCameraSLGLA,
+    counterLocalCameraSLPYE,
+    counterLocalCameraSLDNO,
+    counterLocalCameraSLKON,
   ]);
 
   const [isSticky, setisSticky] = useState(false);
@@ -169,7 +169,7 @@ export function TableSumT08(props) {
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
-              <td style={{ fontStyle: "italic" }}>triệu đồng</td>
+              <td style={{ fontStyle: "italic" }}>Cái</td>
               {Array.from({
                 length: 6,
               }).map((_, i) => (
@@ -184,38 +184,38 @@ export function TableSumT08(props) {
               <td>Lũy kế thực hiện</td>
               <td></td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalLTTDthuKHO) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLKHO) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalLTTDthuDLA) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLDLA) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
                 {}
-                {parseFloat(parseInt(counterLocalLTTDthuGLA) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLGLA) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalLTTDthuPYE) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLPYE) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalLTTDthuDNO) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLDNO) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalLTTDthuKON) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalLTTSLKON) ).toFixed(
                   2
                 )}
               </td>
               <td className="text-right">
-                {parseFloat(parseInt(counterLocalSumLTTDthu) / 1000000).toFixed(
+                {parseFloat(parseInt(counterLocalSumLTTSL) ).toFixed(
                   2
                 )}
               </td>
@@ -227,16 +227,16 @@ export function TableSumT08(props) {
 
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuKHO) /
-                    (kpiData.LTT[0].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLKHO) /
+                    (kpiData.LTT[0].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuDLA) /
-                    (kpiData.LTT[1].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLDLA) /
+                    (kpiData.LTT[1].data)) *
                     100
                 ).toFixed(2)}
 
@@ -244,16 +244,16 @@ export function TableSumT08(props) {
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuGLA) /
-                    (kpiData.LTT[2].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLGLA) /
+                    (kpiData.LTT[2].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuPYE) /
-                    (kpiData.LTT[3].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLPYE) /
+                    (kpiData.LTT[3].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
@@ -261,23 +261,23 @@ export function TableSumT08(props) {
 
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuDNO) /
-                    (kpiData.LTT[4].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLDNO) /
+                    (kpiData.LTT[4].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalLTTDthuKON) /
-                    (kpiData.LTT[5].data * 1000000)) *
+                  (parseInt(counterLocalLTTSLKON) /
+                    (kpiData.LTT[5].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (counterLocalSumLTTDthu / (sumPlanLTT * 1000000)) * 100
+                  (counterLocalSumLTTSL / (sumPlanLTT)) * 100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
@@ -290,8 +290,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentLTT,
                   parseFloat(
-                    parseInt(counterLocalLTTDthuKHO) /
-                      (kpiData.LTT[0].data * 1000000)
+                    parseInt(counterLocalLTTSLKHO) /
+                      (kpiData.LTT[0].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -300,8 +300,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentLTT,
                   parseFloat(
-                    parseInt(counterLocalLTTDthuDLA) /
-                      (kpiData.LTT[1].data * 1000000)
+                    parseInt(counterLocalLTTSLDLA) /
+                      (kpiData.LTT[1].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -310,8 +310,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentLTT,
                   parseFloat(
-                    parseInt(counterLocalLTTDthuGLA) /
-                      (kpiData.LTT[2].data * 1000000)
+                    parseInt(counterLocalLTTSLGLA) /
+                      (kpiData.LTT[2].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -319,18 +319,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentLTT,
                   parseFloat(
-                    parseInt(counterLocalLTTDthuPYE) /
-                      (kpiData.LTT[3].data * 1000000)
-                  ).toFixed(2) * 100
-                )}
-              </td>
-
-              <td className="text-right">
-                {getRanking(
-                  arrayPercentLTT,
-                  parseFloat(
-                    parseInt(counterLocalLTTDthuDNO) /
-                      (kpiData.LTT[4].data * 1000000)
+                    parseInt(counterLocalLTTSLPYE) /
+                      (kpiData.LTT[3].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -339,8 +329,18 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentLTT,
                   parseFloat(
-                    parseInt(counterLocalLTTDthuKON) /
-                      (kpiData.LTT[5].data * 1000000)
+                    parseInt(counterLocalLTTSLDNO) /
+                      (kpiData.LTT[4].data)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentLTT,
+                  parseFloat(
+                    parseInt(counterLocalLTTSLKON) /
+                      (kpiData.LTT[5].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -356,7 +356,7 @@ export function TableSumT08(props) {
             <tr>
               <td></td>
               <td>Kế hoạch thi đua</td>
-              <td style={{ fontStyle: "italic" }}>triệu đồng</td>
+              <td style={{ fontStyle: "italic" }}>Cái</td>
               {Array.from({
                 length: 6,
               }).map((_, i) => (
@@ -377,37 +377,37 @@ export function TableSumT08(props) {
               ))} */}
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuKHO) / 1000000
+                  parseInt(counterLocalCameraSLKHO) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuDLA) / 1000000
+                  parseInt(counterLocalCameraSLDLA) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuGLA) / 1000000
+                  parseInt(counterLocalCameraSLGLA) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuPYE) / 1000000
+                  parseInt(counterLocalCameraSLPYE) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuDNO) / 1000000
+                  parseInt(counterLocalCameraSLDNO) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalCameraDthuKON) / 1000000
+                  parseInt(counterLocalCameraSLKON) 
                 ).toFixed(2)}
               </td>
               <td className="text-right">
                 {parseFloat(
-                  parseInt(counterLocalSumCameraDthu) / 1000000
+                  parseInt(counterLocalSumCameraSL) 
                 ).toFixed(2)}
               </td>
             </tr>
@@ -426,32 +426,32 @@ export function TableSumT08(props) {
               </td> */}
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuKHO) /
-                    (kpiData.CAMERA[0].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLKHO) /
+                    (kpiData.CAMERA[0].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuDLA) /
-                    (kpiData.CAMERA[1].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLDLA) /
+                    (kpiData.CAMERA[1].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuGLA) /
-                    (kpiData.CAMERA[2].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLGLA) /
+                    (kpiData.CAMERA[2].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuPYE) /
-                    (kpiData.CAMERA[3].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLPYE) /
+                    (kpiData.CAMERA[3].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
@@ -459,23 +459,23 @@ export function TableSumT08(props) {
 
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuDNO) /
-                    (kpiData.CAMERA[4].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLDNO) /
+                    (kpiData.CAMERA[4].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (parseInt(counterLocalCameraDthuKON) /
-                    (kpiData.CAMERA[5].data * 1000000)) *
+                  (parseInt(counterLocalCameraSLKON) /
+                    (kpiData.CAMERA[5].data)) *
                     100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
               <td className="text-right text-danger">
                 {parseFloat(
-                  (counterLocalSumCameraDthu / (sumPlanCamera * 1000000)) * 100
+                  (counterLocalSumCameraSL / (sumPlanCamera)) * 100
                 ).toFixed(2)}
                 <span> %</span>
               </td>
@@ -488,8 +488,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentCamera,
                   parseFloat(
-                    parseInt(counterLocalCameraDthuKHO) /
-                      (kpiData.CAMERA[0].data * 1000000)
+                    parseInt(counterLocalCameraSLKHO) /
+                      (kpiData.CAMERA[0].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -498,8 +498,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentCamera,
                   parseFloat(
-                    parseInt(counterLocalCameraDthuDLA) /
-                      (kpiData.CAMERA[1].data * 1000000)
+                    parseInt(counterLocalCameraSLDLA) /
+                      (kpiData.CAMERA[1].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -508,8 +508,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentCamera,
                   parseFloat(
-                    parseInt(counterLocalCameraDthuGLA) /
-                      (kpiData.CAMERA[2].data * 1000000)
+                    parseInt(counterLocalCameraSLGLA) /
+                      (kpiData.CAMERA[2].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -517,18 +517,8 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentCamera,
                   parseFloat(
-                    parseInt(counterLocalCameraDthuPYE) /
-                      (kpiData.CAMERA[3].data * 1000000)
-                  ).toFixed(2) * 100
-                )}
-              </td>
-
-              <td className="text-right">
-                {getRanking(
-                  arrayPercentCamera,
-                  parseFloat(
-                    parseInt(counterLocalCameraDthuDNO) /
-                      (kpiData.CAMERA[4].data * 1000000)
+                    parseInt(counterLocalCameraSLPYE) /
+                      (kpiData.CAMERA[3].data)
                   ).toFixed(2) * 100
                 )}
               </td>
@@ -537,8 +527,18 @@ export function TableSumT08(props) {
                 {getRanking(
                   arrayPercentCamera,
                   parseFloat(
-                    parseInt(counterLocalCameraDthuKON) /
-                      (kpiData.CAMERA[5].data * 1000000)
+                    parseInt(counterLocalCameraSLDNO) /
+                      (kpiData.CAMERA[4].data)
+                  ).toFixed(2) * 100
+                )}
+              </td>
+
+              <td className="text-right">
+                {getRanking(
+                  arrayPercentCamera,
+                  parseFloat(
+                    parseInt(counterLocalCameraSLKON) /
+                      (kpiData.CAMERA[5].data)
                   ).toFixed(2) * 100
                 )}
               </td>

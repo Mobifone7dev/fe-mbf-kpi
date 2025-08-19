@@ -319,5 +319,65 @@ export const counterCameraDthuKON = atom({
   default: 0,          // initial value
 })
 
+export const counterSumLTTSL = atom({
+  key: 'counterSumLTTSL', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLKHO = atom({
+  key: 'counterLTTSLKHO', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLDLA = atom({
+  key: 'counterLTTSLDLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLGLA = atom({
+  key: 'counterLTTSLGLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLPYE = atom({
+  key: 'counterLTTSLPYE', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLDNO = atom({
+  key: 'counterLTTSLDNO', // unique ID
+  default: 0,          // initial value
+})
+export const counterLTTSLKON = atom({
+  key: 'counterLTTSLKON', // unique ID
+  default: 0,          // initial value
+})
+
+export const counterSumCameraSL = atom({
+  key: 'counterSumCameraSL', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLKHO = atom({
+  key: 'counterCameraSLKHO', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLDLA = atom({
+  key: 'counterCameraSLDLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLGLA = atom({
+  key: 'counterCameraSLGLA', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLPYE = atom({
+  key: 'counterCameraSLPYE', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLDNO = atom({
+  key: 'counterCameraSLDNO', // unique ID
+  default: 0,          // initial value
+})
+export const counterCameraSLKON = atom({
+  key: 'counterCameraSLKON', // unique ID
+  default: 0,          // initial value
+})
+
+
+
 
 

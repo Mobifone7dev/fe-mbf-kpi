@@ -3,48 +3,48 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { dataRawKpi } from "../../lib/rawData";
-import { convertIndexToDateCamera, formatCurrencyVND } from "../../lib/utils";
+import { convertIndexToDateCamera } from "../../lib/utils";
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 import Spinner from "react-bootstrap/Spinner";
 import { useRecoilState } from "recoil";
 import {
-  counterSumCameraDthu,
-  counterCameraDthuKHO,
-  counterCameraDthuDLA,
-  counterCameraDthuGLA,
-  counterCameraDthuPYE,
-  counterCameraDthuDNO,
-  counterCameraDthuKON
+  counterSumCameraSL,
+  counterCameraSLKHO,
+  counterCameraSLDLA,
+  counterCameraSLGLA,
+  counterCameraSLPYE,
+  counterCameraSLDNO,
+  counterCameraSLKON
 } from "../../lib/states/counter";
 import FormCamera from "./FormCamera";
 function TableCamera(props) {
   const [loadingCamera, setLoadingCamera] = useState(false);
-  const [dataDthuCamera, setDataDthuCamera] = useState([]);
+  const [dataSLCamera, setDataSLCamera] = useState([]);
   const [visibleColumns, setVisibleColumns] = useState(8);
-  const [counterLocalSumCameraDthu, setCounterLocalSumCameraDthu] =
-      useRecoilState(counterSumCameraDthu);
-    const [counterLocalCameraDthuKHO, setCounterLocalCameraDthuKHO] =
-      useRecoilState(counterCameraDthuKHO);
-    const [counterLocalCameraDthuDLA, setCounterLocalCameraDthuDLA] =
-      useRecoilState(counterCameraDthuDLA);
-    const [counterLocalCameraDthuGLA, setCounterLocalCameraDthuGLA] =
-      useRecoilState(counterCameraDthuGLA);
-    const [counterLocalCameraDthuPYE, setCounterLocalCameraDthuPYE] =
-      useRecoilState(counterCameraDthuPYE);
-    const [counterLocalCameraDthuDNO, setCounterLocalCameraDthuDNO] =
-      useRecoilState(counterCameraDthuDNO);
-    const [counterLocalCameraDthuKON, setCounterLocalCameraDthuKON] =
-      useRecoilState(counterCameraDthuKON);
+  const [counterLocalSumCameraSL, setCounterLocalSumCameraSL] =
+      useRecoilState(counterSumCameraSL);
+    const [counterLocalCameraSLKHO, setCounterLocalCameraSLKHO] =
+      useRecoilState(counterCameraSLKHO);
+    const [counterLocalCameraSLDLA, setCounterLocalCameraSLDLA] =
+      useRecoilState(counterCameraSLDLA);
+    const [counterLocalCameraSLGLA, setCounterLocalCameraSLGLA] =
+      useRecoilState(counterCameraSLGLA);
+    const [counterLocalCameraSLPYE, setCounterLocalCameraSLPYE] =
+      useRecoilState(counterCameraSLPYE);
+    const [counterLocalCameraSLDNO, setCounterLocalCameraSLDNO] =
+      useRecoilState(counterCameraSLDNO);
+    const [counterLocalCameraSLKON, setCounterLocalCameraSLKON] =
+      useRecoilState(counterCameraSLKON);
   const [show, setShow] = useState(false);
  
   useEffect(() => {
     getDataCamera();
   }, []);
   useEffect(() => {
-    let sumDthu = 0;
-    dataDthuCamera &&
-      dataDthuCamera.length > 0 &&
-      dataDthuCamera.map((item, index) => {
+    let sumSL = 0;
+    dataSLCamera &&
+      dataSLCamera.length > 0 &&
+      dataSLCamera.map((item, index) => {
         const AMOUNT = item.data.reduce((acc, curr) => {
 
           return curr.AMOUNT && curr.AMOUNT !== null
@@ -54,30 +54,30 @@ function TableCamera(props) {
 
         if (item.province == "KHO") {
           console.log("check local", AMOUNT);
-          setCounterLocalCameraDthuKHO(AMOUNT);
+          setCounterLocalCameraSLKHO(AMOUNT);
         }
         if (item.province == "DLA") {
-          setCounterLocalCameraDthuDLA(AMOUNT);
+          setCounterLocalCameraSLDLA(AMOUNT);
         }
         if (item.province == "GLA") {
-          setCounterLocalCameraDthuGLA(AMOUNT);
+          setCounterLocalCameraSLGLA(AMOUNT);
         }
         if (item.province == "PYE") {
-          setCounterLocalCameraDthuPYE(AMOUNT);
+          setCounterLocalCameraSLPYE(AMOUNT);
         }
         if (item.province == "DNO") {
-          setCounterLocalCameraDthuDNO(AMOUNT);
+          setCounterLocalCameraSLDNO(AMOUNT);
         }
         if (item.province == "KON") {
-          setCounterLocalCameraDthuKON(AMOUNT);
+          setCounterLocalCameraSLKON(AMOUNT);
         }
-        sumDthu = sumDthu + parseInt(AMOUNT);
+        sumSL = sumSL + parseInt(AMOUNT);
       });
 
-    setCounterLocalSumCameraDthu(
-      sumDthu
+    setCounterLocalSumCameraSL(
+      sumSL
     );
-  }, [dataDthuCamera]);
+  }, [dataSLCamera]);
 
   const handleShowMore = () => {
     const newVisibleColumns = visibleColumns + 10;
@@ -97,41 +97,41 @@ function TableCamera(props) {
     setLoadingCamera(true);
     try {
       const response = await fetch(
-        `${API_URL}/dashboard-thidua-t08/dthu-thidua-camera` // Replace with your actual API endpoint
+        `${API_URL}/dashboard-thidua-t08/sl-thidua-camera` // Replace with your actual API endpoint
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      let dataDthuCameraKHO = { province: "KHO", data: [] };
-      let dataDthuCameraDLA = { province: "DLA", data: [] };
-      let dataDthuCameraGLA = { province: "GLA", data: [] };
-      let dataDthuCameraPYE = { province: "PYE", data: [] };
-      let dataDthuCameraDNO = { province: "DNO", data: [] };
-      let dataDthuCameraKON = { province: "KON", data: [] };
+      let dataSLCameraKHO = { province: "KHO", data: [] };
+      let dataSLCameraDLA = { province: "DLA", data: [] };
+      let dataSLCameraGLA = { province: "GLA", data: [] };
+      let dataSLCameraPYE = { province: "PYE", data: [] };
+      let dataSLCameraDNO = { province: "DNO", data: [] };
+      let dataSLCameraKON = { province: "KON", data: [] };
       if (data && data.data && data.data.length > 0) {
         data.data.forEach((item) => {
           if (item.PROVINCE === "KHO") {
-            dataDthuCameraKHO.data.push(item);
+            dataSLCameraKHO.data.push(item);
           } else if (item.PROVINCE === "DLA") {
-            dataDthuCameraDLA.data.push(item);
+            dataSLCameraDLA.data.push(item);
           } else if (item.PROVINCE === "GLA") {
-            dataDthuCameraGLA.data.push(item);
+            dataSLCameraGLA.data.push(item);
           } else if (item.PROVINCE === "PYE") {
-            dataDthuCameraPYE.data.push(item);
+            dataSLCameraPYE.data.push(item);
           } else if (item.PROVINCE === "DNO") {
-            dataDthuCameraDNO.data.push(item);
+            dataSLCameraDNO.data.push(item);
           } else if (item.PROVINCE === "KON") {
-            dataDthuCameraKON.data.push(item);
+            dataSLCameraKON.data.push(item);
           }
         });
-        setDataDthuCamera([
-          dataDthuCameraKHO,
-          dataDthuCameraDLA,
-          dataDthuCameraGLA,
-          dataDthuCameraPYE,
-          dataDthuCameraDNO,
-          dataDthuCameraKON,
+        setDataSLCamera([
+          dataSLCameraKHO,
+          dataSLCameraDLA,
+          dataSLCameraGLA,
+          dataSLCameraPYE,
+          dataSLCameraDNO,
+          dataSLCameraKON,
         ]);
       }
       setLoadingCamera(false);
@@ -224,14 +224,14 @@ function TableCamera(props) {
                     </td>
                   </tr>
 
-                  {dataDthuCamera &&
-                    dataDthuCamera.length > 0 &&
-                    dataDthuCamera.map((item, index) => {
-                      const objectProvince = dataDthuCamera[index];
-                      let sumDthu = objectProvince.data.reduce((acc, curr) => {
+                  {dataSLCamera &&
+                    dataSLCamera.length > 0 &&
+                    dataSLCamera.map((item, index) => {
+                      const objectProvince = dataSLCamera[index];
+                      let sumSL = objectProvince.data.reduce((acc, curr) => {
                         return acc + parseInt(curr.AMOUNT);
                       }, 0);
-                      let lkSum = sumDthu;
+                      let lkSum = sumSL;
                       return (
                         <tr key={`${index} + tr`}>
                           <td className="text-left"></td>
@@ -247,7 +247,7 @@ function TableCamera(props) {
                                   : "hiden-colum  "
                               }
                             >
-                              {dayIndex < visibleColumns ? formatCurrencyVND(parseFloat(day.AMOUNT)) : ""}
+                              {dayIndex < visibleColumns ? parseFloat(day.AMOUNT) : ""}
                             </td>
                           ))}
                           {Array.from({
@@ -259,7 +259,7 @@ function TableCamera(props) {
                             ></td>
                           ))}
                           <td className="text-right">
-                            {formatCurrencyVND(lkSum)}
+                            {lkSum}
                           </td>
                         </tr>
                       );

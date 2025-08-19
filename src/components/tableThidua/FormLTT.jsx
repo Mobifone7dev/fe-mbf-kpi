@@ -39,7 +39,7 @@ export function FormLTT(props) {
   const hanleLoadData = async (date) => {
     try {
       const response = await fetch(
-        `${API_URL}/dashboard-thidua-t08/dthu-thidua-ltt-detail?date=${date}` // Replace with your actual API endpoint
+        `${API_URL}/dashboard-thidua-t08/sl-thidua-ltt-detail?date=${date}` // Replace with your actual API endpoint
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -196,7 +196,7 @@ export function FormLTT(props) {
                 setLoading(true);
 
                 const response = await fetch(
-                  `${API_URL}/dashboard-thidua-t08/dthu-thidua-ltt`,
+                  `${API_URL}/dashboard-thidua-t08/sl-thidua-ltt`,
                   {
                     method: "POST",
                     headers: {

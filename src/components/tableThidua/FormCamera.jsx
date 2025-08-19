@@ -62,7 +62,7 @@ export function FormCamera(props) {
   const hanleLoadData = async (date) => {
     try {
       const response = await fetch(
-        `${API_URL}/dashboard-thidua-t08/dthu-thidua-camera-detail?date=${date}` // Replace with your actual API endpoint
+        `${API_URL}/dashboard-thidua-t08/sl-thidua-camera-detail?date=${date}` // Replace with your actual API endpoint
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -200,7 +200,7 @@ export function FormCamera(props) {
                 setLoading(true);
 
                 const response = await fetch(
-                  `${API_URL}/dashboard-thidua-t08/dthu-thidua-camera`,
+                  `${API_URL}/dashboard-thidua-t08/sl-thidua-camera`,
                   {
                     method: "POST",
                     headers: {

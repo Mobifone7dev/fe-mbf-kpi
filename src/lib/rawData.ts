@@ -1928,19 +1928,19 @@ export const dataRawKpi =
 
 export const kpiSummaryDataT08 = {
   LTT: [
-    { province: "KHO", data: 130 },
-    { province: "DLA", data: 113 },
-    { province: "GLA", data: 96 },
-    { province: "PYE", data: 78 },
-    { province: "DNO", data: 73 },
-    { province: "KON", data: 60 },
+    { province: "KHO", data: 190 },
+    { province: "DLA", data: 180 },
+    { province: "GLA", data: 180 },
+    { province: "PYE", data: 150 },
+    { province: "DNO", data: 150 },
+    { province: "KON", data: 150 },
   ],
   CAMERA: [
-    { province: "KHO", data: 104 },
-    { province: "DLA", data: 80 },
+    { province: "KHO", data: 100 },
+    { province: "DLA", data: 90 },
     { province: "GLA", data: 90 },
-    { province: "PYE", data: 77 },
-    { province: "DNO", data: 54 },
-    { province: "KON", data: 45 },
+    { province: "PYE", data: 70 },
+    { province: "DNO", data: 70 },
+    { province: "KON", data: 70 },
   ]
 };
