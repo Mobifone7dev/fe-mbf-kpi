@@ -140,7 +140,7 @@ export function TableSumT08(props) {
   return (
     <>
       <h5 className="mb-2 text-center mt-2">
-        Bảng tổng hợp thi đua 01/08 - 30/08
+        Bảng tổng hợp thi đua 01/08 - 31/08
       </h5>
       <div className="table-responsive  d-flex justify-content-center aligns-item-center">
         <table className="table table-bordered table-sum">
