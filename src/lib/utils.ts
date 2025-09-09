@@ -272,7 +272,7 @@ export const convertIndexToDateM2M = (index: number) => {
 
 export const convertIndexToDateCloud = (index: number) => {
   switch (index) {
-    
+
     case 0:
       return "01/06";
     case 1:
@@ -472,6 +472,8 @@ export const convertIndexToDateLTT = (index: number) => {
       return "29/08";
     case 29:
       return "30/08";
+    case 30:
+      return "31/08";
     default:
       return ""
   }
@@ -540,6 +542,8 @@ export const convertIndexToDateCamera = (index: number) => {
       return "29/08";
     case 29:
       return "30/08";
+    case 30:
+      return "31/08";
     default:
       return ""
   }

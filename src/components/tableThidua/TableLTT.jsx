@@ -195,7 +195,7 @@ function TableLTT(props) {
                       Đơn vị
                     </th>
 
-                    <th colSpan={30} className="text-center align-middle">
+                    <th colSpan={31} className="text-center align-middle">
                       Lũy kế tháng 08
                     </th>
                     <th rowSpan={2} className="text-center  align-middle">
@@ -204,7 +204,7 @@ function TableLTT(props) {
                   </tr>
                   <tr>
                     {Array.from({
-                      length: 30,
+                      length: 31,
                     }).map((_, i) => (
                       <th
                         key={`${i} + th`}
@@ -252,7 +252,7 @@ function TableLTT(props) {
                             </td>
                           ))}
                           {Array.from({
-                            length: 30 - objectProvince.data.length,
+                            length: 31 - objectProvince.data.length,
                           }).map((_, i) => (
                             <td
                               key={objectProvince.data.length + i}

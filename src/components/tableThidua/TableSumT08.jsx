@@ -161,7 +161,7 @@ export function TableSumT08(props) {
           <tbody className={` ${isSticky && "is-sticky"}`}>
             <tr>
               <td>1</td>
-              <td>Doanh thu LTT</td>
+              <td>Số lượng LTT</td>
               {Array.from({ length: 8 }).map((_, i) => (
                 <td key={i} className="text-right"></td>
               ))}
@@ -348,7 +348,7 @@ export function TableSumT08(props) {
             </tr>
             <tr>
               <td>2</td>
-              <td>Doanh thu Camera</td>
+              <td>Số lượng Camera</td>
               {Array.from({ length: 8 }).map((_, i) => (
                 <td key={i} className="text-right"></td>
               ))}
