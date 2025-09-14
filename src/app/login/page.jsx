@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -20,26 +20,17 @@ const Page = () => {
   const [submit, setSubmit] = useState("");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [verified, setVerified] = useState(false);
-  let captcha;
-
-  function checkIfEmailInString(text) {
+ const [captchaToken, setCaptchaToken] = useState("");
+  const recaptchaRef = useRef();
+  const resetCaptcha = () => {
+    recaptchaRef.current.reset(); // 👈 reset lại captcha
+  };
+  
+   function checkIfEmailInString(text) {
     var re =
       /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     return re.test(text);
   }
-  const setCaptchaRef = (ref) => {
-    if (ref) {
-      return (captcha = ref);
-    }
-  };
-  const resetCaptcha = () => {
-    // maybe set it till after is submitted
-    captcha.reset();
-  };
-  useEffect(()=>{
-    console.log("verify", verified)
-  },[verified])
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,8 +38,8 @@ const Page = () => {
     if (!checkIfEmailInString(email)) {
       newStringEmail = email + "@mobifone.vn";
     }
-    if (!verified) {
-      setError("Invalid captcha or resubmit captcha");
+   if (!captchaToken) {
+      setError("Vui lòng xác thực reCAPTCHA");
       return;
     }
     try {
@@ -63,6 +54,8 @@ const Page = () => {
         body: JSON.stringify({
           username: newStringEmail,
           password,
+          captchaToken,
+
         }), // body data type must match "Content-Type" header
       });
       if (!result) {
@@ -90,7 +83,6 @@ const Page = () => {
       setError("Invalid credentials");
       setLoading(false);
       resetCaptcha();
-      setVerified(false);
       return null;
     }
   }; 
@@ -103,25 +95,7 @@ const Page = () => {
       setTypePassword("password");
     }
   };
-  const onRecaptchaChange = async (value) => {
-    const res = await axios.post("/api/recaptchaSubmit", {
-      gRecaptchaToken: value,
-    });
-
-      if(res &&res.success ){
-        console.log("check", res, res.success, verified)
-        setVerified(true);
-      }else {
-        if (res && res.data && res.data.success) {
-          setVerified(true);
-        } else {
-          setVerified(false);
-        }
-  
-      }
-     
-    
-  };
+ 
 
   return (
     <div className="login-test">
@@ -171,10 +145,10 @@ const Page = () => {
                 )}
                  <div style={{ marginTop: "20px" }}>
                   {/* Google reCAPTCHA */}
-                  <ReCAPTCHA
-                    sitekey={ReCAPTCHA_SITE_KEY} // Replace with your Google reCAPTCHA Site Key
-                    onChange={onRecaptchaChange}
-                    ref={(r) => setCaptchaRef(r)}
+                   <ReCAPTCHA
+                    sitekey={ReCAPTCHA_SITE_KEY}
+                    onChange={(token) => setCaptchaToken(token)}
+                    ref={recaptchaRef}
                   />
                 </div>
                 <div className="forgot show">
