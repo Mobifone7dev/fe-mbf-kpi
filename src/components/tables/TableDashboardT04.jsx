@@ -7283,7 +7283,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.DLA /
+                  ((EXEC_SL_TB_PTM_M2M.DLA /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
@@ -7322,7 +7322,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.GLA /
+                  ((EXEC_SL_TB_PTM_M2M.GLA /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
@@ -7361,7 +7361,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.PYE /
+                  ((EXEC_SL_TB_PTM_M2M.PYE /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
@@ -7400,7 +7400,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.DNO /
+                  ((EXEC_SL_TB_PTM_M2M.DNO /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
@@ -7441,7 +7441,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.KON /
+                  ((EXEC_SL_TB_PTM_M2M.KON /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
@@ -7480,7 +7480,7 @@ const TableDashboardT04 = forwardRef((props, ref) => {
             <td
               className={
                 parseFloat(
-                  ((SET_EXEC_SL_TB_PTM_M2M.CTY7 /
+                  ((EXEC_SL_TB_PTM_M2M.CTY7 /
                     (new Date(
                       selectedDate.getFullYear(),
                       selectedDate.getMonth() + 1,
