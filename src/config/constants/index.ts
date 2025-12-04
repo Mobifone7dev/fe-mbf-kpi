@@ -58,10 +58,10 @@ const menuCategory = [
     link: "/",
   },
 
-  {
-    label: "Dashboard thi đua Tháng 08 ",
-    link: "/dashboard-thidua-t08",
-  }
+  // {
+  //   label: "Dashboard thi đua Tháng 08 ",
+  //   link: "/dashboard-thidua-t08",
+  // }
 
 ];
 

@@ -13,6 +13,7 @@ import CreateKpiT08Modal from "@components/modals/CreateKpiT08Modal";
 import TableDashboardT03 from "@components/tables/TableDashboardT03";
 import TableDashboardT04 from "@components/tables/TableDashboardT04";
 import TableDashboardT08 from "@components/tables/TableDashboardT08";
+import TableDashboardT12 from "@components/tables/TableDashboardT12";
 
 import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
@@ -320,8 +321,8 @@ const Page = () => {
         </div>
       </div>
        {/* selectDate se cham hon 1 thang */}
-      { selectedDate.getMonth()  < 3? (
-        <TableDashboardT03
+      { selectedDate.getMonth()  > 10? (
+        <TableDashboardT12
           ref={childRef}
           planData={planData}
           execData={execData}
@@ -332,30 +333,7 @@ const Page = () => {
           isSticky={isSticky}
 
         />
-      ) : selectedDate.getMonth()  < 7 ?  (
-        <TableDashboardT04
-          ref={childRef}
-          planData={planData}
-          execData={execData}
-          loadingExec={loadingExec}
-          loadingPlan={loadingPlan}
-          selectedDate={selectedDate}
-          sumDateInMonth={sumDateInMonth}
-          isSticky={isSticky}
-
-        />
-      ) : 
-        <TableDashboardT08
-          ref={childRef}
-          planData={planData}
-          execData={execData}
-          loadingExec={loadingExec}
-          loadingPlan={loadingPlan}
-          selectedDate={selectedDate}
-          sumDateInMonth={sumDateInMonth}
-          isSticky={isSticky}
-
-        />
+      ) :(<></>)
       }
     </div>
   )
