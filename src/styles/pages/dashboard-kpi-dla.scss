@@ -1,0 +1,84 @@
+.dashboard-kpi-dla {
+  margin-bottom: 20px;
+  .table-kpi-dla {
+    position: relative;
+    font-size: 12px;
+    table {
+      .table-head {
+        @media (min-width: 1140px) {
+          &.is-sticky {
+            position: fixed;
+            top: 0;
+          }
+        }
+
+        th {
+          border: thin solid;
+          border-width: 1px;
+          border-color: #a1988c;
+          padding-left: 5px;
+        }
+        .th-title {
+          width: 300px !important;
+          min-width: 300px !important;
+          max-width: 300px !important;
+          white-space: nowrap;
+          text-wrap: wrap;
+          overflow: hidden;
+          text-align: center;
+        }
+        .th-title-per {
+          width: 80px !important;
+          min-width: 80px !important;
+          max-width: 80px !important;
+          white-space: nowrap;
+          text-wrap: wrap;
+          overflow: hidden;
+          text-align: center;
+        }
+        .th-title-dis {
+          width: 100px !important;
+          min-width: 100px !important;
+          max-width: 100px !important;
+          white-space: nowrap;
+          text-wrap: wrap;
+          overflow: hidden;
+          text-align: center;
+        }
+        .th-stt {
+          width: 40px !important;
+          min-width: 40px !important;
+          max-width: 40px !important;
+          white-space: nowrap;
+          text-wrap: wrap;
+          overflow: hidden;
+          text-align: center;
+        }
+        .th-color-yellow {
+          background-color: #fae48f;
+        }
+        .th-color-brow {
+          background-color: #e0b70b;
+        }
+      }
+      .table-body {
+        td {
+          text-align: end;
+          border: thin solid;
+          border-width: 1px;
+          border-color: #a1988c;
+          padding-left: 5px;
+        }
+        .td-title {
+            text-align: left !important ;
+        }
+        .td-title-sub{
+            text-align: center;
+        }
+        .td-color-blue {
+          background-color: #63d0f8;
+        }
+      }
+    }
+  }
+}
