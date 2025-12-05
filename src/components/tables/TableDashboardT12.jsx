@@ -3,12 +3,15 @@ import Reatc, { useEffect, useState, forwardRef } from "react";
 const TableDashboardT12 = forwardRef((props, ref) => {
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {}, []);
+  useEffect(() => {
+    setIsSticky(props.isSticky);
+  }, [props.isSticky]);
   return (
     <div className="dashboard-kpi-dla">
       <h4 className="m4-4">Dashboard MobiFone Đăk Lăk</h4>
       <div className="table-kpi-dla">
         {/* <h4 className="text-center">Bảng Kpi tháng 08</h4> */}
-        <table className=" table-responsive  align-middle gs-0 gy-3">
+        <table className=" table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head ${isSticky && "is-sticky"}`}>
             <tr>
               <th colSpan={2} className="th-title th-color-yellow">
@@ -64,121 +67,46 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           </thead>
           <tbody className={`table-body ${isSticky && "is-sticky"}`}>
             <tr>
-              <td colSpan={24} className=" td-title td-color-blue" style={{fontWeight: 500}}>
+              <td
+                colSpan={24}
+                className="td-full td-title td-color-blue fw-bold"
+              >
                 I. Viễn cảnh tài chính
               </td>
             </tr>
             <tr>
-              <td className="td-title-center" rowSpan={3}>
+              <td className="td-title-center td-stt" rowSpan={3}>
                 1
               </td>
-              <td className="td-title" rowSpan={3}>
+              <td className="td-title fw-bold td-content" rowSpan={3}>
                 Doanh thu Hạ tầng số
               </td>
-              <td className="td-title-center">KH</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
+              <td className="td-title-center td-kh">KH</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
+              <td className="td-percent">100</td>
             </tr>
             <tr>
-              <td className="td-title-center">TH</td>
+              <td className="td-title-center td-kh">TH</td>
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td className="td-title-center">%TH</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-            </tr>
-            <tr>
-              <td className="td-title-center">2</td>
-              <td colSpan={23} className="td-title">Doanh thu Giải pháp số/Nền tảng số</td> 
-            </tr>
-            <tr>
-                <td rowSpan={3} className="td-title-center">2.1</td>
-                <td  rowSpan={3} className="td-title">Doanh thu GPD KHCN (TKC)</td>
-                <td  rowSpan={3} className="td-title-center">KH</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                
-            </tr>
-           <tr>
-              <td className="td-title-center">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -201,7 +129,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center">%TH</td>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -223,11 +152,900 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            {/* <tr>
-              <td colSpan={24} className=" td-title td-color-blue">
+            <tr>
+              <td className="td-title-center td-stt">2</td>
+              <td colSpan={23} className="td-title fw-bold td-content">
+                Doanh thu Giải pháp số/Nền tảng số
+              </td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center td-stt">
+                2.1
+              </td>
+              <td rowSpan={3} className="td-title td-content">
+                Doanh thu GPS KHCN (TKC)
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+
+            <tr>
+              <td rowSpan={3} className="td-title-center td-stt">
+                2.1
+              </td>
+              <td rowSpan={3} className="td-title td-content ">
+                Doanh thu GPS KHDN ( ngoài TKC)
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                4
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                Doanh thu thương hiệu giới trẻ
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                4
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                Doanh thu Cloud&DC
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td
+                colSpan={24}
+                className=" td-title td-color-blue fw-bold td-stt"
+              >
                 II. Viễn cảnh khách hàng
               </td>
-            </tr> */}
+            </tr>
+            <tr>
+              <td className="td-title-center">6</td>
+              <td colSpan={23} className="td-title fw-bold td-content">
+                Phát triển kênh phân phối
+              </td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                6.1
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                Số lượng thuê bao phát triển mới qua kênh C2C
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                6.2
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-stt">7</td>
+              <td colSpan={23} className="td-title fw-bold td-content">
+                TB PTM mạng MobiFine
+              </td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold">
+                7.1
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold">
+                TBTT PTM
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                7.2
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TBTS PTM (thoại)`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                7.4
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM M2M`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                8
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM mạng Saymee`}
+              </td>
+              <td className="td-title-center">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                9
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM MobiFiber`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
           </tbody>
         </table>
       </div>

@@ -264,7 +264,7 @@ const Page = () => {
                         dateFormat="MM/yyyy"
                         disabled={false}
                         callbackSetDate={(e) => {
-                      console.log("Selected date:", e.getMonth());
+                          console.log("Selected date:", e.getMonth());
                           setSelectedDate(e);
                           let indexDate;
                           if (e < new Date()) {
@@ -310,7 +310,7 @@ const Page = () => {
             }}
           /> */}
 
-            <CreateKpiT08Modal
+          <CreateKpiT08Modal
             show={show}
             handleClose={() => {
               setShow(false);
@@ -320,8 +320,8 @@ const Page = () => {
           />
         </div>
       </div>
-       {/* selectDate se cham hon 1 thang */}
-      { selectedDate.getMonth()  > 10? (
+      {/* selectDate se cham hon 1 thang */}
+      {selectedDate.getMonth() > 10 ? (
         <TableDashboardT12
           ref={childRef}
           planData={planData}
@@ -331,12 +331,23 @@ const Page = () => {
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
           isSticky={isSticky}
-
         />
-      ) :(<></>)
-      }
+      ) : (
+        <>
+          <TableDashboardT08
+            ref={childRef}
+            planData={planData}
+            execData={execData}
+            loadingExec={loadingExec}
+            loadingPlan={loadingPlan}
+            selectedDate={selectedDate}
+            sumDateInMonth={sumDateInMonth}
+            isSticky={isSticky}
+          />
+        </>
+      )}
     </div>
-  )
+  );
   
 };
 
