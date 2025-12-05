@@ -64,18 +64,18 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           </thead>
           <tbody className={`table-body ${isSticky && "is-sticky"}`}>
             <tr>
-              <td colSpan={24} className=" td-title td-color-blue">
+              <td colSpan={24} className=" td-title td-color-blue" style={{fontWeight: 500}}>
                 I. Viễn cảnh tài chính
               </td>
             </tr>
             <tr>
-              <td className="td-title-sub" rowSpan={3}>
+              <td className="td-title-center" rowSpan={3}>
                 1
               </td>
               <td className="td-title" rowSpan={3}>
                 Doanh thu Hạ tầng số
               </td>
-              <td className="td-title-sub">KH</td>
+              <td className="td-title-center">KH</td>
               <td>100</td>
               <td>100</td>
               <td>100</td>
@@ -99,7 +99,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100</td>
             </tr>
             <tr>
-              <td className="td-title-sub">TH</td>
+              <td className="td-title-center">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -123,7 +123,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-sub">%TH</td>
+              <td className="td-title-center">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -146,6 +146,88 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
+            <tr>
+              <td className="td-title-center">2</td>
+              <td colSpan={23} className="td-title">Doanh thu Giải pháp số/Nền tảng số</td> 
+            </tr>
+            <tr>
+                <td rowSpan={3} className="td-title-center">2.1</td>
+                <td  rowSpan={3} className="td-title">Doanh thu GPD KHCN (TKC)</td>
+                <td  rowSpan={3} className="td-title-center">KH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                
+            </tr>
+           <tr>
+              <td className="td-title-center">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            {/* <tr>
+              <td colSpan={24} className=" td-title td-color-blue">
+                II. Viễn cảnh khách hàng
+              </td>
+            </tr> */}
           </tbody>
         </table>
       </div>
