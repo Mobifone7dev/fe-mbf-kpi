@@ -463,18 +463,18 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            <tr>
+            {/* <tr>
               <td className="td-title-center">2</td>
               <td colSpan={23} className="td-title">
                 Doanh thu Giải pháp số/Nền tảng số
               </td>
-            </tr>
+            </tr> */}
             <tr>
               <td rowSpan={3} className="td-title-center">
-                2.1
+                2
               </td>
-              <td rowSpan={3} className="td-title">
-                Doanh thu GPD KHCN (TKC)
+              <td rowSpan={3} className="td-title fw-bold td-content">
+                Doanh thu Giải pháp số/Nền tảng số
               </td>
               <td className="td-title-center">KH</td>
               <td>
@@ -736,7 +736,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            <tr>
+            {/* <tr>
               <td rowSpan={3} className="td-title-center">
                 2.2
               </td>
@@ -1002,7 +1002,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
-            </tr>
+            </tr> */}
             <tr>
               <td
                 colSpan={24}
@@ -1012,16 +1012,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center">6</td>
+              <td className="td-title-center">3</td>
               <td colSpan={23} className="td-title fw-bold td-content">
                 Phát triển kênh phân phối
               </td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                6.1
+              <td rowSpan={3} className="td-title-center  td-stt">
+                3.1
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td rowSpan={3} className="td-title   td-content">
                 Số lượng thuê bao phát triển mới qua kênh C2C
               </td>
               <td className="td-title-center td-kh">KH</td>
@@ -1285,10 +1285,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                6.2
+              <td rowSpan={3} className="td-title-center  td-stt">
+                3.2
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td rowSpan={3} className="td-title   td-content">
                 {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
               </td>
               <td className="td-title-center td-kh">KH</td>
@@ -1552,16 +1552,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td className="td-title-center td-stt">7</td>
+              <td className="td-title-center td-stt">4</td>
               <td colSpan={23} className="td-title fw-bold td-content">
                 TB PTM mạng MobiFine
               </td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold">
-                7.1
+              <td rowSpan={3} className="td-title-center ">
+                4.1
               </td>
-              <td rowSpan={3} className="td-title  fw-bold">
+              <td rowSpan={3} className="td-title  ">
                 TBTT PTM
               </td>
               <td className="td-title-center td-kh">KH</td>
@@ -1825,10 +1825,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                7.2
+              <td rowSpan={3} className="td-title-center  td-stt">
+                4.2
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td rowSpan={3} className="td-title   td-content">
                 {`TBTS PTM (thoại)`}
               </td>
               <td className="td-title-center td-kh">KH</td>
@@ -2092,10 +2092,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                7.4
+              <td rowSpan={3} className="td-title-center  td-stt">
+                4.3
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td rowSpan={3} className="td-title   td-content">
                 {`TB PTM M2M`}
               </td>
               <td className="td-title-center td-kh">KH</td>
@@ -2360,7 +2360,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                8
+                5
               </td>
               <td rowSpan={3} className="td-title  fw-bold td-content">
                 {`TB PTM mạng Saymee`}
@@ -2627,7 +2627,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td rowSpan={3} className="td-title-center fw-bold td-stt">
-                9
+                6
               </td>
               <td rowSpan={3} className="td-title  fw-bold td-content">
                 {`TB PTM MobiFiber`}
