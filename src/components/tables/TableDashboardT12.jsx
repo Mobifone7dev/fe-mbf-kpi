@@ -1,8 +1,132 @@
 import Reatc, { useEffect, useState, forwardRef } from "react";
+import LoadingComponent from "@components/loading/LoadingComponent";
+import {
+  convertToFloat2Fixed,
+  getFormattedDate,
+  convertToFloat2FixedNumber,
+  daysInMonth,
+  changeFormatDateFirstDateInMonth,
+} from "../../until/functions.js";
 // eslint-disable-next-line react/display-name
 const TableDashboardT12 = forwardRef((props, ref) => {
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {}, []);
+  const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
+  const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
+  const [PLAN_DTHU_GPS_KHCN, SET_PLAN_DTHU_GPS_KHCN] = useState({});
+  const [PLAN_DTHU_GPS_KHDN, SET_PLAN_DTHU_GPS_KHDN] = useState({});
+  const [PLAN_DTHU_DUAN, SET_PLAN_DTHU_DUAN] = useState({});
+  const [PLAN_DTHU_NDS, SET_PLAN_DTHU_NDS] = useState({});
+  const [PLAN_DTHU_SAYMEE, SET_PLAN_DTHU_SAYMEE] = useState({});
+  const [PLAN_DTHU_GPS, SET_PLAN_DTHU_GPS] = useState({});
+  const [PLAN_SL_C2C, SET_PLAN_SL_C2C] = useState({});
+  const [PLAN_SL_TB_C2C, SET_PLAN_SL_TB_C2C] = useState({});
+  const [PLAN_TYLE_GD_C2C, SET_PLAN_TYLE_GD_C2C] = useState({});
+  const [PLAN_SL_PTM_TBTT, SET_PLAN_SL_PTM_TBTT] = useState({});
+  const [PLAN_SL_TBTS_PTM_THOAI, SET_PLAN_SL_TBTS_PTM_THOAI] = useState({});
+  const [PLAN_SL_TB_PTM_M2M, SET_PLAN_SL_TB_PTM_M2M] = useState({});
+  const [PLAN_TB_PTM_SAYMEE, SET_PLAN_TB_PTM_SAYMEE] = useState({});
+  const [PLAN_TB_PTM_FIBER, SET_PLAN_TB_PTM_FIBER] = useState({});
+  const [PLAN_TI_LE_GIA_HAN_GOI_DAI_KY, SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY] =
+    useState({});
+  // exec
+
+  const [planData, setPlanData] = useState({});
+  const [loadingPlan, setLoadingPlan] = useState(props.loadingPlan);
+  
+  const resetPlan = () => {
+    SET_PLAN_DTHU_TKC_HTS({});
+    SET_PLAN_DTHU_FIBER({});
+    SET_PLAN_DTHU_GPS_KHCN({});
+    SET_PLAN_DTHU_GPS_KHDN({});
+    SET_PLAN_DTHU_DUAN({});
+    SET_PLAN_DTHU_NDS({});
+    SET_PLAN_DTHU_SAYMEE({});
+    SET_PLAN_DTHU_GPS({});
+    SET_PLAN_SL_C2C({});
+    SET_PLAN_SL_TB_C2C({});
+    SET_PLAN_TYLE_GD_C2C({});
+    SET_PLAN_SL_PTM_TBTT({});
+    SET_PLAN_SL_TBTS_PTM_THOAI({});
+    SET_PLAN_SL_TB_PTM_M2M({});
+    SET_PLAN_TB_PTM_SAYMEE({});
+    SET_PLAN_TB_PTM_FIBER({});
+    SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
+  };
+  const resetExec = () => {
+    SET_PLAN_DTHU_TKC_HTS({});
+    SET_PLAN_DTHU_FIBER({});
+    SET_PLAN_DTHU_GPS_KHCN({});
+    SET_PLAN_DTHU_GPS_KHDN({});
+    SET_PLAN_DTHU_DUAN({});
+    SET_PLAN_DTHU_NDS({});
+    SET_PLAN_DTHU_SAYMEE({});
+    SET_PLAN_DTHU_GPS({});
+    SET_PLAN_SL_C2C({});
+    SET_PLAN_SL_TB_C2C({});
+    SET_PLAN_TYLE_GD_C2C({});
+    SET_PLAN_SL_PTM_TBTT({});
+    SET_PLAN_SL_TBTS_PTM_THOAI({});
+    SET_PLAN_SL_TB_PTM_M2M({});
+    SET_PLAN_TB_PTM_SAYMEE({});
+    SET_PLAN_TB_PTM_FIBER({});
+    SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
+  };
+  useEffect(() => {
+    if (planData.result && planData.result?.length > 0) {
+      console.log("planData", planData);
+      planData.result.forEach((object, index) => {
+        if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
+          SET_PLAN_DTHU_TKC_HTS(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
+          SET_PLAN_DTHU_FIBER(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHCN") {
+          SET_PLAN_DTHU_GPS_KHCN(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHDN") {
+          SET_PLAN_DTHU_GPS_KHDN(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
+          SET_PLAN_DTHU_DUAN(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
+          SET_PLAN_DTHU_SAYMEE(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_CLOUD_DC") {
+          SET_PLAN_DTHU_CLOUD_DC(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
+          SET_PLAN_SL_TB_C2C(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
+          SET_PLAN_TYLE_GD_C2C(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT") {
+          SET_PLAN_SL_PTM_TBTT(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "SL_TBTS_PTM_THOAI") {
+          SET_PLAN_SL_TBTS_PTM_THOAI(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
+          SET_PLAN_SL_TB_PTM_M2M(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
+          SET_PLAN_TB_PTM_SAYMEE(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
+          SET_PLAN_TB_PTM_FIBER(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
+          SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY(object);
+        }
+      });
+    }
+  }, [planData]);
+  useEffect(() => {
+    setPlanData(props.planData);
+  }, [props.planData]);
   return (
     <div className="dashboard-kpi-dla">
       <h4 className="m4-4">Dashboard MobiFone Đăk Lăk</h4>
@@ -34,8 +158,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <th className="th-title-dis">{`Huyện Tây Hoà + Huyện Sông Hinh`}</th>
               <th className="th-title-dis">{`Thị xã Sông Cầu`}</th>
               <th className="th-title-dis">{`Huyện Tuy An +Huyện Đồng Xuân`}</th>
+              <th className="th-title-dis" rowSpan={2}>{`TT.KDDVVT`}</th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDGPS`}</th>
-              <th className="th-title-dis" rowSpan={2}>{`Tổng`}</th>
+              {/* <th className="th-title-dis" rowSpan={2}>{`Tổng`}</th> */}
             </tr>
             <tr>
               <th className="th-stt th-color-brow">STT</th>
@@ -64,7 +189,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           </thead>
           <tbody className={`table-body ${isSticky && "is-sticky"}`}>
             <tr>
-              <td colSpan={24} className=" td-title td-color-blue" style={{fontWeight: 500}}>
+              <td
+                colSpan={24}
+                className=" td-title td-color-blue"
+                style={{ fontWeight: 500 }}
+              >
                 I. Viễn cảnh tài chính
               </td>
             </tr>
@@ -76,27 +205,153 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 Doanh thu Hạ tầng số
               </td>
               <td className="td-title-center">KH</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
-              <td>100</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T01 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T01)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T02 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T02)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T03 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T03)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T04 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T04)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T05 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T05)
+              ) : (
+                ""
+              )}</td>
+             <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T06 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T06)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T07 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T07)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T08 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T08)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T09 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T09)
+              ) : (
+                ""
+              )}</td>
+             <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T10 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T10)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T11 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T11)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T12 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T12)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_T13 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T13)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D01 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D01)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D02 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D02)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D03 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D03)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D04 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D04)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D05 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D05)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.DLA_D06 ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D06)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.TTKDVT ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDVT)
+              ) : (
+                ""
+              )}</td>
+              <td> {loadingPlan ? (
+                <LoadingComponent />
+              ) : PLAN_DTHU_TKC_HTS.TTKDGPS ? (
+                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDGPS)
+              ) : (
+                ""
+              )}</td>
             </tr>
             <tr>
               <td className="td-title-center">TH</td>
@@ -148,36 +403,43 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center">2</td>
-              <td colSpan={23} className="td-title">Doanh thu Giải pháp số/Nền tảng số</td> 
+              <td colSpan={23} className="td-title">
+                Doanh thu Giải pháp số/Nền tảng số
+              </td>
             </tr>
             <tr>
-                <td rowSpan={3} className="td-title-center">2.1</td>
-                <td  rowSpan={3} className="td-title">Doanh thu GPD KHCN (TKC)</td>
-                <td  rowSpan={3} className="td-title-center">KH</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                
+              <td rowSpan={3} className="td-title-center">
+                2.1
+              </td>
+              <td rowSpan={3} className="td-title">
+                Doanh thu GPD KHCN (TKC)
+              </td>
+              <td rowSpan={3} className="td-title-center">
+                KH
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
-           <tr>
+            <tr>
               <td className="td-title-center">TH</td>
               <td></td>
               <td></td>

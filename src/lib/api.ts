@@ -158,13 +158,13 @@ export async function createManualApiList(postData: any) {
   }
 
 }
-export async function handleGetPlanKpi(month: string, province? : string) {
+export async function handleGetPlanKpi(month: string, district? : string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`)
   let res;
   const token = localStorage.getItem("accessToken");
-  const urlApi  = province&&province.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${province}` :  URL + `/dashboard/dashboard-plan-kpi?month=${month}`;
+  const urlApi  = district&&district.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}&&province=${district}` :  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
   try {
     res = await fetch(
       urlApi,

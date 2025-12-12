@@ -23,7 +23,6 @@ import {
   handleGetExecKpi,
   handleGetExecKpiExcel,
 } from "../lib/api";
-import { convertKeyToProvinceObject } from "../lib/utils";
 import {
   convertToFloat2Fixed,
   getFormattedDate,
@@ -53,10 +52,7 @@ const Page = () => {
   const [indexDateInMonth, setIndexDateInMonth] = useState(
     new Date().getDate()
   );
-  const [province, setProvince] = useState({
-    value: "",
-    label: "Không xác định",
-  });
+
   const [planData, setPlanData] = useState({});
   const [execData, setExecData] = useState({});
   const [kpiPageRole, setkpiPageRole] = useState();
@@ -64,17 +60,20 @@ const Page = () => {
 
   useEffect(() => {
     try {
-      const user = localStorage.getItem("user")&&JSON.parse(localStorage.getItem("user"))
-        ? JSON.parse(localStorage.getItem("user"))
-        : null;
+      const user =
+        localStorage.getItem("user") && JSON.parse(localStorage.getItem("user"))
+          ? JSON.parse(localStorage.getItem("user"))
+          : null;
       if (user && user.roles) {
         if (user.roles.find((object) => (object.menu_id = "1"))) {
           setkpiPageRole(user.roles.find((object) => (object.menu_id = "1")));
         }
-      }else {
+        const date = changeFormatDateFirstDateInMonth(selectedDate);
+
+        getPlanKpi(date);
+      } else {
         localStorage.removeItem("user");
         redirect("/login");
-
       }
     } catch (error) {
       console.log(error);
@@ -87,20 +86,6 @@ const Page = () => {
       handleCaculateKpiKHO();
     }
   }, [loadingExec, loadingPlan]);
-  useEffect(() => {
-    if (
-      kpiPageRole &&
-      kpiPageRole.PROVINCE &&
-      kpiPageRole.PROVINCE.length > 0
-    ) {
-      setProvince(convertKeyToProvinceObject(kpiPageRole.PROVINCE));
-    }
-  }, [kpiPageRole]);
-
-  useEffect(() => {
-    getPlanKpi(changeFormatDateFirstDateInMonth(x), province.value);
-    getExecKpi(changeFormatDateFirstDateInMonth(x), province.value);
-  }, [province]);
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -108,8 +93,9 @@ const Page = () => {
       return;
     }
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    getPlanKpi(date, province.value);
-    getExecKpi(date, province.value);
+    console.log("check ne");
+    getPlanKpi(date);
+    // getExecKpi(date);
   }, [selectedDate]);
   const handleSticky = () => {
     const scrollTop = window.scrollY;
@@ -127,12 +113,12 @@ const Page = () => {
       childRef.current.caculateKpiKHO();
     }
   };
-  const getPlanKpi = (month, province) => {
+  const getPlanKpi = (month) => {
     setLoadingPlan(true);
     if (childRef.current) {
       childRef.current.resetPlan();
     }
-    handleGetPlanKpi(month, province).then(async (res) => {
+    handleGetPlanKpi(month).then(async (res) => {
       const data = await res.json();
       if (data && data.result) {
         setPlanData(data);
@@ -141,95 +127,17 @@ const Page = () => {
     });
   };
 
-  const getExecKpi = (month, province) => {
-    setLoadingExec(true);
-    if (childRef.current) {
-      childRef.current.resetExec();
-    }
-    handleGetExecKpi(month, province).then(async (res) => {
-      const data = await res.json();
-      setExecData(data);
-      setLoadingExec(false);
-    });
-  };
-  const handleDownloadExcel = async (kpiType, provincePt = "") => {
-    if (!selectedDate) {
-      console.error("🚨 Lỗi: Chưa chọn tháng!");
-      alert("Vui lòng chọn tháng trước khi tải Excel.");
-      return;
-    }
-
-    const formattedMonth = new Date(selectedDate)
-      .toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" })
-      .replace(" ", "/");
-
-    try {
-      alert("🔄 Đang tải file Excel...");
-
-      // 🛠️ Gọi API từ api.ts
-      let data = await handleGetExecKpiExcel(
-        formattedMonth,
-        kpiType,
-        provincePt
-      );
-
-      console.log("📌 Phản hồi từ API trước khi kiểm tra:", data);
-
-      // Nếu dữ liệu là Response object, cần parse JSON
-      if (data instanceof Response) {
-        console.warn("⚠️ Dữ liệu từ API là Response object, cần parse JSON");
-        data = await data.json();
-      }
-
-      console.log("📌 Dữ liệu đã parse JSON:", data);
-
-      // Kiểm tra dữ liệu trả về
-      if (
-        !data ||
-        !data.result ||
-        !Array.isArray(data.result) ||
-        data.result.length === 0
-      ) {
-        console.error("🚨 Không có dữ liệu hợp lệ từ API:", data);
-        throw new Error("Không có dữ liệu để xuất Excel");
-      }
-
-      // ✅ Chuyển đổi JSON thành worksheet
-      const worksheet = XLSX.utils.json_to_sheet(data.result);
-
-      // ✅ Tạo workbook và gán worksheet vào
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "KPI Data");
-
-      // ✅ Lấy thời gian hiện tại để đặt tên file
-      const now = new Date();
-      const timeStamp = now
-        .toLocaleTimeString("en-GB", { hour12: false })
-        .replace(/:/g, "-");
-      const provinceSuffix = provincePt ? `_${provincePt}` : "";
-      const fileName = `KPI_${kpiType}${provinceSuffix}_${formattedMonth.replace(
-        "/",
-        "-"
-      )}_${timeStamp}.xlsx`;
-
-      // ✅ Xuất file Excel
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
-      const excelBlob = new Blob([excelBuffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-
-      // ✅ Lưu file xuống
-      saveAs(excelBlob, fileName);
-      alert("✅ Tải file Excel thành công!");
-      console.log("✅ Tải xuống thành công! File:", fileName);
-    } catch (error) {
-      alert(`❌ Lỗi khi tải Excel: ${error.message}`);
-      console.error("❌ Lỗi khi tải Excel:", error);
-    }
-  };
+  // const getExecKpi = (month) => {
+  //   setLoadingExec(true);
+  //   if (childRef.current) {
+  //     childRef.current.resetExec();
+  //   }
+  //   handleGetExecKpi(month).then(async (res) => {
+  //     const data = await res.json();
+  //     setExecData(data);
+  //     setLoadingExec(false);
+  //   });
+  // };
 
   const [show, setShow] = useState(false);
 
@@ -264,7 +172,7 @@ const Page = () => {
                         dateFormat="MM/yyyy"
                         disabled={false}
                         callbackSetDate={(e) => {
-                      console.log("Selected date:", e.getMonth());
+                          console.log("Selected date:", e.getMonth());
                           setSelectedDate(e);
                           let indexDate;
                           if (e < new Date()) {
@@ -310,18 +218,18 @@ const Page = () => {
             }}
           /> */}
 
-            <CreateKpiT08Modal
+          {/* <CreateKpiT08Modal
             show={show}
             handleClose={() => {
               setShow(false);
               const date = changeFormatDateFirstDateInMonth(selectedDate);
               getExecKpi(date);
             }}
-          />
+          /> */}
         </div>
       </div>
-       {/* selectDate se cham hon 1 thang */}
-      { selectedDate.getMonth()  > 10? (
+      {/* selectDate se cham hon 1 thang */}
+      {selectedDate.getMonth() > 10 ? (
         <TableDashboardT12
           ref={childRef}
           planData={planData}
@@ -331,13 +239,12 @@ const Page = () => {
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
           isSticky={isSticky}
-
         />
-      ) :(<></>)
-      }
+      ) : (
+        <></>
+      )}
     </div>
-  )
-  
+  );
 };
 
 export default Page;
