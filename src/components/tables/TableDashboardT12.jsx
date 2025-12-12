@@ -476,9 +476,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td rowSpan={3} className="td-title">
                 Doanh thu GPD KHCN (TKC)
               </td>
-              <td rowSpan={3} className="td-title-center">
-                KH
-              </td>
+              <td className="td-title-center">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -494,7 +492,17 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS_KHCN.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T02)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T03)
                 ) : (
                   ""
                 )}
@@ -702,6 +710,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             <tr>
               <td className="td-title-center td-kh">%TH</td>
@@ -725,7 +734,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
-            
+              <td>100%</td>
             </tr>
             <tr>
               <td rowSpan={3} className="td-title-center">
@@ -734,9 +743,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td rowSpan={3} className="td-title">
                 Doanh thu GPS KHDN (TKC)
               </td>
-              <td rowSpan={3} className="td-title-center">
-                KH
-              </td>
+              <td className="td-title-center">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -751,8 +758,18 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
                 ) : PLAN_DTHU_GPS_KHDN.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T02)
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T0)
                 ) : (
                   ""
                 )}
@@ -960,6 +977,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
             </tr>
             <tr>
               <td className="td-title-center td-kh">%TH</td>
@@ -983,7 +1001,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
-             
+              <td>100%</td>
             </tr>
             <tr>
               <td
@@ -1274,7 +1292,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
               </td>
               <td className="td-title-center td-kh">KH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1374,7 +1392,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1394,7 +1412,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1404,7 +1422,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1424,7 +1442,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-                <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1434,7 +1452,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-                <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1444,7 +1462,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-                <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1454,7 +1472,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-                <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1464,7 +1482,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1484,7 +1502,6 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-            
             </tr>
             <tr>
               <td className="td-title-center td-kh">TH</td>
@@ -1548,7 +1565,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 TBTT PTM
               </td>
               <td className="td-title-center td-kh">KH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1558,7 +1575,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1568,7 +1585,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1578,7 +1595,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1588,7 +1605,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1598,7 +1615,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1608,7 +1625,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1618,7 +1635,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1638,7 +1655,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1648,7 +1665,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1658,7 +1675,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1668,7 +1685,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1678,7 +1695,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1688,7 +1705,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1728,7 +1745,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1815,7 +1832,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {`TBTS PTM (thoại)`}
               </td>
               <td className="td-title-center td-kh">KH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1825,7 +1842,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1835,7 +1852,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1845,7 +1862,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1855,7 +1872,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1865,7 +1882,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1875,7 +1892,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1885,7 +1902,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1905,7 +1922,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1915,7 +1932,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1925,7 +1942,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1935,7 +1952,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1945,7 +1962,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1955,7 +1972,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -1995,7 +2012,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2082,7 +2099,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {`TB PTM M2M`}
               </td>
               <td className="td-title-center td-kh">KH</td>
-                <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2092,7 +2109,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2102,7 +2119,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2112,7 +2129,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2122,7 +2139,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2132,7 +2149,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2142,7 +2159,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2152,7 +2169,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2172,7 +2189,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2182,7 +2199,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2192,7 +2209,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2202,7 +2219,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2212,7 +2229,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2222,7 +2239,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2262,7 +2279,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2349,7 +2366,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {`TB PTM mạng Saymee`}
               </td>
               <td className="td-title-center">KH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2359,7 +2376,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2369,7 +2386,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2379,7 +2396,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2389,7 +2406,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2399,7 +2416,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2409,7 +2426,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2419,7 +2436,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2439,7 +2456,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2449,7 +2466,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2459,7 +2476,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2469,7 +2486,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2479,7 +2496,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2489,7 +2506,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2529,7 +2546,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2616,7 +2633,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {`TB PTM MobiFiber`}
               </td>
               <td className="td-title-center td-kh">KH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2626,7 +2643,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2636,7 +2653,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2646,7 +2663,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2656,7 +2673,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2666,7 +2683,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2676,7 +2693,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2686,7 +2703,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2706,7 +2723,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2716,7 +2733,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2726,7 +2743,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2736,7 +2753,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2746,7 +2763,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2756,7 +2773,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2796,7 +2813,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-             <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
