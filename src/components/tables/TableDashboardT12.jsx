@@ -9,8 +9,6 @@ import {
 } from "../../until/functions.js";
 // eslint-disable-next-line react/display-name
 const TableDashboardT12 = forwardRef((props, ref) => {
-  const [isSticky, setIsSticky] = useState(false);
-  useEffect(() => {}, []);
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
   const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
   const [PLAN_DTHU_GPS_KHCN, SET_PLAN_DTHU_GPS_KHCN] = useState({});
@@ -33,7 +31,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
   const [planData, setPlanData] = useState({});
   const [loadingPlan, setLoadingPlan] = useState(props.loadingPlan);
-  
+
   const resetPlan = () => {
     SET_PLAN_DTHU_TKC_HTS({});
     SET_PLAN_DTHU_FIBER({});
@@ -127,13 +125,14 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   useEffect(() => {
     setPlanData(props.planData);
   }, [props.planData]);
+
   return (
     <div className="dashboard-kpi-dla">
       <h4 className="m4-4">Dashboard MobiFone Đăk Lăk</h4>
       <div className="table-kpi-dla">
         {/* <h4 className="text-center">Bảng Kpi tháng 08</h4> */}
-        <table className=" table-responsive  align-middle gs-0 gy-3">
-          <thead className={`table-head ${isSticky && "is-sticky"}`}>
+        <table className=" table-fixed align-middle gs-0 gy-3">
+          <thead className={`table-head`}>
             <tr>
               <th colSpan={2} className="th-title th-color-yellow">
                 Tiến độ cần thiết để đảm bảo KH tháng
@@ -187,7 +186,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <th>DLA_D06</th>
             </tr>
           </thead>
-          <tbody className={`table-body ${isSticky && "is-sticky"}`}>
+          <tbody className={`table-body`}>
             <tr>
               <td
                 colSpan={24}
@@ -198,163 +197,226 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center" rowSpan={3}>
+              <td className="td-title-center td-stt" rowSpan={3}>
                 1
               </td>
-              <td className="td-title" rowSpan={3}>
+              <td className="td-title fw-bold td-content" rowSpan={3}>
                 Doanh thu Hạ tầng số
               </td>
               <td className="td-title-center">KH</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T01 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T01)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T02 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T02)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T03 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T03)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T04 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T04)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T05 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T05)
-              ) : (
-                ""
-              )}</td>
-             <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T06 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T06)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T07 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T07)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T08 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T08)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T09 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T09)
-              ) : (
-                ""
-              )}</td>
-             <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T10 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T10)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T11 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T11)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T12 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T12)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_T13 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T13)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D01 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D01)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D02 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D02)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D03 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D03)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D04 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D04)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D05 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D05)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.DLA_D06 ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D06)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.TTKDVT ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDVT)
-              ) : (
-                ""
-              )}</td>
-              <td> {loadingPlan ? (
-                <LoadingComponent />
-              ) : PLAN_DTHU_TKC_HTS.TTKDGPS ? (
-                convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDGPS)
-              ) : (
-                ""
-              )}</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_TKC_HTS.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_DTHU_TKC_HTS.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
-              <td className="td-title-center">TH</td>
+              <td className="td-title-center td-kh">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -378,7 +440,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center">%TH</td>
+              <td className="td-title-center td-kh">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -417,27 +479,206 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td rowSpan={3} className="td-title-center">
                 KH
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHCN.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center">TH</td>
@@ -463,7 +704,547 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center">%TH</td>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center">
+                2.2
+              </td>
+              <td rowSpan={3} className="td-title">
+                Doanh thu GPS KHDN (TKC)
+              </td>
+              <td rowSpan={3} className="td-title-center">
+                KH
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_DTHU_GPS_KHDN.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D01)
+                ) : (
+                  ""
+                )}{" "}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+             
+            </tr>
+            <tr>
+              <td
+                colSpan={24}
+                className=" td-title td-color-blue fw-bold td-stt"
+              >
+                II. Viễn cảnh khách hàng
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center">6</td>
+              <td colSpan={23} className="td-title fw-bold td-content">
+                Phát triển kênh phân phối
+              </td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                6.1
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                Số lượng thuê bao phát triển mới qua kênh C2C
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_C2C.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_C2C.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -485,11 +1266,1615 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            {/* <tr>
-              <td colSpan={24} className=" td-title td-color-blue">
-                II. Viễn cảnh khách hàng
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                6.2
               </td>
-            </tr> */}
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TYLE_GD_C2C.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-stt">7</td>
+              <td colSpan={23} className="td-title fw-bold td-content">
+                TB PTM mạng MobiFine
+              </td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold">
+                7.1
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold">
+                TBTT PTM
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_TBTT.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_TBTT.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                7.2
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TBTS PTM (thoại)`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TBTS_PTM_THOAI.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_TBTS_PTM_THOAI.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                7.4
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM M2M`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_TB_PTM_M2M.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_TB_PTM_M2M.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                8
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM mạng Saymee`}
+              </td>
+              <td className="td-title-center">KH</td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_SAYMEE.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_SAYMEE.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+                9
+              </td>
+              <td rowSpan={3} className="td-title  fw-bold td-content">
+                {`TB PTM MobiFiber`}
+              </td>
+              <td className="td-title-center td-kh">KH</td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+             <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_TB_PTM_FIBER.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_TB_PTM_FIBER.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh">%TH</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>100%</td>
+            </tr>
           </tbody>
         </table>
       </div>
