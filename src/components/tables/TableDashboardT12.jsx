@@ -1554,7 +1554,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             <tr>
               <td className="td-title-center td-stt">4</td>
               <td colSpan={23} className="td-title fw-bold td-content">
-                TB PTM mạng MobiFine
+                TB PTM mạng MobiFone
               </td>
             </tr>
             <tr>
