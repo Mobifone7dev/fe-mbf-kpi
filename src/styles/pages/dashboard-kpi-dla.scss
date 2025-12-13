@@ -161,7 +161,16 @@
 
   /* Border RIGHT */
   
-  
+  .fix-col-3::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: #a1988c;
+    pointer-events: none;
+  }
   .fix-col-1,
   .fix-col-2,
   .fix-col-3 {
