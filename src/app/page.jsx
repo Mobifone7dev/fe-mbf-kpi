@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import CreateKpiModal from "@components/modals/CreateKpiModal";
 import CreateKpiT08Modal from "@components/modals/CreateKpiT08Modal";
+import CreateKpiT12Modal from "@components/modals/CreateKpiT12Modal";
 
 import TableDashboardT03 from "@components/tables/TableDashboardT03";
 import TableDashboardT04 from "@components/tables/TableDashboardT04";
@@ -218,14 +219,14 @@ const Page = () => {
             }}
           /> */}
 
-          {/* <CreateKpiT08Modal
+          <CreateKpiT12Modal
             show={show}
             handleClose={() => {
               setShow(false);
               const date = changeFormatDateFirstDateInMonth(selectedDate);
-              getExecKpi(date);
+              // getExecKpi(date);
             }}
-          /> */}
+          />
         </div>
       </div>
       {/* selectDate se cham hon 1 thang */}
