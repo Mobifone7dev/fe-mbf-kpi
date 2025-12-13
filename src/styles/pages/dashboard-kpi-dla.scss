@@ -8,12 +8,24 @@
     max-height: 80vh; /* tùy chỉnh */
 
     table {
+      table-layout: fixed;
+      width: max-content;
+      min-width: 100%;
+      border-collapse: separate; /* RẤT QUAN TRỌNG */
+
+      /* CỘT 3 – Nội dung */
+      .th-noidung,
+      .td-noidung {
+        position: sticky;
+        left: 300px; /* 40 + 260 */
+        z-index: 20;
+        background: #fff;
+      }
       .table-head {
         position: sticky; /* header đứng yên */
         top: 0;
-        z-index: 10;
+        z-index: 100;
         background: white;
-
         th {
           border: 1px solid #797774;
           padding-left: 5px;
@@ -24,7 +36,7 @@
           min-width: 300px !important;
           max-width: 300px !important;
           white-space: nowrap;
-          text-wrap: wrap;
+          word-break: break-word;
           overflow: hidden;
           text-align: center;
         }
@@ -33,7 +45,7 @@
           min-width: 80px !important;
           max-width: 80px !important;
           white-space: nowrap;
-          text-wrap: wrap;
+          word-break: break-word;
           overflow: hidden;
           text-align: center;
         }
@@ -51,7 +63,7 @@
           min-width: 40px !important;
           max-width: 40px !important;
           white-space: nowrap;
-          text-wrap: wrap;
+          word-break: break-word;
           overflow: hidden;
           text-align: center;
         }
@@ -67,13 +79,19 @@
         td {
           text-align: end;
           border: 1px solid #a1988c;
-
           padding-left: 5px;
         }
 
         .td-stt {
           width: 40px !important;
+          min-width: 40px !important;
+          max-width: 40px !important;
+          white-space: nowrap;
+          word-break: break-word;
+          overflow: hidden;
+          text-align: center;
         }
+
         .td-content {
           width: 260px !important;
         }
@@ -106,4 +124,38 @@
       border-collapse: collapse;
     }
   }
+  .table-kpi-dla .fix-col-1 {
+    position: sticky;
+    left: 0;
+    z-index: 30;
+    background: #fff;
+  }
+
+  /* CỘT 2 – Nhiệm vụ */
+  .table-kpi-dla .fix-col-2 {
+    position: sticky;
+    left: 40px; /* = width cột 1 */
+    z-index: 29;
+    background: #fff;
+  }
+
+  /* CỘT 3 – KH / TH / %TH */
+  .table-kpi-dla .fix-col-3 {
+    position: sticky;
+    left: 300px; /* 40 + 260 */
+    z-index: 28;
+    background: #fff;
+  }
+  .fix-col-1::before,
+  .fix-col-2::before,
+  .fix-col-3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.5px;
+    height: 100%;
+    background: #a1988c;
+  }
+ 
 }

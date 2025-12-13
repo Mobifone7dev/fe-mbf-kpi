@@ -132,12 +132,20 @@ const TableDashboardT12 = forwardRef((props, ref) => {
       <div className="table-kpi-dla">
         {/* <h4 className="text-center">Bảng Kpi tháng 08</h4> */}
         <table className=" table-fixed align-middle gs-0 gy-3">
+          <colgroup>
+            <col style={{ width: "40px" }} /> {/* STT */}
+            <col style={{ width: "260px" }} /> {/* Nhiệm vụ */}
+            <col style={{ width: "80px" }} /> {/* Nội dung */}
+            {Array.from({ length: 21 }).map((_, i) => (
+              <col key={i} style={{ width: "100px" }} />
+            ))}
+          </colgroup>
           <thead className={`table-head`}>
             <tr>
-              <th colSpan={2} className="th-title th-color-yellow">
+              <th colSpan={2} className="th-title th-color-yellow  ">
                 Tiến độ cần thiết để đảm bảo KH tháng
               </th>
-              <th className="th-title-per th-color-yellow">6.5%</th>
+              <th className="th-title-per th-color-yellow ">6.5%</th>
               <th className="th-title-dis">{`Thành phố Buôn Ma Thuột`}</th>
               <th className="th-title-dis">Huyện Krông Pắc</th>
               <th className="th-title-dis">Huyện Ea Kar</th>
@@ -161,10 +169,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <th className="th-title-dis" rowSpan={2}>{`TT.KDGPS`}</th>
               {/* <th className="th-title-dis" rowSpan={2}>{`Tổng`}</th> */}
             </tr>
+
             <tr>
               <th className="th-stt th-color-brow">STT</th>
-              <th className="th-color-brow">Nhiệm vụ</th>
-              <th className="th-color-brow">Nội dung</th>
+              <th className="th-color-brow ">Nhiệm vụ</th>
+              <th className="th-color-brow ">Nội dung</th>
               <th>DLA_T01</th>
               <th>DLA_T02</th>
               <th>DLA_T03</th>
@@ -197,13 +206,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-stt" rowSpan={3}>
+              <td
+                className="td-stt td-title-center td-stt fix-col-1"
+                rowSpan={3}
+              >
                 1
               </td>
-              <td className="td-title fw-bold td-content" rowSpan={3}>
+              <td className="td-title fw-bold td-content fix-col-2" rowSpan={3}>
                 Doanh thu Hạ tầng số
               </td>
-              <td className="td-title-center">KH</td>
+              <td className="td-title-center fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -416,7 +428,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -440,7 +452,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -470,13 +482,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr> */}
             <tr>
-              <td rowSpan={3} className="td-title-center">
+              <td rowSpan={3} className="td-stt td-title-center fix-col-1">
                 2
               </td>
-              <td rowSpan={3} className="td-title fw-bold td-content">
+              <td rowSpan={3} className="td-title fw-bold td-content fix-col-2">
                 Doanh thu Giải pháp số/Nền tảng số
               </td>
-              <td className="td-title-center">KH</td>
+              <td className="td-title-center fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -689,7 +701,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center">TH</td>
+              <td className="td-title-center fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -713,7 +725,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -736,227 +748,58 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            {/* <tr>
-              <td rowSpan={3} className="td-title-center">
+            <tr>
+              <td
+                className="td-title-center td-stt fix-col-1"
+                style={{ fontStyle: "italic", color: "red" }}
+              >
+                2.1
+              </td>
+              <td
+                className="td-title td-content fix-col-2"
+                style={{ fontStyle: "italic", color: "red" }}
+              >
+                Doanh thu GPS KHCN(TKC)
+              </td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td
+                className="td-title-center td-stt fix-col-1"
+                style={{ fontStyle: "italic", color: "red" }}
+              >
                 2.2
               </td>
-              <td rowSpan={3} className="td-title">
-                Doanh thu GPS KHDN (TKC)
+              <td
+                className="td-title td-content fix-col-2"
+                style={{ fontStyle: "italic", color: "red" }}
+              >
+                Doanh thu GPS KHDN(Ngoài TKC)
               </td>
-              <td className="td-title-center">KH</td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T01 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T01)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T03 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T03)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T0)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T03 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T04)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T05 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T05)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T06 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T06)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T07 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T07)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T08 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T08)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T09 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T09)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T10 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T10)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T11 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T11)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T12 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T12)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_T13 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_T13)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D01 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D01)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D02)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D03 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D03)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D04 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D04)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D05 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D05)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.DLA_D06 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D06)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.TTKDVT ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.TTKDVT)
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                {" "}
-                {loadingPlan ? (
-                  <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHDN.TTKDGPS ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHDN.DLA_D01)
-                ) : (
-                  ""
-                )}{" "}
-              </td>
-            </tr>
-            <tr>
-              <td className="td-title-center">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -979,52 +822,28 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
               <td></td>
             </tr>
-            <tr>
-              <td className="td-title-center td-kh">%TH</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-            </tr> */}
             <tr>
               <td
                 colSpan={24}
-                className=" td-title td-color-blue fw-bold td-stt"
+                className=" td-title td-color-blue fw-bold td-stt "
               >
                 II. Viễn cảnh khách hàng
               </td>
             </tr>
             <tr>
-              <td className="td-title-center">3</td>
+              <td className="td-title-center ">3</td>
               <td colSpan={23} className="td-title fw-bold td-content">
                 Phát triển kênh phân phối
               </td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center  td-stt">
+              <td rowSpan={3} className="td-title-center  td-stt fix-col-1 ">
                 3.1
               </td>
-              <td rowSpan={3} className="td-title   td-content">
+              <td rowSpan={3} className="td-title   td-content fix-col-2">
                 Số lượng thuê bao phát triển mới qua kênh C2C
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -1237,7 +1056,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -1261,7 +1080,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -1285,13 +1104,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center  td-stt">
+              <td rowSpan={3} className="td-title-center  td-stt fix-col-1">
                 3.2
               </td>
-              <td rowSpan={3} className="td-title   td-content">
+              <td rowSpan={3} className="td-title   td-content fix-col-2">
                 {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -1504,7 +1323,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -1528,7 +1347,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -1558,13 +1377,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center ">
+              <td rowSpan={3} className="td-title-center fix-col-1 ">
                 4.1
               </td>
-              <td rowSpan={3} className="td-title  ">
+              <td rowSpan={3} className="td-title fix-col-2 ">
                 TBTT PTM
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -1777,7 +1596,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -1801,7 +1620,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -1825,13 +1644,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center  td-stt">
+              <td rowSpan={3} className="td-title-center  td-stt fix-col-1">
                 4.2
               </td>
-              <td rowSpan={3} className="td-title   td-content">
+              <td rowSpan={3} className="td-title   td-content fix-col-2">
                 {`TBTS PTM (thoại)`}
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -2044,7 +1863,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -2068,7 +1887,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -2092,13 +1911,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center  td-stt">
+              <td rowSpan={3} className="td-title-center  td-stt fix-col-1">
                 4.3
               </td>
-              <td rowSpan={3} className="td-title   td-content">
+              <td rowSpan={3} className="td-title   td-content fix-col-2">
                 {`TB PTM M2M`}
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -2311,7 +2130,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -2335,7 +2154,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -2359,13 +2178,19 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+              <td
+                rowSpan={3}
+                className="td-title-center fw-bold td-stt fix-col-1"
+              >
                 5
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td
+                rowSpan={3}
+                className="td-title  fw-bold td-content fix-col-2"
+              >
                 {`TB PTM mạng Saymee`}
               </td>
-              <td className="td-title-center">KH</td>
+              <td className="td-title-center fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -2578,7 +2403,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -2602,7 +2427,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
@@ -2626,13 +2451,19 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
             </tr>
             <tr>
-              <td rowSpan={3} className="td-title-center fw-bold td-stt">
+              <td
+                rowSpan={3}
+                className="td-title-center fw-bold td-stt fix-col-1"
+              >
                 6
               </td>
-              <td rowSpan={3} className="td-title  fw-bold td-content">
+              <td
+                rowSpan={3}
+                className="td-title  fw-bold td-content fix-col-2"
+              >
                 {`TB PTM MobiFiber`}
               </td>
-              <td className="td-title-center td-kh">KH</td>
+              <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
@@ -2845,7 +2676,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">TH</td>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
               <td></td>
               <td></td>
               <td></td>
@@ -2869,7 +2700,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
             </tr>
             <tr>
-              <td className="td-title-center td-kh">%TH</td>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td>100%</td>
               <td>100%</td>
               <td>100%</td>
