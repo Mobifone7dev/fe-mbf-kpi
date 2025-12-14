@@ -17,7 +17,7 @@ import { changeFormatDateFirstDateInMonth } from "../../until/functions.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomDateInput from "../widgets/datePickers/CustomDateInput.tsx";
-import { handleGetExecKpi, createManualApiList } from "../../lib/api.ts";
+import { handleGetExecKpiDLA, createManualApiList, createManualApiListDLA } from "../../lib/api.ts";
 import {
   initDataFiber,
   initDataGPS,
@@ -34,7 +34,7 @@ const INIT_KPI_VALUES = {
 const CreateKpiT12Modal = (props) => {
   const [initKpiValues, setInitKpiValues] = useState(INIT_KPI_VALUES);
   const [loadingCreateManualKpi, setLoadingCreateManualKpi] = useState(false);
-  const [loadingExecKpi, SetLoadingExecKpi] = useState(false);
+  const [loadingExecKpi, setLoadingExecKpi] = useState(false);
   const [show, setShow] = useState(props.show);
   const [mounted, setMounted] = useState(false);
   const [dataFiber, setDataFiber] = useState(initDataFiber);
@@ -68,7 +68,7 @@ const CreateKpiT12Modal = (props) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-    //    getExecKpi(changeFormatDateFirstDateInMonth(x));
+       getExecKpi(changeFormatDateFirstDateInMonth(x));
   }, []);
   const formKpiSchema = Yup.object().shape({});
 
@@ -932,6 +932,13 @@ const CreateKpiT12Modal = (props) => {
       setTYLEGDC2C(tempData);
     }
   };
+  const getExecKpi = (month) => {
+      setLoadingExecKpi(true);
+      handleGetExecKpiDLA(month).then(async (res) => {
+        console.log("res", res);
+        setLoadingExecKpi(false);
+      });
+    }
 
   return (
     <Modal
@@ -951,6 +958,7 @@ const CreateKpiT12Modal = (props) => {
           initialValues={initKpiValues}
           validationSchema={formKpiSchema}
           onSubmit={async (values, { resetForm }) => {
+            console.log("submit", values);
             const tempDataFiber = dataFiber.map((object, index) => {
               return {
                 ...object,
@@ -983,7 +991,6 @@ const CreateKpiT12Modal = (props) => {
               const info = {
                 month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
                 kpiList: tempDataFiber.concat(
-
                   tempDataSLC2C,
                   tempDataSL_HD_GPS_KHDN,
                   tempDataTYLEGDC2C
@@ -994,13 +1001,13 @@ const CreateKpiT12Modal = (props) => {
                 
                 dateUpdateTYLEGDC2C: dateUpdateTYLEGDC2C.toISOString(),
               };
-            //   setLoadingCreateManualKpi(true);
-            //   const result = await createManualApiList(info);
-            //   setLoadingCreateManualKpi(false);
-            //   const isCreated = await result.json();
-            //   if (isCreated) {
-            //     handleClose();
-            //   }
+              setLoadingCreateManualKpi(true);
+              const result = await createManualApiListDLA(info);
+              setLoadingCreateManualKpi(false);
+              const isCreated = await result.json();
+              if (isCreated) {
+                handleClose();
+              }
             handleClose();
             } catch (error) {
               console.log("error", error);

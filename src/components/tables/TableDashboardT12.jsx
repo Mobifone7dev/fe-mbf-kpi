@@ -125,6 +125,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   useEffect(() => {
     setPlanData(props.planData);
   }, [props.planData]);
+ useEffect(() => {
+    setLoadingPlan(props.loadingPlan);
+  }, [props.loadingPlan]);
+   
 
   return (
     <div className="dashboard-kpi-dla">

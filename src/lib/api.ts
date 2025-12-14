@@ -158,6 +158,44 @@ export async function createManualApiList(postData: any) {
   }
 
 }
+
+export async function createManualApiListDLA(postData: any) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("postData", postData);
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    res = await fetch(URL + `/dashboard/dashboard-create-manual-list-kpi-dla`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
 export async function handleGetPlanKpi(month: string, district? : string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
@@ -219,6 +257,40 @@ export async function handleGetExecKpi(month: string, province?  :string) {
 
   } catch (e) {
     console.log(e)
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
+
+export async function handleGetExecKpiDLA(month: string) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    const urlApi =
+         URL + `/dashboard/dashboard-exec-kpi-dla?month=${month}`;
+    res = await fetch(urlApi, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
     return Response.json(
       { message: "An error occurred while get code.", e },
       { status: 500 }
