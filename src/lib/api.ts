@@ -202,7 +202,7 @@ export async function handleGetPlanKpi(month: string, district? : string) {
   console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`)
   let res;
   const token = localStorage.getItem("accessToken");
-  const urlApi  = district&&district.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}&&province=${district}` :  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
+  const urlApi  = district&&district.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${district}` :  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
   try {
     res = await fetch(
       urlApi,
@@ -229,6 +229,39 @@ export async function handleGetPlanKpi(month: string, district? : string) {
     );
   }
 
+}
+
+export async function handleGetPlanKpiDLA(month: string, district?: string) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`);
+  let res;
+  const token = localStorage.getItem("accessToken");
+  const urlApi = URL +`/dashboard/dashboard-plan-kpi-dla?month=${month}`;
+  try {
+    res = await fetch(urlApi, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
 }
 
 export async function handleGetExecKpi(month: string, province?  :string) {

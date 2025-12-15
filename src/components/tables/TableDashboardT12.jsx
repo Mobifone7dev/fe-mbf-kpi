@@ -1,4 +1,9 @@
-import Reatc, { useEffect, useState, forwardRef } from "react";
+import Reatc, {
+  useEffect,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import {
   convertToFloat2Fixed,
@@ -10,66 +15,72 @@ import {
 // eslint-disable-next-line react/display-name
 const TableDashboardT12 = forwardRef((props, ref) => {
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
-  const [PLAN_DTHU_FIBER, SET_PLAN_DTHU_FIBER] = useState({});
-  const [PLAN_DTHU_GPS_KHCN, SET_PLAN_DTHU_GPS_KHCN] = useState({});
-  const [PLAN_DTHU_GPS_KHDN, SET_PLAN_DTHU_GPS_KHDN] = useState({});
-  const [PLAN_DTHU_DUAN, SET_PLAN_DTHU_DUAN] = useState({});
-  const [PLAN_DTHU_NDS, SET_PLAN_DTHU_NDS] = useState({});
-  const [PLAN_DTHU_SAYMEE, SET_PLAN_DTHU_SAYMEE] = useState({});
   const [PLAN_DTHU_GPS, SET_PLAN_DTHU_GPS] = useState({});
-  const [PLAN_SL_C2C, SET_PLAN_SL_C2C] = useState({});
   const [PLAN_SL_TB_C2C, SET_PLAN_SL_TB_C2C] = useState({});
+
   const [PLAN_TYLE_GD_C2C, SET_PLAN_TYLE_GD_C2C] = useState({});
   const [PLAN_SL_PTM_TBTT, SET_PLAN_SL_PTM_TBTT] = useState({});
   const [PLAN_SL_TBTS_PTM_THOAI, SET_PLAN_SL_TBTS_PTM_THOAI] = useState({});
   const [PLAN_SL_TB_PTM_M2M, SET_PLAN_SL_TB_PTM_M2M] = useState({});
   const [PLAN_TB_PTM_SAYMEE, SET_PLAN_TB_PTM_SAYMEE] = useState({});
   const [PLAN_TB_PTM_FIBER, SET_PLAN_TB_PTM_FIBER] = useState({});
-  const [PLAN_TI_LE_GIA_HAN_GOI_DAI_KY, SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY] =
-    useState({});
+
   // exec
+  const [EXEC_DTHU_TKC_HTS, SET_EXEC_DTHU_TKC_HTS] = useState({});
+  const [EXEC_DTHU_GPS_KHCN, SET_EXEC_DTHU_GPS_KHCN] = useState({});
+  const [EXEC_DTHU_GPS_KHDN, SET_EXEC_DTHU_GPS_KHDN] = useState({});
+  const [EXEC_DTHU_GPS, SET_EXEC_DTHU_GPS] = useState({});
+  const [EXEC_SL_TB_C2C, SET_EXEC_SL_TB_C2C] = useState({});
+  const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
+  const [EXEC_SL_PTM_TBTT, SET_EXEC_SL_PTM_TBTT] = useState({});
+  const [EXEC_SL_TBTS_PTM_THOAI, SET_EXEC_SL_TBTS_PTM_THOAI] = useState({});
+  const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
+  const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
+  const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
 
   const [planData, setPlanData] = useState({});
   const [loadingPlan, setLoadingPlan] = useState(props.loadingPlan);
+  const [execData, setExecData] = useState(props.execData);
+  const [loadingExec, setLoadingExec] = useState(props.loadingExec);
+  const [selectedDate, setSelectedDate] = useState(props.selectedDate);
+  const [sumDateInMonth, setSumDateInMonth] = useState(props.sumDateInMonth);
 
-  const resetPlan = () => {
-    SET_PLAN_DTHU_TKC_HTS({});
-    SET_PLAN_DTHU_FIBER({});
-    SET_PLAN_DTHU_GPS_KHCN({});
-    SET_PLAN_DTHU_GPS_KHDN({});
-    SET_PLAN_DTHU_DUAN({});
-    SET_PLAN_DTHU_NDS({});
-    SET_PLAN_DTHU_SAYMEE({});
-    SET_PLAN_DTHU_GPS({});
-    SET_PLAN_SL_C2C({});
-    SET_PLAN_SL_TB_C2C({});
-    SET_PLAN_TYLE_GD_C2C({});
-    SET_PLAN_SL_PTM_TBTT({});
-    SET_PLAN_SL_TBTS_PTM_THOAI({});
-    SET_PLAN_SL_TB_PTM_M2M({});
-    SET_PLAN_TB_PTM_SAYMEE({});
-    SET_PLAN_TB_PTM_FIBER({});
-    SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
-  };
-  const resetExec = () => {
-    SET_PLAN_DTHU_TKC_HTS({});
-    SET_PLAN_DTHU_FIBER({});
-    SET_PLAN_DTHU_GPS_KHCN({});
-    SET_PLAN_DTHU_GPS_KHDN({});
-    SET_PLAN_DTHU_DUAN({});
-    SET_PLAN_DTHU_NDS({});
-    SET_PLAN_DTHU_SAYMEE({});
-    SET_PLAN_DTHU_GPS({});
-    SET_PLAN_SL_C2C({});
-    SET_PLAN_SL_TB_C2C({});
-    SET_PLAN_TYLE_GD_C2C({});
-    SET_PLAN_SL_PTM_TBTT({});
-    SET_PLAN_SL_TBTS_PTM_THOAI({});
-    SET_PLAN_SL_TB_PTM_M2M({});
-    SET_PLAN_TB_PTM_SAYMEE({});
-    SET_PLAN_TB_PTM_FIBER({});
-    SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
-  };
+  useEffect(() => {
+    setLoadingExec(props.loadingExec);
+  }, [props.loadingExec]);
+
+  useEffect(() => {
+    setSelectedDate(props.selectedDate);
+  }, [props.selectedDate]);
+  useEffect(() => {
+    setSumDateInMonth(props.sumDateInMonth);
+  }, [props.sumDateInMonth]);
+
+  useImperativeHandle(ref, () => ({
+    resetPlan() {
+      SET_PLAN_DTHU_TKC_HTS({});
+      SET_PLAN_DTHU_GPS({});
+      SET_PLAN_SL_TB_C2C({});
+      SET_PLAN_TYLE_GD_C2C({});
+      SET_PLAN_SL_PTM_TBTT({});
+      SET_PLAN_SL_TBTS_PTM_THOAI({});
+      SET_PLAN_SL_TB_PTM_M2M({});
+      SET_PLAN_TB_PTM_SAYMEE({});
+      SET_PLAN_TB_PTM_FIBER({});
+    },
+    resetExec() {
+      SET_EXEC_DTHU_TKC_HTS({});
+      SET_EXEC_DTHU_GPS_KHDN({});
+      SET_EXEC_DTHU_GPS({});
+      SET_EXEC_SL_TB_C2C({});
+      SET_EXEC_TYLE_GD_C2C({});
+      SET_EXEC_SL_PTM_TBTT({});
+      SET_EXEC_SL_TBTS_PTM_THOAI({});
+      SET_EXEC_SL_TB_PTM_M2M({});
+      SET_EXEC_TB_PTM_SAYMEE({});
+      SET_EXEC_TB_PTM_FIBER({});
+    },
+  }));
   useEffect(() => {
     if (planData.result && planData.result?.length > 0) {
       console.log("planData", planData);
@@ -77,24 +88,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
           SET_PLAN_DTHU_TKC_HTS(object);
         }
-        if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
-          SET_PLAN_DTHU_FIBER(object);
+
+        if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
+          SET_PLAN_DTHU_GPS(object);
         }
-        if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHCN") {
-          SET_PLAN_DTHU_GPS_KHCN(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHDN") {
-          SET_PLAN_DTHU_GPS_KHDN(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_DUAN") {
-          SET_PLAN_DTHU_DUAN(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_SAYMEE") {
-          SET_PLAN_DTHU_SAYMEE(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_CLOUD_DC") {
-          SET_PLAN_DTHU_CLOUD_DC(object);
-        }
+
         if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
           SET_PLAN_SL_TB_C2C(object);
         }
@@ -116,19 +114,35 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
           SET_PLAN_TB_PTM_FIBER(object);
         }
-        if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
-          SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY(object);
-        }
       });
     }
   }, [planData]);
+
+  useEffect(() => {
+    if (execData && execData.result?.length > 0) {
+      execData.result.forEach((object, index) => {
+        if (object["TEN_CHI_TIEU"] == "DTHU_TKC_HTS") {
+          SET_EXEC_DTHU_TKC_HTS(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
+          console.log("check ne ", object);
+          SET_EXEC_DTHU_GPS(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHCN") {
+          SET_EXEC_DTHU_GPS_KHCN(object);
+        }
+      });
+    }
+  }, [execData]);
   useEffect(() => {
     setPlanData(props.planData);
   }, [props.planData]);
- useEffect(() => {
+  useEffect(() => {
     setLoadingPlan(props.loadingPlan);
   }, [props.loadingPlan]);
-   
+  useEffect(() => {
+    setExecData(props.execData);
+  }, [props.execData]);
 
   return (
     <div className="dashboard-kpi-dla">
@@ -140,7 +154,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             <col style={{ width: "40px" }} /> {/* STT */}
             <col style={{ width: "260px" }} /> {/* Nhiệm vụ */}
             <col style={{ width: "80px" }} /> {/* Nội dung */}
-            {Array.from({ length: 21 }).map((_, i) => (
+            {Array.from({ length: 22 }).map((_, i) => (
               <col key={i} style={{ width: "100px" }} />
             ))}
           </colgroup>
@@ -171,6 +185,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <th className="th-title-dis">{`Huyện Tuy An +Huyện Đồng Xuân`}</th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDDVVT`}</th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDGPS`}</th>
+              <th className="th-title-dis" rowSpan={2}>{`Ngày cập nhật`}</th>
+
               {/* <th className="th-title-dis" rowSpan={2}>{`Tổng`}</th> */}
             </tr>
 
@@ -202,7 +218,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           <tbody className={`table-body`}>
             <tr>
               <td
-                colSpan={24}
+                colSpan={25}
                 className=" td-title td-color-blue"
                 style={{ fontWeight: 500 }}
               >
@@ -217,7 +233,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 1
               </td>
               <td className="td-title fw-bold td-content fix-col-2" rowSpan={3}>
-                Doanh thu Hạ tầng số
+                Doanh thu Hạ tầng số{" "}
+                <span style={{ fontStyle: "italic" }}>(triệu đồng)</span>
               </td>
               <td className="td-title-center fix-col-3">KH</td>
               <td>
@@ -430,6 +447,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
+              <td rowSpan={3}>
+                {EXEC_DTHU_TKC_HTS.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_DTHU_TKC_HTS.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
@@ -479,26 +501,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>100%</td>
               <td>100%</td>
             </tr>
-            {/* <tr>
-              <td className="td-title-center">2</td>
-              <td colSpan={23} className="td-title">
-                Doanh thu Giải pháp số/Nền tảng số
-              </td>
-            </tr> */}
             <tr>
               <td rowSpan={3} className="td-stt td-title-center fix-col-1">
                 2
               </td>
               <td rowSpan={3} className="td-title fw-bold td-content fix-col-2">
-                Doanh thu Giải pháp số/Nền tảng số
+                Doanh thu Giải pháp số/Nền tảng số{" "}
+                <span style={{ fontStyle: "italic" }}>(triệu đồng)</span>
               </td>
               <td className="td-title-center fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T01 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T01)
+                ) : PLAN_DTHU_GPS.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T01)
                 ) : (
                   ""
                 )}
@@ -507,8 +524,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T03)
+                ) : PLAN_DTHU_GPS.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T03)
                 ) : (
                   ""
                 )}
@@ -517,8 +534,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T03)
+                ) : PLAN_DTHU_GPS.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T03)
                 ) : (
                   ""
                 )}
@@ -527,8 +544,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T03 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T04)
+                ) : PLAN_DTHU_GPS.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T04)
                 ) : (
                   ""
                 )}
@@ -537,8 +554,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T05 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T05)
+                ) : PLAN_DTHU_GPS.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T05)
                 ) : (
                   ""
                 )}
@@ -547,8 +564,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T06 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T06)
+                ) : PLAN_DTHU_GPS.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T06)
                 ) : (
                   ""
                 )}
@@ -557,8 +574,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T07 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T07)
+                ) : PLAN_DTHU_GPS.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T07)
                 ) : (
                   ""
                 )}
@@ -567,8 +584,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T08 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T08)
+                ) : PLAN_DTHU_GPS.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T08)
                 ) : (
                   ""
                 )}
@@ -577,8 +594,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T09 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T09)
+                ) : PLAN_DTHU_GPS.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T09)
                 ) : (
                   ""
                 )}
@@ -587,8 +604,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T10 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T10)
+                ) : PLAN_DTHU_GPS.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T10)
                 ) : (
                   ""
                 )}
@@ -597,8 +614,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T11 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T11)
+                ) : PLAN_DTHU_GPS.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T11)
                 ) : (
                   ""
                 )}
@@ -607,8 +624,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T12 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T12)
+                ) : PLAN_DTHU_GPS.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T12)
                 ) : (
                   ""
                 )}
@@ -617,8 +634,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_T13 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_T13)
+                ) : PLAN_DTHU_GPS.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_T13)
                 ) : (
                   ""
                 )}
@@ -627,8 +644,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D01 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D01)
+                ) : PLAN_DTHU_GPS.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D01)
                 ) : (
                   ""
                 )}
@@ -637,8 +654,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D02)
+                ) : PLAN_DTHU_GPS.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D02)
                 ) : (
                   ""
                 )}
@@ -647,8 +664,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D03 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D03)
+                ) : PLAN_DTHU_GPS.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D03)
                 ) : (
                   ""
                 )}
@@ -657,8 +674,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D04 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D04)
+                ) : PLAN_DTHU_GPS.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D04)
                 ) : (
                   ""
                 )}
@@ -667,8 +684,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D05 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D05)
+                ) : PLAN_DTHU_GPS.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D05)
                 ) : (
                   ""
                 )}
@@ -677,8 +694,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.DLA_D06 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.DLA_D06)
+                ) : PLAN_DTHU_GPS.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.DLA_D06)
                 ) : (
                   ""
                 )}
@@ -687,8 +704,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.TTKDVT ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.TTKDVT)
+                ) : PLAN_DTHU_GPS.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.TTKDVT)
                 ) : (
                   ""
                 )}
@@ -697,36 +714,209 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_DTHU_GPS_KHCN.TTKDGPS ? (
-                  convertToFloat2Fixed(PLAN_DTHU_GPS_KHCN.TTKDGPS)
+                ) : PLAN_DTHU_GPS.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_DTHU_GPS.TTKDGPS)
                 ) : (
                   ""
                 )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_DTHU_GPS.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_DTHU_GPS.LAST_DATE))
+                  : ""}
               </td>
             </tr>
             <tr>
               <td className="td-title-center fix-col-3">TH</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T01 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T02 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T03 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T04 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T05 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T06 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T07 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T08 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T09 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T10 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T11 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T12 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_T13 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D01 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D02 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D03 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D04 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D05 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.DLA_D06 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.TTKDVT ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.TTDKVT / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.TTKDGPS / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
@@ -787,7 +977,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
+              <td>
+                {EXEC_DTHU_GPS_KHCN.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td
@@ -824,11 +1018,15 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
+              <td>
+                {EXEC_DTHU_GPS_KHDN.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_DTHU_GPS_KHDN.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td
-                colSpan={24}
+                colSpan={25}
                 className=" td-title td-color-blue fw-bold td-stt "
               >
                 II. Viễn cảnh khách hàng
@@ -836,7 +1034,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center ">3</td>
-              <td colSpan={23} className="td-title fw-bold td-content">
+              <td colSpan={24} className="td-title fw-bold td-content">
                 Phát triển kênh phân phối
               </td>
             </tr>
@@ -1058,6 +1256,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
+              <td rowSpan={3}>
+                {EXEC_SL_TB_C2C.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_SL_TB_C2C.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
@@ -1112,7 +1315,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 3.2
               </td>
               <td rowSpan={3} className="td-title   td-content fix-col-2">
-                {`Tỷ lệ điểm bán C2C có phá sinh giao dịch(%)`}
+                {`Tỷ lệ điểm bán C2C có phát sinh giao dịch(%)`}
               </td>
               <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
@@ -1325,6 +1528,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
+              <td rowSpan={3}>
+                {EXEC_TYLE_GD_C2C.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_TYLE_GD_C2C.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
@@ -1376,7 +1584,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-stt">4</td>
-              <td colSpan={23} className="td-title fw-bold td-content">
+              <td colSpan={24} className="td-title fw-bold td-content">
                 TB PTM mạng MobiFone
               </td>
             </tr>
@@ -1597,6 +1805,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 ) : (
                   ""
                 )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_SL_PTM_TBTT.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_SL_PTM_TBTT.LAST_DATE))
+                  : ""}
               </td>
             </tr>
             <tr>
@@ -1865,6 +2078,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
+              <td rowSpan={3}>
+                {EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
@@ -2131,6 +2349,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 ) : (
                   ""
                 )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_SL_TB_PTM_M2M.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE))
+                  : ""}
               </td>
             </tr>
             <tr>
@@ -2405,6 +2628,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
+              <td rowSpan={3}>
+                {EXEC_TB_PTM_SAYMEE.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE))
+                  : ""}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
@@ -2677,6 +2905,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 ) : (
                   ""
                 )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_TB_PTM_FIBER.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_TB_PTM_FIBER.LAST_DATE))
+                  : ""}
               </td>
             </tr>
             <tr>

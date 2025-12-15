@@ -20,8 +20,8 @@ import { redirect } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import {
-  handleGetPlanKpi,
-  handleGetExecKpi,
+  handleGetPlanKpiDLA,
+  handleGetExecKpiDLA,
   handleGetExecKpiExcel,
 } from "../lib/api";
 import {
@@ -72,6 +72,7 @@ const Page = () => {
         const date = changeFormatDateFirstDateInMonth(selectedDate);
 
         getPlanKpi(date);
+        getExecKpi(date);
       } else {
         localStorage.removeItem("user");
         redirect("/login");
@@ -82,11 +83,7 @@ const Page = () => {
       redirect("/login");
     }
   }, []);
-  useEffect(() => {
-    if (!loadingExec && !loadingPlan) {
-      handleCaculateKpiKHO();
-    }
-  }, [loadingExec, loadingPlan]);
+  
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -96,7 +93,7 @@ const Page = () => {
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     console.log("check ne");
     getPlanKpi(date);
-    // getExecKpi(date);
+    getExecKpi(date);
   }, [selectedDate]);
   const handleSticky = () => {
     const scrollTop = window.scrollY;
@@ -109,17 +106,13 @@ const Page = () => {
     };
   });
 
-  const handleCaculateKpiKHO = () => {
-    if (childRef.current) {
-      childRef.current.caculateKpiKHO();
-    }
-  };
+  
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
     if (childRef.current) {
       childRef.current.resetPlan();
     }
-    handleGetPlanKpi(month).then(async (res) => {
+    handleGetPlanKpiDLA(month).then(async (res) => {
       const data = await res.json();
       if (data && data.result) {
         setPlanData(data);
@@ -128,17 +121,17 @@ const Page = () => {
     });
   };
 
-  // const getExecKpi = (month) => {
-  //   setLoadingExec(true);
-  //   if (childRef.current) {
-  //     childRef.current.resetExec();
-  //   }
-  //   handleGetExecKpi(month).then(async (res) => {
-  //     const data = await res.json();
-  //     setExecData(data);
-  //     setLoadingExec(false);
-  //   });
-  // };
+  const getExecKpi = (month) => {
+    setLoadingExec(true);
+    if (childRef.current) {
+      childRef.current.resetExec();
+    }
+    handleGetExecKpiDLA(month).then(async (res) => {
+      const data = await res.json();
+      setExecData(data);
+      setLoadingExec(false);
+    });
+  };
 
   const [show, setShow] = useState(false);
 
@@ -224,7 +217,7 @@ const Page = () => {
             handleClose={() => {
               setShow(false);
               const date = changeFormatDateFirstDateInMonth(selectedDate);
-              // getExecKpi(date);
+              getExecKpi(date);
             }}
           />
         </div>
@@ -239,7 +232,6 @@ const Page = () => {
           loadingPlan={loadingPlan}
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
-          isSticky={isSticky}
         />
       ) : (
         <></>

@@ -349,7 +349,7 @@ const TableDashboardT08 = forwardRef((props, ref) => {
         }
         if (object["TEN_CHI_TIEU"] == "SL_HD_GPS_KHDN") {
           SET_EXEC_SL_HD_GPS_KHDN(object);
-        }
+d        }
 
         if (object["TEN_CHI_TIEU"] == "TILE_MNP") {
           SET_EXEC_TILE_MNP(object);
