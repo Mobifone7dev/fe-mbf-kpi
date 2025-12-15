@@ -874,7 +874,6 @@ const CreateKpiT12Modal = (props) => {
   };
 
   const handleValueUpdate = (id, valueInput, area) => {
-    console.log("check", id, valueInput, area);
     if (id == "DTHU_FIBER") {
       const tempData = dataFiber.map((object) => {
         if (object.area == area) {
@@ -940,8 +939,54 @@ const CreateKpiT12Modal = (props) => {
   const getExecKpi = (month) => {
     setLoadingExecKpi(true);
     handleGetExecKpiDLA(month).then(async (res) => {
-      console.log("res", res);
       setLoadingExecKpi(false);
+      resetFiber();
+      resetGPS();
+      resetGPSKHCN();
+      resetGPSKHDN();
+      resetSLC2C();
+      resetTYLEGDC2C();
+      const data = await res.json();
+      if (data && data.result) {
+        data.result.map((object, index) => {
+          if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
+            SET_EXEC_DTHU_FIBER(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateFiber(new Date(object["LAST_DATE"]));
+            }
+          }
+          if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
+            SET_EXEC_DTHU_GPS(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateGPS(new Date(object["LAST_DATE"]));
+            }
+          }
+          if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHCN") {
+            SET_EXEC_DTHU_GPS_KHCN(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateGPSKHCN(new Date(object["LAST_DATE"]));
+            }
+          }
+          if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHDN") {
+            SET_EXEC_DTHU_GPS_KHDN(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateGPSKHDN(new Date(object["LAST_DATE"]));
+            }
+          }
+          if (object["TEN_CHI_TIEU"] == "SL_C2C") {
+            SET_EXEC_SL_C2C(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateSLC2C(new Date(object["LAST_DATE"]));
+            }
+          }
+          if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
+            SET_EXEC_TYLE_GD_C2C(object);
+            if (object["LAST_DATE"]) {
+              setDateUpdateTYLEGDC2C(new Date(object["LAST_DATE"]));
+            }
+          }
+        });
+      }
     });
   };
 
@@ -963,7 +1008,7 @@ const CreateKpiT12Modal = (props) => {
           initialValues={initKpiValues}
           validationSchema={formKpiSchema}
           onSubmit={async (values, { resetForm }) => {
-            console.log("submit", values);
+            // console.log("submit", values);
             const tempDataFiber = dataFiber.map((object, index) => {
               return {
                 ...object,
@@ -977,35 +1022,50 @@ const CreateKpiT12Modal = (props) => {
                 value: object.value ? object.value : 0,
               };
             });
-            const tempDataSL_HD_GPS_KHDN = dataSL_HD_GPS_KHDN.map(
-              (object, index) => {
-                return {
-                  ...object,
-                  value: object.value ? object.value : 0,
-                };
-              }
-            );
-            const tempDataTYLEGDC2C = dataTYLEGDC2C.map((object, index) => {
+            const tempDataGPS = dataGPS.map((object, index) => {
               return {
                 ...object,
                 value: object.value ? object.value : 0,
               };
             });
 
+            const tempDataGPSKHCN = dataGPSKHCN.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value : 0,
+              };
+            });
+
+            const tempDataGPSKHDN = dataGPSKHDN.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value : 0,
+              };
+            });
+            const tempDataTYLEGDC2C = dataTYLEGDC2C.map((object, index) => {
+              return {
+                ...object,
+                value: object.value ? object.value : 0,
+              };
+            });
             try {
               const info = {
                 month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
                 kpiList: tempDataFiber.concat(
+                  tempDataGPS,
+                  tempDataGPSKHCN,
+                  tempDataGPSKHDN,
                   tempDataSLC2C,
-                  tempDataSL_HD_GPS_KHDN,
                   tempDataTYLEGDC2C
                 ),
                 dateUpdateFiber: dateUpdateFiber.toISOString(),
-
+                dateUpdateGPS: dateUpdateGPS.toISOString(),
+                dateUpdateGPSKHCN: dateUpdateGPSKHCN.toISOString(),
+                dateUpdateGPSKHDN: dateUpdateGPSKHDN.toISOString(),
                 dateUpdateSLC2C: dateUpdateSLC2C.toISOString(),
-
                 dateUpdateTYLEGDC2C: dateUpdateTYLEGDC2C.toISOString(),
               };
+              console.log("info", info);
               setLoadingCreateManualKpi(true);
               await createManualApiListDLA(info);
               setLoadingCreateManualKpi(false);

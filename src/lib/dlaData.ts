@@ -364,7 +364,7 @@ export const initDataGPSKHDN = [
     value: 0,
   },
   {
-    id: "DTHU_GPS_KHCN",
+    id: "DTHU_GPS_KHDN",
     area: "DLA_T09",
     value: 0,
   },
