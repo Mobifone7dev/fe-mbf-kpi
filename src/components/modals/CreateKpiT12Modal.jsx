@@ -17,7 +17,11 @@ import { changeFormatDateFirstDateInMonth } from "../../until/functions.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomDateInput from "../widgets/datePickers/CustomDateInput.tsx";
-import { handleGetExecKpiDLA, createManualApiList, createManualApiListDLA } from "../../lib/api.ts";
+import {
+  handleGetExecKpiDLA,
+  createManualApiList,
+  createManualApiListDLA,
+} from "../../lib/api.ts";
 import {
   initDataFiber,
   initDataGPS,
@@ -68,7 +72,7 @@ const CreateKpiT12Modal = (props) => {
     setMounted(true);
   }, []);
   useEffect(() => {
-       getExecKpi(changeFormatDateFirstDateInMonth(x));
+    getExecKpi(changeFormatDateFirstDateInMonth(x));
   }, []);
   const formKpiSchema = Yup.object().shape({});
 
@@ -742,12 +746,12 @@ const CreateKpiT12Modal = (props) => {
     let tempData = [];
 
     tempData.push({
-      id: "SL_C2C",
+      id: "TYLE_GD_C2C",
       value: EXEC_TYLE_GD_C2C.DLA_T01 ? EXEC_TYLE_GD_C2C.DLA_T01 / 1000000 : 0,
-      area: "TYLE_GD_C2C",
+      area: "DLA_T01",
     });
     tempData.push({
-      id: "SLTYLE_GD_C2C_C2C",
+      id: "TYLE_GD_C2C",
       value: EXEC_TYLE_GD_C2C.DLA_T02 ? EXEC_TYLE_GD_C2C.DLA_T02 / 1000000 : 0,
       area: "DLA_T02",
     });
@@ -870,6 +874,7 @@ const CreateKpiT12Modal = (props) => {
   };
 
   const handleValueUpdate = (id, valueInput, area) => {
+    console.log("check", id, valueInput, area);
     if (id == "DTHU_FIBER") {
       const tempData = dataFiber.map((object) => {
         if (object.area == area) {
@@ -933,12 +938,12 @@ const CreateKpiT12Modal = (props) => {
     }
   };
   const getExecKpi = (month) => {
-      setLoadingExecKpi(true);
-      handleGetExecKpiDLA(month).then(async (res) => {
-        console.log("res", res);
-        setLoadingExecKpi(false);
-      });
-    }
+    setLoadingExecKpi(true);
+    handleGetExecKpiDLA(month).then(async (res) => {
+      console.log("res", res);
+      setLoadingExecKpi(false);
+    });
+  };
 
   return (
     <Modal
@@ -965,7 +970,7 @@ const CreateKpiT12Modal = (props) => {
                 value: object.value ? object.value * 1000000 : 0,
               };
             });
-            
+
             const tempDataSLC2C = dataSLC2C.map((object, index) => {
               return {
                 ...object,
@@ -986,7 +991,7 @@ const CreateKpiT12Modal = (props) => {
                 value: object.value ? object.value : 0,
               };
             });
-           
+
             try {
               const info = {
                 month: moment(values.selectKpiMonth).format("DD-MM-YYYY"),
@@ -996,19 +1001,15 @@ const CreateKpiT12Modal = (props) => {
                   tempDataTYLEGDC2C
                 ),
                 dateUpdateFiber: dateUpdateFiber.toISOString(),
-               
+
                 dateUpdateSLC2C: dateUpdateSLC2C.toISOString(),
-                
+
                 dateUpdateTYLEGDC2C: dateUpdateTYLEGDC2C.toISOString(),
               };
               setLoadingCreateManualKpi(true);
-              const result = await createManualApiListDLA(info);
+              await createManualApiListDLA(info);
               setLoadingCreateManualKpi(false);
-              const isCreated = await result.json();
-              if (isCreated) {
-                handleClose();
-              }
-            handleClose();
+              handleClose();
             } catch (error) {
               console.log("error", error);
             }
@@ -1045,7 +1046,7 @@ const CreateKpiT12Modal = (props) => {
                   </div>
                 ) : (
                   <div className=" table-create-kpi">
-                    <table className="table-responsive align-middle gs-0 gy-3">
+                    <table className="table-responsive align-middle gs-0 gy-3 table-bordered">
                       <thead>
                         <tr className="table-head">
                           <th>
@@ -1146,7 +1147,7 @@ const CreateKpiT12Modal = (props) => {
                           </td>
                           {dataGPS &&
                             dataGPS.map((object, index) => (
-                              <td key={index + `_cloud_dc`}>
+                              <td key={index + `_gps`}>
                                 <input
                                   type="number"
                                   className="form-control input-kpi"
@@ -1184,7 +1185,7 @@ const CreateKpiT12Modal = (props) => {
                             </span>
                           </td>
                           {dataGPSKHCN.map((object, index) => (
-                            <td key={index + `_mass`}>
+                            <td key={index + `_gps_khcn`}>
                               <input
                                 type="number"
                                 className="form-control input-kpi"
@@ -1221,7 +1222,7 @@ const CreateKpiT12Modal = (props) => {
                             </span>
                           </td>
                           {dataGPSKHDN.map((object, index) => (
-                            <td key={index + `_duan`}>
+                            <td key={index + `_gps_khdn`}>
                               <input
                                 className="form-control input-kpi"
                                 value={object.value}
@@ -1245,9 +1246,7 @@ const CreateKpiT12Modal = (props) => {
                             />
                           </td>
                         </tr>
-                        
-                       
-                       
+
                         <tr>
                           <td>Số lượng điểm C2C</td>
                           <td style={{ paddingLeft: "10px" }}>điểm</td>
