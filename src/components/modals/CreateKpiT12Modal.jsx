@@ -109,107 +109,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T01 ? EXEC_DTHU_FIBER.DLA_T01  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T01 ? EXEC_DTHU_FIBER.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T02 ? EXEC_DTHU_FIBER.DLA_T02  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T02 ? EXEC_DTHU_FIBER.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T03 ? EXEC_DTHU_FIBER.DLA_T03  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T03 ? EXEC_DTHU_FIBER.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T04 ? EXEC_DTHU_FIBER.DLA_T04  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T04 ? EXEC_DTHU_FIBER.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T05 ? EXEC_DTHU_FIBER.DLA_T05  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T05 ? EXEC_DTHU_FIBER.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T06 ? EXEC_DTHU_FIBER.DLA_T06  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T06 ? EXEC_DTHU_FIBER.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T07 ? EXEC_DTHU_FIBER.DLA_T07  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T07 ? EXEC_DTHU_FIBER.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T08 ? EXEC_DTHU_FIBER.DLA_T08  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T08 ? EXEC_DTHU_FIBER.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T09 ? EXEC_DTHU_FIBER.DLA_T09  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T09 ? EXEC_DTHU_FIBER.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T10 ? EXEC_DTHU_FIBER.DLA_T10  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T10 ? EXEC_DTHU_FIBER.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T11 ? EXEC_DTHU_FIBER.DLA_T11  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T11 ? EXEC_DTHU_FIBER.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T12 ? EXEC_DTHU_FIBER.DLA_T12  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T12 ? EXEC_DTHU_FIBER.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_T13 ? EXEC_DTHU_FIBER.DLA_T13  : 0,
+      value: EXEC_DTHU_FIBER.DLA_T13 ? EXEC_DTHU_FIBER.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D01 ? EXEC_DTHU_FIBER.DLA_D01  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D01 ? EXEC_DTHU_FIBER.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D02 ? EXEC_DTHU_FIBER.DLA_D02  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D02 ? EXEC_DTHU_FIBER.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D03 ? EXEC_DTHU_FIBER.DLA_D03  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D03 ? EXEC_DTHU_FIBER.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D04 ? EXEC_DTHU_FIBER.DLA_D04  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D04 ? EXEC_DTHU_FIBER.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D05 ? EXEC_DTHU_FIBER.DLA_D05  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D05 ? EXEC_DTHU_FIBER.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.DLA_D06 ? EXEC_DTHU_FIBER.DLA_D06  : 0,
+      value: EXEC_DTHU_FIBER.DLA_D06 ? EXEC_DTHU_FIBER.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.TTKDVT ? EXEC_DTHU_FIBER.TTKDVT  : 0,
+      value: EXEC_DTHU_FIBER.TTKDVT ? EXEC_DTHU_FIBER.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "DTHU_FIBER",
-      value: EXEC_DTHU_FIBER.TTKDGPS ? EXEC_DTHU_FIBER.TTKDGPS  : 0,
+      value: EXEC_DTHU_FIBER.TTKDGPS ? EXEC_DTHU_FIBER.TTKDGPS : 0,
       area: "TTKDGPS",
     });
 
@@ -220,107 +220,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T01 ? EXEC_DTHU_GPS.DLA_T01  : 0,
+      value: EXEC_DTHU_GPS.DLA_T01 ? EXEC_DTHU_GPS.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T02 ? EXEC_DTHU_GPS.DLA_T02  : 0,
+      value: EXEC_DTHU_GPS.DLA_T02 ? EXEC_DTHU_GPS.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T03 ? EXEC_DTHU_GPS.DLA_T03  : 0,
+      value: EXEC_DTHU_GPS.DLA_T03 ? EXEC_DTHU_GPS.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T04 ? EXEC_DTHU_GPS.DLA_T04  : 0,
+      value: EXEC_DTHU_GPS.DLA_T04 ? EXEC_DTHU_GPS.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T05 ? EXEC_DTHU_GPS.DLA_T05  : 0,
+      value: EXEC_DTHU_GPS.DLA_T05 ? EXEC_DTHU_GPS.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T06 ? EXEC_DTHU_GPS.DLA_T06  : 0,
+      value: EXEC_DTHU_GPS.DLA_T06 ? EXEC_DTHU_GPS.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T07 ? EXEC_DTHU_GPS.DLA_T07  : 0,
+      value: EXEC_DTHU_GPS.DLA_T07 ? EXEC_DTHU_GPS.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T08 ? EXEC_DTHU_GPS.DLA_T08  : 0,
+      value: EXEC_DTHU_GPS.DLA_T08 ? EXEC_DTHU_GPS.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T09 ? EXEC_DTHU_GPS.DLA_T09  : 0,
+      value: EXEC_DTHU_GPS.DLA_T09 ? EXEC_DTHU_GPS.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T10 ? EXEC_DTHU_GPS.DLA_T10  : 0,
+      value: EXEC_DTHU_GPS.DLA_T10 ? EXEC_DTHU_GPS.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T11 ? EXEC_DTHU_GPS.DLA_T11  : 0,
+      value: EXEC_DTHU_GPS.DLA_T11 ? EXEC_DTHU_GPS.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T12 ? EXEC_DTHU_GPS.DLA_T12  : 0,
+      value: EXEC_DTHU_GPS.DLA_T12 ? EXEC_DTHU_GPS.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_T13 ? EXEC_DTHU_GPS.DLA_T13  : 0,
+      value: EXEC_DTHU_GPS.DLA_T13 ? EXEC_DTHU_GPS.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D01 ? EXEC_DTHU_GPS.DLA_D01  : 0,
+      value: EXEC_DTHU_GPS.DLA_D01 ? EXEC_DTHU_GPS.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D02 ? EXEC_DTHU_GPS.DLA_D02  : 0,
+      value: EXEC_DTHU_GPS.DLA_D02 ? EXEC_DTHU_GPS.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D03 ? EXEC_DTHU_GPS.DLA_D03  : 0,
+      value: EXEC_DTHU_GPS.DLA_D03 ? EXEC_DTHU_GPS.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D04 ? EXEC_DTHU_GPS.DLA_D04  : 0,
+      value: EXEC_DTHU_GPS.DLA_D04 ? EXEC_DTHU_GPS.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D05 ? EXEC_DTHU_GPS.DLA_D05  : 0,
+      value: EXEC_DTHU_GPS.DLA_D05 ? EXEC_DTHU_GPS.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.DLA_D06 ? EXEC_DTHU_GPS.DLA_D06  : 0,
+      value: EXEC_DTHU_GPS.DLA_D06 ? EXEC_DTHU_GPS.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.TTKDVT ? EXEC_DTHU_GPS.TTKDVT  : 0,
+      value: EXEC_DTHU_GPS.TTKDVT ? EXEC_DTHU_GPS.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "DTHU_GPS",
-      value: EXEC_DTHU_GPS.TTKDGPS ? EXEC_DTHU_GPS.TTKDGPS  : 0,
+      value: EXEC_DTHU_GPS.TTKDGPS ? EXEC_DTHU_GPS.TTKDGPS : 0,
       area: "TTKDGPS",
     });
     setDataGPS(tempData);
@@ -330,149 +330,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T01
-        ? EXEC_DTHU_GPS_KHCN.DLA_T01 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T01 ? EXEC_DTHU_GPS_KHCN.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T02
-        ? EXEC_DTHU_GPS_KHCN.DLA_T02 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T02 ? EXEC_DTHU_GPS_KHCN.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T03
-        ? EXEC_DTHU_GPS_KHCN.DLA_T03 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T03 ? EXEC_DTHU_GPS_KHCN.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T04
-        ? EXEC_DTHU_GPS_KHCN.DLA_T04 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T04 ? EXEC_DTHU_GPS_KHCN.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T05
-        ? EXEC_DTHU_GPS_KHCN.DLA_T05 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T05 ? EXEC_DTHU_GPS_KHCN.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T06
-        ? EXEC_DTHU_GPS_KHCN.DLA_T06 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T06 ? EXEC_DTHU_GPS_KHCN.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T07
-        ? EXEC_DTHU_GPS_KHCN.DLA_T07 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T07 ? EXEC_DTHU_GPS_KHCN.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T08
-        ? EXEC_DTHU_GPS_KHCN.DLA_T08 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T08 ? EXEC_DTHU_GPS_KHCN.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T09
-        ? EXEC_DTHU_GPS_KHCN.DLA_T09 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T09 ? EXEC_DTHU_GPS_KHCN.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T10
-        ? EXEC_DTHU_GPS_KHCN.DLA_T10 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T10 ? EXEC_DTHU_GPS_KHCN.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T11
-        ? EXEC_DTHU_GPS_KHCN.DLA_T11 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T11 ? EXEC_DTHU_GPS_KHCN.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T12
-        ? EXEC_DTHU_GPS_KHCN.DLA_T12 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T12 ? EXEC_DTHU_GPS_KHCN.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_T13
-        ? EXEC_DTHU_GPS_KHCN.DLA_T13 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_T13 ? EXEC_DTHU_GPS_KHCN.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D01
-        ? EXEC_DTHU_GPS_KHCN.DLA_D01 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D01 ? EXEC_DTHU_GPS_KHCN.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D02
-        ? EXEC_DTHU_GPS_KHCN.DLA_D02 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D02 ? EXEC_DTHU_GPS_KHCN.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D03
-        ? EXEC_DTHU_GPS_KHCN.DLA_D03 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D03 ? EXEC_DTHU_GPS_KHCN.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D04
-        ? EXEC_DTHU_GPS_KHCN.DLA_D04 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D04 ? EXEC_DTHU_GPS_KHCN.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D05
-        ? EXEC_DTHU_GPS_KHCN.DLA_D05 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D05 ? EXEC_DTHU_GPS_KHCN.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.DLA_D06
-        ? EXEC_DTHU_GPS_KHCN.DLA_D06 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.DLA_D06 ? EXEC_DTHU_GPS_KHCN.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.TTKDVT
-        ? EXEC_DTHU_GPS_KHCN.TTKDVT 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.TTKDVT ? EXEC_DTHU_GPS_KHCN.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "DTHU_GPS_KHCN",
-      value: EXEC_DTHU_GPS_KHCN.TTKDGPS
-        ? EXEC_DTHU_GPS_KHCN.TTKDGPS 
-        : 0,
+      value: EXEC_DTHU_GPS_KHCN.TTKDGPS ? EXEC_DTHU_GPS_KHCN.TTKDGPS : 0,
       area: "TTKDGPS",
     });
     setDataGPSKHCN(tempData);
@@ -483,149 +441,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T01
-        ? EXEC_DTHU_GPS_KHDN.DLA_T01 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T01 ? EXEC_DTHU_GPS_KHDN.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T02
-        ? EXEC_DTHU_GPS_KHDN.DLA_T02 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T02 ? EXEC_DTHU_GPS_KHDN.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T03
-        ? EXEC_DTHU_GPS_KHDN.DLA_T03 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T03 ? EXEC_DTHU_GPS_KHDN.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T04
-        ? EXEC_DTHU_GPS_KHDN.DLA_T04 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T04 ? EXEC_DTHU_GPS_KHDN.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T05
-        ? EXEC_DTHU_GPS_KHDN.DLA_T05 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T05 ? EXEC_DTHU_GPS_KHDN.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T06
-        ? EXEC_DTHU_GPS_KHDN.DLA_T06 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T06 ? EXEC_DTHU_GPS_KHDN.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T07
-        ? EXEC_DTHU_GPS_KHDN.DLA_T07 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T07 ? EXEC_DTHU_GPS_KHDN.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T08
-        ? EXEC_DTHU_GPS_KHDN.DLA_T08 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T08 ? EXEC_DTHU_GPS_KHDN.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T09
-        ? EXEC_DTHU_GPS_KHDN.DLA_T09 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T09 ? EXEC_DTHU_GPS_KHDN.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T10
-        ? EXEC_DTHU_GPS_KHDN.DLA_T10 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T10 ? EXEC_DTHU_GPS_KHDN.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T11
-        ? EXEC_DTHU_GPS_KHDN.DLA_T11 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T11 ? EXEC_DTHU_GPS_KHDN.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T12
-        ? EXEC_DTHU_GPS_KHDN.DLA_T12 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T12 ? EXEC_DTHU_GPS_KHDN.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_T13
-        ? EXEC_DTHU_GPS_KHDN.DLA_T13 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_T13 ? EXEC_DTHU_GPS_KHDN.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D01
-        ? EXEC_DTHU_GPS_KHDN.DLA_D01 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D01 ? EXEC_DTHU_GPS_KHDN.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D02
-        ? EXEC_DTHU_GPS_KHDN.DLA_D02 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D02 ? EXEC_DTHU_GPS_KHDN.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D03
-        ? EXEC_DTHU_GPS_KHDN.DLA_D03 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D03 ? EXEC_DTHU_GPS_KHDN.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D04
-        ? EXEC_DTHU_GPS_KHDN.DLA_D04 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D04 ? EXEC_DTHU_GPS_KHDN.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D05
-        ? EXEC_DTHU_GPS_KHDN.DLA_D05 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D05 ? EXEC_DTHU_GPS_KHDN.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.DLA_D06
-        ? EXEC_DTHU_GPS_KHDN.DLA_D06 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.DLA_D06 ? EXEC_DTHU_GPS_KHDN.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.TTKDVT
-        ? EXEC_DTHU_GPS_KHDN.TTKDVT 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.TTKDVT ? EXEC_DTHU_GPS_KHDN.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "DTHU_GPS_KHDN",
-      value: EXEC_DTHU_GPS_KHDN.TTKDGPS
-        ? EXEC_DTHU_GPS_KHDN.TTKDGPS 
-        : 0,
+      value: EXEC_DTHU_GPS_KHDN.TTKDGPS ? EXEC_DTHU_GPS_KHDN.TTKDGPS : 0,
       area: "TTKDGPS",
     });
     setDataGPSKHDN(tempData);
@@ -636,107 +552,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T01 ? EXEC_SL_TB_C2C.DLA_T01  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T01 ? EXEC_SL_TB_C2C.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T02 ? EXEC_SL_TB_C2C.DLA_T02  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T02 ? EXEC_SL_TB_C2C.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T03 ? EXEC_SL_TB_C2C.DLA_T03  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T03 ? EXEC_SL_TB_C2C.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T04 ? EXEC_SL_TB_C2C.DLA_T04  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T04 ? EXEC_SL_TB_C2C.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T05 ? EXEC_SL_TB_C2C.DLA_T05  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T05 ? EXEC_SL_TB_C2C.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T06 ? EXEC_SL_TB_C2C.DLA_T06  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T06 ? EXEC_SL_TB_C2C.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T07 ? EXEC_SL_TB_C2C.DLA_T07  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T07 ? EXEC_SL_TB_C2C.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T08 ? EXEC_SL_TB_C2C.DLA_T08  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T08 ? EXEC_SL_TB_C2C.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T09 ? EXEC_SL_TB_C2C.DLA_T09  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T09 ? EXEC_SL_TB_C2C.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T10 ? EXEC_SL_TB_C2C.DLA_T10  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T10 ? EXEC_SL_TB_C2C.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T11 ? EXEC_SL_TB_C2C.DLA_T11  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T11 ? EXEC_SL_TB_C2C.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T12 ? EXEC_SL_TB_C2C.DLA_T12  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T12 ? EXEC_SL_TB_C2C.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T13 ? EXEC_SL_TB_C2C.DLA_T13  : 0,
+      value: EXEC_SL_TB_C2C.DLA_T13 ? EXEC_SL_TB_C2C.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D01 ? EXEC_SL_TB_C2C.DLA_D01  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D01 ? EXEC_SL_TB_C2C.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D02 ? EXEC_SL_TB_C2C.DLA_D02  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D02 ? EXEC_SL_TB_C2C.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D03 ? EXEC_SL_TB_C2C.DLA_D03  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D03 ? EXEC_SL_TB_C2C.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D04 ? EXEC_SL_TB_C2C.DLA_D04  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D04 ? EXEC_SL_TB_C2C.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D05 ? EXEC_SL_TB_C2C.DLA_D05  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D05 ? EXEC_SL_TB_C2C.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D06 ? EXEC_SL_TB_C2C.DLA_D06  : 0,
+      value: EXEC_SL_TB_C2C.DLA_D06 ? EXEC_SL_TB_C2C.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.TTKDVT ? EXEC_SL_TB_C2C.TTKDVT  : 0,
+      value: EXEC_SL_TB_C2C.TTKDVT ? EXEC_SL_TB_C2C.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.TTKDGPS ? EXEC_SL_TB_C2C.TTKDGPS  : 0,
+      value: EXEC_SL_TB_C2C.TTKDGPS ? EXEC_SL_TB_C2C.TTKDGPS : 0,
       area: "TTKDGPS",
     });
     setSLTBC2C(tempData);
@@ -747,107 +663,107 @@ const CreateKpiT12Modal = (props) => {
 
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T01 ? EXEC_TYLE_GD_C2C.DLA_T01  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T01 ? EXEC_TYLE_GD_C2C.DLA_T01 : 0,
       area: "DLA_T01",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T02 ? EXEC_TYLE_GD_C2C.DLA_T02  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T02 ? EXEC_TYLE_GD_C2C.DLA_T02 : 0,
       area: "DLA_T02",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T03 ? EXEC_TYLE_GD_C2C.DLA_T03  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T03 ? EXEC_TYLE_GD_C2C.DLA_T03 : 0,
       area: "DLA_T03",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T04 ? EXEC_TYLE_GD_C2C.DLA_T04  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T04 ? EXEC_TYLE_GD_C2C.DLA_T04 : 0,
       area: "DLA_T04",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T05 ? EXEC_TYLE_GD_C2C.DLA_T05  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T05 ? EXEC_TYLE_GD_C2C.DLA_T05 : 0,
       area: "DLA_T05",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T06 ? EXEC_TYLE_GD_C2C.DLA_T06  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T06 ? EXEC_TYLE_GD_C2C.DLA_T06 : 0,
       area: "DLA_T06",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T07 ? EXEC_TYLE_GD_C2C.DLA_T07  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T07 ? EXEC_TYLE_GD_C2C.DLA_T07 : 0,
       area: "DLA_T07",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T08 ? EXEC_TYLE_GD_C2C.DLA_T08  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T08 ? EXEC_TYLE_GD_C2C.DLA_T08 : 0,
       area: "DLA_T08",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T09 ? EXEC_TYLE_GD_C2C.DLA_T09  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T09 ? EXEC_TYLE_GD_C2C.DLA_T09 : 0,
       area: "DLA_T09",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T10 ? EXEC_TYLE_GD_C2C.DLA_T10  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T10 ? EXEC_TYLE_GD_C2C.DLA_T10 : 0,
       area: "DLA_T10",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T11 ? EXEC_TYLE_GD_C2C.DLA_T11  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T11 ? EXEC_TYLE_GD_C2C.DLA_T11 : 0,
       area: "DLA_T11",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T12 ? EXEC_TYLE_GD_C2C.DLA_T12  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T12 ? EXEC_TYLE_GD_C2C.DLA_T12 : 0,
       area: "DLA_T12",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_T13 ? EXEC_TYLE_GD_C2C.DLA_T13  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_T13 ? EXEC_TYLE_GD_C2C.DLA_T13 : 0,
       area: "DLA_T13",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D01 ? EXEC_TYLE_GD_C2C.DLA_D01  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D01 ? EXEC_TYLE_GD_C2C.DLA_D01 : 0,
       area: "DLA_D01",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D02 ? EXEC_TYLE_GD_C2C.DLA_D02  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D02 ? EXEC_TYLE_GD_C2C.DLA_D02 : 0,
       area: "DLA_D02",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D03 ? EXEC_TYLE_GD_C2C.DLA_D03  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D03 ? EXEC_TYLE_GD_C2C.DLA_D03 : 0,
       area: "DLA_D03",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D04 ? EXEC_TYLE_GD_C2C.DLA_D04  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D04 ? EXEC_TYLE_GD_C2C.DLA_D04 : 0,
       area: "DLA_D04",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D05 ? EXEC_TYLE_GD_C2C.DLA_D05  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D05 ? EXEC_TYLE_GD_C2C.DLA_D05 : 0,
       area: "DLA_D05",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.DLA_D06 ? EXEC_TYLE_GD_C2C.DLA_D06  : 0,
+      value: EXEC_TYLE_GD_C2C.DLA_D06 ? EXEC_TYLE_GD_C2C.DLA_D06 : 0,
       area: "DLA_D06",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.TTKDVT ? EXEC_TYLE_GD_C2C.TTKDVT  : 0,
+      value: EXEC_TYLE_GD_C2C.TTKDVT ? EXEC_TYLE_GD_C2C.TTKDVT : 0,
       area: "TTKDVT",
     });
     tempData.push({
       id: "TYLE_GD_C2C",
-      value: EXEC_TYLE_GD_C2C.TTKDGPS ? EXEC_TYLE_GD_C2C.TTKDGPS  : 0,
+      value: EXEC_TYLE_GD_C2C.TTKDGPS ? EXEC_TYLE_GD_C2C.TTKDGPS : 0,
       area: "TTKDGPS",
     });
     setTYLEGDC2C(tempData);
@@ -1012,7 +928,7 @@ const CreateKpiT12Modal = (props) => {
             const tempDataFiber = dataFiber.map((object, index) => {
               return {
                 ...object,
-                value: object.value ? object.value * 1000000 : 0,
+                value: object.value ? object.value : 0,
               };
             });
 
@@ -1163,7 +1079,7 @@ const CreateKpiT12Modal = (props) => {
                                 paddingRight: "10px",
                               }}
                             >
-                               đồng
+                              đồng
                             </span>
                           </td>
                           {dataFiber &&
@@ -1202,7 +1118,7 @@ const CreateKpiT12Modal = (props) => {
                                 paddingRight: "10px",
                               }}
                             >
-                               đồng
+                              đồng
                             </span>
                           </td>
                           {dataGPS &&
@@ -1241,7 +1157,7 @@ const CreateKpiT12Modal = (props) => {
                               }}
                             >
                               {" "}
-                               đồng
+                              đồng
                             </span>
                           </td>
                           {dataGPSKHCN.map((object, index) => (
@@ -1278,7 +1194,7 @@ const CreateKpiT12Modal = (props) => {
                                 paddingRight: "10px",
                               }}
                             >
-                               đồng
+                              đồng
                             </span>
                           </td>
                           {dataGPSKHDN.map((object, index) => (

@@ -903,7 +903,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : EXEC_DTHU_GPS.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_DTHU_GPS.TTDKVT / 1000000)
+                  convertToFloat2Fixed(EXEC_DTHU_GPS.TTKDVT / 1000000)
                 ) : (
                   ""
                 )}
@@ -920,27 +920,637 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T01 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T01 && PLAN_DTHU_GPS.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T01 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T02 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T02 && PLAN_DTHU_GPS.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T02 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T03 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T03 && PLAN_DTHU_GPS.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T03 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T04 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T04 && PLAN_DTHU_GPS.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T04 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T05 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T05 && PLAN_DTHU_GPS.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T05 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T06 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T06 && PLAN_DTHU_GPS.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T06 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T07 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T07 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T07 && PLAN_DTHU_GPS.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T07 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T07
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T08 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T08 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T08 && PLAN_DTHU_GPS.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T08 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T08
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T09 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T09 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T09 && PLAN_DTHU_GPS.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T09 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T09
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T10 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T10 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T10 && PLAN_DTHU_GPS.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T10 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T10
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T11 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T11 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T11 && PLAN_DTHU_GPS.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T11 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T11
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T12 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T12 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T12 && PLAN_DTHU_GPS.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T12 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T12
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_T13 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_T13 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_T13 && PLAN_DTHU_GPS.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_T13 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_T13
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D01 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D01 && PLAN_DTHU_GPS.DLA_D01 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D01 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D02 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D02 && PLAN_DTHU_GPS.DLA_D02 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D02 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D03 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D03 && PLAN_DTHU_GPS.DLA_D03 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D03 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D04 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D04 && PLAN_DTHU_GPS.DLA_D04 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D04 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D05 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D05 && PLAN_DTHU_GPS.DLA_D05 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D05 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.DLA_D06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.DLA_D06 * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.DLA_D06 && PLAN_DTHU_GPS.DLA_D06 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.DLA_D06 / 1000000) * 100) /
+                      PLAN_DTHU_GPS.DLA_D06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.TTKDVT /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.TTKDVT * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.TTKDVT && PLAN_DTHU_GPS.TTKDVT ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.TTKDVT / 1000000) * 100) /
+                      PLAN_DTHU_GPS.TTKDVT
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_DTHU_GPS.TTKDGPS /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_GPS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_GPS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      (PLAN_DTHU_GPS.TTKDGPS * 1000000)
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS.TTKDGPS && PLAN_DTHU_GPS.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_GPS.TTKDGPS / 1000000) * 100) /
+                      PLAN_DTHU_GPS.TTKDGPS
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td
@@ -956,27 +1566,195 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 Doanh thu GPS KHCN(TKC)
               </td>
               <td className="td-title-center td-kh fix-col-3">TH</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T01 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T02 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T03 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T04 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T05 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T06 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T07 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T08 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T09 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T10 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T11 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T12 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_T13 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D01 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D02 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D03 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D04 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D05 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.DLA_D06 / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.TTKDVT ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.TTKDVT / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_GPS_KHCN.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_DTHU_GPS_KHCN.TTKDGPS / 1000000)
+                ) : (
+                  ""
+                )}
+              </td>
               <td>
                 {EXEC_DTHU_GPS_KHCN.LAST_DATE
                   ? getFormattedDate(new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE))
