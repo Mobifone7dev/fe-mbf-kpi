@@ -45,7 +45,7 @@ const CreateKpiT12Modal = (props) => {
   const [dataGPS, setDataGPS] = useState(initDataGPS);
   const [dataGPSKHCN, setDataGPSKHCN] = useState(initDataGPSKHCN);
   const [dataGPSKHDN, setDataGPSKHDN] = useState(initDataGPSKHDN);
-  const [dataSLTBC2C, setSLTBC2C] = useState(initSLTBC2C);
+  // const [dataSLTBC2C, setSLTBC2C] = useState(initSLTBC2C);
   const [dataTYLEGDC2C, setTYLEGDC2C] = useState(initTYLEGDC2C);
   const [EXEC_DTHU_FIBER, SET_EXEC_DTHU_FIBER] = useState({});
   const [EXEC_DTHU_GPS, SET_EXEC_DTHU_GPS] = useState({});
@@ -90,9 +90,9 @@ const CreateKpiT12Modal = (props) => {
     if (Object.keys(EXEC_DTHU_GPS_KHDN).length > 0) {
       setInitGPSKHDN();
     }
-    if (Object.keys(EXEC_SL_TB_C2C).length > 0) {
-      setInitSLTBC2C();
-    }
+    // if (Object.keys(EXEC_SL_TB_C2C).length > 0) {
+    //   setInitSLTBC2C();
+    // }
     if (Object.keys(EXEC_TYLE_GD_C2C).length > 0) {
       setInitTYLEGDC2C();
     }
@@ -547,116 +547,116 @@ const CreateKpiT12Modal = (props) => {
     setDataGPSKHDN(tempData);
   };
 
-  const setInitSLTBC2C = () => {
-    let tempData = [];
+  // const setInitSLTBC2C = () => {
+  //   let tempData = [];
 
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T01 ? EXEC_SL_TB_C2C.DLA_T01 : 0,
-      area: "DLA_T01",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T02 ? EXEC_SL_TB_C2C.DLA_T02 : 0,
-      area: "DLA_T02",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T03 ? EXEC_SL_TB_C2C.DLA_T03 : 0,
-      area: "DLA_T03",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T04 ? EXEC_SL_TB_C2C.DLA_T04 : 0,
-      area: "DLA_T04",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T05 ? EXEC_SL_TB_C2C.DLA_T05 : 0,
-      area: "DLA_T05",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T06 ? EXEC_SL_TB_C2C.DLA_T06 : 0,
-      area: "DLA_T06",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T07 ? EXEC_SL_TB_C2C.DLA_T07 : 0,
-      area: "DLA_T07",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T08 ? EXEC_SL_TB_C2C.DLA_T08 : 0,
-      area: "DLA_T08",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T09 ? EXEC_SL_TB_C2C.DLA_T09 : 0,
-      area: "DLA_T09",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T10 ? EXEC_SL_TB_C2C.DLA_T10 : 0,
-      area: "DLA_T10",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T11 ? EXEC_SL_TB_C2C.DLA_T11 : 0,
-      area: "DLA_T11",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T12 ? EXEC_SL_TB_C2C.DLA_T12 : 0,
-      area: "DLA_T12",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_T13 ? EXEC_SL_TB_C2C.DLA_T13 : 0,
-      area: "DLA_T13",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D01 ? EXEC_SL_TB_C2C.DLA_D01 : 0,
-      area: "DLA_D01",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D02 ? EXEC_SL_TB_C2C.DLA_D02 : 0,
-      area: "DLA_D02",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D03 ? EXEC_SL_TB_C2C.DLA_D03 : 0,
-      area: "DLA_D03",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D04 ? EXEC_SL_TB_C2C.DLA_D04 : 0,
-      area: "DLA_D04",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D05 ? EXEC_SL_TB_C2C.DLA_D05 : 0,
-      area: "DLA_D05",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.DLA_D06 ? EXEC_SL_TB_C2C.DLA_D06 : 0,
-      area: "DLA_D06",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.TTKDVT ? EXEC_SL_TB_C2C.TTKDVT : 0,
-      area: "TTKDVT",
-    });
-    tempData.push({
-      id: "SL_TB_C2C",
-      value: EXEC_SL_TB_C2C.TTKDGPS ? EXEC_SL_TB_C2C.TTKDGPS : 0,
-      area: "TTKDGPS",
-    });
-    setSLTBC2C(tempData);
-  };
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T01 ? EXEC_SL_TB_C2C.DLA_T01 : 0,
+  //     area: "DLA_T01",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T02 ? EXEC_SL_TB_C2C.DLA_T02 : 0,
+  //     area: "DLA_T02",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T03 ? EXEC_SL_TB_C2C.DLA_T03 : 0,
+  //     area: "DLA_T03",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T04 ? EXEC_SL_TB_C2C.DLA_T04 : 0,
+  //     area: "DLA_T04",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T05 ? EXEC_SL_TB_C2C.DLA_T05 : 0,
+  //     area: "DLA_T05",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T06 ? EXEC_SL_TB_C2C.DLA_T06 : 0,
+  //     area: "DLA_T06",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T07 ? EXEC_SL_TB_C2C.DLA_T07 : 0,
+  //     area: "DLA_T07",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T08 ? EXEC_SL_TB_C2C.DLA_T08 : 0,
+  //     area: "DLA_T08",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T09 ? EXEC_SL_TB_C2C.DLA_T09 : 0,
+  //     area: "DLA_T09",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T10 ? EXEC_SL_TB_C2C.DLA_T10 : 0,
+  //     area: "DLA_T10",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T11 ? EXEC_SL_TB_C2C.DLA_T11 : 0,
+  //     area: "DLA_T11",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T12 ? EXEC_SL_TB_C2C.DLA_T12 : 0,
+  //     area: "DLA_T12",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_T13 ? EXEC_SL_TB_C2C.DLA_T13 : 0,
+  //     area: "DLA_T13",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D01 ? EXEC_SL_TB_C2C.DLA_D01 : 0,
+  //     area: "DLA_D01",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D02 ? EXEC_SL_TB_C2C.DLA_D02 : 0,
+  //     area: "DLA_D02",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D03 ? EXEC_SL_TB_C2C.DLA_D03 : 0,
+  //     area: "DLA_D03",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D04 ? EXEC_SL_TB_C2C.DLA_D04 : 0,
+  //     area: "DLA_D04",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D05 ? EXEC_SL_TB_C2C.DLA_D05 : 0,
+  //     area: "DLA_D05",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.DLA_D06 ? EXEC_SL_TB_C2C.DLA_D06 : 0,
+  //     area: "DLA_D06",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.TTKDVT ? EXEC_SL_TB_C2C.TTKDVT : 0,
+  //     area: "TTKDVT",
+  //   });
+  //   tempData.push({
+  //     id: "SL_TB_C2C",
+  //     value: EXEC_SL_TB_C2C.TTKDGPS ? EXEC_SL_TB_C2C.TTKDGPS : 0,
+  //     area: "TTKDGPS",
+  //   });
+  //   setSLTBC2C(tempData);
+  // };
 
   const setInitTYLEGDC2C = () => {
     let tempData = [];
@@ -831,15 +831,15 @@ const CreateKpiT12Modal = (props) => {
       });
       setDataGPSKHDN(tempData);
     } else if (id == "SL_TB_C2C") {
-      const tempData = dataSLTBC2C.map((object) => {
-        if (object.area == area) {
-          return {
-            ...object,
-            value: valueInput,
-          };
-        } else return object;
-      });
-      setSLTBC2C(tempData);
+      // const tempData = dataSLTBC2C.map((object) => {
+      //   if (object.area == area) {
+      //     return {
+      //       ...object,
+      //       value: valueInput,
+      //     };
+      //   } else return object;
+      // });
+      // setSLTBC2C(tempData);
     } else if (id == "TYLE_GD_C2C") {
       const tempData = dataTYLEGDC2C.map((object) => {
         if (object.area == area) {
@@ -932,12 +932,12 @@ const CreateKpiT12Modal = (props) => {
               };
             });
 
-            const tempDataSLTBC2C = dataSLTBC2C.map((object, index) => {
-              return {
-                ...object,
-                value: object.value ? object.value : 0,
-              };
-            });
+            // const tempDataSLTBC2C = dataSLTBC2C.map((object, index) => {
+            //   return {
+            //     ...object,
+            //     value: object.value ? object.value : 0,
+            //   };
+            // });
             const tempDataGPS = dataGPS.map((object, index) => {
               return {
                 ...object,
@@ -971,7 +971,7 @@ const CreateKpiT12Modal = (props) => {
                   tempDataGPS,
                   tempDataGPSKHCN,
                   tempDataGPSKHDN,
-                  tempDataSLTBC2C,
+                  // tempDataSLTBC2C,
                   tempDataTYLEGDC2C
                 ),
                 dateUpdateFiber: dateUpdateFiber.toISOString(),
@@ -1223,7 +1223,7 @@ const CreateKpiT12Modal = (props) => {
                           </td>
                         </tr>
 
-                        <tr>
+                        {/* <tr>
                           <td>Số lượng TB C2C</td>
                           <td style={{ paddingLeft: "10px" }}>điểm</td>
                           {dataSLTBC2C.map((object, index) => (
@@ -1250,7 +1250,7 @@ const CreateKpiT12Modal = (props) => {
                               customInput={<CustomDateInput />}
                             />
                           </td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <td>Tỷ Lệ GD C2C</td>
                           <td>

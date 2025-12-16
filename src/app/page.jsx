@@ -211,6 +211,14 @@ const Page = () => {
               getExecKpi(date);
             }}
           /> */}
+            {/* <CreateKpiT08Modal
+            show={show}
+            handleClose={() => {
+              setShow(false);
+              const date = changeFormatDateFirstDateInMonth(selectedDate);
+              getExecKpi(date);
+            }}
+          /> */}
 
           <CreateKpiT12Modal
             show={show}
