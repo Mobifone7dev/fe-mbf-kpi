@@ -2219,7 +2219,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2229,7 +2229,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2249,7 +2249,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2259,7 +2259,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2269,7 +2269,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2279,7 +2279,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2289,7 +2289,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2299,7 +2299,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2309,7 +2309,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2319,7 +2319,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2329,7 +2329,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2339,7 +2339,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2349,7 +2349,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2359,7 +2359,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2369,7 +2369,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2379,7 +2379,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2389,7 +2389,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2399,7 +2399,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2409,7 +2409,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2419,7 +2419,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-               <td>
+              <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -2432,27 +2432,615 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T01
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T01 && PLAN_SL_TB_C2C.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T01 * 100) / PLAN_SL_TB_C2C.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T02
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T02 && PLAN_SL_TB_C2C.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T02 * 100) / PLAN_SL_TB_C2C.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T03
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T03 && PLAN_SL_TB_C2C.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T03 * 100) / PLAN_SL_TB_C2C.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T04
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T04 && PLAN_SL_TB_C2C.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T04 * 100) / PLAN_SL_TB_C2C.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T05
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T05 && PLAN_SL_TB_C2C.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T05 * 100) / PLAN_SL_TB_C2C.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T06
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T06 && PLAN_SL_TB_C2C.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T06 * 100) / PLAN_SL_TB_C2C.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T07 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T07
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T07 && PLAN_SL_TB_C2C.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T07 * 100) / PLAN_SL_TB_C2C.DLA_T07
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T08 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T08
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T08 && PLAN_SL_TB_C2C.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T08 * 100) / PLAN_SL_TB_C2C.DLA_T08
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T09 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T09
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T09 && PLAN_SL_TB_C2C.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T09 * 100) / PLAN_SL_TB_C2C.DLA_T09
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T10 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T10
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T10 && PLAN_SL_TB_C2C.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T10 * 100) / PLAN_SL_TB_C2C.DLA_T10
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T11 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T11
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T11 && PLAN_SL_TB_C2C.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T11 * 100) / PLAN_SL_TB_C2C.DLA_T11
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T12 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T12
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T12 && PLAN_SL_TB_C2C.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T12 * 100) / PLAN_SL_TB_C2C.DLA_T12
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_T13 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_T13
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_T13 && PLAN_SL_TB_C2C.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_T13 * 100) / PLAN_SL_TB_C2C.DLA_T13
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D01
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D01 && PLAN_SL_TB_C2C.DLA_D01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D01 * 100) / PLAN_SL_TB_C2C.DLA_D01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D02
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D02 && PLAN_SL_TB_C2C.DLA_D02 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D02 * 100) / PLAN_SL_TB_C2C.DLA_D02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D03
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D03 && PLAN_SL_TB_C2C.DLA_D03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D03 * 100) / PLAN_SL_TB_C2C.DLA_D03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D04
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D04 && PLAN_SL_TB_C2C.DLA_D04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D04 * 100) / PLAN_SL_TB_C2C.DLA_D04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D05
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D05 && PLAN_SL_TB_C2C.DLA_D05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D05 * 100) / PLAN_SL_TB_C2C.DLA_D05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.DLA_D06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.DLA_D06
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.DLA_D06 && PLAN_SL_TB_C2C.DLA_D06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.DLA_D06 * 100) / PLAN_SL_TB_C2C.DLA_D06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>{" "}
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.TTKDVT /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.TTKDVT
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.TTKDVT && PLAN_SL_TB_C2C.TTKDVT ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.TTKDVT * 100) / PLAN_SL_TB_C2C.TTKDVT
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>{" "}
+              <td
+                className={
+                  parseFloat(
+                    ((EXEC_SL_TB_C2C.TTKDGPS /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_SL_TB_C2C.TTKDGPS
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_TB_C2C.TTKDGPS && PLAN_SL_TB_C2C.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_TB_C2C.TTKDGPS * 100) / PLAN_SL_TB_C2C.TTKDGPS
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>{" "}
             </tr>
             <tr>
               <td rowSpan={3} className="td-title-center  td-stt fix-col-1">
@@ -2916,8 +3504,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T01 && PLAN_TYLE_GD_C2C.DLA_T01 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T01 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T01
+                    (EXEC_TYLE_GD_C2C.DLA_T01 * 100) / PLAN_TYLE_GD_C2C.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -2946,8 +3533,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T02 && PLAN_TYLE_GD_C2C.DLA_T02 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T02 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T02
+                    (EXEC_TYLE_GD_C2C.DLA_T02 * 100) / PLAN_TYLE_GD_C2C.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -2976,8 +3562,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T03 && PLAN_TYLE_GD_C2C.DLA_T03 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T03 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T03
+                    (EXEC_TYLE_GD_C2C.DLA_T03 * 100) / PLAN_TYLE_GD_C2C.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -3006,8 +3591,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T04 && PLAN_TYLE_GD_C2C.DLA_T04 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T04 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T04
+                    (EXEC_TYLE_GD_C2C.DLA_T04 * 100) / PLAN_TYLE_GD_C2C.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -3036,8 +3620,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T05 && PLAN_TYLE_GD_C2C.DLA_T05 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T05 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T05
+                    (EXEC_TYLE_GD_C2C.DLA_T05 * 100) / PLAN_TYLE_GD_C2C.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -3066,8 +3649,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T06 && PLAN_TYLE_GD_C2C.DLA_T06 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T06 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T06
+                    (EXEC_TYLE_GD_C2C.DLA_T06 * 100) / PLAN_TYLE_GD_C2C.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -3096,8 +3678,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T07 && PLAN_TYLE_GD_C2C.DLA_T07 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T07 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T07
+                    (EXEC_TYLE_GD_C2C.DLA_T07 * 100) / PLAN_TYLE_GD_C2C.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -3126,8 +3707,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T08 && PLAN_TYLE_GD_C2C.DLA_T08 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T08 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T08
+                    (EXEC_TYLE_GD_C2C.DLA_T08 * 100) / PLAN_TYLE_GD_C2C.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -3156,8 +3736,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T09 && PLAN_TYLE_GD_C2C.DLA_T09 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T09 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T09
+                    (EXEC_TYLE_GD_C2C.DLA_T09 * 100) / PLAN_TYLE_GD_C2C.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -3186,8 +3765,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T10 && PLAN_TYLE_GD_C2C.DLA_T10 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T10 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T10
+                    (EXEC_TYLE_GD_C2C.DLA_T10 * 100) / PLAN_TYLE_GD_C2C.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -3216,8 +3794,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T11 && PLAN_TYLE_GD_C2C.DLA_T11 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T11 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T11
+                    (EXEC_TYLE_GD_C2C.DLA_T11 * 100) / PLAN_TYLE_GD_C2C.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -3246,8 +3823,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T12 && PLAN_TYLE_GD_C2C.DLA_T12 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T12 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T12
+                    (EXEC_TYLE_GD_C2C.DLA_T12 * 100) / PLAN_TYLE_GD_C2C.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -3276,8 +3852,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_T13 && PLAN_TYLE_GD_C2C.DLA_T13 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_T13 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_T13
+                    (EXEC_TYLE_GD_C2C.DLA_T13 * 100) / PLAN_TYLE_GD_C2C.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -3306,8 +3881,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D01 && PLAN_TYLE_GD_C2C.DLA_D01 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D01 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_D01
+                    (EXEC_TYLE_GD_C2C.DLA_D01 * 100) / PLAN_TYLE_GD_C2C.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -3336,8 +3910,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D02 && EXEC_TYLE_GD_C2C.DLA_D02 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D02 / 1000000) * 100) /
-                      EXEC_TYLE_GD_C2C.DLA_D02
+                    (EXEC_TYLE_GD_C2C.DLA_D02 * 100) / EXEC_TYLE_GD_C2C.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -3366,8 +3939,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D03 && PLAN_TYLE_GD_C2C.DLA_D03 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D03 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_D03
+                    (EXEC_TYLE_GD_C2C.DLA_D03 * 100) / PLAN_TYLE_GD_C2C.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -3396,8 +3968,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D04 && PLAN_TYLE_GD_C2C.DLA_D04 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D04 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_D04
+                    (EXEC_TYLE_GD_C2C.DLA_D04 * 100) / PLAN_TYLE_GD_C2C.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -3426,8 +3997,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D05 && PLAN_TYLE_GD_C2C.DLA_D05 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D05 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_D05
+                    (EXEC_TYLE_GD_C2C.DLA_D05 * 100) / PLAN_TYLE_GD_C2C.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -3456,8 +4026,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.DLA_D06 && PLAN_TYLE_GD_C2C.DLA_D06 ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.DLA_D06 / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.DLA_D06
+                    (EXEC_TYLE_GD_C2C.DLA_D06 * 100) / PLAN_TYLE_GD_C2C.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -3486,7 +4055,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.TTKDVT && PLAN_TYLE_GD_C2C.TTKDVT ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.TTKDVT / 1000000) * 100) /
+                    (EXEC_TYLE_GD_C2C.TTKDVT * 100) /
                       PLANPLAN_TYLE_GD_C2CDTHU_GPS.TTKDVT
                   ) + "%"
                 ) : (
@@ -3516,8 +4085,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : EXEC_TYLE_GD_C2C.TTKDGPS && PLAN_TYLE_GD_C2C.TTKDGPS ? (
                   convertToFloat2Fixed(
-                    ((EXEC_TYLE_GD_C2C.TTKDGPS / 1000000) * 100) /
-                      PLAN_TYLE_GD_C2C.TTKDGPS
+                    (EXEC_TYLE_GD_C2C.TTKDGPS * 100) / PLAN_TYLE_GD_C2C.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -3756,27 +4324,216 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.TTKDVT ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_TBTT.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
