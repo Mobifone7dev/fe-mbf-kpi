@@ -177,7 +177,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 colSpan={2}
                 className="th-title th-color-yellow position-relative  "
               >
-                <span className="d-inline-flex align-items-center gap-1 tooltip-wrapper">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
                   {`Tiến độ cần thiết để đảm bảo KH tháng`}
                   <span className="tooltip-icon">ℹ️</span>
                   <span className="custom-tooltip">
@@ -186,25 +200,446 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 </span>
               </th>
               <th className="th-title-per th-color-yellow ">6.5%</th>
-              <th className="th-title-dis">{`Thành phố Buôn Ma Thuột`}</th>
-              <th className="th-title-dis">Huyện Krông Pắc</th>
-              <th className="th-title-dis">Huyện Ea Kar</th>
-              <th className="th-title-dis">Thị xã Buôn Hồ</th>
-              <th className="th-title-dis">{`Huyện Cư M'gar`}</th>
-              <th className="th-title-dis">{`Huyện Cư Kuin`}</th>
-              <th className="th-title-dis">{`Huyện Ea H'leo`}</th>
-              <th className="th-title-dis">Huyện Krông Năng</th>
-              <th className="th-title-dis">{`Huyện Krông Búk`}</th>
-              <th className="th-title-dis">{`Huyện Krông Bông + Huyện Lắk`}</th>
-              <th className="th-title-dis">{`Huyện Krông A Na`}</th>
-              <th className="th-title-dis">{`Huyện Buôn Đôn + Huyện Ea Súp`}</th>
-              <th className="th-title-dis">{`Huyện M'ĐrắK`}</th>
-              <th className="th-title-dis">{`Thành phố Tuy Hoà`}</th>
-              <th className="th-title-dis">{`Huyện Đông Hoà`}</th>
-              <th className="th-title-dis">{`Huyện Phú Hoà + Huyện Sơn Hòa`}</th>
-              <th className="th-title-dis">{`Huyện Tây Hoà + Huyện Sông Hinh`}</th>
-              <th className="th-title-dis">{`Thị xã Sông Cầu`}</th>
-              <th className="th-title-dis">{`Huyện Tuy An +Huyện Đồng Xuân`}</th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Thành phố Buôn Ma Thuột`}
+                  <span className="custom-tooltip">
+                    {
+                      "Xã Hòa Phú, Phường Buôn Ma Thuột,Phường Tân An,Phường Tân Lập,Phường Thành Nhất,Phường Ea Kao"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Krông Pắc`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Krông Pắc, xã Ea Knuếc,xã Tân Tiến,xã Ea Phê,xã Ea Kly,xã Vụ Bổn"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Ea Kar`}
+                  <span className="custom-tooltip">
+                    {"xã Ea Kar,xã Ea Ô,xã Ea Knốp,xã Cư Yang,xã Ea Păl"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Thị xã Buôn Hồ`}
+                  <span className="custom-tooltip">
+                    {"xã Ea Drông, Phường Buôn Hồ, Phường Cư Bao"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Cư M'gar`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Ea Kiết, Xã Ea M’Droh, xã Quảng Phú, xã Cuôr Đăng, Xã Cư M’gar, xã Ea Tul"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Cư Kuin`}
+                  <span className="custom-tooltip">
+                    {"xã Ea Ning, xã Dray Bhăng, xã Ea Ktur"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Ea H'leo`}
+                  <span className="custom-tooltip">
+                    {
+                      "Xã Ea Khăl, xã Ea Drăng, xã Ea Wy, xã Ea Hiao, Xã Ea H’leo"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Krông Năng`}
+                  <span className="custom-tooltip">
+                    {"xã Krông Năng, xã Dliê Ya, xã Tam Giang, xã Phú Xuân"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Krông Búk`}
+                  <span className="custom-tooltip">
+                    {"xã Pơng Drang, xã Krông Búk, xã Cư Pơng"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Krông Bông + Huyện Lắk`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Hòa Sơn, xã Dang Kang, xã Krông Bông, xã Yang Mao, xã Cư Pui, xã Liên Sơn Lắk, xã Đắk Liêng, xã Nam Ka, xã Đắk Phơi, xã Krông Nô"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Krông A Na`}
+                  <span className="custom-tooltip">
+                    {"xã Krông Ana, xã Dur Kmăl, xã Ea Na"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Buôn Đôn + Huyện Ea Súp`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Ea Wer, xã Ea Nuôl, xã Buôn Đôn, xã Ea Súp, xã Ea Rốk, xã Ea Bung, xã Ia Lốp, xã Ia Rvê"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện M'ĐrắK`}
+                  <span className="custom-tooltip">
+                    {
+                      "Xã M’Drắk, xã Ea Riêng, Xã Cư M’ta, xã Krông Á, xã Cư Prao, xã Ea Trang"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Thành phố Tuy Hoà`}
+                  <span className="custom-tooltip">
+                    {"Phường Bình Kiến, Phường Phú Yên, Phường Tuy Hòa"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Đông Hoà`}
+                  <span className="custom-tooltip">
+                    {"xã Hòa Xuân, Phường Đông Hòa, Phường Hòa Hiệp"}
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Phú Hoà + Huyện Sơn Hòa`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Vân Hòa, xã Tây Sơn, xã Suối Trai, xã Sơn Hòa, xã Phú Hòa 2, xã Phú Hòa 1"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Tây Hoà + Huyện Sông Hinh`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Hòa Mỹ, xã Tây Hòa,xã Sơn Thành, xã Ea Bá,xã Ea Ly,xã Đức Bình,xã Sông Hinh"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Thị xã Sông Cầu`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Xuân Thọ, Phường Xuân Đài, xã Xuân Cảnh, xã Xuân Lộc, Phường Sông Cầu"
+                    }
+                  </span>
+                </span>
+              </th>
+              <th className="th-title-dis">
+                <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`Huyện Tuy An +Huyện Đồng Xuân`}
+                  <span className="custom-tooltip">
+                    {
+                      "xã Tuy An Tây,xã Tuy An Bắc, xã Tuy An Nam, xã Tuy An Đông,xã Ô Loan,xã Phú Mỡ,xã Xuân Lãnh,xã Xuân Phước,xã Đồng Xuân"
+                    }
+                  </span>
+                </span>
+              </th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDDVVT`}</th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDGPS`}</th>
               <th className="th-title-dis" rowSpan={2}>{`Ngày cập nhật`}</th>

@@ -193,7 +193,9 @@
 
   /* tooltip box */
   .custom-tooltip {
-    position: absolute;
+    position: fixed; /* 🔥 QUAN TRỌNG NHẤT */
+    z-index: 99999;
+    pointer-events: none;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
