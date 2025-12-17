@@ -126,7 +126,6 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           SET_EXEC_DTHU_TKC_HTS(object);
         }
         if (object["TEN_CHI_TIEU"] == "DTHU_GPS") {
-          console.log("check ne ", object);
           SET_EXEC_DTHU_GPS(object);
         }
         if (object["TEN_CHI_TIEU"] == "DTHU_GPS_KHCN") {
@@ -174,8 +173,17 @@ const TableDashboardT12 = forwardRef((props, ref) => {
           </colgroup>
           <thead className={`table-head`}>
             <tr>
-              <th colSpan={2} className="th-title th-color-yellow  ">
-                Tiến độ cần thiết để đảm bảo KH tháng
+              <th
+                colSpan={2}
+                className="th-title th-color-yellow position-relative  "
+              >
+                <span className="d-inline-flex align-items-center gap-1 tooltip-wrapper">
+                  {`Tiến độ cần thiết để đảm bảo KH tháng`}
+                  <span className="tooltip-icon">ℹ️</span>
+                  <span className="custom-tooltip">
+                    {"Tiến độ theo dõi daily"}
+                  </span>
+                </span>
               </th>
               <th className="th-title-per th-color-yellow ">6.5%</th>
               <th className="th-title-dis">{`Thành phố Buôn Ma Thuột`}</th>
@@ -469,51 +477,913 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">TH</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T01 && EXEC_DTHU_TKC_HTS.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T01 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T01 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T02 && EXEC_DTHU_TKC_HTS.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T02 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T02 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T03 && EXEC_DTHU_TKC_HTS.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T03 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T03 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T04 && EXEC_DTHU_TKC_HTS.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T04 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T04 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T05 && EXEC_DTHU_TKC_HTS.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T05 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T05 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T06 && EXEC_DTHU_TKC_HTS.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T06 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T06 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T07 && EXEC_DTHU_TKC_HTS.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T07 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T07 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T08 && EXEC_DTHU_TKC_HTS.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T08 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T08 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T09 && EXEC_DTHU_TKC_HTS.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T09 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T09 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T10 && EXEC_DTHU_TKC_HTS.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T10 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T10 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T11 && EXEC_DTHU_TKC_HTS.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T11 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T11 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T12 && EXEC_DTHU_TKC_HTS.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T12 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T12 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_T13 && EXEC_DTHU_TKC_HTS.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T13 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_T13 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D01 && EXEC_DTHU_TKC_HTS.DLA_D01 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D01 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D01 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D02 && EXEC_DTHU_TKC_HTS.DLA_D02 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D02 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D02 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D03 && EXEC_DTHU_TKC_HTS.DLA_D03 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D03 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D03 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D04 && EXEC_DTHU_TKC_HTS.DLA_D04 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D04 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D04 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D05 && EXEC_DTHU_TKC_HTS.DLA_D05 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D05 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D05 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.DLA_D06 && EXEC_DTHU_TKC_HTS.DLA_D06 ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D06 / 1000000 +
+                      EXEC_DTHU_TKC_HTS.DLA_D06 / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.TTDKVT && EXEC_DTHU_TKC_HTS.TTDKVT ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.TTDKVT / 1000000 +
+                      EXEC_DTHU_TKC_HTS.TTDKVT / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {loadingExec ? (
+                  <LoadingComponent />
+                ) : EXEC_DTHU_FIBER.TTKDGPS && EXEC_DTHU_TKC_HTS.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.TTKDGPS / 1000000 +
+                      EXEC_DTHU_TKC_HTS.TTKDGPS / 100000
+                  )
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
-              <td>100%</td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T01
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T02
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T03
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T04
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T05
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T06
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T07 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T07
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T07 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T07 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T07
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T08 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T08
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T08 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T08 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T08
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T09 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T09
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T09 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T09 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T09
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T10 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T10
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T10 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T10 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T10
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T11 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T11
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T11 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T11 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T11
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T12 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T12
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T12 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T12 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T12
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T13 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T13
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T13 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T13 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T13
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T01
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T01 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T02
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T02 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T03
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T03 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T04
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T04 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T05
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T05 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T06
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 &&
+                  PLAN_DTHU_TKC_HTS.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).DLA_T06 * 100) /
+                      PLAN_DTHU_TKC_HTS.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDVT /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.TTKDVT
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDVT &&
+                  PLAN_DTHU_TKC_HTS.TTKDVT ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDVT * 100) /
+                      PLAN_DTHU_TKC_HTS.TTKDVT
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  parseFloat(
+                    (((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDGPS /
+                      (new Date(
+                        selectedDate.getFullYear(),
+                        selectedDate.getMonth() + 1,
+                        0
+                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
+                        ? sumDateInMonth
+                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
+                      sumDateInMonth *
+                      100) /
+                      PLAN_DTHU_TKC_HTS.TTKDGPS
+                  ) > 100
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDGPS &&
+                  PLAN_DTHU_TKC_HTS.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    ((EXEC_DTHU_FIBER + EXEC_DTHU_TKC_HTS).TTKDGPS * 100) /
+                      PLAN_DTHU_TKC_HTS.TTKDGPS
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
             </tr>
             <tr>
               <td

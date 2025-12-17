@@ -160,7 +160,7 @@
   }
 
   /* Border RIGHT */
-  
+
   .fix-col-3::after {
     content: "";
     position: absolute;
@@ -177,12 +177,62 @@
     border-left: none !important;
     border-right: none !important;
   }
-   .bg-red {
-      background-color: #ff9999;
-      text-align: right;
-    }
-    .bg-green {
-      background-color: #99e699;
-      text-align: right;
-    }
+  .bg-red {
+    background-color: #ff9999;
+    text-align: right;
+  }
+  .bg-green {
+    background-color: #99e699;
+    text-align: right;
+  }
+
+  /* wrapper */
+  .tooltip-wrapper {
+    cursor: help;
+  }
+
+  /* tooltip box */
+  .custom-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 6px;
+
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+    z-index: 9999;
+  }
+
+  /* arrow giống Bootstrap */
+  .custom-tooltip::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
+  }
+
+  /* hover show */
+  .tooltip-wrapper:hover .custom-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* icon nhỏ gọn */
+  .tooltip-icon {
+    font-size: 12px;
+    opacity: 0.7;
+  }
 }
