@@ -140,7 +140,6 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
           SET_EXEC_TYLE_GD_C2C(object);
         }
-
         if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
           SET_EXEC_DTHU_FIBER(object);
         }
@@ -915,253 +914,274 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T01 && EXEC_DTHU_TKC_HTS.DLA_T01 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T01 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T01 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T01
+                      ? EXEC_DTHU_FIBER.DLA_T01 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T01
+                      ? EXEC_DTHU_TKC_HTS.DLA_T01 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T02 && EXEC_DTHU_TKC_HTS.DLA_T02 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T02 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T02 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T02
+                      ? EXEC_DTHU_FIBER.DLA_T02 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T02
+                      ? EXEC_DTHU_TKC_HTS.DLA_T02 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T03 && EXEC_DTHU_TKC_HTS.DLA_T03 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T03 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T03 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T03
+                      ? EXEC_DTHU_FIBER.DLA_T03 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T03
+                      ? EXEC_DTHU_TKC_HTS.DLA_T03 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T04 && EXEC_DTHU_TKC_HTS.DLA_T04 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T04 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T04 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T04
+                      ? EXEC_DTHU_FIBER.DLA_T04 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T04
+                      ? EXEC_DTHU_TKC_HTS.DLA_T04 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T05 && EXEC_DTHU_TKC_HTS.DLA_T05 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T05 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T05 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T05
+                      ? EXEC_DTHU_FIBER.DLA_T05 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T05
+                      ? EXEC_DTHU_TKC_HTS.DLA_T05 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T06 && EXEC_DTHU_TKC_HTS.DLA_T06 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T06 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T06 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T06
+                      ? EXEC_DTHU_FIBER.DLA_T06 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T06
+                      ? EXEC_DTHU_TKC_HTS.DLA_T06 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T07 && EXEC_DTHU_TKC_HTS.DLA_T07 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T07 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T07 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T07
+                      ? EXEC_DTHU_FIBER.DLA_T07 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T07
+                      ? EXEC_DTHU_TKC_HTS.DLA_T07 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T08 && EXEC_DTHU_TKC_HTS.DLA_T08 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T08 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T08 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T08
+                      ? EXEC_DTHU_FIBER.DLA_T08 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T08
+                      ? EXEC_DTHU_TKC_HTS.DLA_T08 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T09 && EXEC_DTHU_TKC_HTS.DLA_T09 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T09 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T09 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T09
+                      ? EXEC_DTHU_FIBER.DLA_T09 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T09
+                      ? EXEC_DTHU_TKC_HTS.DLA_T09 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T10 && EXEC_DTHU_TKC_HTS.DLA_T10 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T10 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T10 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T10
+                      ? EXEC_DTHU_FIBER.DLA_T10 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T10
+                      ? EXEC_DTHU_TKC_HTS.DLA_T10 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T11 && EXEC_DTHU_TKC_HTS.DLA_T11 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T11 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T11 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T11
+                      ? EXEC_DTHU_FIBER.DLA_T11 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T11
+                      ? EXEC_DTHU_TKC_HTS.DLA_T11 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T12 && EXEC_DTHU_TKC_HTS.DLA_T12 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T12 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T12 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T12
+                      ? EXEC_DTHU_FIBER.DLA_T12 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T12
+                      ? EXEC_DTHU_TKC_HTS.DLA_T12 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_T13 && EXEC_DTHU_TKC_HTS.DLA_T13 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_T13 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_T13 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_T13
+                      ? EXEC_DTHU_FIBER.DLA_T13 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_T13
+                      ? EXEC_DTHU_TKC_HTS.DLA_T13 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D01 && EXEC_DTHU_TKC_HTS.DLA_D01 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D01 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D01 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D01
+                      ? EXEC_DTHU_FIBER.DLA_D01 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D01
+                      ? EXEC_DTHU_TKC_HTS.DLA_D01 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D02 && EXEC_DTHU_TKC_HTS.DLA_D02 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D02 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D02 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D02
+                      ? EXEC_DTHU_FIBER.DLA_D02 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D02
+                      ? EXEC_DTHU_TKC_HTS.DLA_D02 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D03 && EXEC_DTHU_TKC_HTS.DLA_D03 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D03 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D03 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D03
+                      ? EXEC_DTHU_FIBER.DLA_D03 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D03
+                      ? EXEC_DTHU_TKC_HTS.DLA_D03 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D04 && EXEC_DTHU_TKC_HTS.DLA_D04 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D04 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D04 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D04
+                      ? EXEC_DTHU_FIBER.DLA_D04 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D04
+                      ? EXEC_DTHU_TKC_HTS.DLA_D04 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D05 && EXEC_DTHU_TKC_HTS.DLA_D05 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D05 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D05 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D05
+                      ? EXEC_DTHU_FIBER.DLA_D05 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D05
+                      ? EXEC_DTHU_TKC_HTS.DLA_D05 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.DLA_D06 && EXEC_DTHU_TKC_HTS.DLA_D06 ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.DLA_D06 / 1000000 +
-                      EXEC_DTHU_TKC_HTS.DLA_D06 / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.DLA_D06
+                      ? EXEC_DTHU_FIBER.DLA_D06 / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.DLA_D06
+                      ? EXEC_DTHU_TKC_HTS.DLA_D06 / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.TTDKVT && EXEC_DTHU_TKC_HTS.TTDKVT ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.TTDKVT / 1000000 +
-                      EXEC_DTHU_TKC_HTS.TTDKVT / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.TTKDVT
+                      ? EXEC_DTHU_FIBER.TTKDVT / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.TTKDVT
+                      ? EXEC_DTHU_TKC_HTS.TTKDVT / 1000000
+                      : 0
+                  )
                 )}
               </td>
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.TTKDGPS && EXEC_DTHU_TKC_HTS.TTKDGPS ? (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_FIBER.TTKDGPS / 1000000 +
-                      EXEC_DTHU_TKC_HTS.TTKDGPS / 100000
-                  )
                 ) : (
-                  ""
+                  convertToFloat2Fixed(
+                    EXEC_DTHU_FIBER.TTKDGPS
+                      ? EXEC_DTHU_FIBER.TTKDGPS / 1000000
+                      : 0 + EXEC_DTHU_TKC_HTS.TTKDGPS
+                      ? EXEC_DTHU_TKC_HTS.TTKDGPS / 1000000
+                      : 0
+                  )
                 )}
               </td>
             </tr>
