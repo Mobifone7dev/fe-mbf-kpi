@@ -47,7 +47,8 @@ export default function AreaDetail({ params }) {
       <div className="tab-content border border-top-0 p-3 bg-white">
         {activeTab === 'tab1' && (
           <div className="tab-pane active">
-            <GDVComponent/>
+            <GDVComponent
+            area={id}/>
           </div>
         )}
 

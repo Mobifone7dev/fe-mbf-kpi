@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+import {handleSearchEmployeeByArea}  from '../../../lib/api.ts';
 export default function GDVComponent(props) {
+
+  useEffect(()=>{
+    getEmployee();
+  },[])
+  const getEmployee = async ()=> {
+    if(props.area){
+      const result = await handleSearchEmployeeByArea(props.area, 'C7%');
+      console.log("result", result);
+
+    }
+  }
   return (
     <div className="table-kpi-gdv">
       {/* <h4 className="text-center">Bảng Kpi tháng 08</h4> */}
