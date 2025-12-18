@@ -489,7 +489,10 @@ export async function handleGetExecKpiExcel(month: string, kpiType: string, prov
     );
   }
 }
-export async function handleSearchEmployeeByArea(area: string, matchSearch: string) {
+export async function handleSearchEmployeeByArea(
+  area: string,
+  matchSearch: string
+) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   let res;
   const token = localStorage.getItem("accessToken");
@@ -510,7 +513,7 @@ export async function handleSearchEmployeeByArea(area: string, matchSearch: stri
     if (res) {
       return Response.json({
         success: true,
-        result: data.result,
+        result: data.data,
       });
     } else {
       console.log("res", res);
@@ -524,3 +527,44 @@ export async function handleSearchEmployeeByArea(area: string, matchSearch: stri
     );
   }
 }
+
+export async function handleSearchEmployeeByEmpcode(
+  area: string,
+  matchSearch: string
+) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  const encodedSearch = encodeURIComponent(matchSearch);
+  console.log("check", encodedSearch);
+
+  const urlApi =
+    URL +
+    `dashboard/dashboard-search-employee-by-empcode?matchSearch=${encodedSearch}`;
+  try {
+    res = await fetch(urlApi, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.status == 403) {
+      signOut({ redirect: false });
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.data,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
+

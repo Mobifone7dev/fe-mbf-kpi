@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from 'react'
 import GDVComponent from '../../../components/tabs/area/GDVComponent.jsx';
+import NVBHComponent from "../../../components/tabs/area/NVBHComponent.jsx";
 export default function AreaDetail({ params }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('tab1')
@@ -16,27 +17,27 @@ export default function AreaDetail({ params }) {
         ← Quay lại
       </button>
       <h4> {`Trang chi tiết vùng ${params.id}`}</h4>
-       <ul className="nav nav-tabs">
+      <ul className="nav nav-tabs">
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`}
-            onClick={() => setActiveTab('tab1')}
+            className={`nav-link ${activeTab === "tab1" ? "active" : ""}`}
+            onClick={() => setActiveTab("tab1")}
           >
             KPI thực hiện của GDV
           </button>
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === 'tab2' ? 'active' : ''}`}
-            onClick={() => setActiveTab('tab2')}
+            className={`nav-link ${activeTab === "tab2" ? "active" : ""}`}
+            onClick={() => setActiveTab("tab2")}
           >
             KPI thực hiện của NVBH
           </button>
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === 'tab3' ? 'active' : ''}`}
-            onClick={() => setActiveTab('tab3')}
+            className={`nav-link ${activeTab === "tab3" ? "active" : ""}`}
+            onClick={() => setActiveTab("tab3")}
           >
             KPI thực hiện của AM
           </button>
@@ -45,26 +46,24 @@ export default function AreaDetail({ params }) {
 
       {/* TAB CONTENT */}
       <div className="tab-content border border-top-0 p-3 bg-white">
-        {activeTab === 'tab1' && (
+        {activeTab === "tab1" && (
           <div className="tab-pane active">
-            <GDVComponent
-            area={id}/>
+            <GDVComponent area={id} />
           </div>
         )}
 
-        {activeTab === 'tab2' && (
+        {activeTab === "tab2" && (
           <div className="tab-pane active">
-           <h4>NVBH</h4>
+            <NVBHComponent area={id}/>
           </div>
         )}
 
-        {activeTab === 'tab3' && (
+        {activeTab === "tab3" && (
           <div className="tab-pane active">
-           <h4>AM</h4>
+            <h4>AM</h4>
           </div>
         )}
       </div>
-      
     </div>
   );
 }

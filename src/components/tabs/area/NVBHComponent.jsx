@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { handleSearchEmployeeByArea } from "../../../lib/api.ts";
-export default function GDVComponent(props) {
+export default function NVBHComponent(props) {
   const [employeeList, setEmployeeList] = useState([]);
 
   useEffect(() => {
@@ -8,7 +8,7 @@ export default function GDVComponent(props) {
   }, []);
   const getEmployee = async () => {
     if (props.area) {
-      const result = await handleSearchEmployeeByArea(props.area, "C7%");
+      const result = await handleSearchEmployeeByArea(props.area, "%MBP%");
       const tempRes = await result.json();
       if (tempRes) {
         setEmployeeList(tempRes.result);

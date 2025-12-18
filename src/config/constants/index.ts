@@ -57,12 +57,15 @@ const menuCategory = [
     label: "Trang chủ",
     link: "/",
   },
+  {
+    label: "Nhân viên bán hàng",
+    link: "/nvbh",
+  },
 
   // {
   //   label: "Dashboard thi đua Tháng 08 ",
   //   link: "/dashboard-thidua-t08",
   // }
-
 ];
 
 const topSliders = [
