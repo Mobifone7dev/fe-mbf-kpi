@@ -130,6 +130,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
           SET_PLAN_TB_PTM_FIBER(object);
         }
+        if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
+          SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY(object);
+        }
       });
     }
   }, [planData]);
@@ -169,6 +172,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         }
         if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
           SET_EXEC_TB_PTM_SAYMEE(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
+          SET_EXEC_TI_LE_GIA_HAN_GOI_DAI_KY(object);
         }
       });
     }

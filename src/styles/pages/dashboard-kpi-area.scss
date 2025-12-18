@@ -1,5 +1,5 @@
 .dashboard-kpi-area {
-  .table-kpi-area {
+  .table-kpi-gdv {
     position: relative;
     font-size: 14px;
     width: 100%;
@@ -32,43 +32,6 @@
           padding-left: 5px;
           text-align: center;
         }
-        .th-title {
-          width: 300px !important;
-          min-width: 300px !important;
-          max-width: 300px !important;
-          white-space: nowrap;
-          word-break: break-word;
-          overflow: hidden;
-          text-align: center;
-        }
-        .th-title-per {
-          width: 80px !important;
-          min-width: 80px !important;
-          max-width: 80px !important;
-          white-space: nowrap;
-          word-break: break-word;
-          overflow: hidden;
-          text-align: center;
-        }
-        .th-title-dis {
-          width: 100px !important;
-          min-width: 100px !important;
-          max-width: 100px !important;
-          white-space: nowrap;
-          text-wrap: wrap;
-          overflow: hidden;
-          text-align: center;
-        }
-        .th-stt {
-          width: 40px !important;
-          min-width: 40px !important;
-          max-width: 40px !important;
-          white-space: nowrap;
-          word-break: break-word;
-          overflow: hidden;
-          text-align: center;
-        }
-
         .th-color-yellow {
           background-color: #fae48f;
         }
@@ -82,31 +45,8 @@
           border: 1px solid #a1988c;
           padding-left: 5px;
         }
-
-        .td-stt {
-          width: 40px !important;
-          min-width: 40px !important;
-          max-width: 40px !important;
-          white-space: nowrap;
-          word-break: break-word;
-          overflow: hidden;
-          text-align: center;
-        }
-
-        .td-content {
-          width: 260px !important;
-        }
-        .td-kh {
-          width: 80px !important;
-        }
-        .td-percent {
-          width: 100px !important;
-        }
       }
 
-      // .td-full {
-      //   width: 2480px !important;
-      // }
       .td-title {
         text-align: left !important ;
         font-weight: 500;
@@ -138,21 +78,13 @@
   /* CỘT 2 – Nhiệm vụ */
   .table-kpi-dla .fix-col-2 {
     position: sticky;
-    left: 40px; /* = width cột 1 */
+    left: 120px; /* = width cột 1 */
     z-index: 29;
     background: #fff;
   }
 
-  /* CỘT 3 – KH / TH / %TH */
-  .table-kpi-dla .fix-col-3 {
-    position: sticky;
-    left: 300px; /* 40 + 260 */
-    z-index: 28;
-    background: #fff;
-  }
   .fix-col-1::before,
-  .fix-col-2::before,
-  .fix-col-3::before {
+  .fix-col-2::before {
     content: "";
     position: absolute;
     top: 0;
@@ -164,19 +96,8 @@
 
   /* Border RIGHT */
 
-  .fix-col-3::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    background: #a1988c;
-    pointer-events: none;
-  }
   .fix-col-1,
-  .fix-col-2,
-  .fix-col-3 {
+  .fix-col-2 {
     border-left: none !important;
     border-right: none !important;
   }

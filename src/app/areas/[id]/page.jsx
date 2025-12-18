@@ -11,39 +11,57 @@ export default function AreaDetail({ params }) {
   console.log("id", id);
 
   return (
-    <div className="dashboard-kpi-dla">
+    <div className="dashboard-kpi-area">
       <button className="btn btn-primary" onClick={() => router.back()}>
         ← Quay lại
       </button>
-      <h1> {`Trang chi tiết vùng ${params.id}`}</h1>
-       <div style={{ display: 'flex', gap: 12 }}>
-        <button
-          className={activeTab === 'tab1' ? 'active' : ''}
-          onClick={() => setActiveTab('tab1')}
-        >
-          KPI GDV
-        </button>
-        <button
-          className={activeTab === 'tab2' ? 'active' : ''}
-          onClick={() => setActiveTab('tab2')}
-        >
-          KPI NVBH
-        </button>
-        <button
-          className={activeTab === 'tab3' ? 'active' : ''}
-          onClick={() => setActiveTab('tab3')}
-        >
-          
-        </button>
-      </div>
+      <h4> {`Trang chi tiết vùng ${params.id}`}</h4>
+       <ul className="nav nav-tabs">
+        <li className="nav-item">
+          <button
+            className={`nav-link ${activeTab === 'tab1' ? 'active' : ''}`}
+            onClick={() => setActiveTab('tab1')}
+          >
+            KPI thực hiện của GDV
+          </button>
+        </li>
+        <li className="nav-item">
+          <button
+            className={`nav-link ${activeTab === 'tab2' ? 'active' : ''}`}
+            onClick={() => setActiveTab('tab2')}
+          >
+            KPI thực hiện của NVBH
+          </button>
+        </li>
+        <li className="nav-item">
+          <button
+            className={`nav-link ${activeTab === 'tab3' ? 'active' : ''}`}
+            onClick={() => setActiveTab('tab3')}
+          >
+            KPI thực hiện của AM
+          </button>
+        </li>
+      </ul>
 
       {/* TAB CONTENT */}
-      <div style={{ marginTop: 16 }}>
-        {activeTab === 'tab1' && <div>
-          <GDVComponent/>
-          </div>}
-        {activeTab === 'tab2' && <div>Nội dung Tab 2</div>}
-        {activeTab === 'tab3' && <div>Nội dung Tab 3</div>}
+      <div className="tab-content border border-top-0 p-3 bg-white">
+        {activeTab === 'tab1' && (
+          <div className="tab-pane active">
+            <GDVComponent/>
+          </div>
+        )}
+
+        {activeTab === 'tab2' && (
+          <div className="tab-pane active">
+           <h4>NVBH</h4>
+          </div>
+        )}
+
+        {activeTab === 'tab3' && (
+          <div className="tab-pane active">
+           <h4>AM</h4>
+          </div>
+        )}
       </div>
       
     </div>
