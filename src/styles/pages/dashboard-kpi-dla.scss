@@ -190,6 +190,10 @@
   .tooltip-wrapper {
     cursor: help;
   }
+  .react-datepicker-popper {
+    z-index: 9999;
+    line-height: 0;
+  }
 
   /* tooltip box */
   .custom-tooltip {
