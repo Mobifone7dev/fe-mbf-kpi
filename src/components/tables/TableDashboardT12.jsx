@@ -143,6 +143,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
           SET_EXEC_DTHU_FIBER(object);
         }
+        if (object["TEN_CHI_TIEU"] == "SL_TBTS_PTM_THOAI") {
+          SET_EXEC_SL_TBTS_PTM_THOAI(object);
+        }
+         if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
+          SET_EXEC_SL_TB_PTM_M2M(object);
+        }
+         if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
+          SET_EXEC_TB_PTM_SAYMEE(object);
+        }
+        
       });
     }
   }, [execData]);
