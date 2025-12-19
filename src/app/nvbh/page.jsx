@@ -1,18 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import { handleSearchEmployeeByEmpcode } from "../../lib/api";
+import LoadingComponent from "@components/loading/LoadingComponent";
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
-
+  const [loadingEmp, setLoadingEmp] = useState(false);
   useEffect(() => {
     getEmployee();
   }, []);
   const getEmployee = async () => {
-    const result = await handleSearchEmployeeByEmpcode(props.area, "%MBP%");
+    setLoadingEmp(true);
+    const result = await handleSearchEmployeeByEmpcode("%MBP%");
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);
     }
+    setLoadingEmp(false);
   };
 
   return (
@@ -65,7 +68,11 @@ export default function Page(props) {
                 </tr>
               ))
             ) : (
-              <></>
+              <tr>
+                <td colSpan={11} className="text-center fw-bold">
+                  Đang tải dữ liệu...
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

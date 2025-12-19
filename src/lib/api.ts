@@ -529,7 +529,6 @@ export async function handleSearchEmployeeByArea(
 }
 
 export async function handleSearchEmployeeByEmpcode(
-  area: string,
   matchSearch: string
 ) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
@@ -540,7 +539,7 @@ export async function handleSearchEmployeeByEmpcode(
 
   const urlApi =
     URL +
-    `dashboard/dashboard-search-employee-by-empcode?matchSearch=${encodedSearch}`;
+    `/dashboard/dashboard-search-employee-by-empcode?matchSearch=${encodedSearch}`;
   try {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
