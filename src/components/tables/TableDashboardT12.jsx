@@ -234,7 +234,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   </span>
                 </span>
               </th>
-              <th className="th-title-per th-color-yellow ">6.5%</th>
+              <th className="th-title-per th-color-yellow ">{convertToFloat2Fixed(new Date().getDate()/sumDateInMonth)*100} %</th>
               <th className="th-title-dis">
                 <span
                   className="d-inline-flex align-items-center gap-1 tooltip-wrapper"

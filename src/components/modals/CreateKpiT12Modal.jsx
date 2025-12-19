@@ -1109,7 +1109,7 @@ const CreateKpiT12Modal = (props) => {
                           </td>
                         </tr>
 
-                        <tr>
+                        {/* <tr>
                           <td>Dthu GPS</td>
                           <td>
                             <span
@@ -1146,7 +1146,7 @@ const CreateKpiT12Modal = (props) => {
                               customInput={<CustomDateInput />}
                             />
                           </td>
-                        </tr>
+                        </tr> */}
                         <tr>
                           <td>Dthu GPS KHCN</td>
                           <td>
