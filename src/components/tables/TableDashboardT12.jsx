@@ -13676,7 +13676,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT * 100) /
-                      PLANPLAN_TI_LE_GIA_HAN_GOI_DAI_KYDTHU_GPS.TTKDVT
+                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT
                   ) + "%"
                 ) : (
                   ""
