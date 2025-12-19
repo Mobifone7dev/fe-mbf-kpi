@@ -173,9 +173,14 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
           SET_EXEC_TB_PTM_SAYMEE(object);
         }
-         if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
+        if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
           SET_EXEC_TB_PTM_FIBER(object);
         }
+
+        if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT") {
+          SET_EXEC_SL_PTM_TBTT(object);
+        }
+
         if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
           SET_EXEC_TI_LE_GIA_HAN_GOI_DAI_KY(object);
         }
@@ -234,7 +239,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   </span>
                 </span>
               </th>
-              <th className="th-title-per th-color-yellow ">{convertToFloat2Fixed(new Date().getDate()/sumDateInMonth)*100} %</th>
+              <th className="th-title-per th-color-yellow ">
+                {convertToFloat2Fixed(new Date().getDate() / sumDateInMonth) *
+                  100}{" "}
+                %
+              </th>
               <th className="th-title-dis">
                 <span
                   className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
