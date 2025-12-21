@@ -42,10 +42,7 @@ export default function Page(props) {
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
-      console.log("tempRes", tempRes);
-      //   setExecData(result)(tempRes);
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
-      console.log("result", result);
       setExecData(result);
     }
 
