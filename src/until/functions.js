@@ -33,6 +33,20 @@ export const convertToFloat2Fixed = (number) => {
 
   return formatted;
 };
+
+export const convertToNumber = (number) => {
+  if (!Number(number)) return 0;
+
+  const num = parseFloat(number);
+
+
+  return num
+};
+export const convertToNumberMauso = (number) => {
+  if (!Number(number)) return 1;
+  const num = parseFloat(number);
+  return num;
+};
 export const convertToFloat2FixedNumber = (number) => {
   if (!Number(number)) return 0;
 

@@ -196,13 +196,13 @@ export async function createManualApiListDLA(postData: any) {
     );
   }
 }
-export async function handleGetPlanKpi(month: string, district? : string) {
+export async function handleGetPlanKpi(month: string, district?: string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`)
   let res;
   const token = localStorage.getItem("accessToken");
-  const urlApi  = district&&district.length > 0 ?  URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${district}` :  URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
+  const urlApi = district && district.length > 0 ? URL + `/dashboard/dashboard-plan-kpi?month=${month}&&province=${district}` : URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
   try {
     res = await fetch(
       urlApi,
@@ -236,7 +236,7 @@ export async function handleGetPlanKpiDLA(month: string, district?: string) {
   console.log("URL", URL + `/dashboard/dashboard-plan-kpi?month=${month}`);
   let res;
   const token = localStorage.getItem("accessToken");
-  const urlApi = URL +`/dashboard/dashboard-plan-kpi-dla?month=${month}`;
+  const urlApi = URL + `/dashboard/dashboard-plan-kpi-dla?month=${month}`;
   try {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
@@ -264,7 +264,7 @@ export async function handleGetPlanKpiDLA(month: string, district?: string) {
   }
 }
 
-export async function handleGetExecKpi(month: string, province?  :string) {
+export async function handleGetExecKpi(month: string, province?: string) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   let res;
   const token = localStorage.getItem("accessToken");
@@ -304,7 +304,7 @@ export async function handleGetExecKpiDLA(month: string) {
 
   try {
     const urlApi =
-         URL + `/dashboard/dashboard-exec-kpi-dla?month=${month}`;
+      URL + `/dashboard/dashboard-exec-kpi-dla?month=${month}`;
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -329,6 +329,48 @@ export async function handleGetExecKpiDLA(month: string) {
       { status: 500 }
     );
   }
+}
+
+export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: string) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  if (month && matchSearch) {
+    try {
+      const urlApi =
+        URL + `/dashboard/dashboard-exec-kpi-dla-nhan-vien?month=${month}&matchSearch=${matchSearch}`;
+      res = await fetch(urlApi, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.status == 403) {
+        signOut({ redirect: false });
+        redirect("/login");
+      }
+      const data = await res.json();
+      if (res) {
+        return Response.json({
+          success: true,
+          result: data.result,
+        });
+      } else {
+        console.log("res", res);
+        return Response.json({ success: false });
+      }
+    } catch (e) {
+      console.log(e);
+      return Response.json(
+        { message: "An error occurred while get code.", e },
+        { status: 500 }
+      );
+    }
+  } else {
+    return Response.json(
+      { message: "thieu truong match search va month" },
+      { status: 400 }
+    );
+  }
+
+
 }
 
 export async function handleGetWebUser(userEmail: string) {
@@ -442,7 +484,7 @@ export async function handleUpdateUseRole(postData: any) {
 
 export async function handleGetExecKpiExcel(month: string, kpiType: string, provincePt: string = "") {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
-  
+
   // Chuyển từ "MM/YYYY" → "01/MM/YYYY"
   const formattedMonth = `01/${month.replace("-", "/")}`; // Chuyển "03-2025" → "01/03/2025"
   const provinceQuery = provincePt ? `&provincePt=${provincePt}` : "";

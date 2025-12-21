@@ -312,4 +312,6 @@ input[type="number"] {
 .input-kpi {
   min-width: 100px !important;
 }
-
+.react-datepicker-popper{
+  z-index: 9999 !important;
+}

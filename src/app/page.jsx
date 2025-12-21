@@ -231,7 +231,6 @@ const Page = () => {
         </div>
       </div>
       {/* selectDate se cham hon 1 thang */}
-      {selectedDate.getMonth() > 10 ? (
         <TableDashboardT12
           ref={childRef}
           planData={planData}
@@ -241,9 +240,7 @@ const Page = () => {
           selectedDate={selectedDate}
           sumDateInMonth={sumDateInMonth}
         />
-      ) : (
-        <></>
-      )}
+     
     </div>
   );
 };

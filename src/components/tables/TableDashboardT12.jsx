@@ -12,7 +12,10 @@ import {
   convertToFloat2FixedNumber,
   daysInMonth,
   changeFormatDateFirstDateInMonth,
+  convertToNumberMauso,
+  convertToNumber,
 } from "../../until/functions.js";
+
 // eslint-disable-next-line react/display-name
 const TableDashboardT12 = forwardRef((props, ref) => {
   const [PLAN_DTHU_TKC_HTS, SET_PLAN_DTHU_TKC_HTS] = useState({});
@@ -53,6 +56,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   const [loadingExec, setLoadingExec] = useState(props.loadingExec);
   const [selectedDate, setSelectedDate] = useState(props.selectedDate);
   const [sumDateInMonth, setSumDateInMonth] = useState(props.sumDateInMonth);
+  const processKPI =
+    convertToNumber(new Date().getDate() / props.sumDateInMonth) * 100;
 
   useEffect(() => {
     setLoadingExec(props.loadingExec);
@@ -240,9 +245,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 </span>
               </th>
               <th className="th-title-per th-color-yellow ">
-                {convertToFloat2Fixed(new Date().getDate() / sumDateInMonth) *
-                  100}{" "}
-                %
+                {convertToFloat2Fixed(processKPI)} %
               </th>
               <th className="th-title-dis">
                 <span
@@ -1265,12 +1268,45 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (EXEC_DTHU_FIBER.TTKDVT
-                      ? EXEC_DTHU_FIBER.TTKDVT / 1000000
-                      : 0) +
-                      (EXEC_DTHU_TKC_HTS.TTKDVT
-                        ? EXEC_DTHU_TKC_HTS.TTKDVT / 1000000
-                        : 0)
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03))+
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06))+
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08))  +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) 
+                        )/1000000
                   )
                 )}
               </td>
@@ -1293,24 +1329,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T01 ? EXEC_DTHU_FIBER.DLA_T01 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T01
-                        ? EXEC_DTHU_FIBER.DLA_T01
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T01
-                        ? PLAN_DTHU_TKC_HTS.DLA_T01 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T01) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1319,37 +1343,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T01 ? EXEC_DTHU_FIBER.DLA_T01 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T01
-                        ? EXEC_DTHU_TKC_HTS.DLA_T01
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T01
-                        ? PLAN_DTHU_TKC_HTS.DLA_T01 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T01) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T02 ? EXEC_DTHU_FIBER.DLA_T02 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T02
-                        ? EXEC_DTHU_FIBER.DLA_T02
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T02
-                        ? PLAN_DTHU_TKC_HTS.DLA_T02 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T02) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1358,37 +1367,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T02 ? EXEC_DTHU_FIBER.DLA_T02 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T02
-                        ? EXEC_DTHU_TKC_HTS.DLA_T02
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T02
-                        ? PLAN_DTHU_TKC_HTS.DLA_T02 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T02) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T03 ? EXEC_DTHU_FIBER.DLA_T03 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T03
-                        ? EXEC_DTHU_FIBER.DLA_T03
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T03
-                        ? PLAN_DTHU_TKC_HTS.DLA_T03 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T03) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1397,37 +1391,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T03 ? EXEC_DTHU_FIBER.DLA_T03 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T03
-                        ? EXEC_DTHU_TKC_HTS.DLA_T03
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T03
-                        ? PLAN_DTHU_TKC_HTS.DLA_T03 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T03) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T04 ? EXEC_DTHU_FIBER.DLA_T04 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T04
-                        ? EXEC_DTHU_FIBER.DLA_T04
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T04
-                        ? PLAN_DTHU_TKC_HTS.DLA_T04 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T04) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1436,37 +1415,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T04 ? EXEC_DTHU_FIBER.DLA_T04 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T04
-                        ? EXEC_DTHU_TKC_HTS.DLA_T04
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T04
-                        ? PLAN_DTHU_TKC_HTS.DLA_T04 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T04) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T05 ? EXEC_DTHU_FIBER.DLA_T05 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T05
-                        ? EXEC_DTHU_FIBER.DLA_T05
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T05
-                        ? PLAN_DTHU_TKC_HTS.DLA_T05 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T05) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1475,38 +1439,23 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T05 ? EXEC_DTHU_FIBER.DLA_T05 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T05
-                        ? EXEC_DTHU_TKC_HTS.DLA_T05
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T05
-                        ? PLAN_DTHU_TKC_HTS.DLA_T05 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T05) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
 
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T06 ? EXEC_DTHU_FIBER.DLA_T06 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T06
-                        ? EXEC_DTHU_FIBER.DLA_T06
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T06
-                        ? PLAN_DTHU_TKC_HTS.DLA_T06 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T06) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1515,37 +1464,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T06 ? EXEC_DTHU_FIBER.DLA_T06 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T06
-                        ? EXEC_DTHU_TKC_HTS.DLA_T06
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T06
-                        ? PLAN_DTHU_TKC_HTS.DLA_T06 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T06) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T07 ? EXEC_DTHU_FIBER.DLA_T07 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T07
-                        ? EXEC_DTHU_FIBER.DLA_T07
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T07
-                        ? PLAN_DTHU_TKC_HTS.DLA_T07 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T07) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1554,37 +1488,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T07 ? EXEC_DTHU_FIBER.DLA_T07 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T07
-                        ? EXEC_DTHU_TKC_HTS.DLA_T07
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T07
-                        ? PLAN_DTHU_TKC_HTS.DLA_T07 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T07) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T08 ? EXEC_DTHU_FIBER.DLA_T08 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T08
-                        ? EXEC_DTHU_FIBER.DLA_T08
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T08
-                        ? PLAN_DTHU_TKC_HTS.DLA_T08 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T08) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1593,37 +1512,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T08 ? EXEC_DTHU_FIBER.DLA_T08 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T08
-                        ? EXEC_DTHU_TKC_HTS.DLA_T08
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T08
-                        ? PLAN_DTHU_TKC_HTS.DLA_T08 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T08) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T09 ? EXEC_DTHU_FIBER.DLA_T09 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T09
-                        ? EXEC_DTHU_FIBER.DLA_T09
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T09
-                        ? PLAN_DTHU_TKC_HTS.DLA_T09 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T09) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1632,37 +1536,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T09 ? EXEC_DTHU_FIBER.DLA_T09 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T09
-                        ? EXEC_DTHU_TKC_HTS.DLA_T09
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T09
-                        ? PLAN_DTHU_TKC_HTS.DLA_T09 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T09) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T10 ? EXEC_DTHU_FIBER.DLA_T10 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T10
-                        ? EXEC_DTHU_FIBER.DLA_T10
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T10
-                        ? PLAN_DTHU_TKC_HTS.DLA_T10 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T10) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1671,37 +1560,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T10 ? EXEC_DTHU_FIBER.DLA_T10 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T10
-                        ? EXEC_DTHU_TKC_HTS.DLA_T10
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T10
-                        ? PLAN_DTHU_TKC_HTS.DLA_T10 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T10) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T11 ? EXEC_DTHU_FIBER.DLA_T11 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T11
-                        ? EXEC_DTHU_FIBER.DLA_T11
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T11
-                        ? PLAN_DTHU_TKC_HTS.DLA_T11 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T11) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1710,37 +1584,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T11 ? EXEC_DTHU_FIBER.DLA_T11 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T11
-                        ? EXEC_DTHU_TKC_HTS.DLA_T11
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T11
-                        ? PLAN_DTHU_TKC_HTS.DLA_T11 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T11) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T12 ? EXEC_DTHU_FIBER.DLA_T12 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T12
-                        ? EXEC_DTHU_FIBER.DLA_T12
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T12
-                        ? PLAN_DTHU_TKC_HTS.DLA_T12 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T12) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1749,37 +1608,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T12 ? EXEC_DTHU_FIBER.DLA_T12 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T12
-                        ? EXEC_DTHU_TKC_HTS.DLA_T12
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T12
-                        ? PLAN_DTHU_TKC_HTS.DLA_T12 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T12) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_T13 ? EXEC_DTHU_FIBER.DLA_T13 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T13
-                        ? EXEC_DTHU_FIBER.DLA_T13
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T13
-                        ? PLAN_DTHU_TKC_HTS.DLA_T13 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T13) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1788,37 +1632,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_T13 ? EXEC_DTHU_FIBER.DLA_T13 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T13
-                        ? EXEC_DTHU_TKC_HTS.DLA_T13
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_T13
-                        ? PLAN_DTHU_TKC_HTS.DLA_T13 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T13) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D01 ? EXEC_DTHU_FIBER.DLA_D01 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D01
-                        ? EXEC_DTHU_FIBER.DLA_D01
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D01
-                        ? PLAN_DTHU_TKC_HTS.DLA_D01 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D01) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1827,37 +1656,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D01 ? EXEC_DTHU_FIBER.DLA_D01 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D01
-                        ? EXEC_DTHU_TKC_HTS.DLA_D01
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D01
-                        ? PLAN_DTHU_TKC_HTS.DLA_D01 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D01) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D02 ? EXEC_DTHU_FIBER.DLA_D02 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D02
-                        ? EXEC_DTHU_FIBER.DLA_D02
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D02
-                        ? PLAN_DTHU_TKC_HTS.DLA_D02 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D02) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1866,37 +1680,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D02 ? EXEC_DTHU_FIBER.DLA_D02 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D02
-                        ? EXEC_DTHU_TKC_HTS.DLA_D02
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D02
-                        ? PLAN_DTHU_TKC_HTS.DLA_D02 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D02) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D03 ? EXEC_DTHU_FIBER.DLA_D03 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D03
-                        ? EXEC_DTHU_FIBER.DLA_D03
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D03
-                        ? PLAN_DTHU_TKC_HTS.DLA_D03 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D03) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1905,37 +1704,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D03 ? EXEC_DTHU_FIBER.DLA_D03 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D03
-                        ? EXEC_DTHU_TKC_HTS.DLA_D03
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D03
-                        ? PLAN_DTHU_TKC_HTS.DLA_D03 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D03) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D04 ? EXEC_DTHU_FIBER.DLA_D04 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D04
-                        ? EXEC_DTHU_FIBER.DLA_D04
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D04
-                        ? PLAN_DTHU_TKC_HTS.DLA_D04 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D04) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1944,37 +1728,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D04 ? EXEC_DTHU_FIBER.DLA_D04 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D04
-                        ? EXEC_DTHU_TKC_HTS.DLA_D04
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D04
-                        ? PLAN_DTHU_TKC_HTS.DLA_D04 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D04) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D05 ? EXEC_DTHU_FIBER.DLA_D05 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D05
-                        ? EXEC_DTHU_FIBER.DLA_D05
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D05
-                        ? PLAN_DTHU_TKC_HTS.DLA_D05 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D05) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1983,37 +1752,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D05 ? EXEC_DTHU_FIBER.DLA_D05 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D05
-                        ? EXEC_DTHU_TKC_HTS.DLA_D05
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D05
-                        ? PLAN_DTHU_TKC_HTS.DLA_D05 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D05) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.DLA_D06 ? EXEC_DTHU_FIBER.DLA_D06 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D06
-                        ? EXEC_DTHU_FIBER.DLA_D06
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D06
-                        ? PLAN_DTHU_TKC_HTS.DLA_D06 * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D06) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2022,35 +1776,75 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_FIBER.DLA_D06 ? EXEC_DTHU_FIBER.DLA_D06 : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D06
-                        ? EXEC_DTHU_TKC_HTS.DLA_D06
-                        : 0)) *
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.DLA_D06
-                        ? PLAN_DTHU_TKC_HTS.DLA_D06 * 1000000
-                        : 1)
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D06) *
+                        1000000)
                   ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.TTKDVT ? EXEC_DTHU_FIBER.TTKDVT : 0) +
-                      (EXEC_DTHU_TKC_HTS.TTKDVT ? EXEC_DTHU_FIBER.TTKDVT : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
+                  ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) *
+                    100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
+                      100 +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
                       100) /
-                      (PLAN_DTHU_TKC_HTS.TTKDVT
-                        ? PLAN_DTHU_TKC_HTS.TTKDVT * 1000000
-                        : 1)
-                  ) > 100
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDVT) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2058,39 +1852,76 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  // convertToFloat2Fixed(
-                  //   (((EXEC_DTHU_FIBER.TTKDVT ? EXEC_DTHU_FIBER.TTKDVT : 0) +
-                  //     (EXEC_DTHU_TKC_HTS.TTKDVT
-                  //       ? EXEC_DTHU_TKC_HTS.TTKDVT
-                  //       : 0)) *
-                  //     100) /
-                  //     (PLAN_DTHU_TKC_HTS.TTKDVT
-                  //       ? PLAN_DTHU_TKC_HTS.TTKDVT * 1000000
-                  //       : 1)
-                  // ) + "%"
-                  "%"
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) *
+                      100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
+                        100 +
+                      (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
+                        100) /
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDVT) * 1000000)
+                  ) + "%"
                 )}
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((((EXEC_DTHU_FIBER.TTKDGPS ? EXEC_DTHU_FIBER.TTKDGPS : 0) +
-                      (EXEC_DTHU_TKC_HTS.TTKDGPS
-                        ? EXEC_DTHU_FIBER.TTKDGPS
-                        : 0)) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_TKC_HTS.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_TKC_HTS.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_TKC_HTS.TTKDGPS
-                        ? PLAN_DTHU_TKC_HTS.TTKDGPS * 1000000
-                        : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
+                    convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2098,17 +1929,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  // convertToFloat2Fixed(
-                  //   (((EXEC_DTHU_FIBER.TTKDGPS ? EXEC_DTHU_FIBER.TTKDGPS : 0) +
-                  //     (EXEC_DTHU_TKC_HTS.TTKDGPS
-                  //       ? EXEC_DTHU_TKC_HTS.TTKDGPS
-                  //       : 0)) *
-                  //     100) /
-                  //     (PLAN_DTHU_TKC_HTS.TTKDGPS
-                  //       ? PLAN_DTHU_TKC_HTS.TTKDGPS * 1000000
-                  //       : 1)
-                  // ) + "%"
-                  "%"
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
+                      100) /
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
+                        1000000)
+                  ) + "%"
                 )}
               </td>
             </tr>
