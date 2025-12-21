@@ -1268,22 +1268,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
-                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) +
+                    (convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
-                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03))+
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
-                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06))+
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
-                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08))  +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
@@ -1305,8 +1305,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
-                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) 
-                        )/1000000
+                        convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06))) /
+                      1000000
                   )
                 )}
               </td>
@@ -2653,23 +2653,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T01
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T01
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T01
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T01 ? PLAN_DTHU_GPS.DLA_T01 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2690,23 +2678,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T02
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T02
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T02
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T02 ? PLAN_DTHU_GPS.DLA_T02 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T02)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2728,23 +2704,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T03
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T03
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T03
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T03 ? PLAN_DTHU_GPS.DLA_T03 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T03) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T03)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2765,23 +2729,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T04
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T04
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T04
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T04 ? PLAN_DTHU_GPS.DLA_T04 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T04) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T04)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2802,23 +2754,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T05
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T05
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T05
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T05 ? PLAN_DTHU_GPS.DLA_T05 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T05) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T05)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_TDLA_T05) *
+                      1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2839,23 +2780,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T06
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T06
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T06
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T06 ? PLAN_DTHU_GPS.DLA_T06 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T06) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T06)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2876,23 +2805,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T07
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T07
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T07
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T07
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T07 ? PLAN_DTHU_GPS.DLA_T07 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T07) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T07)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2913,23 +2830,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T08
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T08
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T08
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T08
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T08 ? PLAN_DTHU_GPS.DLA_T08 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T08) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T08)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2950,23 +2855,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T09
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T09
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T09
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T09
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T09 ? PLAN_DTHU_GPS.DLA_T09 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T09) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T09)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -2987,23 +2880,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T10
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T10
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T10
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T10
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T10 ? PLAN_DTHU_GPS.DLA_T10 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T10) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T10)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3024,23 +2905,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T11
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T11
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T11
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T11
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T11 ? PLAN_DTHU_GPS.DLA_T11 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T11) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T11)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3061,23 +2930,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T12
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T12
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T12
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T12
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T12 ? PLAN_DTHU_GPS.DLA_T12 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T12) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T12)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3098,23 +2955,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_T13
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T13
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T13
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T13
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T13 ? PLAN_DTHU_GPS.DLA_T13 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T13) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T13)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3135,23 +2980,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D01
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D01
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D01
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D01 ? PLAN_DTHU_GPS.DLA_D01 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D01) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D01)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3172,23 +3005,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D02
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D02
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D02
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D02 ? PLAN_DTHU_GPS.DLA_D02 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D02) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D02)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3209,23 +3030,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D03
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D03
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D03
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D03 ? PLAN_DTHU_GPS.DLA_D03 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D03) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D03)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3246,23 +3055,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D04
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D04
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D04
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D04 ? PLAN_DTHU_GPS.DLA_D04 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D04) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D04)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3283,23 +3080,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D05
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D05
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D05
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D05 ? PLAN_DTHU_GPS.DLA_D05 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3320,23 +3105,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.DLA_D06
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D06
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D06
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D06 ? PLAN_DTHU_GPS.DLA_D06 : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3357,23 +3130,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHCN.TTKDVT
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHDN.TTKDVT
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.TTKDVT ? PLAN_DTHU_GPS.TTKDVT : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDVT) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDVT)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.TTKDVT) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -3394,23 +3155,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    (((EXEC_DTHU_GPS_KHCN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHCN.TTKDGPS
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHDN.TTKDGPS
-                      : 0) /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_GPS_KHCN.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_GPS.TTKDGPS ? PLAN_DTHU_GPS.TTKDGPS : 1)
-                  ) > 100
+                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
+                    convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS)) *
+                    100) /
+                    (convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4269,19 +4018,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T01 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T01) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4299,19 +4038,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T02 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T02) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4330,19 +4059,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T03 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T03) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4360,19 +4079,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T04 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T04) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4390,19 +4099,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T05 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T05) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4420,19 +4119,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T06 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T06) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4450,19 +4139,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T07 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T07) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4480,19 +4159,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T08 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T08) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4510,19 +4179,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T09 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T09) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4540,19 +4199,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T10 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T10) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4570,19 +4219,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T11 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T11) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4600,19 +4239,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T12 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T12) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4630,19 +4259,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_T13 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T13) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4660,19 +4279,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D01 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D01) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4690,19 +4299,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D02 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D02) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4720,19 +4319,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D03 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D03) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4750,19 +4339,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D04 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D04) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4780,19 +4359,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D05 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D05) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4810,19 +4379,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.DLA_D06 * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D06) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4840,19 +4399,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.TTKDVT * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.TTKDVT) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4870,19 +4419,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_DTHU_SAYMEE.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_DTHU_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_DTHU_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      (PLAN_DTHU_SAYMEE.TTKDGPS * 1000000)
-                  ) > 100
+                  (convertToNumber(EXEC_DTHU_SAYMEE.TTKDGPS) * 100) /
+                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDGPS) * 1000000) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5354,19 +4893,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5383,19 +4912,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5412,19 +4931,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5441,19 +4950,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5470,19 +4969,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5499,19 +4988,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5528,19 +5007,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5557,19 +5026,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5586,19 +5045,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5615,19 +5064,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5644,19 +5083,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5673,19 +5102,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5702,19 +5121,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5731,19 +5140,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5760,19 +5159,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5789,19 +5178,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5818,19 +5197,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5847,19 +5216,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5876,19 +5235,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5905,19 +5254,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>{" "}
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5934,19 +5273,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>{" "}
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_C2C.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_C2C.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_C2C.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6403,19 +5732,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6432,19 +5751,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6461,19 +5770,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6490,19 +5789,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6519,19 +5808,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6548,19 +5827,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6577,19 +5846,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6606,19 +5865,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6635,19 +5884,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6664,19 +5903,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6693,19 +5922,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6722,19 +5941,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6751,19 +5960,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6780,19 +5979,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6809,19 +5998,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6838,19 +6017,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6867,19 +6036,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6896,19 +6055,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6925,19 +6074,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6954,19 +6093,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6984,19 +6113,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TYLE_GD_C2C.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TYLE_GD_C2C.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TYLE_GD_C2C.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TYLE_GD_C2C.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_TYLE_GD_C2C.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7459,19 +6578,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7488,19 +6597,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7517,19 +6616,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7546,19 +6635,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7575,19 +6654,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7604,19 +6673,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7633,19 +6692,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7662,19 +6711,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7691,19 +6730,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7720,19 +6749,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7749,19 +6768,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7778,19 +6787,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7807,19 +6806,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7836,19 +6825,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7865,19 +6844,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7894,19 +6863,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7923,19 +6882,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7952,19 +6901,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7981,19 +6920,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8010,19 +6939,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8039,19 +6958,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_PTM_TBTT.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_PTM_TBTT.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_PTM_TBTT.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_PTM_TBTT.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_SL_PTM_TBTT.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8508,21 +7417,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8541,21 +7438,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8574,21 +7459,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8607,21 +7480,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8640,21 +7501,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8673,21 +7522,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8706,21 +7543,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8739,21 +7564,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8772,21 +7585,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8805,21 +7606,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8838,21 +7627,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8871,21 +7648,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8904,21 +7669,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8937,21 +7690,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8970,21 +7711,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9003,21 +7732,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9036,21 +7753,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9069,21 +7774,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9102,21 +7795,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9135,21 +7816,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9168,21 +7837,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TBTS_PTM_THOAI.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TBTS_PTM_THOAI.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_SL_TBTS_PTM_THOAI.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TBTS_PTM_THOAI.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9641,19 +8298,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9671,19 +8318,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9701,19 +8338,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9731,19 +8358,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9761,19 +8378,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9791,19 +8398,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9821,19 +8418,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9851,19 +8438,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9881,19 +8458,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9911,19 +8478,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9941,19 +8498,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9971,19 +8518,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10001,19 +8538,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10031,19 +8558,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10061,19 +8578,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10091,19 +8598,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10121,19 +8618,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10151,19 +8638,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10181,19 +8658,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10211,19 +8678,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10241,19 +8698,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_SL_TB_PTM_M2M.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_SL_TB_PTM_M2M.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_SL_TB_PTM_M2M.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_SL_TB_PTM_M2M.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10717,19 +9164,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10747,19 +9184,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10777,19 +9204,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10807,19 +9224,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10837,19 +9244,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10867,19 +9264,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10897,19 +9284,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10927,19 +9304,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10957,19 +9324,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10987,19 +9344,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11017,19 +9364,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11047,19 +9384,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11077,19 +9404,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11107,19 +9424,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11137,19 +9444,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11167,19 +9464,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11197,19 +9484,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11227,19 +9504,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11257,19 +9524,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11287,19 +9544,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11317,19 +9564,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_SAYMEE.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_SAYMEE.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_SAYMEE.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_SAYMEE.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11783,19 +10020,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T01
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11813,19 +10040,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T02
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11843,19 +10060,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T03
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11873,19 +10080,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T04
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11903,19 +10100,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T05
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11933,19 +10120,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T06
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11963,19 +10140,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T07
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T07) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11993,19 +10160,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T08
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T08) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12023,19 +10180,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T09
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T09) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12053,19 +10200,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T10
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T10) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12083,19 +10220,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T11
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T11) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12113,19 +10240,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T12
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T12) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12143,19 +10260,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_T13
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T13) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12173,19 +10280,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D01
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D01) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12203,19 +10300,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D02
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D02) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12233,19 +10320,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D03
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D03) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12263,19 +10340,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D04
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D04) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12293,19 +10360,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D05
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D05) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12323,19 +10380,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.DLA_D06
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D06) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12353,19 +10400,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.TTKDVT) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12382,19 +10419,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TB_PTM_FIBER.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TB_PTM_FIBER.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(EXEC_TB_PTM_FIBER.LAST_DATE).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TB_PTM_FIBER.TTKDGPS
-                  ) > 100
+                  (convertToNumber(EXEC_TB_PTM_FIBER.TTKDGPS) * 100) /
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDGPS) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12860,21 +10887,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12893,21 +10911,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12926,21 +10935,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12959,21 +10959,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -12992,21 +10983,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13025,21 +11007,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13058,21 +11031,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13091,21 +11055,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13124,21 +11079,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13157,21 +11103,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13190,21 +11127,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13223,21 +11151,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13256,21 +11175,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13289,21 +11199,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13322,21 +11223,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13355,21 +11247,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13388,21 +11271,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13421,21 +11295,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13454,21 +11319,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06 /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13487,21 +11343,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT
-                  ) > 100
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT) *
+                    100) /
+                    convertToNumberMauso(PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -13520,21 +11365,12 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  parseFloat(
-                    ((EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS /
-                      (new Date(
-                        selectedDate.getFullYear(),
-                        selectedDate.getMonth() + 1,
-                        0
-                      ) < new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                        ? sumDateInMonth
-                        : new Date(
-                            EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
-                          ).getDate())) *
-                      sumDateInMonth *
-                      100) /
+                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS) *
+                    100) /
+                    convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS
-                  ) > 100
+                    ) >
+                  processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
