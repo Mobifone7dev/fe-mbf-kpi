@@ -17,12 +17,16 @@ export default function Page(props) {
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
   const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
+  const TEN_CHI_TIEU_ORDER = [
+    "SL_TB_PTM_M2M",
+    "SL_PTM_TBTT_NDS",
+    "TB_PTM_SAYMEE",
+  ];
   const [execData, setExecData] = useState({});
   useEffect(() => {
     getEmployee();
   }, []);
 
-  
   const getEmployee = async () => {
     setLoadingEmp(true);
     const result = await handleSearchEmployeeByEmpcode("%MBP%");
@@ -36,63 +40,87 @@ export default function Page(props) {
     setLoadingEmp(true);
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
-     const tempRes = await result.json();
-    if (tempRes) {
-      setExecData(tempRes);
+    const tempRes = await result.json();
+    if (tempRes && tempRes.result && tempRes.result.length > 0) {
+      console.log("tempRes", tempRes);
+      //   setExecData(result)(tempRes);
+      const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
+      console.log("result", result);
+      setExecData(result);
     }
-  
+
     setLoadingEmp(false);
   };
   useEffect(() => {
-    if (employeeList&&employeeList.length > 0) {
+    if (employeeList && employeeList.length > 0) {
       getKpiEmployee();
     }
   }, [employeeList]);
+  const buildEmpInfoMap = (empList) => {
+    return empList.reduce((acc, emp) => {
+      acc[emp.EMP_CODE] = emp;
+      return acc;
+    }, {});
+  };
 
-   useEffect(() => {
-    if (execData && execData.result?.length > 0) {
-      execData.result.forEach((object, index) => {
-       
-        if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
-          SET_EXEC_SL_TB_C2C(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
-          SET_EXEC_TYLE_GD_C2C(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
-          SET_EXEC_DTHU_FIBER(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "SL_TBTS_PTM_THOAI") {
-          SET_EXEC_SL_TBTS_PTM_THOAI(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "SL_TB_PTM_M2M") {
-          SET_EXEC_SL_TB_PTM_M2M(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TB_PTM_SAYMEE") {
-          SET_EXEC_TB_PTM_SAYMEE(object);
-        }
-        if (object["TEN_CHI_TIEU"] == "TB_PTM_FIBER") {
-          SET_EXEC_TB_PTM_FIBER(object);
-        }
+  const buildEmployeeMap = (employeeList) => {
+    return employeeList.reduce((acc, emp) => {
+      acc[emp.EMP_CODE] = emp;
+      return acc;
+    }, {});
+  };
+  function mergeEmployeeWithKpi(employeeList, kpiList) {
+    // 1. Map employee theo EMP_CODE
+    const empMap = employeeList.reduce((acc, emp) => {
+      acc[emp.EMP_CODE] = emp;
+      return acc;
+    }, {});
 
-        if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT") {
-          SET_EXEC_SL_PTM_TBTT(object);
-        }
-    
-      });
+    const resultMap = {};
+
+    // 2. Loop KPI (FACT TABLE)
+    for (const kpi of kpiList) {
+      // 🚨 chặn data lỗi
+      if (!kpi.EMP_CODE || !kpi.TEN_CHI_TIEU) continue;
+
+      const empCode = kpi.EMP_CODE;
+      const emp = empMap[empCode] || {};
+
+      // 3. Init 1 dòng / EMP_CODE (chỉ khi có KPI)
+      if (!resultMap[empCode]) {
+        resultMap[empCode] = {
+          AREA: kpi.AREA,
+          AREA_CODE: emp.AREA_CODE ?? kpi.AREA,
+          EMP_CODE: empCode,
+          EMP_NAME: emp.EMP_NAME ?? null,
+          SHOP_CODE: emp.SHOP_CODE ?? kpi.SHOP_CODE,
+          SHOP_NAME: emp.SHOP_NAME ? emp.SHOP_NAME.trim() : null,
+          WARD_CODE: emp.WARD_CODE ?? null,
+          LAST_DATE: kpi.LAST_DATE,
+        };
+      }
+
+      // 4. Pivot TEN_CHI_TIEU → column + SUM
+      const key = kpi.TEN_CHI_TIEU;
+
+      resultMap[empCode][key] =
+        (resultMap[empCode][key] || 0) + Number(kpi.THUC_HIEN || 0);
     }
-  }, [execData]);
 
-   const resetExec = ()=> {
-      SET_EXEC_SL_TB_C2C({});
-      SET_EXEC_TYLE_GD_C2C({});
-      SET_EXEC_SL_PTM_TBTT({});
-      SET_EXEC_SL_TBTS_PTM_THOAI({});
-      SET_EXEC_SL_TB_PTM_M2M({});
-      SET_EXEC_TB_PTM_SAYMEE({});
-      SET_EXEC_TB_PTM_FIBER({});
-    }
+    // 5. Trả ra array
+    return Object.values(resultMap);
+  }
 
+
+  const resetExec = () => {
+    SET_EXEC_SL_TB_C2C({});
+    SET_EXEC_TYLE_GD_C2C({});
+    SET_EXEC_SL_PTM_TBTT({});
+    SET_EXEC_SL_TBTS_PTM_THOAI({});
+    SET_EXEC_SL_TB_PTM_M2M({});
+    SET_EXEC_TB_PTM_SAYMEE({});
+    SET_EXEC_TB_PTM_FIBER({});
+  };
 
   return (
     <div className="dashboard-nvbh">
@@ -101,8 +129,13 @@ export default function Page(props) {
         <table className="table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head`}>
             <tr>
-              <th className="th-title th-color-yellow position-relative">{`Tên nhân viên bán hàng`}</th>
               <th className="th-title th-color-yellow position-relative">{`Mã nhân viên`}</th>
+              <th className="th-title th-color-yellow position-relative">
+                {`Tên nhân viên`}
+                <br></br>
+                {`bán hàng`}
+              </th>
+              <th className="th-title th-color-yellow position-relative">{`Vùng`}</th>
               <th className="th-title th-color-yellow position-relative">
                 <>
                   TB PTM mạng
@@ -111,10 +144,26 @@ export default function Page(props) {
                 </>
               </th>{" "}
               <th className="th-title th-color-yellow position-relative">{`TBTT PTM`}</th>
-              <th className="th-title th-color-yellow position-relative">{`TBTS PTM (thoại)`}</th>
-              <th className="th-title th-color-yellow position-relative">{`TBTS PTM M2M`}</th>
-              <th className="th-title th-color-yellow position-relative">{`TBTS PTM SAYMEE`}</th>
-              <th className="th-title th-color-yellow position-relative">{`TBTS PTM MobiFiber`}</th>
+              <th className="th-title th-color-yellow position-relative">
+                {`TBTS PTM`}
+                <br></br>
+                {`(thoại)`}
+              </th>
+              <th className="th-title th-color-yellow position-relative">
+                {`TBTS PTM `}
+                <br></br>
+                {`M2M`}
+              </th>
+              <th className="th-title th-color-yellow position-relative">
+                {`TBTS PTM`}
+                <br></br>
+                {` SAYMEE`}
+              </th>
+              <th className="th-title th-color-yellow position-relative">
+                {`TBTS PTM`}
+                <br></br>
+                {` MobiFiber`}
+              </th>
               <th className="th-title th-color-yellow position-relative">{`TB MNP đến`}</th>
               <th className="th-title th-color-yellow position-relative">
                 <>
@@ -127,15 +176,37 @@ export default function Page(props) {
             </tr>
           </thead>
           <tbody>
-            {employeeList && employeeList.length > 0 ? (
-              employeeList.map((o, i) => (
+            {execData && execData.length > 0 ? (
+              execData.map((object, i) => (
                 <tr key={i}>
-                  <td className="td-stt  fix-col-1">{o.EMP_CODE}</td>
-                  <td className="td-stt   fix-col-2">{o.EMP_NAME}</td>
+                  <td
+                    style={{ textAlign: "left", fontWeight: 400 }}
+                    className="td-stt  fix-col-1"
+                  >
+                    {object.EMP_CODE}
+                  </td>
+                  <td
+                    style={{ textAlign: "left", fontWeight: 400 }}
+                    className="td-stt   fix-col-2"
+                  >
+                    {object.EMP_NAME}
+                  </td>
+                  <td
+                    style={{ textAlign: "left", fontWeight: 400 }}
+                    className=""
+                  >
+                    {object.AREA}
+                  </td>
+
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_PTM_M2M ? object.SL_TB_PTM_M2M : 0}
+                  </td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_PTM_SAYMEE ? object.SL_TB_PTM_SAYMEE : 0}
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -145,7 +216,7 @@ export default function Page(props) {
               ))
             ) : (
               <tr>
-                <td colSpan={11} className="text-center fw-bold">
+                <td colSpan={12} className="text-center fw-bold">
                   Đang tải dữ liệu...
                 </td>
               </tr>
