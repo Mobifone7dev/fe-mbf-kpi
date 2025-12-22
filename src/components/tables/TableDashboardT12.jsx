@@ -687,7 +687,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   </span>
                 </span>
               </th>
-              <th className="th-title-dis" rowSpan={2}>{`TT.KDDVVT`}</th>
+              <th className="th-title-dis" rowSpan={2}>{`TT.KDVT`}</th>
               <th className="th-title-dis" rowSpan={2}>{`TT.KDGPS`}</th>
               <th className="th-title-dis" rowSpan={2}>{`Ngày cập nhật`}</th>
 
@@ -1916,19 +1916,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
-                    convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
-                      1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
+                  PLAN_DTHU_TKC_HTS.TTKDGPS
+                    ? ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
+                        convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
+                        100) /
+                        (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
+                          1000000) >
+                      processKPI
+                      ? "bg-green"
+                      : "bg-red"
+                    : ""
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : (
+                ) : PLAN_DTHU_TKC_HTS.TTKDGPS ? (
                   convertToFloat2Fixed(
                     ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
@@ -1936,6 +1938,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
                         1000000)
                   ) + "%"
+                ) : (
+                  ""
                 )}
               </td>
             </tr>
@@ -1950,7 +1954,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 className="td-title td-content fix-col-2"
                 style={{ fontStyle: "italic", color: "red" }}
               >
-                Doanh thu GPS Fiber
+                Doanh thu MobiFiber
               </td>
               <td className="td-title-center td-kh fix-col-3">TH</td>
               <td>
@@ -2349,13 +2353,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td>
                 {" "}
-                {loadingPlan ? (
+                {/* {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_GPS.TTKDVT ? (
                   convertToFloat2Fixed(PLAN_DTHU_GPS.TTKDVT)
                 ) : (
                   ""
-                )}
+                )} */}
               </td>
               <td>
                 {" "}
@@ -2626,13 +2630,14 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    EXEC_DTHU_GPS_KHCN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHCN.TTKDVT / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHDN.TTKDVT / 1000000
-                      : 0
-                  )
+                  // convertToFloat2Fixed(
+                  //   EXEC_DTHU_GPS_KHCN.TTKDVT
+                  //     ? EXEC_DTHU_GPS_KHCN.TTKDVT / 1000000
+                  //     : 0 + EXEC_DTHU_GPS_KHDN.TTKDVT
+                  //     ? EXEC_DTHU_GPS_KHDN.TTKDVT / 1000000
+                  //     : 0
+                  // )
+                  ""
                 )}
               </td>
               <td>
@@ -2640,11 +2645,48 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    EXEC_DTHU_GPS_KHCN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHCN.TTKDGPS / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHDN.TTKDGPS / 1000000
-                      : 0
+                    (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T07) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T07)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T08) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T08)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T09) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T09)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T10) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T10)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T11) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T11)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T12) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T12)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T13) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T13)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D01) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D01)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06))+
+                         (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))
+                      ) /
+                      1000000
                   )
                 )}
               </td>
@@ -3128,29 +3170,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ) + "%"
                 )}
               </td>
-              <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDVT) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDVT)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.TTKDVT) * 1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
+              <td>
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHCN.TTKDVT / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDVT
-                      ? EXEC_DTHU_GPS_KHDN.TTKDVT / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.TTKDVT ? PLAN_DTHU_GPS.TTKDVT : 1)
-                  ) + "%"
+                 ""
                 )}
               </td>
               <td
