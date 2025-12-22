@@ -2682,10 +2682,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
                         convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) +
                       (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
-                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06))+
-                         (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
-                        convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))
-                      ) /
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
                       1000000
                   )
                 )}
@@ -3170,13 +3169,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ) + "%"
                 )}
               </td>
-              <td>
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : (
-                 ""
-                )}
-              </td>
+              <td>{loadingExec || loadingPlan ? <LoadingComponent /> : ""}</td>
               <td
                 className={
                   ((convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
@@ -4022,10 +4015,28 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_SAYMEE.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_DTHU_SAYMEE.TTKDVT / 1000000)
-                ) : (
-                  ""
+                ) :  (
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000)
+                    )
                 )}
               </td>
               <td>
@@ -4423,8 +4434,27 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_DTHU_SAYMEE.TTKDVT) * 100) /
-                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT) * 1000000) >
+                  ((EXEC_DTHU_SAYMEE.DLA_T01 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T02 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T03 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T04 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T05 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T06 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T07 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T08 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T09 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T10 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T11 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T12 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_T13 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D01 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D02 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D03 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D04 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D05 / 1000000 +
+                    EXEC_DTHU_SAYMEE.DLA_D06 / 1000000) *
+                    100) /
+                    convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -4432,23 +4462,41 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_SAYMEE.TTKDVT && PLAN_DTHU_SAYMEE.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_SAYMEE.TTKDVT / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.TTKDVT
-                  ) + "%"
                 ) : (
-                  ""
+                (
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000)
+                    /
+                    convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT)) *100 ) +
+                  "%"
                 )}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_DTHU_SAYMEE.TTKDGPS) * 100) /
-                    (convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDGPS) * 1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_DTHU_SAYMEE.TTKDGPS) * 100) /
+                //     (convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDGPS) * 1000000) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -4896,11 +4944,30 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_SL_TB_C2C.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_SL_TB_C2C.TTKDVT)
-                ) : (
-                  ""
-                )}
+                ) :(
+                   convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D06) )
+                   )) 
+              
+                }
               </td>
               <td>
                 {" "}
@@ -5287,22 +5354,42 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_SL_TB_C2C.TTKDVT && PLAN_SL_TB_C2C.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_SL_TB_C2C.TTKDVT * 100) / PLAN_SL_TB_C2C.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) :  (
+                  (
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D06) )
+                    /
+                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)) *100 ) +
+                  "%"
+                
+                ) }
               </td>{" "}
               <td
-                className={
-                  (convertToNumber(EXEC_SL_TB_C2C.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_SL_TB_C2C.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_SL_TB_C2C.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -5735,11 +5822,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.TTKDVT)
                 ) : (
-                  ""
-                )}
+                   "") 
+                  
+                }
               </td>
               <td>
                 {" "}
@@ -6116,33 +6202,28 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 )}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_TYLE_GD_C2C.TTKDVT) * 100) /
+                //     convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.TTKDVT && PLAN_TYLE_GD_C2C.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.TTKDVT * 100) /
-                      PLANPLAN_TYLE_GD_C2CDTHU_GPS.TTKDVT
-                  ) + "%"
                 ) : (
                   ""
                 )}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_TYLE_GD_C2C.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -6580,11 +6661,31 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {" "}
                 {loadingPlan ? (
+                 
                   <LoadingComponent />
-                ) : EXEC_SL_PTM_TBTT.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_SL_PTM_TBTT.TTKDVT)
                 ) : (
-                  ""
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06) ) 
+                  ) 
+                
                 )}
               </td>
               <td>
@@ -6963,31 +7064,65 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_SL_PTM_TBTT.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT) >
-                  processKPI
+                   
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT))
+                  ) 
+                   >processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_SL_PTM_TBTT.TTKDVT && PLAN_SL_PTM_TBTT.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_SL_PTM_TBTT.TTKDVT * 100) / PLAN_SL_PTM_TBTT.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) : ( convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05)  +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT))
+                  )  + '%')}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_SL_PTM_TBTT.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_SL_PTM_TBTT.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -7419,11 +7554,31 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {" "}
                 {loadingPlan ? (
+                 
                   <LoadingComponent />
-                ) : EXEC_SL_TBTS_PTM_THOAI.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_SL_TBTS_PTM_THOAI.TTKDVT)
                 ) : (
-                  ""
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06) ) 
+                  ) 
+                
                 )}
               </td>
               <td>
@@ -7838,35 +7993,67 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+                <td
                 className={
-                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT) >
-                  processKPI
+                   
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT))
+                  ) 
+                   >processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_SL_TBTS_PTM_THOAI.TTKDVT &&
-                  PLAN_SL_TBTS_PTM_THOAI.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_SL_TBTS_PTM_THOAI.TTKDVT * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) : ( convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT))
+                  )  + '%')}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -8297,14 +8484,34 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td>
+             <td>
                 {" "}
                 {loadingPlan ? (
+                 
                   <LoadingComponent />
-                ) : EXEC_SL_TB_PTM_M2M.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_SL_TB_PTM_M2M.TTKDVT)
                 ) : (
-                  ""
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06) ) 
+                  ) 
+                
                 )}
               </td>
               <td>
@@ -8700,34 +8907,68 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+              
+                        <td
                 className={
-                  (convertToNumber(EXEC_SL_TB_PTM_M2M.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT) >
-                  processKPI
+                   
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT))
+                  ) 
+                   >processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_SL_TB_PTM_M2M.TTKDVT && PLAN_SL_TB_PTM_M2M.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_SL_TB_PTM_M2M.TTKDVT * 100) /
-                      PLAN_SL_TB_PTM_M2M.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) : ( convertToFloat2Fixed (
+                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06) ) *100/(convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT))
+                  )  + '%')}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_SL_TB_PTM_M2M.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_SL_TB_PTM_M2M.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -9163,14 +9404,34 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td>
+             <td>
                 {" "}
                 {loadingPlan ? (
+                 
                   <LoadingComponent />
-                ) : EXEC_TB_PTM_SAYMEE.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_TB_PTM_SAYMEE.TTKDVT)
                 ) : (
-                  ""
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06) ) 
+                  ) 
+                
                 )}
               </td>
               <td>
@@ -9566,34 +9827,67 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+                     <td
                 className={
-                  (convertToNumber(EXEC_TB_PTM_SAYMEE.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT) >
-                  processKPI
+                   
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06) ) *100/(convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT))
+                  ) 
+                   >processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TB_PTM_SAYMEE.TTKDVT && PLAN_TB_PTM_SAYMEE.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_TB_PTM_SAYMEE.TTKDVT * 100) /
-                      PLAN_TB_PTM_SAYMEE.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) : ( convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02)  +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06) ) *100/(convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT))
+                  )  + '%')}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_TB_PTM_SAYMEE.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_TB_PTM_SAYMEE.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -10032,6 +10326,36 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {" "}
                 {loadingPlan ? (
+                 
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06) ) 
+                  ) 
+                
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
                   <LoadingComponent />
                 ) : EXEC_TB_PTM_FIBER.TTKDGPS ? (
                   convertToFloat2Fixed(EXEC_TB_PTM_FIBER.TTKDGPS)
@@ -10422,33 +10746,67 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+                   <td
                 className={
-                  (convertToNumber(EXEC_TB_PTM_FIBER.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT) >
-                  processKPI
+                   
+                  convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06) ) *100/(convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT))
+                  ) 
+                   >processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TB_PTM_FIBER.TTKDVT && PLAN_TB_PTM_FIBER.TTKDVT ? (
-                  convertToFloat2Fixed(
-                    (EXEC_TB_PTM_FIBER.TTKDVT * 100) / PLAN_TB_PTM_FIBER.TTKDVT
-                  ) + "%"
-                ) : (
-                  ""
-                )}
+                ) : ( convertToFloat2Fixed (
+                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05)  +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06) ) *100/(convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT))
+                  )  + '%')}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_TB_PTM_FIBER.TTKDGPS) * 100) /
-                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDGPS) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_TB_PTM_FIBER.TTKDGPS) * 100) /
+                //     convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDGPS) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
@@ -11388,16 +11746,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 )}
               </td>
               <td
-                className={
-                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS) *
-                    100) /
-                    convertToNumberMauso(
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS
-                    ) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
+                // className={
+                //   (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS) *
+                //     100) /
+                //     convertToNumberMauso(
+                //       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS
+                //     ) >
+                //   processKPI
+                //     ? "bg-green"
+                //     : "bg-red"
+                // }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
