@@ -6202,18 +6202,54 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 )}
               </td>
               <td
-                // className={
-                //   (convertToNumber(EXEC_TYLE_GD_C2C.TTKDVT) * 100) /
-                //     convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) >
-                //   processKPI
-                //     ? "bg-green"
-                //     : "bg-red"
-                // }
+                className={
+                    convertToFloat2Fixed(( (
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06) 
+                  )/19)/convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT)) *100 > processKPI ? "bg-green":"bg-red"
+                }
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  ""
+                 convertToFloat2Fixed(( (
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
+                    convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06) 
+                  )/19)/convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT)) *100 + "%"
                 )}
               </td>
               <td
