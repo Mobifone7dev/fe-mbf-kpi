@@ -15,6 +15,8 @@ import {
   convertToNumberMauso,
   convertToNumber,
 } from "../../until/functions.js";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 // eslint-disable-next-line react/display-name
 const TableDashboardT12 = forwardRef((props, ref) => {
@@ -201,13 +203,35 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   useEffect(() => {
     setExecData(props.execData);
   }, [props.execData]);
+  const exportToExcel = () => {
+    const table = document.getElementById("kpi-table");
+    const workbook = XLSX.utils.table_to_book(table, {
+      sheet: "KPI_DLA",
+    });
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(blob, "bao_cao_kpi_dla.xlsx");
+  };
 
   return (
     <div className="dashboard-kpi-dla">
-      <h4 className="m4-4">Dashboard MobiFone Đăk Lăk</h4>
+      <div className="d-flex justify-content-between mb-3">
+        <h4 className="m4-4">Dashboard MobiFone Đăk Lăk</h4>
+        <button className="btn btn-primary" onClick={exportToExcel}>
+          Export Excel
+        </button>
+      </div>
       <div className="table-kpi-dla">
         {/* <h4 className="text-center">Bảng Kpi tháng 08</h4> */}
-        <table className=" table-fixed align-middle gs-0 gy-3">
+        <table id="kpi-table" className=" table-fixed align-middle gs-0 gy-3">
           <colgroup>
             <col style={{ width: "40px" }} /> {/* STT */}
             <col style={{ width: "260px" }} /> {/* Nhiệm vụ */}
