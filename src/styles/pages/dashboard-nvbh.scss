@@ -1,5 +1,5 @@
 .dashboard-nvbh {
-  .table-kpi  {
+  .table-kpi {
     position: relative;
     font-size: 14px;
     width: 100%;
@@ -13,7 +13,11 @@
       min-width: 100%;
       border-collapse: separate; /* RẤT QUAN TRỌNG */
       border-spacing: 0;
-
+      th,
+      td {
+        width: 50px;
+        text-align: center;
+      }
       .table-head {
         position: sticky; /* header đứng yên */
         top: 0;
@@ -91,11 +95,11 @@
 
   /* Border RIGHT */
 
-  .fix-col-1,
-  .fix-col-2 {
-    border-left: none !important;
-    border-right: none !important;
-  }
+  // .fix-col-1,
+  // .fix-col-2 {
+  //   border-left: none !important;
+  //   border-right: none !important;
+  // }
   .bg-red {
     background-color: #ff9999;
     text-align: right;

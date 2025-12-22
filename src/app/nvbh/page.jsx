@@ -5,7 +5,10 @@ import {
   handleGetExecKpiDLAEmployee,
 } from "../../lib/api";
 import LoadingComponent from "@components/loading/LoadingComponent";
-import { changeFormatDateFirstDateInMonth } from "../../until/functions";
+import {
+  changeFormatDateFirstDateInMonth,
+  convertToNumber,
+} from "../../until/functions";
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
   const [loadingEmp, setLoadingEmp] = useState(false);
@@ -108,7 +111,6 @@ export default function Page(props) {
     return Object.values(resultMap);
   }
 
-
   const resetExec = () => {
     SET_EXEC_SL_TB_C2C({});
     SET_EXEC_TYLE_GD_C2C({});
@@ -126,50 +128,115 @@ export default function Page(props) {
         <table className="table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head`}>
             <tr>
-              <th className="th-title th-color-yellow position-relative">{`Mã nhân viên`}</th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                rowSpan={2}
+                className="th-title th-color-yellow position-relative"
+              >{`Mã nhân viên`}</th>
+              <th
+                rowSpan={2}
+                className="th-title th-color-yellow position-relative"
+              >
                 {`Tên nhân viên`}
                 <br></br>
                 {`bán hàng`}
               </th>
-              <th className="th-title th-color-yellow position-relative">{`Vùng`}</th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                rowSpan={2}
+                className="th-title th-color-yellow position-relative"
+              >{`Vùng`}</th>
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 <>
                   TB PTM mạng
                   <br />
                   MobiFone (tổng)
                 </>
               </th>{" "}
-              <th className="th-title th-color-yellow position-relative">{`TBTT PTM`}</th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >{`TBTT PTM`}</th>
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 {`TBTS PTM`}
                 <br></br>
                 {`(thoại)`}
               </th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 {`TBTS PTM `}
                 <br></br>
                 {`M2M`}
               </th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 {`TBTS PTM`}
                 <br></br>
                 {` SAYMEE`}
               </th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 {`TBTS PTM`}
                 <br></br>
                 {` MobiFiber`}
               </th>
-              <th className="th-title th-color-yellow position-relative">{`TB MNP đến`}</th>
-              <th className="th-title th-color-yellow position-relative">
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >{`TB MNP đến`}</th>
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >
                 <>
                   Tỷ lệ thuê bao
                   <br />
                   gia hạn gói dài kỳ
                 </>
               </th>
-              <th className="th-title th-color-yellow position-relative">{`Doanh thu gói tập N-1`}</th>
+              <th
+                colSpan={3}
+                className="th-title th-color-yellow position-relative"
+              >{`Doanh thu gói tập N-1`}</th>
+            </tr>
+            <tr className="th-title th-color-yellow ">
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
+              <th>KH</th>
+              <th>TH</th>
+              <th>%TH</th>
             </tr>
           </thead>
           <tbody>
@@ -177,35 +244,77 @@ export default function Page(props) {
               execData.map((object, i) => (
                 <tr key={i}>
                   <td
-                    style={{ textAlign: "left", fontWeight: 400 }}
+                    style={{ textAlign: "left", fontWeight: 500 }}
                     className="td-stt  fix-col-1"
                   >
                     {object.EMP_CODE}
                   </td>
                   <td
-                    style={{ textAlign: "left", fontWeight: 400 }}
+                    style={{ textAlign: "left", fontWeight: 500 }}
                     className="td-stt   fix-col-2"
                   >
                     {object.EMP_NAME}
                   </td>
                   <td
-                    style={{ textAlign: "left", fontWeight: 400 }}
+                    style={{ textAlign: "left", fontWeight: 500 }}
                     className=""
                   >
                     {object.AREA}
                   </td>
+                  <td></td>
 
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td style={{ textAlign: "center" }}>
-                    {object.SL_TB_PTM_M2M ? object.SL_TB_PTM_M2M : 0}
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    {object.SL_TB_PTM_SAYMEE ? object.SL_TB_PTM_SAYMEE : 0}
+                    {convertToNumber(object.SL_PTM_TBTT) +
+                      convertToNumber(object.SL_TBTS_PTM_THOAI) +
+                      convertToNumber(object.SL_TB_PTM_M2M)}
                   </td>
                   <td></td>
+                  {/* TBTT PTM */}
                   <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_PTM_TBTT ?? 0}
+                  </td>
+                  <td></td>
+
+                  {/* TBTS thoại */}
+                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TBTS_PTM_THOAI ?? 0}
+                  </td>
+                  <td></td>
+
+                  {/* M2M */}
+                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_PTM_M2M ?? 0}
+                  </td>
+                  <td></td>
+
+                  {/* SAYMEE */}
+                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_PTM_SAYMEE ?? 0}
+                  </td>
+                  <td></td>
+
+                  {/* Fiber */}
+                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_PTM_FIBER ?? 0}
+                  </td>
+                  <td></td>
+
+                  {/* MNP */}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+
+                  {/* Tỷ lệ gia hạn */}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+
+                  {/* Doanh thu */}
                   <td></td>
                   <td></td>
                   <td></td>
@@ -213,7 +322,7 @@ export default function Page(props) {
               ))
             ) : (
               <tr>
-                <td colSpan={12} className="text-center fw-bold">
+                <td colSpan={30} className="text-center fw-bold">
                   Đang tải dữ liệu...
                 </td>
               </tr>
