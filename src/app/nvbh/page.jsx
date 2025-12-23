@@ -239,7 +239,7 @@ export default function Page(props) {
                     {object.EMP_CODE}
                   </td>
                   <td
-                    style={{ textAlign: "center", fontWeight: 600 }}
+                    style={{ textAlign: "left", fontWeight: 600 }}
                     className="fix-col-3"
                   >
                     {object.EMP_NAME}

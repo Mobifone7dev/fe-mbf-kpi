@@ -366,15 +366,18 @@ export async function handleGetExecKpiDLA(month: string) {
   }
 }
 
-export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: string) {
+export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: string, area ? :string) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   let res;
   const token = localStorage.getItem("accessToken");
   if (month && matchSearch) {
     try {
-      const urlApi =
+      let urlApi =
         URL + `/dashboard/dashboard-exec-kpi-dla-nhan-vien?month=${month}&matchSearch=${matchSearch}`;
-      res = await fetch(urlApi, {
+      if(area){
+        urlApi += `&area=${area}`;
+      }
+        res = await fetch(urlApi, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status == 403) {
