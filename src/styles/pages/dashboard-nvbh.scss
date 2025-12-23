@@ -1,5 +1,5 @@
 .dashboard-nvbh {
-  .table-kpi {
+  .table-kpi-nvbh {
     position: relative;
     font-size: 14px;
     width: 100%;
@@ -67,7 +67,7 @@
       border-collapse: collapse;
     }
   }
-  .table-kpi-gdv .fix-col-1 {
+  .table-kpi-nvbh .fix-col-1 {
     position: sticky;
     left: 0;
     z-index: 30;
@@ -75,15 +75,23 @@
   }
 
   /* CỘT 2 – Nhiệm vụ */
-  .table-kpi-gdv .fix-col-2 {
+  .table-kpi-nvbh .fix-col-2 {
     position: sticky;
     left: 150px; /* = width cột 1 */
     z-index: 29;
     background: #fff;
   }
+  /* CỘT 2 – Nhiệm vụ */
+  .table-kpi-nvbh .fix-col-3 {
+    position: sticky;
+    left: 300px; /* = width cột 1 */
+    z-index: 29;
+    background: #fff;
+  }
 
   .fix-col-1::before,
-  .fix-col-2::before {
+  .fix-col-2::before,
+  .fix-col-3::before{
     content: "";
     position: absolute;
     top: 0;

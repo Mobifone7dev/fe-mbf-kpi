@@ -125,24 +125,32 @@ export default function Page(props) {
   return (
     <div className="dashboard-nvbh">
       <h4 className="text-center my-4">
-        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${selectedDate.getMonth() +1}`} 
+        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
+          selectedDate.getMonth() + 1
+        }`}
       </h4>
-      <div className="table-kpi">
+      <div className="table-kpi-nvbh">
         <table className="table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head`}>
             <tr>
               <th
                 rowSpan={2}
+                style={{ width: "100px" }}
                 className="th-title position-relative"
-              >{`Mã NV`}</th>
-              <th rowSpan={2} className="th-title position-relative">
-                {`TÊN NV`}
+              >{`ĐƠN VỊ/BP`}</th>
+              <th
+                rowSpan={2}
+                style={{ width: "150px" }}
+                className="th-title position-relative"
+              >
+                {`MÃ NV`}
                 <br></br>
               </th>
               <th
                 rowSpan={2}
                 className="th-title position-relative"
-              >{`ĐƠN VỊ/BP`}</th>
+                style={{ width: "200px" }}
+              >{`TÊN NV`}</th>
               <th
                 colSpan={3}
                 className="th-title bg_green-light position-relative"
@@ -170,7 +178,6 @@ export default function Page(props) {
                 className="th-title bg_yellow-light position-relative"
               >
                 {`FIBER`}
-               
               </th>
               <th
                 colSpan={3}
@@ -188,30 +195,30 @@ export default function Page(props) {
               >{`TB MNP đến`}</th>
             </tr>
             <tr className="th-title th-color-yellow ">
-              <th style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th  style={{fontStyle:"italic"}}>%TH</th>
-              <th  style={{fontStyle:"italic"}}>KH</th>
-              <th  style={{fontStyle:"italic"}}>TH</th>
-              <th style={{fontStyle:"italic"}}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
             </tr>
           </thead>
           <tbody>
@@ -219,22 +226,23 @@ export default function Page(props) {
               execData.map((object, i) => (
                 <tr key={i}>
                   <td
-                    style={{ textAlign: "left", fontWeight: 600 }}
+                    style={{ textAlign: "center", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
-                    {object.EMP_CODE}
+                    {object.AREA}
+                    
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt   fix-col-2"
                   >
-                    {object.EMP_NAME}
+                    {object.EMP_CODE}
                   </td>
                   <td
-                    style={{ textAlign: "left", fontWeight: 600 }}
-                    className=""
+                    style={{ textAlign: "center", fontWeight: 600 }}
+                    className="fix-col-3"
                   >
-                    {object.AREA}
+                    {object.EMP_NAME}
                   </td>
 
                   <td></td>
@@ -273,15 +281,18 @@ export default function Page(props) {
 
                   {/* sl tm C2C */}
                   <td></td>
-                   <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }}>
                     {object.SL_TB_C2C ?? 0}
                   </td>
                   <td></td>
 
                   {/* Tỷ lệ gia hạn */}
                   <td></td>
-                    <td style={{ textAlign: "center" }}>
-                    {convertToFloat2FixedNumber(convertToNumber(object.TYLE_GD_C2C)*100)}{"%"}
+                  <td style={{ textAlign: "center" }}>
+                    {convertToFloat2FixedNumber(
+                      convertToNumber(object.TYLE_GD_C2C) * 100
+                    )}
+                    {"%"}
                   </td>
                   <td></td>
 
