@@ -124,7 +124,7 @@ export default function Page(props) {
 
   return (
     <div className="dashboard-nvbh">
-      <h4 className="text-center">
+      <h4 className="text-center my-4">
         {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${selectedDate.getMonth() +1}`} 
       </h4>
       <div className="table-kpi">
