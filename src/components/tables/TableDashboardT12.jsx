@@ -2155,11 +2155,29 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) : EXEC_DTHU_FIBER.TTKDVT ? (
-                  convertToFloat2Fixed(EXEC_DTHU_FIBER.TTKDVT / 1000000)
-                ) : (
-                  ""
-                )}
+                ) :(
+                  convertToFloat2Fixed(
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T01 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T02 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T03 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T04 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T05 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T06 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T07 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T08 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T09 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T10 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T11 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T12 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_T13 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D01 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D02 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D03 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D04 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D05 / 1000000) +
+                      convertToNumber(EXEC_DTHU_FIBER.DLA_D06 / 1000000)
+                  )
+                ) }
               </td>
               <td>
                 {loadingExec ? (
