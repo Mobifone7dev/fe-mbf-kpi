@@ -8,6 +8,7 @@ import LoadingComponent from "@components/loading/LoadingComponent";
 import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
+  convertToFloat2FixedNumber
 } from "../../until/functions";
 import { useRouter } from "next/navigation";
 export default function Page(props) {
@@ -21,13 +22,6 @@ export default function Page(props) {
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
   const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
-  const TEN_CHI_TIEU_ORDER = [
-    "SL_TB_PTM_M2M",
-    "SL_PTM_TBTT_NDS",
-    "TB_PTM_SAYMEE",
-    "TB_PTM_FIBER",
-    "SL_TB_C2C"
-  ];
   const  [user, setUser] = useState({});
   const router =  useRouter();
     useEffect(() => {
@@ -55,7 +49,6 @@ export default function Page(props) {
     setLoadingEmp(false);
   };
   const getKpiEmployee = async () => {
-    resetExec();
     setLoadingEmp(true);
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
@@ -127,15 +120,7 @@ export default function Page(props) {
     return Object.values(resultMap);
   }
 
-  const resetExec = () => {
-    SET_EXEC_SL_TB_C2C({});
-    SET_EXEC_TYLE_GD_C2C({});
-    SET_EXEC_SL_PTM_TBTT({});
-    SET_EXEC_SL_TBTS_PTM_THOAI({});
-    SET_EXEC_SL_TB_PTM_M2M({});
-    SET_EXEC_TB_PTM_SAYMEE({});
-    SET_EXEC_TB_PTM_FIBER({});
-  };
+
 
   return (
     <div className="dashboard-nvbh">
@@ -190,12 +175,12 @@ export default function Page(props) {
               <th
                 colSpan={3}
                 className="th-title bg_pink-light position-relative"
-              >{`Số lượng TB PTM qua kênh C2C (chỉ giao NVBH)`}</th>
+              >{`Số lượng TB PTM qua kênh C2C`}</th>
               <th
                 colSpan={3}
                 className="th-title bg_grey-light position-relative"
               >
-                {`Tỷ lệ PS GD C2C (chỉ giao NVBH) `}
+                {`Tỷ lệ PS GD C2C`}
               </th>
               <th
                 colSpan={3}
@@ -203,30 +188,30 @@ export default function Page(props) {
               >{`TB MNP đến`}</th>
             </tr>
             <tr className="th-title th-color-yellow ">
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
+              <th style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th  style={{fontStyle:"italic"}}>%TH</th>
+              <th  style={{fontStyle:"italic"}}>KH</th>
+              <th  style={{fontStyle:"italic"}}>TH</th>
+              <th style={{fontStyle:"italic"}}>%TH</th>
             </tr>
           </thead>
           <tbody>
@@ -234,19 +219,19 @@ export default function Page(props) {
               execData.map((object, i) => (
                 <tr key={i}>
                   <td
-                    style={{ textAlign: "left", fontWeight: 500 }}
+                    style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
                     {object.EMP_CODE}
                   </td>
                   <td
-                    style={{ textAlign: "left", fontWeight: 500 }}
+                    style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt   fix-col-2"
                   >
                     {object.EMP_NAME}
                   </td>
                   <td
-                    style={{ textAlign: "left", fontWeight: 500 }}
+                    style={{ textAlign: "left", fontWeight: 600 }}
                     className=""
                   >
                     {object.AREA}
@@ -295,7 +280,9 @@ export default function Page(props) {
 
                   {/* Tỷ lệ gia hạn */}
                   <td></td>
-                  <td></td>
+                    <td style={{ textAlign: "center" }}>
+                    {convertToFloat2FixedNumber(convertToNumber(object.TYLE_GD_C2C)*100)}{"%"}
+                  </td>
                   <td></td>
 
                   {/* Doanh thu */}
