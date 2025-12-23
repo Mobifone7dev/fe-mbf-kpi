@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
+import { logout } from "@/lib/api";
 
 type HeaderProps = {
   toggleMenu: () => void;
@@ -102,10 +103,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           <button
             onClick={async () => {
               try {
-                await fetch(`${process.env.NEXTAUTH_APP_API_URL_SSL}/authentication/logout`, {
-                  method: "POST",
-                  credentials: "include", // gửi kèm cookie để server clear
-                });
+                await logout();
 
                 // Xóa dữ liệu phụ trong localStorage nếu có
                 localStorage.removeItem("user");
@@ -116,6 +114,8 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
               } catch (err) {
                 console.error("Logout failed", err);
               }
+
+
             }}
             className={`btn-houze btn-solid`}
           >

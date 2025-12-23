@@ -159,6 +159,42 @@ export async function createManualApiList(postData: any) {
 
 }
 
+export async function logout() {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    res = await fetch(URL + `/authentication/logout`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+    if (res.status == 403) {
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
+
 export async function createManualApiListDLA(postData: any) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   console.log("postData", postData);
@@ -175,7 +211,6 @@ export async function createManualApiListDLA(postData: any) {
       body: JSON.stringify(postData),
     });
     if (res.status == 403) {
-      signOut({ redirect: false });
       redirect("/login");
     }
     const data = await res.json();
