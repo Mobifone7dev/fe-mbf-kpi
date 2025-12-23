@@ -25,7 +25,8 @@ export default function Page(props) {
     "SL_TB_PTM_M2M",
     "SL_PTM_TBTT_NDS",
     "TB_PTM_SAYMEE",
-    "TB_PTM_FIBER"
+    "TB_PTM_FIBER",
+    "SL_TB_C2C"
   ];
   const  [user, setUser] = useState({});
   const router =  useRouter();
@@ -54,6 +55,7 @@ export default function Page(props) {
     setLoadingEmp(false);
   };
   const getKpiEmployee = async () => {
+    resetExec();
     setLoadingEmp(true);
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
@@ -284,9 +286,11 @@ export default function Page(props) {
                   </td>
                   <td></td>
 
-                  {/* MNP */}
+                  {/* sl tm C2C */}
                   <td></td>
-                  <td></td>
+                   <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_C2C ?? 0}
+                  </td>
                   <td></td>
 
                   {/* Tỷ lệ gia hạn */}
