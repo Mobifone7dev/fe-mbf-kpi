@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-sync-scripts */
+"use client";
 import "../styles/global.scss";
 import React, { Suspense } from "react";
 import "react-modern-drawer/dist/index.css";
@@ -8,10 +9,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Layout from "../components/layout/Layout";
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
-import RecoilProvider from '../lib/states/RecoilRootWrapper';
+import RecoilProvider from "../lib/states/RecoilRootWrapper";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+// eslint-disable-next-line @next/next/no-async-client-component
+const RootLayout =  ({ children }) => {
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/login";
 
-const RootLayout = async ({ children }) => {
-  const session = await getServerSession(authOptions);
   return (
     <html lang="en" suppressHydrationWarning>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -48,7 +53,7 @@ const RootLayout = async ({ children }) => {
         ></script>
         <RecoilProvider>
           <AuthProvider>
-            {session ? <Layout>{children}</Layout> : children}
+        {!isLoginPage ? <Layout>{children}</Layout> : children}
           </AuthProvider>
         </RecoilProvider>
       </body>

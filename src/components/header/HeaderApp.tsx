@@ -95,14 +95,27 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
           >
             Truy cập mobifone.vn
           </a>
-          <a href="tel:18001090" className={`btn-houze btn-solid`}>
+          {/* <a href="tel:18001090" className={`btn-houze btn-solid`}>
             <i className="icon-call-connecting" />
             <span>18001090</span>
-          </a>
+          </a> */}
           <button
-            onClick={() => {
-              signOut({ redirect: false });
-              router.push("/login");
+            onClick={async () => {
+              try {
+                await fetch(`${process.env.NEXTAUTH_APP_API_URL_SSL}/authentication/logout`, {
+                  method: "POST",
+                  credentials: "include", // gửi kèm cookie để server clear
+                });
+
+                // Xóa dữ liệu phụ trong localStorage nếu có
+                localStorage.removeItem("user");
+                localStorage.removeItem("accessToken");
+
+                // Redirect về trang login
+                router.replace("/login");
+              } catch (err) {
+                console.error("Logout failed", err);
+              }
             }}
             className={`btn-houze btn-solid`}
           >

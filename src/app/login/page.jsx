@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useEffect, useState ,useRef } from "react";
-import { signIn } from "next-auth/react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 import Button from "react-bootstrap-button-loader";
@@ -20,25 +19,25 @@ const Page = () => {
   const [submit, setSubmit] = useState("");
   const router = useRouter();
   const [loading, setLoading] = useState(false);
- const [captchaToken, setCaptchaToken] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
   const recaptchaRef = useRef();
   const resetCaptcha = () => {
     recaptchaRef.current.reset(); // 👈 reset lại captcha
   };
-  
-   function checkIfEmailInString(text) {
+
+  function checkIfEmailInString(text) {
     var re =
       /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
     return re.test(text);
   }
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let newStringEmail = email;
     if (!checkIfEmailInString(email)) {
       newStringEmail = email + "@mobifone.vn";
     }
-   if (!captchaToken) {
+    if (!captchaToken) {
       setError("Vui lòng xác thực reCAPTCHA");
       return;
     }
@@ -55,7 +54,6 @@ const Page = () => {
           username: newStringEmail,
           password,
           captchaToken,
-
         }), // body data type must match "Content-Type" header
       });
       if (!result) {
@@ -64,29 +62,28 @@ const Page = () => {
         return;
       } else {
         const user = await result.json();
-         localStorage.setItem("accessToken",user.accessToken);
-         localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("accessToken", user.accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
 
-        await signIn("credentials", {
-          email: newStringEmail,
-          password,
-          user: user,
-          accessToken: user.accessToken,
-          redirect: false,
-        });
+        // await signIn("credentials", {
+        //   email: newStringEmail,
+        //   password,
+        //   user: user,
+        //   accessToken: user.accessToken,
+        //   redirect: false,
+        // });
+        console.log("check thanh cong")
+        setLoading(false);
+        router.replace("/");
       }
-      setLoading(false);
-
-      router.replace("/");
-      router.refresh();
     } catch (error) {
       setError("Invalid credentials");
       setLoading(false);
       resetCaptcha();
       return null;
     }
-  }; 
- 
+  };
+
   const handleShowPass = (e) => {
     let isChecked = e.target.checked;
     if (isChecked) {
@@ -95,7 +92,6 @@ const Page = () => {
       setTypePassword("password");
     }
   };
- 
 
   return (
     <div className="login-test">
@@ -143,9 +139,9 @@ const Page = () => {
                     {errorEmail}
                   </div>
                 )}
-                 <div style={{ marginTop: "20px" }}>
+                <div style={{ marginTop: "20px" }}>
                   {/* Google reCAPTCHA */}
-                   <ReCAPTCHA
+                  <ReCAPTCHA
                     sitekey={ReCAPTCHA_SITE_KEY}
                     onChange={(token) => setCaptchaToken(token)}
                     ref={recaptchaRef}

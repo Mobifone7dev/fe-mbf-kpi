@@ -9,6 +9,7 @@ import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
 } from "../../until/functions";
+import { useRouter } from "next/navigation";
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
   const [loadingEmp, setLoadingEmp] = useState(false);
@@ -24,7 +25,20 @@ export default function Page(props) {
     "SL_TB_PTM_M2M",
     "SL_PTM_TBTT_NDS",
     "TB_PTM_SAYMEE",
+    "TB_PTM_FIBER"
   ];
+  const  [user, setUser] = useState({});
+  const router =  useRouter();
+    useEffect(() => {
+    const user = localStorage.getItem("user");
+    console.log("user session", user);
+    if (user) {
+      setUser(user);
+    } else {
+      router.replace("/login");
+    }
+  }, []);
+
   const [execData, setExecData] = useState({});
   useEffect(() => {
     getEmployee();
@@ -124,7 +138,7 @@ export default function Page(props) {
   return (
     <div className="dashboard-nvbh">
       <h4 className="text-center">
-        THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG 12
+        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${selectedDate.getMonth() +1}`} 
       </h4>
       <div className="table-kpi">
         <table className="table-fixed align-middle gs-0 gy-3">
