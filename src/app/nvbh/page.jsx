@@ -123,96 +123,70 @@ export default function Page(props) {
 
   return (
     <div className="dashboard-nvbh">
-      <h4 className="text-center">Bảng Kpi thực hiện bởi NVBH</h4>
+      <h4 className="text-center">
+        THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG 12
+      </h4>
       <div className="table-kpi">
         <table className="table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head`}>
             <tr>
               <th
                 rowSpan={2}
-                className="th-title th-color-yellow position-relative"
-              >{`Mã nhân viên`}</th>
-              <th
-                rowSpan={2}
-                className="th-title th-color-yellow position-relative"
-              >
-                {`Tên nhân viên`}
+                className="th-title position-relative"
+              >{`Mã NV`}</th>
+              <th rowSpan={2} className="th-title position-relative">
+                {`TÊN NV`}
                 <br></br>
-                {`bán hàng`}
               </th>
               <th
                 rowSpan={2}
-                className="th-title th-color-yellow position-relative"
-              >{`Vùng`}</th>
+                className="th-title position-relative"
+              >{`ĐƠN VỊ/BP`}</th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
-              >
-                <>
-                  TB PTM mạng
-                  <br />
-                  MobiFone (tổng)
-                </>
-              </th>{" "}
-              <th
-                colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_green-light position-relative"
               >{`TBTT PTM`}</th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_blue-light position-relative"
               >
-                {`TBTS PTM`}
-                <br></br>
-                {`(thoại)`}
+                {`TBTS THOẠI`}
               </th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_pink-light position-relative"
               >
-                {`TBTS PTM `}
-                <br></br>
                 {`M2M`}
               </th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_green-light position-relative"
               >
-                {`TBTS PTM`}
-                <br></br>
                 {` SAYMEE`}
               </th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_yellow-light position-relative"
               >
-                {`TBTS PTM`}
-                <br></br>
-                {` MobiFiber`}
+                {`FIBER`}
+               
               </th>
               <th
                 colSpan={3}
-                className="th-title th-color-yellow position-relative"
+                className="th-title bg_pink-light position-relative"
+              >{`Số lượng TB PTM qua kênh C2C (chỉ giao NVBH)`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_grey-light position-relative"
+              >
+                {`Tỷ lệ PS GD C2C (chỉ giao NVBH) `}
+              </th>
+              <th
+                colSpan={3}
+                className="th-title bg_blue-light position-relative"
               >{`TB MNP đến`}</th>
-              <th
-                colSpan={3}
-                className="th-title th-color-yellow position-relative"
-              >
-                <>
-                  Tỷ lệ thuê bao
-                  <br />
-                  gia hạn gói dài kỳ
-                </>
-              </th>
-              <th
-                colSpan={3}
-                className="th-title th-color-yellow position-relative"
-              >{`Doanh thu gói tập N-1`}</th>
             </tr>
             <tr className="th-title th-color-yellow ">
-              <th>KH</th>
-              <th>TH</th>
-              <th>%TH</th>
               <th>KH</th>
               <th>TH</th>
               <th>%TH</th>
@@ -261,15 +235,7 @@ export default function Page(props) {
                   >
                     {object.AREA}
                   </td>
-                  <td></td>
 
-                  <td style={{ textAlign: "center" }}>
-                    {convertToNumber(object.SL_PTM_TBTT) +
-                      convertToNumber(object.SL_TBTS_PTM_THOAI) +
-                      convertToNumber(object.SL_TB_PTM_M2M)}
-                  </td>
-                  <td></td>
-                  {/* TBTT PTM */}
                   <td></td>
                   <td style={{ textAlign: "center" }}>
                     {object.SL_PTM_TBTT ?? 0}
