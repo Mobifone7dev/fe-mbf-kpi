@@ -15,13 +15,6 @@ export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
   const [loadingEmp, setLoadingEmp] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [EXEC_SL_TB_C2C, SET_EXEC_SL_TB_C2C] = useState({});
-  const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
-  const [EXEC_SL_PTM_TBTT, SET_EXEC_SL_PTM_TBTT] = useState({});
-  const [EXEC_SL_TBTS_PTM_THOAI, SET_EXEC_SL_TBTS_PTM_THOAI] = useState({});
-  const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
-  const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
-  const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
   const [user, setUser] = useState({});
   const router = useRouter();
   useEffect(() => {

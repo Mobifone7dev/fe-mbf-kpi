@@ -65,6 +65,10 @@ const menuCategory = [
     label: "Giao dịch viên",
     link: "/gdv",
   },
+  {
+    label: "AM",
+    link: "/am",
+  },
 
   // {
   //   label: "Dashboard thi đua Tháng 08 ",
