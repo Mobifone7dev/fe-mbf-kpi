@@ -276,7 +276,7 @@ export async function handleGetPlanKpiDLA(month: string, district?: string) {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }

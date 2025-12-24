@@ -59,6 +59,22 @@ const Page = () => {
   const [kpiPageRole, setkpiPageRole] = useState();
   const childRef = useRef();
 
+  const [user, setUser] = useState(null);
+ useEffect(() => {
+    const userString = localStorage.getItem("user");
+    if (userString) {
+      try {
+        const userObj = JSON.parse(userString);
+        setUser(userObj); // ✅ OBJECT
+      } catch (e) {
+        router.replace("/login");
+      }
+    } else {
+      router.replace("/login");
+    }
+  }, []);
+
+
   useEffect(() => {
     console.log("co vao day khong")
     try {
