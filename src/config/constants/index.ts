@@ -61,6 +61,10 @@ const menuCategory = [
     label: "Nhân viên bán hàng",
     link: "/nvbh",
   },
+  {
+    label: "Giao dịch viên",
+    link: "/gdv",
+  },
 
   // {
   //   label: "Dashboard thi đua Tháng 08 ",

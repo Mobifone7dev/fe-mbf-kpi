@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import {
   handleSearchEmployeeByEmpcode,
   handleGetExecKpiDLAEmployee,
-} from "../../../lib/api";
+} from "../../lib/api";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
   convertToFloat2FixedNumber,
-} from "../../../until/functions";
+} from "../../until/functions";
 import { useRouter } from "next/navigation";
-export default function NVBHComponent(props) {
+export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
   const [loadingEmp, setLoadingEmp] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -23,7 +23,6 @@ export default function NVBHComponent(props) {
   const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
   const [EXEC_TB_PTM_FIBER, SET_EXEC_TB_PTM_FIBER] = useState({});
   const [user, setUser] = useState({});
-  const [area, setArea] = useState(props.area);
   const router = useRouter();
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -42,7 +41,7 @@ export default function NVBHComponent(props) {
 
   const getEmployee = async () => {
     setLoadingEmp(true);
-    const result = await handleSearchEmployeeByEmpcode("%MBP%");
+    const result = await handleSearchEmployeeByEmpcode("%C7%");
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);
@@ -52,7 +51,7 @@ export default function NVBHComponent(props) {
   const getKpiEmployee = async () => {
     setLoadingEmp(true);
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetExecKpiDLAEmployee(date, "%MB%", area);
+    const result = await handleGetExecKpiDLAEmployee(date, "%C7%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
@@ -124,7 +123,7 @@ export default function NVBHComponent(props) {
   return (
     <div className="dashboard-nvbh">
       <h4 className="text-center my-4">
-        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
+        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI GDV THÁNG ${
           selectedDate.getMonth() + 1
         }`}
       </h4>
@@ -178,16 +177,7 @@ export default function NVBHComponent(props) {
               >
                 {`FIBER`}
               </th>
-              <th
-                colSpan={3}
-                className="th-title bg_pink-light position-relative"
-              >{`Số lượng TB PTM qua kênh C2C`}</th>
-              <th
-                colSpan={3}
-                className="th-title bg_grey-light position-relative"
-              >
-                {`Tỷ lệ PS GD C2C`}
-              </th>
+            
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
@@ -212,12 +202,7 @@ export default function NVBHComponent(props) {
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
-              <th style={{ fontStyle: "italic" }}>KH</th>
-              <th style={{ fontStyle: "italic" }}>TH</th>
-              <th style={{ fontStyle: "italic" }}>%TH</th>
-              <th style={{ fontStyle: "italic" }}>KH</th>
-              <th style={{ fontStyle: "italic" }}>TH</th>
-              <th style={{ fontStyle: "italic" }}>%TH</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -275,24 +260,7 @@ export default function NVBHComponent(props) {
                   <td style={{ textAlign: "center" }}>
                     {object.TB_PTM_FIBER ?? 0}
                   </td>
-                  <td></td>
-
-                  {/* sl tm C2C */}
-                  <td></td>
-                  <td style={{ textAlign: "center" }}>
-                    {object.SL_TB_C2C ?? 0}
-                  </td>
-                  <td></td>
-
-                  {/* Tỷ lệ gia hạn */}
-                  <td></td>
-                  <td style={{ textAlign: "center" }}>
-                    {convertToFloat2FixedNumber(
-                      convertToNumber(object.TYLE_GD_C2C) * 100
-                    )}
-                    {"%"}
-                  </td>
-                  <td></td>
+                  <td></td>                 
 
                   {/* Doanh thu */}
                   <td></td>
