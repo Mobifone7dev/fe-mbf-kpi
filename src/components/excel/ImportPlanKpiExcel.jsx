@@ -44,7 +44,7 @@ export default function ImportKpiPlanExcel(props) {
       const formattedData = jsonData.flatMap((row) =>
         KPI_MAPPING.map((kpi) => ({
           TEN_CHI_TIEU: kpi.key,
-          EMP_CODE: row["Mã nhân viên"],
+          EMP_CODE: row["Mã NV"],
           THUC_HIEN: Number(row[kpi.excel] || 0),
         }))
       );
@@ -56,16 +56,20 @@ export default function ImportKpiPlanExcel(props) {
           month: moment(new Date()).format("DD-MM-YYYY"),
           kpiList: formattedData,
         };
-        console.log("info", info);
         props.loading(true);
-        await createManualApiListDLAEmployee(info);
+        props.error();
+        const result = await createManualApiListDLAEmployee(info);
         // ✅ RESET FILE INPUT
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
-        props.error("");
-        props.loading(false);
-        props.isRefesh(true)
+        if (result.status !== 400) {
+          props.error();
+          props.loading(false);
+          props.isRefesh(true);
+        } else {
+          props.error("Kiểm tra lại format và số liệu trong file");
+        }
       } catch (error) {
         console.log("error", error);
         props.loading(false);

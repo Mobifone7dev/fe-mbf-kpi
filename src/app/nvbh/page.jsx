@@ -6,7 +6,7 @@ import {
   handleGetPlanKpiDLAEmployee,
 } from "../../lib/api";
 import LoadingComponent from "@components/loading/LoadingComponent";
-import {exportKpiPlanExcel} from "../../components/excel/ExportPlanKpiExcel";
+import { exportKpiPlanExcel } from "../../components/excel/ExportPlanKpiExcel";
 
 import {
   changeFormatDateFirstDateInMonth,
@@ -139,7 +139,6 @@ export default function Page(props) {
     return Object.values(resultMap);
   }
 
-
   function mergeEmployeeWithPlanKpi(employeeList, kpiList) {
     // 1. Map employee theo EMP_CODE
     const empMap = employeeList.reduce((acc, emp) => {
@@ -248,8 +247,8 @@ export default function Page(props) {
           className="btn btn-success"
           onClick={() => {
             // console.log("check", finalData)
-            exportKpiPlanExcel(finalData)
-        }}
+            exportKpiPlanExcel(finalData);
+          }}
         >
           Export kế hoạch KPI
         </button>{" "}
@@ -262,6 +261,7 @@ export default function Page(props) {
             }
           }}
           error={(e) => {
+            console.log("eeeeeeeee", e);
             setErrorImport(e);
           }}
           isRefesh={(e) => {
@@ -271,12 +271,15 @@ export default function Page(props) {
             }
           }}
         ></ImportPlanKpiExcel>
-        <span style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}>
-          P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import lại để
-          cập nhật chỉ tiêu
-        </span>
-        <br></br>
-        <span style={{ color: "red" }}>{errorImport}</span>
+        <div className="flex flex-col">
+          <span
+            style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
+          >
+            P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import lại
+            để cập nhật chỉ tiêu
+          </span>
+          <span style={{ color: "red" }}>{errorImport}</span>
+        </div>
       </div>
       <div className="table-kpi-nvbh">
         <table className="table-fixed align-middle gs-0 gy-3">
