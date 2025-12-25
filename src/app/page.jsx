@@ -17,6 +17,8 @@ import TableDashboardT08 from "@components/tables/TableDashboardT08";
 import TableDashboardT12 from "@components/tables/TableDashboardT12";
 
 import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import {
@@ -58,7 +60,7 @@ const Page = () => {
   const [execData, setExecData] = useState({});
   const [kpiPageRole, setkpiPageRole] = useState();
   const childRef = useRef();
-
+  const router = useRouter();
   const [user, setUser] = useState(null);
  useEffect(() => {
     const userString = localStorage.getItem("user");
