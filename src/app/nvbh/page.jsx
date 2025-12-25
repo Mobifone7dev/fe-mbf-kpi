@@ -159,7 +159,7 @@ export default function Page(props) {
       // 3. Init 1 dòng / EMP_CODE (chỉ khi có KPI)
       if (!resultMap[empCode]) {
         resultMap[empCode] = {
-          AREA_CODE: emp.AREA_CODE ?? kpi.AREA,
+          AREA: emp.AREA_CODE ?? kpi.AREA,
           EMP_CODE: empCode,
           EMP_NAME: emp.EMP_NAME ?? null,
           SHOP_CODE: emp.SHOP_CODE ?? kpi.SHOP_CODE,
@@ -194,7 +194,6 @@ export default function Page(props) {
       // 2. Copy metadata (KHÔNG copy KPI gốc)
       [
         "AREA",
-        "AREA_CODE",
         "EMP_CODE",
         "EMP_NAME",
         "SHOP_CODE",
@@ -213,7 +212,6 @@ export default function Page(props) {
         if (
           [
             "AREA",
-            "AREA_CODE",
             "EMP_CODE",
             "EMP_NAME",
             "SHOP_CODE",
@@ -550,7 +548,7 @@ export default function Page(props) {
                       (convertToNumber(object.SL_TB_C2C_EXEC) /
                         convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
                         100
-                    )}
+                    )}{"%"}
                   </td>
                   {/* Tỷ lệ gia hạn */}
                   <td style={{ textAlign: "center" }}>

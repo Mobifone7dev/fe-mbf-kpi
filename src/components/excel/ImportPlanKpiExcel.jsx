@@ -40,15 +40,14 @@ export default function ImportKpiPlanExcel(props) {
 
       const THANG = new Date("2025-01-01"); // hoặc truyền từ UI
       THANG.setDate(1); // đảm bảo ngày đầu tháng
-
-      const formattedData = jsonData.flatMap((row) =>
-        KPI_MAPPING.map((kpi) => ({
+      const formattedData = jsonData.flatMap((row) => {
+        return KPI_MAPPING.map((kpi) => ({
           TEN_CHI_TIEU: kpi.key,
-          EMP_CODE: row["Mã NV"],
-          THUC_HIEN: Number(row[kpi.excel] || 0),
-        }))
-      );
-
+          EMP_CODE: row["EMP_CODE"],
+          THUC_HIEN: Number(row[kpi.excel] ?? 0),
+        }));
+      });
+      
       setData(formattedData);
 
       try {

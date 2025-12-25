@@ -5,7 +5,7 @@ export const exportKpiPlanExcel = (finalData = []) => {
   // 1. Header Excel
   const header = [
     "ĐƠN VỊ",
-    "MÃ NV",
+    "EMP_CODE",
     "TÊN NV",
 
     "TBTT PTM",
