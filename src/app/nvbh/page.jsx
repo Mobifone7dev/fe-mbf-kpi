@@ -90,6 +90,12 @@ export default function Page(props) {
   useEffect(() => {
     if (execData.length > 0 && planData.length > 0) {
       const merged = mergePlanIntoExec(execData, planData);
+      // ✅ SORT THEO AREA
+      merged.sort((a, b) => {
+        if (!a.AREA) return 1;
+        if (!b.AREA) return -1;
+        return a.AREA.localeCompare(b.AREA, "vi", { numeric: true });
+      });
       setFinalData(merged);
     }
   }, [execData, planData]);
@@ -253,14 +259,13 @@ export default function Page(props) {
             console.log("set loading emp", e);
             if (e) {
               setLoading(e);
-
             }
           }}
           error={(e) => {
             setErrorImport(e);
           }}
-          isRefesh={(e)=>{
-            if(e){
+          isRefesh={(e) => {
+            if (e) {
               getPlanKpiEmployee();
               getExecKpiEmployee();
             }
@@ -568,9 +573,9 @@ export default function Page(props) {
                     }}
                   >
                     {convertToFloat2FixedNumber(
-                      (convertToNumber(object.TYLE_GD_C2C_EXEC*100) )/
-                        convertToNumberMauso(object.TYLE_GD_C2C_PLAN) *100
-                        
+                      (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
+                        convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
+                        100
                     )}{" "}
                     {"%"}
                   </td>
