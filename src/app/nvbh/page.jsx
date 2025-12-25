@@ -10,6 +10,7 @@ import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
   convertToFloat2FixedNumber,
+  convertToNumberMauso,
 } from "../../until/functions";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
@@ -26,7 +27,7 @@ export default function Page(props) {
   const [execData, setExecData] = useState({});
   const [planData, setPlanData] = useState({});
   const [finalData, setFinalData] = useState([]);
-  const [errorImport, setErrorImport] = useState("")
+  const [errorImport, setErrorImport] = useState("");
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -250,18 +251,27 @@ export default function Page(props) {
           employeeList={employeeList}
           loading={(e) => {
             console.log("set loading emp", e);
-            setLoading(e);
-            
+            if (e) {
+              setLoading(e);
+
+            }
           }}
-          error={(e)=>{setErrorImport(e)}}
+          error={(e) => {
+            setErrorImport(e);
+          }}
+          isRefesh={(e)=>{
+            if(e){
+              getPlanKpiEmployee();
+              getExecKpiEmployee();
+            }
+          }}
         ></ImportPlanKpiExcel>
         <span style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}>
           P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import lại để
           cập nhật chỉ tiêu
         </span>
-        <br>
-        </br>
-        <span style={{color:'red'}}>{errorImport}</span>
+        <br></br>
+        <span style={{ color: "red" }}>{errorImport}</span>
       </div>
       <div className="table-kpi-nvbh">
         <table className="table-fixed align-middle gs-0 gy-3">
@@ -382,71 +392,188 @@ export default function Page(props) {
                     {" "}
                     {object.SL_PTM_TBTT_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
                     {object.SL_PTM_TBTT_EXEC ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}></td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_TBTT_EXEC) /
+                        convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
+                        100
+                    )}
+                    {"%"}
+                  </td>
 
                   {/* TBTS thoại */}
                   <td style={{ textAlign: "center" }}>
                     {object.SL_TBTS_PTM_THOAI_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
                     {object.SL_TBTS_PTM_THOAI_EXEC ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}></td>
-
-                  {/* M2M */}
-                  <td style={{ textAlign: "center" }}>
-                     {object.SL_TB_PTM_M2M_PLAN ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
-                    {object.SL_TB_PTM_M2M_EXEC ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center" }}></td>
-
-                  {/* SAYMEE */}
-                  <td style={{ textAlign: "center" }}>
-                      {object.TB_PTM_SAYMEE_PLAN ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
-                    {object.TB_PTM_SAYMEE_EXEC ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center" }}></td>
-
-                  {/* Fiber */}
-                  <td style={{ textAlign: "center" }}>
-                      {object.TB_PTM_FIBER_PLAN ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
-                    {object.TB_PTM_FIBER_EXEC ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center" }}></td>
-
-                  {/* sl tm C2C */}
-                  <td style={{ textAlign: "center" }}>
-                     {object.SL_TB_C2C_PLAN ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
-                    {object.SL_TB_C2C_EXEC ?? 0}
-                  </td>
-                  <td style={{ textAlign: "center" }}></td>
-
-                  {/* Tỷ lệ gia hạn */}
-                  <td style={{ textAlign: "center" }}>
-                      {convertToFloat2FixedNumber(
-                      convertToNumber(object.TYLE_GD_C2C_PLAN) * 100
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
+                        convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
+                        100
                     )}
                     {"%"}
                   </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
+                  {/* M2M */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_PTM_M2M_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.SL_TB_PTM_M2M_EXEC ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
+                        convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
+                  {/* SAYMEE */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_PTM_SAYMEE_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.TB_PTM_SAYMEE_EXEC ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
+                        convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
+                  {/* Fiber */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_PTM_FIBER_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.TB_PTM_FIBER_EXEC ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_PTM_FIBER_EXEC) /
+                        convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
+                  {/* sl tm C2C */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_TB_C2C_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.SL_TB_C2C_EXEC ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_TB_C2C_EXEC) /
+                        convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
+                        100
+                    )}
+                  </td>
+                  {/* Tỷ lệ gia hạn */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.TYLE_GD_C2C_PLAN ?? 0}
+                    {"%"}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
                     {convertToFloat2FixedNumber(
                       convertToNumber(object.TYLE_GD_C2C_EXEC) * 100
                     )}
                     {"%"}
                   </td>
-                  <td style={{ textAlign: "center" }}></td>
-
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TYLE_GD_C2C_EXEC*100) )/
+                        convertToNumberMauso(object.TYLE_GD_C2C_PLAN) *100
+                        
+                    )}{" "}
+                    {"%"}
+                  </td>
                   {/* Doanh thu */}
                   <td></td>
                   <td></td>

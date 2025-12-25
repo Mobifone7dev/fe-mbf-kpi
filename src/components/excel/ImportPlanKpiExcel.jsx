@@ -65,6 +65,7 @@ export default function ImportKpiPlanExcel(props) {
         }
         props.error("");
         props.loading(false);
+        props.isRefesh(true)
       } catch (error) {
         console.log("error", error);
         props.loading(false);
