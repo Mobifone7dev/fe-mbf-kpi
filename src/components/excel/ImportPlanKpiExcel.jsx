@@ -7,7 +7,7 @@ import { useRef } from "react";
 
 const KPI_MAPPING = [
   { key: "SL_PTM_TBTT", excel: "TBTT PTM" },
-  { key: "SL_TBTS_PTM_THOAI", excel: "TBTS Thoại" },
+  { key: "SL_TBTS_PTM_THOAI", excel: "TBTS THOẠI" },
   { key: "SL_TB_PTM_M2M", excel: "M2M" },
   { key: "TB_PTM_SAYMEE", excel: "SAYMEE" },
   { key: "TB_PTM_FIBER", excel: "FIBER" },

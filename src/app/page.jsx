@@ -110,7 +110,6 @@ const Page = () => {
       return;
     }
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    console.log("check ne");
     getPlanKpi(date);
     getExecKpi(date);
   }, [selectedDate]);

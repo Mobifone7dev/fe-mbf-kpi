@@ -1,74 +1,54 @@
-"use client";
-
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import { useEffect, useState } from "react";
 
-export default function ExportKpiPlanExcel(props) {
-  const [employeeList, setEmployeeList] = useState(props.employeeList);
-  useEffect(() => {
-    if (props.employeeList && props.employeeList.length > 0) {
-      setEmployeeList(props.employeeList);
-    }
-  }, [props.employeeList]);
-  const exportKpiPlanExcel = (employeeList) => {
-    const data = employeeList.map((emp, index) => ({
-      STT: index + 1,
-      "Mã nhân viên": emp.EMP_CODE,
-      "Tên nhân viên": emp.EMP_NAME,
-      "TBTT PTM": "",
-      "TBTS Thoại": "",
-      M2M: "",
-      SAYMEE: "",
-      FIBER: "",
-      "Số lượng thuê bao PTM qua kênh C2C": "",
-      "Tỷ lệ PS GD C2C (%)": "",
-      "Thuê bao MNP đến": "",
-    }));
+export const exportKpiPlanExcel = (finalData = []) => {
+  // 1. Header Excel
+  const header = [
+    "ĐƠN VỊ",
+    "MÃ NV",
+    "TÊN NV",
 
-    const worksheet = XLSX.utils.json_to_sheet(data);
+    "TBTT PTM",
+    "TBTS THOẠI",
+    "M2M",
+    "SAYMEE",
+    "FIBER",
 
-    // Set độ rộng cột
-    worksheet["!cols"] = [
-      { wch: 5 },
-      { wch: 15 },
-      { wch: 22 },
-      { wch: 12 },
-      { wch: 14 },
-      { wch: 8 },
-      { wch: 10 },
-      { wch: 10 },
-      { wch: 35 },
-      { wch: 20 },
-      { wch: 18 },
-    ];
+    "Số lượng thuê bao PTM qua kênh C2C",
+    "ỷ lệ PS GD C2C (%)",
+  ];
 
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "KE_HOACH_KPI");
+  // 2. Data rows
+  const rows = finalData.map((item) => [
+    item.AREA ?? "",
+    item.EMP_CODE ?? "",
+    item.EMP_NAME ?? "",
 
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
+    item.SL_PTM_TBTT_PLAN ?? 0,
+    item.SL_TBTS_PTM_THOAI_PLAN ?? 0,
+    item.SL_TB_PTM_M2M_PLAN ?? 0,
+    item.TB_PTM_SAYMEE_PLAN ?? 0,
+    item.TB_PTM_FIBER_PLAN ?? 0,
 
-    const blob = new Blob([excelBuffer], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
+    item.SL_TB_C2C_PLAN ?? 0,
+    item.TYLE_GD_C2C_PLAN ?? 0,
+  ]);
 
-    saveAs(
-      blob,
-      `KE_HOACH_KPI_${
-        new Date().getMonth() + 1
-      }_${new Date().getFullYear()}.xlsx`
-    );
-  };
+  // 3. Tạo worksheet
+  const ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
 
-  return (
-    <button
-      className="btn btn-success me-2"
-      onClick={() => exportKpiPlanExcel(employeeList)}
-    >
-      Export Excel kế hoạch KPI
-    </button>
+  // 4. Tạo workbook
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "KE_HOACH_KPI");
+
+  // 5. Xuất file
+  const wbout = XLSX.write(wb, {
+    bookType: "xlsx",
+    type: "array",
+  });
+
+  saveAs(
+    new Blob([wbout], { type: "application/octet-stream" }),
+    "KE_HOACH_KPI_NV_PLAN.xlsx"
   );
-}
+};
