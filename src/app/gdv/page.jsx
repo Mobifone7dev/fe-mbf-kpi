@@ -15,7 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import ExportKpiPlanExcel from "../../components/excel/ExportPlanKpiExcel";
+import { exportKpiPlanExcel } from "../../components/excel/ExportPlanKpiExcel";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
 export default function Page(props) {
@@ -252,8 +252,15 @@ export default function Page(props) {
         }`}
       </h4>
       <div className="flex flex-start my-2 border p-2">
-        <ExportKpiPlanExcel employeeList={employeeList}></ExportKpiPlanExcel>
-        <ImportPlanKpiExcel
+  <button
+          className="btn btn-success"
+          onClick={() => {
+            // console.log("check", finalData)
+            exportKpiPlanExcel(finalData)
+        }}
+        >
+          Export kế hoạch KPI
+        </button>{" "}        <ImportPlanKpiExcel
           employeeList={employeeList}
           loading={(e) => {
             console.log("set loading emp", e);

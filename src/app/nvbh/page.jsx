@@ -245,7 +245,7 @@ export default function Page(props) {
       </h4>
       <div className="flex flex-start my-2 border p-2">
         <button
-          className="btn btn-primary"
+          className="btn btn-success"
           onClick={() => {
             // console.log("check", finalData)
             exportKpiPlanExcel(finalData)
