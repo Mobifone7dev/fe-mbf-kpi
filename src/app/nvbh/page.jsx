@@ -26,6 +26,7 @@ export default function Page(props) {
   const [execData, setExecData] = useState({});
   const [planData, setPlanData] = useState({});
   const [finalData, setFinalData] = useState([]);
+  const [errorImport, setErrorImport] = useState("")
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -250,12 +251,17 @@ export default function Page(props) {
           loading={(e) => {
             console.log("set loading emp", e);
             setLoading(e);
+            
           }}
+          error={(e)=>{setErrorImport(e)}}
         ></ImportPlanKpiExcel>
         <span style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}>
           P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import lại để
           cập nhật chỉ tiêu
         </span>
+        <br>
+        </br>
+        <span style={{color:'red'}}>{errorImport}</span>
       </div>
       <div className="table-kpi-nvbh">
         <table className="table-fixed align-middle gs-0 gy-3">
@@ -376,7 +382,7 @@ export default function Page(props) {
                     {" "}
                     {object.SL_PTM_TBTT_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center", fontStyle: "italic" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.SL_PTM_TBTT_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -385,7 +391,7 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                     {object.SL_TBTS_PTM_THOAI_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.SL_TBTS_PTM_THOAI_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -394,7 +400,7 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                      {object.SL_TB_PTM_M2M_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.SL_TB_PTM_M2M_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -403,7 +409,7 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                       {object.TB_PTM_SAYMEE_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.TB_PTM_SAYMEE_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -412,7 +418,7 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                       {object.TB_PTM_FIBER_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.TB_PTM_FIBER_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -421,7 +427,7 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                      {object.SL_TB_C2C_PLAN ?? 0}
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {object.SL_TB_C2C_EXEC ?? 0}
                   </td>
                   <td style={{ textAlign: "center" }}></td>
@@ -433,7 +439,7 @@ export default function Page(props) {
                     )}
                     {"%"}
                   </td>
-                  <td style={{ textAlign: "center", fontStyle:'italic' }}>
+                  <td style={{ textAlign: "center", fontStyle: "italic" , fontWeight:500}}>
                     {convertToFloat2FixedNumber(
                       convertToNumber(object.TYLE_GD_C2C_EXEC) * 100
                     )}

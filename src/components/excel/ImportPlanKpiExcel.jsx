@@ -63,10 +63,12 @@ export default function ImportKpiPlanExcel(props) {
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
+        props.error("");
         props.loading(false);
       } catch (error) {
         console.log("error", error);
         props.loading(false);
+        props.error("Kiểm tra lại format và số liệu trong file");
         // ✅ RESET FILE INPUT
         if (fileInputRef.current) {
           fileInputRef.current.value = "";

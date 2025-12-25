@@ -72,7 +72,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
                 <img src={`/imgs/logo-primary.png`} alt="logo" />
               </Link>
             </div>
-            <div className="main-title" style={{ color: 'red' }}>DLA</div>
+            <div className="main-title" style={{ color: 'red', fontSize:'18px' }}>DLA</div>
             <div className="navigation ms-5">
               {menuCategory.map((item, index) => (
                 <div
