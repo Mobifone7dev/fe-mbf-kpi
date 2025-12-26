@@ -1,6 +1,6 @@
 "use client";
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import { createManualApiListDLAEmployee } from "../../lib/api";
 import { useRef } from "react";
@@ -19,6 +19,12 @@ export default function ImportKpiPlanExcel(props) {
   const [data, setData] = useState([]);
   const [loadingCreateKpi, setLoadingCreateKpi] = useState(false);
   const fileInputRef = useRef(null);
+  const [selectedDate, setSelectedDate] = useState(props.selectedDate);
+  useEffect(() => {
+    if (props.selectedDate) {
+      setSelectedDate(props.selectedDate);
+    }
+  }, [props.selectedDate]);
 
   const handleImportExcel = (e) => {
     const file = e.target.files[0];
@@ -38,7 +44,7 @@ export default function ImportKpiPlanExcel(props) {
         defval: null, // tránh undefined
       });
 
-      const THANG = new Date("2025-01-01"); // hoặc truyền từ UI
+      const THANG = new Date(selectedDate); // hoặc truyền từ UI
       THANG.setDate(1); // đảm bảo ngày đầu tháng
       const formattedData = jsonData.flatMap((row) => {
         return KPI_MAPPING.map((kpi) => ({
@@ -47,12 +53,12 @@ export default function ImportKpiPlanExcel(props) {
           THUC_HIEN: Number(row[kpi.excel] ?? 0),
         }));
       });
-      
+
       setData(formattedData);
 
       try {
         const info = {
-          month: moment(new Date()).format("DD-MM-YYYY"),
+          month: moment(selectedDate).format("DD-MM-YYYY"),
           kpiList: formattedData,
         };
         props.loading(true);

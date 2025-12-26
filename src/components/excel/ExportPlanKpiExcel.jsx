@@ -15,7 +15,7 @@ export const exportKpiPlanExcel = (finalData = []) => {
     "FIBER",
 
     "Số lượng thuê bao PTM qua kênh C2C",
-    "ỷ lệ PS GD C2C (%)",
+    "Tỷ lệ PS GD C2C (%)",
   ];
 
   // 2. Data rows

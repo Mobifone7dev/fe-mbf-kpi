@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { ErrorMessage, Form, Formik } from "formik";
 import {
   handleSearchEmployeeByEmpcode,
   handleGetExecKpiDLAEmployee,
@@ -7,18 +8,40 @@ import {
 } from "../../lib/api";
 import LoadingComponent from "@components/loading/LoadingComponent";
 import { exportKpiPlanExcel } from "../../components/excel/ExportPlanKpiExcel";
-
+import "react-datepicker/dist/react-datepicker.css";
+import { DatePickerField } from "../../components/widgets/datePickers/DatePickerField";
+import * as Yup from "yup";
+import "bootstrap/dist/css/bootstrap.min.css";
 import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
   convertToFloat2FixedNumber,
   convertToNumberMauso,
+  daysInMonth,
 } from "../../until/functions";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
+
+var x = new Date();
+x.setDate(1);
+x.setMonth(x.getMonth());
+const INIT_VALUES = {
+  selectMonth: x,
+};
+
+const KPI_KEYS = [
+  "SL_PTM_TBTT",
+  "SL_TBTS_PTM_THOAI",
+  "SL_TB_PTM_M2M",
+  "TB_PTM_SAYMEE",
+  "TB_PTM_FIBER",
+  "SL_TB_C2C",
+  "TYLE_GD_C2C",
+  "TB_MNP_DEN",
+];
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,6 +52,12 @@ export default function Page(props) {
   const [planData, setPlanData] = useState({});
   const [finalData, setFinalData] = useState([]);
   const [errorImport, setErrorImport] = useState("");
+  const [indexDateInMonth, setIndexDateInMonth] = useState(
+    new Date().getDate()
+  );
+  const [initValues, setInitValues] = useState(INIT_VALUES);
+  const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
+  const formSchema = Yup.object().shape({});
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -59,6 +88,7 @@ export default function Page(props) {
   };
   const getExecKpiEmployee = async () => {
     setLoading(true);
+
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
     const tempRes = await result.json();
@@ -71,6 +101,7 @@ export default function Page(props) {
   };
   const getPlanKpiEmployee = async () => {
     setLoading(true);
+
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetPlanKpiDLAEmployee(date, "%MBP%");
     const tempRes = await result.json();
@@ -83,10 +114,16 @@ export default function Page(props) {
   };
   useEffect(() => {
     if (employeeList && employeeList.length > 0) {
+      resetData();
       getPlanKpiEmployee();
       getExecKpiEmployee();
     }
   }, [employeeList]);
+  useEffect(() => {
+    resetData();
+    getPlanKpiEmployee();
+    getExecKpiEmployee();
+  }, [selectedDate]);
 
   useEffect(() => {
     if (execData.length > 0 && planData.length > 0) {
@@ -100,11 +137,21 @@ export default function Page(props) {
       setFinalData(merged);
     }
   }, [execData, planData]);
-  const buildEmpInfoMap = (empList) => {
-    return empList.reduce((acc, emp) => {
-      acc[emp.EMP_CODE] = emp;
-      return acc;
-    }, {});
+
+  const resetData = () => {
+    setPlanData({});
+    setExecData({});
+    // setFinalData({});
+    if (employeeList.length > 0) {
+      const merged = initFinalDataFromEmployees(employeeList);
+
+      // sort theo AREA
+      merged.sort((a, b) =>
+        (a.AREA || "").localeCompare(b.AREA || "", "vi", { numeric: true })
+      );
+
+      setFinalData(merged);
+    }
   };
 
   function mergeEmployeeWithKpi(employeeList, kpiList) {
@@ -233,6 +280,18 @@ export default function Page(props) {
       return merged;
     });
   }
+
+  function initFinalDataFromEmployees(employeeList = []) {
+    return employeeList.map((emp) => ({
+      AREA: emp.AREA ?? emp.AREA_CODE ?? null,
+      AREA_CODE: emp.AREA_CODE ?? null,
+      EMP_CODE: emp.EMP_CODE,
+      EMP_NAME: emp.EMP_NAME,
+      SHOP_CODE: emp.SHOP_CODE,
+      SHOP_NAME: emp.SHOP_NAME?.trim() ?? null,
+      WARD_CODE: emp.WARD_CODE ?? null,
+    }));
+  }
   return (
     <div className="dashboard-nvbh">
       <h4 className="text-center my-4">
@@ -240,45 +299,105 @@ export default function Page(props) {
           selectedDate.getMonth() + 1
         }`}
       </h4>
-      <div className="flex flex-start my-2 border p-2">
-        <button
-          className="btn btn-success"
-          onClick={() => {
-            // console.log("check", finalData)
-            exportKpiPlanExcel(finalData);
+      <div className="flex flex-row">
+        <Formik
+          enableReinitialize={true}
+          initialValues={initValues}
+          validationSchema={formSchema}
+          onSubmit={async (values, { resetForm }) => {
+            setInitValues({
+              selectMonth: values.selectMonth,
+            });
           }}
         >
-          Export kế hoạch KPI
-        </button>{" "}
-        <ImportPlanKpiExcel
-          employeeList={employeeList}
-          loading={(e) => {
-            console.log("set loading emp", e);
-            if (e) {
-              setLoading(e);
-            }
+          {(formikProps) => {
+            return (
+              <Form>
+                <div className=" filter mt-3 me-5">
+                  <div className="filter-body d-flex flex-start">
+                    <div className="select-filter">
+                      <label
+                        htmlFor="selectMonth"
+                        className="form-label fs-6 fw-bold text-dark me-2"
+                      >
+                        Tháng
+                      </label>
+                      <DatePickerField
+                        showMonthYearPicker={true}
+                        name={`selectMonth`}
+                        dateFormat="MM/yyyy"
+                        disabled={false}
+                        callbackSetDate={(e) => {
+                          console.log("Selected date:", e.getMonth());
+                          setSelectedDate(e);
+                          let indexDate;
+                          if (e < new Date()) {
+                            indexDate = daysInMonth(e);
+                          } else {
+                            indexDate = e.getDate();
+                          }
+                          setIndexDateInMonth(indexDate);
+                          const sumDate = daysInMonth(e);
+                          setSumDateInMonth(sumDate);
+                          setInitValues({
+                            ...initValues,
+                            selectMonth: e,
+                          });
+                        }}
+                      ></DatePickerField>
+
+                      <div className="text-danger">
+                        <ErrorMessage name="selectMonth" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Form>
+            );
           }}
-          error={(e) => {
-            console.log("eeeeeeeee", e);
-            setErrorImport(e);
-          }}
-          isRefesh={(e) => {
-            if (e) {
-              getPlanKpiEmployee();
-              getExecKpiEmployee();
-            }
-          }}
-        ></ImportPlanKpiExcel>
-        <div className="flex flex-col">
-          <span
-            style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
+        </Formik>
+        <div className="flex flex-start my-2 border p-2">
+          <button
+            className="btn btn-success"
+            onClick={() => {
+              // console.log("check", finalData)
+              exportKpiPlanExcel(finalData);
+            }}
           >
-            P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import lại
-            để cập nhật chỉ tiêu
-          </span>
-          <span style={{ color: "red" }}>{errorImport}</span>
+            Export kế hoạch KPI
+          </button>{" "}
+          <ImportPlanKpiExcel
+            selectedDate={selectedDate}
+            employeeList={employeeList}
+            loading={(e) => {
+              console.log("set loading emp", e);
+              if (e) {
+                setLoading(e);
+              }
+            }}
+            error={(e) => {
+              console.log("eeeeeeeee", e);
+              setErrorImport(e);
+            }}
+            isRefesh={(e) => {
+              if (e) {
+                getPlanKpiEmployee();
+                getExecKpiEmployee();
+              }
+            }}
+          ></ImportPlanKpiExcel>
+          <div className="flex flex-col">
+            <span
+              style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
+            >
+              P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
+              lại để cập nhật chỉ tiêu
+            </span>
+            <span style={{ color: "red" }}>{errorImport}</span>
+          </div>
         </div>
       </div>
+
       <div className="table-kpi-nvbh">
         <table className="table-fixed align-middle gs-0 gy-3">
           <thead className={`table-head`}>
@@ -548,7 +667,8 @@ export default function Page(props) {
                       (convertToNumber(object.SL_TB_C2C_EXEC) /
                         convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
                         100
-                    )}{"%"}
+                    )}
+                    {"%"}
                   </td>
                   {/* Tỷ lệ gia hạn */}
                   <td style={{ textAlign: "center" }}>
