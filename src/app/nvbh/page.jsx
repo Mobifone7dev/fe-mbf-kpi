@@ -213,6 +213,7 @@ export default function Page(props) {
         SHOP_CODE: emp.SHOP_CODE,
         SHOP_NAME: emp.SHOP_NAME?.trim(),
         WARD_CODE: emp.WARD_CODE,
+        PHONE: emp.PHONE ?? null, // ✅ THÊM
       };
     });
 
@@ -258,6 +259,7 @@ export default function Page(props) {
           SHOP_CODE: emp.SHOP_CODE ?? kpi.SHOP_CODE,
           SHOP_NAME: emp.SHOP_NAME ? emp.SHOP_NAME.trim() : null,
           WARD_CODE: emp.WARD_CODE ?? null,
+          PHONE: emp.PHONE ?? null, // ✅ THÊM
         };
       }
 
@@ -293,6 +295,7 @@ export default function Page(props) {
         "SHOP_NAME",
         "WARD_CODE",
         "LAST_DATE",
+        "PHONE", // ✅ THÊM
       ].forEach((field) => {
         merged[field] = exec[field] ?? plan[field] ?? null;
       });
@@ -311,6 +314,7 @@ export default function Page(props) {
             "SHOP_NAME",
             "WARD_CODE",
             "LAST_DATE",
+            "PHONE",
           ].includes(key)
         )
           return;
@@ -336,6 +340,7 @@ export default function Page(props) {
       SHOP_CODE: emp.SHOP_CODE,
       SHOP_NAME: emp.SHOP_NAME?.trim() ?? null,
       WARD_CODE: emp.WARD_CODE ?? null,
+      PHONE: emp.PHONE ?? null, // ✅ THÊM
     }));
   }
 
@@ -572,6 +577,7 @@ export default function Page(props) {
                     className="fix-col-3"
                   >
                     {object.EMP_NAME}
+                    {object.PHONE ? (`(${object.PHONE})`):""}
                   </td>
 
                   <td style={{ textAlign: "center" }}>
@@ -628,17 +634,21 @@ export default function Page(props) {
                     {object.SL_TBTS_PTM_THOAI_EXEC ?? 0}
                   </td>
                   <td
-                     className={
+                    className={
                       convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
                         ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
-                              convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
+                              convertToNumberMauso(
+                                object.SL_TBTS_PTM_THOAI_PLAN
+                              )) *
                               100
                           ) >
-                          convertToFloat2FixedNumber(SL_TBTS_PTM_THOAI_PROCESS * 100)
+                          convertToFloat2FixedNumber(
+                            SL_TBTS_PTM_THOAI_PROCESS * 100
+                          )
                         ? "bg-green"
                         : "bg-red"
                     }
@@ -678,7 +688,9 @@ export default function Page(props) {
                               convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
                               100
                           ) >
-                          convertToFloat2FixedNumber(SL_TB_PTM_M2M_PROCESS * 100)
+                          convertToFloat2FixedNumber(
+                            SL_TB_PTM_M2M_PROCESS * 100
+                          )
                         ? "bg-green"
                         : "bg-red"
                     }
@@ -708,7 +720,7 @@ export default function Page(props) {
                     {object.TB_PTM_SAYMEE_EXEC ?? 0}
                   </td>
                   <td
-                     className={
+                    className={
                       convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
                         ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
                           ? "bg-green"
@@ -718,7 +730,9 @@ export default function Page(props) {
                               convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
                               100
                           ) >
-                          convertToFloat2FixedNumber(TB_PTM_SAYMEE_PROCESS * 100)
+                          convertToFloat2FixedNumber(
+                            TB_PTM_SAYMEE_PROCESS * 100
+                          )
                         ? "bg-green"
                         : "bg-red"
                     }
@@ -832,7 +846,7 @@ export default function Page(props) {
                     {"%"}
                   </td>
                   <td
-                      className={
+                    className={
                       convertToNumber(object.TYLE_GD_C2C_PLAN) === 0
                         ? convertToNumber(object.TYLE_GD_C2C_EXEC) > 0
                           ? "bg-green"
