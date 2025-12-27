@@ -10,6 +10,8 @@ export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+
+
 export function scrollToBottom(containerRef: React.RefObject<HTMLElement>) {
   if (containerRef.current) {
     const lastMessage = containerRef.current.lastElementChild;

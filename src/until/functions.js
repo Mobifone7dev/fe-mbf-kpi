@@ -33,7 +33,16 @@ export const convertToFloat2Fixed = (number) => {
 
   return formatted;
 };
+export const calcProcessFromLastDate = (lastDate, sumDateInMonth) => {
+  if (!lastDate || !sumDateInMonth) return 0;
 
+  const d = new Date(lastDate);
+  if (isNaN(d.getTime())) return 0;
+
+  const day = d.getDate(); // lấy ngày trong tháng (1 → 31)
+
+  return day / sumDateInMonth;
+}
 export const convertToNumber = (number) => {
   if (!Number(number)) return 0;
 

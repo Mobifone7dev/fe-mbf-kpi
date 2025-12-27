@@ -18,6 +18,7 @@ import {
   convertToFloat2FixedNumber,
   convertToNumberMauso,
   daysInMonth,
+  calcProcessFromLastDate,
 } from "../../until/functions";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
@@ -58,6 +59,14 @@ export default function Page(props) {
   const [initValues, setInitValues] = useState(INIT_VALUES);
   const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
+  const [SL_PTM_TBTT_PROCESS, SET_SL_PTM_TBTT_PROCESS] = useState(0);
+  const [SL_TBTS_PTM_THOAI_PROCESS, SET_SL_TBTS_PTM_THOAI] = useState(0);
+  const [SL_TB_PTM_M2M_PROCESS, SET_SL_TB_PTM_M2M_PROCESS] = useState(0);
+  const [TB_PTM_SAYMEE_PROCESS, SET_TB_PTM_SAYMEE_PROCESS] = useState(0);
+  const [TB_PTM_FIBER_PROCESS, SET_TB_PTM_FIBER_PROCESS] = useState(0);
+  const [SL_TB_C2C_PROCESS, SET_SL_TB_C2C_PROCESS] = useState(0);
+  const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
+  const [TB_MNP_DEN_PROCESS, SET_TB_MNP_DEN_PROCESS] = useState(0);
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -95,6 +104,43 @@ export default function Page(props) {
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
       setExecData(result);
+      // ✅ 1. lấy map LAST_DATE theo TEN_CHI_TIEU
+      const lastDateMap = extractLastDateByChiTieu(tempRes.result);
+
+      SET_SL_PTM_TBTT_PROCESS(
+        calcProcessFromLastDate(lastDateMap["SL_PTM_TBTT"], sumDateInMonth)
+      );
+
+      SET_SL_TBTS_PTM_THOAI(
+        calcProcessFromLastDate(
+          lastDateMap["SL_TBTS_PTM_THOAI"],
+          sumDateInMonth
+        )
+      );
+
+      SET_SL_TB_PTM_M2M_PROCESS(
+        calcProcessFromLastDate(lastDateMap["SL_TB_PTM_M2M"], sumDateInMonth)
+      );
+
+      SET_TB_PTM_SAYMEE_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_PTM_SAYMEE"], sumDateInMonth)
+      );
+
+      SET_TB_PTM_FIBER_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_PTM_FIBER"], sumDateInMonth)
+      );
+
+      SET_SL_TB_C2C_PROCESS(
+        calcProcessFromLastDate(lastDateMap["SL_TB_C2C"], sumDateInMonth)
+      );
+
+      SET_TYLE_GD_C2C_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TYLE_GD_C2C"], sumDateInMonth)
+      );
+
+      SET_TB_MNP_DEN_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_MNP_DEN"], sumDateInMonth)
+      );
     }
 
     setLoading(false);
@@ -291,6 +337,21 @@ export default function Page(props) {
       SHOP_NAME: emp.SHOP_NAME?.trim() ?? null,
       WARD_CODE: emp.WARD_CODE ?? null,
     }));
+  }
+
+  function extractLastDateByChiTieu(kpiList = []) {
+    const map = {};
+
+    for (const kpi of kpiList) {
+      if (!kpi.TEN_CHI_TIEU || !kpi.LAST_DATE) continue;
+
+      // vì cùng TEN_CHI_TIEU + THANG thì LAST_DATE giống nhau
+      if (!map[kpi.TEN_CHI_TIEU]) {
+        map[kpi.TEN_CHI_TIEU] = kpi.LAST_DATE;
+      }
+    }
+
+    return map;
   }
   return (
     <div className="dashboard-nvbh">
@@ -498,7 +559,7 @@ export default function Page(props) {
                     style={{ textAlign: "center", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
-                    {object.AREA} {i}
+                    {object.AREA}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
@@ -526,6 +587,20 @@ export default function Page(props) {
                     {object.SL_PTM_TBTT_EXEC ?? 0}
                   </td>
                   <td
+                    className={
+                      convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
+                        ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.SL_PTM_TBTT_EXEC) /
+                              convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -553,6 +628,20 @@ export default function Page(props) {
                     {object.SL_TBTS_PTM_THOAI_EXEC ?? 0}
                   </td>
                   <td
+                     className={
+                      convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
+                        ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
+                              convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(SL_TBTS_PTM_THOAI_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -579,6 +668,20 @@ export default function Page(props) {
                     {object.SL_TB_PTM_M2M_EXEC ?? 0}
                   </td>
                   <td
+                    className={
+                      convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
+                        ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
+                              convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(SL_TB_PTM_M2M_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -605,6 +708,20 @@ export default function Page(props) {
                     {object.TB_PTM_SAYMEE_EXEC ?? 0}
                   </td>
                   <td
+                     className={
+                      convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
+                        ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
+                              convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_PTM_SAYMEE_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -631,6 +748,20 @@ export default function Page(props) {
                     {object.TB_PTM_FIBER_EXEC ?? 0}
                   </td>
                   <td
+                    className={
+                      convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
+                        ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_PTM_FIBER_EXEC) /
+                              convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -657,6 +788,20 @@ export default function Page(props) {
                     {object.SL_TB_C2C_EXEC ?? 0}
                   </td>
                   <td
+                    className={
+                      convertToNumber(object.SL_TB_C2C_PLAN) === 0
+                        ? convertToNumber(object.SL_TB_C2C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.SL_TB_C2C_EXEC) /
+                              convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(SL_TB_C2C_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
@@ -687,6 +832,20 @@ export default function Page(props) {
                     {"%"}
                   </td>
                   <td
+                      className={
+                      convertToNumber(object.TYLE_GD_C2C_PLAN) === 0
+                        ? convertToNumber(object.TYLE_GD_C2C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TYLE_GD_C2C_EXEC) /
+                              convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TYLE_GD_C2C_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
                     style={{
                       textAlign: "center",
                       fontStyle: "italic",
