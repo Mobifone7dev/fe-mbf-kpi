@@ -365,7 +365,7 @@ export default function Page(props) {
           selectedDate.getMonth() + 1
         }`}
       </h4>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         <Formik
           enableReinitialize={true}
           initialValues={initValues}
@@ -378,9 +378,9 @@ export default function Page(props) {
         >
           {(formikProps) => {
             return (
-              <Form>
-                <div className=" filter mt-3 me-5">
-                  <div className="filter-body d-flex flex-start">
+              <div className=" filter flex flex-row justify-items-center align-items-center me-5">
+                <Form>
+                  <div className="filter-body d-flex flex-start md:flex-col">
                     <div className="select-filter">
                       <label
                         htmlFor="selectMonth"
@@ -417,12 +417,12 @@ export default function Page(props) {
                       </div>
                     </div>
                   </div>
-                </div>
-              </Form>
+                </Form>
+              </div>
             );
           }}
         </Formik>
-        <div className="flex flex-start my-2 border p-2">
+        <div className="d-flex flex-start md:flex-row flex-col my-2 border p-2">
           <button
             className="btn btn-success"
             onClick={() => {
@@ -487,9 +487,14 @@ export default function Page(props) {
                 style={{ width: "200px" }}
               >{`TÊN NV`}</th>
               <th
+                rowSpan={2}
+                className="th-title position-relative"
+              >{`PHONE`}</th>
+              <th
                 colSpan={3}
                 className="th-title bg_green-light position-relative"
               >{`TBTT PTM`}</th>
+
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
@@ -577,7 +582,12 @@ export default function Page(props) {
                     className="fix-col-3"
                   >
                     {object.EMP_NAME}
-                    {object.PHONE ? (`(${object.PHONE})`):""}
+                  </td>
+                  <td
+                    style={{ textAlign: "left", fontWeight: 600 }}
+                    className="fix-col-4"
+                  >
+                    {object.PHONE ? `${object.PHONE}` : ""}
                   </td>
 
                   <td style={{ textAlign: "center" }}>

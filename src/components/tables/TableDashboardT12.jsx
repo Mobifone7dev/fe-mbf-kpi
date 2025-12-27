@@ -5386,8 +5386,28 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>{" "}
               <td
                 className={
-                  (convertToNumber(EXEC_SL_TB_C2C.TTKDVT) * 100) /
-                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT) >
+                  ( convertToFloat2Fixed(
+                    (convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T02) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T03) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T04) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T05) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T06) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T07) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T08) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T09) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T10) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T11) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T12) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_T13) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D01) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D02) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06))*100 /
+                      convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
+                  ) ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -5415,10 +5435,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06)) /
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06))*100 /
                       convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
-                  ) *
-                    100 +
+                  )  +
                   "%"
                 )}
               </td>{" "}

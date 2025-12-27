@@ -7,7 +7,7 @@ import {
   handleGetPlanKpiDLAEmployee,
 } from "../../lib/api";
 import LoadingComponent from "@components/loading/LoadingComponent";
-import { exportKpiPlanExcel } from "../../components/excel/ExportPlanKpiExcel";
+import { exportKpiPlanExcelGDV } from "../../components/excel/ExportPlanKpiExcelGDV";
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "../../components/widgets/datePickers/DatePickerField";
 import * as Yup from "yup";
@@ -88,7 +88,7 @@ export default function Page(props) {
 
   const getEmployee = async () => {
     setLoading(true);
-    const result = await handleSearchEmployeeByEmpcode("%C7%");
+    const result = await handleSearchEmployeeByEmpcode("%C7_%");
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);
@@ -99,7 +99,7 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetExecKpiDLAEmployee(date, "%C7%");
+    const result = await handleGetExecKpiDLAEmployee(date, "%C7_%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
@@ -149,7 +149,7 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetPlanKpiDLAEmployee(date, "%C7%");
+    const result = await handleGetPlanKpiDLAEmployee(date, "%C7_%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithPlanKpi(employeeList, tempRes.result);
@@ -213,6 +213,7 @@ export default function Page(props) {
         SHOP_CODE: emp.SHOP_CODE,
         SHOP_NAME: emp.SHOP_NAME?.trim(),
         WARD_CODE: emp.WARD_CODE,
+        PHONE: emp.PHONE ?? null, // ✅ THÊM
       };
     });
 
@@ -258,6 +259,7 @@ export default function Page(props) {
           SHOP_CODE: emp.SHOP_CODE ?? kpi.SHOP_CODE,
           SHOP_NAME: emp.SHOP_NAME ? emp.SHOP_NAME.trim() : null,
           WARD_CODE: emp.WARD_CODE ?? null,
+          PHONE: emp.PHONE ?? null, // ✅ THÊM
         };
       }
 
@@ -293,6 +295,7 @@ export default function Page(props) {
         "SHOP_NAME",
         "WARD_CODE",
         "LAST_DATE",
+        "PHONE", // ✅ THÊM
       ].forEach((field) => {
         merged[field] = exec[field] ?? plan[field] ?? null;
       });
@@ -311,6 +314,7 @@ export default function Page(props) {
             "SHOP_NAME",
             "WARD_CODE",
             "LAST_DATE",
+            "PHONE",
           ].includes(key)
         )
           return;
@@ -336,6 +340,7 @@ export default function Page(props) {
       SHOP_CODE: emp.SHOP_CODE,
       SHOP_NAME: emp.SHOP_NAME?.trim() ?? null,
       WARD_CODE: emp.WARD_CODE ?? null,
+      PHONE: emp.PHONE ?? null, // ✅ THÊM
     }));
   }
 
@@ -360,7 +365,7 @@ export default function Page(props) {
           selectedDate.getMonth() + 1
         }`}
       </h4>
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         <Formik
           enableReinitialize={true}
           initialValues={initValues}
@@ -373,9 +378,9 @@ export default function Page(props) {
         >
           {(formikProps) => {
             return (
-              <Form>
-                <div className=" filter mt-3 me-5">
-                  <div className="filter-body d-flex flex-start">
+              <div className=" filter flex flex-row justify-items-center align-items-center me-5">
+                <Form>
+                  <div className="filter-body d-flex flex-start md:flex-col">
                     <div className="select-filter">
                       <label
                         htmlFor="selectMonth"
@@ -412,17 +417,17 @@ export default function Page(props) {
                       </div>
                     </div>
                   </div>
-                </div>
-              </Form>
+                </Form>
+              </div>
             );
           }}
         </Formik>
-        <div className="flex flex-start my-2 border p-2">
+        <div className="d-flex flex-start md:flex-row flex-col my-2 border p-2">
           <button
             className="btn btn-success"
             onClick={() => {
               // console.log("check", finalData)
-              exportKpiPlanExcel(finalData);
+              exportKpiPlanExcelGDV(finalData);
             }}
           >
             Export kế hoạch KPI
@@ -482,9 +487,14 @@ export default function Page(props) {
                 style={{ width: "200px" }}
               >{`TÊN NV`}</th>
               <th
+                rowSpan={2}
+                className="th-title position-relative"
+              >{`PHONE`}</th>
+              <th
                 colSpan={3}
                 className="th-title bg_green-light position-relative"
               >{`TBTT PTM`}</th>
+
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
@@ -509,7 +519,6 @@ export default function Page(props) {
               >
                 {`FIBER`}
               </th>
-
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
@@ -534,6 +543,7 @@ export default function Page(props) {
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -557,6 +567,12 @@ export default function Page(props) {
                     className="fix-col-3"
                   >
                     {object.EMP_NAME}
+                  </td>
+                  <td
+                    style={{ textAlign: "left", fontWeight: 600 }}
+                    className="fix-col-4"
+                  >
+                    {object.PHONE ? `${object.PHONE}` : ""}
                   </td>
 
                   <td style={{ textAlign: "center" }}>
@@ -768,7 +784,6 @@ export default function Page(props) {
                     )}{" "}
                     {"%"}
                   </td>
-
                   {/* Doanh thu */}
                   <td></td>
                   <td></td>
@@ -777,7 +792,7 @@ export default function Page(props) {
               ))
             ) : (
               <tr>
-                <td colSpan={30} className="text-center fw-bold">
+                <td colSpan={24} className="text-center fw-bold">
                   Đang tải dữ liệu...
                 </td>
               </tr>
