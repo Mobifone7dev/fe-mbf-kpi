@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import {
   handleSearchEmployeeByEmpcode,
@@ -95,6 +95,27 @@ export default function Page(props) {
     }
     setLoading(false);
   };
+  useEffect(() => {
+    if (!employeeList || employeeList.length === 0) return;
+    if (!selectedDate) return;
+
+    resetData();
+    getPlanKpiEmployee();
+    getExecKpiEmployee();
+  }, [employeeList, selectedDate]);
+
+  useEffect(() => {
+    if (execData.length > 0 && planData.length > 0) {
+      const merged = mergePlanIntoExec(execData, planData);
+      // ✅ SORT THEO AREA
+      merged.sort((a, b) => {
+        if (!a.AREA) return 1;
+        if (!b.AREA) return -1;
+        return a.AREA.localeCompare(b.AREA, "vi", { numeric: true });
+      });
+      setFinalData(merged);
+    }
+  }, [execData, planData]);
   const getExecKpiEmployee = async () => {
     setLoading(true);
 
@@ -158,31 +179,7 @@ export default function Page(props) {
 
     setLoading(false);
   };
-  useEffect(() => {
-    if (employeeList && employeeList.length > 0) {
-      resetData();
-      getPlanKpiEmployee();
-      getExecKpiEmployee();
-    }
-  }, [employeeList]);
-  useEffect(() => {
-    resetData();
-    getPlanKpiEmployee();
-    getExecKpiEmployee();
-  }, [selectedDate]);
-
-  useEffect(() => {
-    if (execData.length > 0 && planData.length > 0) {
-      const merged = mergePlanIntoExec(execData, planData);
-      // ✅ SORT THEO AREA
-      merged.sort((a, b) => {
-        if (!a.AREA) return 1;
-        if (!b.AREA) return -1;
-        return a.AREA.localeCompare(b.AREA, "vi", { numeric: true });
-      });
-      setFinalData(merged);
-    }
-  }, [execData, planData]);
+  
 
   const resetData = () => {
     setPlanData({});

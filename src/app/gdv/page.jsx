@@ -159,17 +159,14 @@ export default function Page(props) {
     setLoading(false);
   };
   useEffect(() => {
-    if (employeeList && employeeList.length > 0) {
-      resetData();
-      getPlanKpiEmployee();
-      getExecKpiEmployee();
-    }
-  }, [employeeList]);
-  useEffect(() => {
+    if (!employeeList || employeeList.length === 0) return;
+    if (!selectedDate) return;
+
     resetData();
     getPlanKpiEmployee();
     getExecKpiEmployee();
-  }, [selectedDate]);
+  }, [employeeList, selectedDate]);
+  
 
   useEffect(() => {
     if (execData.length > 0 && planData.length > 0) {
