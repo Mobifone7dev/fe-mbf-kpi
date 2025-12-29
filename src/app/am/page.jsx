@@ -348,13 +348,36 @@ export default function Page(props) {
 
     return map;
   }
+
+  const exportToExcel = () => {
+    const table = document.getElementById("table-kpi-am");
+    const workbook = XLSX.utils.table_to_book(table, {
+      sheet: "KPI_DLA",
+    });
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(blob, "bao_cao_kpi_dla_am.xlsx");
+  };
   return (
     <div className="dashboard-nvbh">
-      <h4 className="text-center my-2">
-        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
-          selectedDate.getMonth() + 1
-        }`}
-      </h4>
+      <div className="d-flex justify-content-start align-items-center">
+        <h4 className="text-center my-2">
+          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
+            selectedDate.getMonth() + 1
+          }`}
+        </h4>
+        <button className="ms-5 btn-houze btn-solid" onClick={exportToExcel}>
+          Export Excel
+        </button>
+      </div>
 
       <div className="flex flex-col md:flex-row">
         <Formik
@@ -466,7 +489,10 @@ export default function Page(props) {
       </div>
 
       <div className="table-kpi-nvbh">
-        <table className="table-fixed align-middle gs-0 gy-3">
+        <table
+          className="table-fixed align-middle gs-0 gy-3"
+          id={`table-kpi-am`}
+        >
           <thead className={`table-head`}>
             <tr>
               <th
