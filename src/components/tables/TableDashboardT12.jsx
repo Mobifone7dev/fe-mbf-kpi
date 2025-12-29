@@ -3680,7 +3680,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingPlan ? (
                   <LoadingComponent />
                 ) : PLAN_DTHU_SAYMEE.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.DLA_T03)
+                  convertToFloat2Fixed(PLAN_DTHU_SAYMEE.DLA_T02)
                 ) : (
                   ""
                 )}
