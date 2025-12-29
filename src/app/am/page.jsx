@@ -143,7 +143,7 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetPlanKpiDLAEmployee(date, "%C1%");
+    const result = await handleGetPlanKpiDLAEmployee(date, "%A1%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithPlanKpi(employeeList, tempRes.result);
@@ -323,7 +323,7 @@ export default function Page(props) {
 
   function initFinalDataFromEmployees(employeeList = []) {
     return employeeList.map((emp) => ({
-      AREA:emp.AREA_CODE ?? null,
+      AREA: emp.AREA_CODE ?? null,
       AREA_CODE: emp.AREA_CODE ?? null,
       EMP_CODE: emp.EMP_CODE,
       EMP_NAME: emp.EMP_NAME,
@@ -350,11 +350,12 @@ export default function Page(props) {
   }
   return (
     <div className="dashboard-nvbh">
-      <h4 className="text-center my-4">
+      <h4 className="text-center my-2">
         {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
           selectedDate.getMonth() + 1
         }`}
       </h4>
+
       <div className="flex flex-col md:flex-row">
         <Formik
           enableReinitialize={true}
@@ -446,8 +447,18 @@ export default function Page(props) {
             <span
               style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
             >
-              P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
+              P/s1: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
               lại để cập nhật chỉ tiêu
+            </span>
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "red",
+                textAlign: "left",
+                display: "block",
+              }}
+            >
+              P/s2: dữ liệu theo dõi tính đến n-2
             </span>
             <span style={{ color: "red" }}>{errorImport}</span>
           </div>

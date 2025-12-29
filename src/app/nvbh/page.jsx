@@ -452,8 +452,18 @@ export default function Page(props) {
             <span
               style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
             >
-              P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
+              P/s1: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
               lại để cập nhật chỉ tiêu
+            </span>
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "red",
+                textAlign: "left",
+                display: "block",
+              }}
+            >
+              P/s2: dữ liệu theo dõi tính đến n-2
             </span>
             <span style={{ color: "red" }}>{errorImport}</span>
           </div>
@@ -486,13 +496,18 @@ export default function Page(props) {
                 rowSpan={2}
                 className="th-title position-relative"
               >{`PHONE`}</th>
+              <th
+                style={{ width: "100px" }}
+                rowSpan={2}
+                className="th-title position-relative"
+              >{`TỔNG TB`}</th>
 
               <th
                 style={{ width: "100px" }}
                 rowSpan={2}
                 className="th-title position-relative"
               >
-                  <span
+                <span
                   className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
                   onMouseEnter={(e) => {
                     const tooltip =
@@ -509,9 +524,7 @@ export default function Page(props) {
                 >
                   {`TỔNG TBTT (Saymee+MBF)`}
                   <span className="custom-tooltip">
-                    {
-                      "Bao gồm Thuê bao TBTT + SAYMEE + Kênh C2C"
-                    }
+                    {"Bao gồm Thuê bao TBTT + SAYMEE + Kênh C2C"}
                   </span>
                 </span>
               </th>
@@ -614,9 +627,14 @@ export default function Page(props) {
                   >
                     {object.PHONE ? `${object.PHONE}` : ""}
                   </td>
-                  <td
-                    style={{ textAlign: "center", fontWeight: 600 }}
-                  >
+                  <td style={{ textAlign: "center", fontWeight: 600 }}>
+                    {convertToNumber(object.SL_PTM_TBTT_EXEC) +
+                      convertToNumber(object.TB_PTM_SAYMEE_EXEC) +
+                      convertToNumber(object.SL_TB_C2C_EXEC) +
+                      convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) +
+                      convertToNumber(object.SL_TB_PTM_M2M_EXEC)}
+                  </td>
+                  <td style={{ textAlign: "center", fontWeight: 600 }}>
                     {convertToNumber(object.SL_PTM_TBTT_EXEC) +
                       convertToNumber(object.TB_PTM_SAYMEE_EXEC) +
                       convertToNumber(object.SL_TB_C2C_EXEC)}

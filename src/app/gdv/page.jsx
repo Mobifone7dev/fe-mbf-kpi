@@ -362,6 +362,7 @@ export default function Page(props) {
           selectedDate.getMonth() + 1
         }`}
       </h4>
+      
       <div className="flex flex-col md:flex-row">
         <Formik
           enableReinitialize={true}
@@ -453,8 +454,18 @@ export default function Page(props) {
             <span
               style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
             >
-              P/s: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
+              P/s1: Export file kết hoạch để nhập chỉnh sửa chỉ tiêu và import
               lại để cập nhật chỉ tiêu
+            </span>
+            <span
+              style={{
+                fontStyle: "italic",
+                color: "red",
+                textAlign: "left",
+                display: "block",
+              }}
+            >
+              P/s2: dữ liệu theo dõi tính đến n-2
             </span>
             <span style={{ color: "red" }}>{errorImport}</span>
           </div>
