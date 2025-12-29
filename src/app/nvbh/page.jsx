@@ -179,7 +179,6 @@ export default function Page(props) {
 
     setLoading(false);
   };
-  
 
   const resetData = () => {
     setPlanData({});
@@ -487,6 +486,35 @@ export default function Page(props) {
                 rowSpan={2}
                 className="th-title position-relative"
               >{`PHONE`}</th>
+
+              <th
+                style={{ width: "100px" }}
+                rowSpan={2}
+                className="th-title position-relative"
+              >
+                  <span
+                  className="d-inline-flex align-items-center gap-1 tooltip-wrapper"
+                  onMouseEnter={(e) => {
+                    const tooltip =
+                      e.currentTarget.querySelector(".custom-tooltip");
+
+                    if (!tooltip) return;
+
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom + 6 + "px";
+                    tooltip.style.left = rect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                  }}
+                >
+                  {`TB TỔNG`}
+                  <span className="custom-tooltip">
+                    {
+                      "Bao gồm Thuê bao TBTT + SAYMEE + Kênh C2C"
+                    }
+                  </span>
+                </span>
+              </th>
               <th
                 colSpan={3}
                 className="th-title bg_green-light position-relative"
@@ -585,6 +613,13 @@ export default function Page(props) {
                     className="fix-col-4"
                   >
                     {object.PHONE ? `${object.PHONE}` : ""}
+                  </td>
+                  <td
+                    style={{ textAlign: "center", fontWeight: 600 }}
+                  >
+                    {convertToNumber(object.SL_PTM_TBTT_EXEC) +
+                      convertToNumber(object.TB_PTM_SAYMEE_EXEC) +
+                      convertToNumber(object.SL_TB_C2C_EXEC)}
                   </td>
 
                   <td style={{ textAlign: "center" }}>
@@ -859,7 +894,7 @@ export default function Page(props) {
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TYLE_GD_C2C_EXEC *100) /
+                            (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                               convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
                               100
                           ) >
