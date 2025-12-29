@@ -507,7 +507,7 @@ export default function Page(props) {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`TB TỔNG`}
+                  {`TỔNG TBTT (Saymee+MBF)`}
                   <span className="custom-tooltip">
                     {
                       "Bao gồm Thuê bao TBTT + SAYMEE + Kênh C2C"

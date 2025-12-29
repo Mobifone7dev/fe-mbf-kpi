@@ -4505,7 +4505,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
+                  convertToFloat2Fixed((
                     (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
@@ -4526,8 +4526,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT)
-                  ) *
-                    100 +
+                  )*
+                    100) +
                   "%"
                 )}
               </td>

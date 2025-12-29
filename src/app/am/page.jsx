@@ -81,10 +81,23 @@ export default function Page(props) {
 
   const getEmployee = async () => {
     setLoading(true);
-    const result = await handleSearchEmployeeByEmpcode("%C1%");
+    const result = await handleSearchEmployeeByEmpcode("%A1%");
     const tempRes = await result.json();
     if (tempRes) {
-      setEmployeeList(tempRes.result);
+      if (tempRes?.result) {
+        const excludeEmpCodes = [
+          "7DLAC12A1054",
+          "7DLAC12A1049",
+          "7DLAC12A1061",
+          "3PYEC02A1020",
+        ];
+
+        const filteredList = tempRes.result.filter(
+          (item) => !excludeEmpCodes.includes(item.EMP_CODE)
+        );
+
+        setEmployeeList(filteredList);
+      }
     }
     setLoading(false);
   };
@@ -92,7 +105,7 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetExecKpiDLAEmployee(date, "%C1%");
+    const result = await handleGetExecKpiDLAEmployee(date, "%A1%");
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
@@ -122,7 +135,6 @@ export default function Page(props) {
       SET_TB_PTM_FIBER_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_PTM_FIBER"], sumDateInMonth)
       );
-
     }
 
     setLoading(false);
@@ -148,7 +160,7 @@ export default function Page(props) {
     getPlanKpiEmployee();
     getExecKpiEmployee();
   }, [employeeList, selectedDate]);
-  
+
   useEffect(() => {
     if (execData.length > 0 && planData.length > 0) {
       const merged = mergePlanIntoExec(execData, planData);
@@ -184,7 +196,7 @@ export default function Page(props) {
     // 1. INIT TRƯỚC: tất cả nhân viên
     employeeList.forEach((emp) => {
       resultMap[emp.EMP_CODE] = {
-        AREA: emp.AREA,
+        AREA: emp.AREA_CODE,
         AREA_CODE: emp.AREA_CODE,
         EMP_CODE: emp.EMP_CODE,
         EMP_NAME: emp.EMP_NAME,
@@ -311,7 +323,7 @@ export default function Page(props) {
 
   function initFinalDataFromEmployees(employeeList = []) {
     return employeeList.map((emp) => ({
-      AREA: emp.AREA ?? emp.AREA_CODE ?? null,
+      AREA:emp.AREA_CODE ?? null,
       AREA_CODE: emp.AREA_CODE ?? null,
       EMP_CODE: emp.EMP_CODE,
       EMP_NAME: emp.EMP_NAME,
