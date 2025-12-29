@@ -355,13 +355,37 @@ export default function GDVComponent(props) {
 
     return map;
   }
+
+  const exportToExcel = () => {
+      const table = document.getElementById("table-kpi-gdv");
+      const workbook = XLSX.utils.table_to_book(table, {
+        sheet: "KPI_DLA",
+      });
+  
+      const excelBuffer = XLSX.write(workbook, {
+        bookType: "xlsx",
+        type: "array",
+      });
+  
+      const blob = new Blob([excelBuffer], {
+        type: "application/octet-stream",
+      });
+  
+      saveAs(blob, "bao_cao_kpi_dla_gdv.xlsx");
+    };
   return (
     <div className="dashboard-nvbh">
-      <h4 className="text-center my-4">
-        {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
-          selectedDate.getMonth() + 1
-        }`}
-      </h4>
+      <div className="d-flex justify-content-start align-items-center">
+        <h4 className="text-center my-4">
+          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI GDV THÁNG ${
+            selectedDate.getMonth() + 1
+          }`}
+        </h4>
+        <button className="ms-5 btn btn-primary" onClick={exportToExcel}>
+          Export Excel
+        </button>
+      </div>
+
       <div className="flex flex-col md:flex-row">
         <Formik
           enableReinitialize={true}
@@ -472,7 +496,10 @@ export default function GDVComponent(props) {
       </div>
 
       <div className="table-kpi-nvbh">
-        <table className="table-fixed align-middle gs-0 gy-3">
+        <table
+          className="table-fixed align-middle gs-0 gy-3"
+          id={`table-kpi-gdv`}
+        >
           <thead className={`table-head`}>
             <tr>
               <th
@@ -560,7 +587,7 @@ export default function GDVComponent(props) {
                     style={{ textAlign: "center", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
-                    {props.area ?? ""}
+                    {props.area ??""}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
