@@ -287,7 +287,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Thành phố Buôn Ma Thuột`}
+                  {`Vùng Buôn Ma Thuột`}
                   <span className="custom-tooltip">
                     {
                       "Xã Hòa Phú, Phường Buôn Ma Thuột,Phường Tân An,Phường Tân Lập,Phường Thành Nhất,Phường Ea Kao"
@@ -311,7 +311,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Krông Pắc`}
+                  {`Vùng Krông Pắc`}
                   <span className="custom-tooltip">
                     {
                       "xã Krông Pắc, xã Ea Knuếc,xã Tân Tiến,xã Ea Phê,xã Ea Kly,xã Vụ Bổn"
@@ -335,7 +335,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Ea Kar`}
+                  {`Vùng Ea Kar`}
                   <span className="custom-tooltip">
                     {"xã Ea Kar,xã Ea Ô,xã Ea Knốp,xã Cư Yang,xã Ea Păl"}
                   </span>
@@ -357,7 +357,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Thị xã Buôn Hồ`}
+                  {`Vùng Buôn Hồ`}
                   <span className="custom-tooltip">
                     {"xã Ea Drông, Phường Buôn Hồ, Phường Cư Bao"}
                   </span>
@@ -379,7 +379,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Cư M'gar`}
+                  {`Vùng Cư M'gar`}
                   <span className="custom-tooltip">
                     {
                       "xã Ea Kiết, Xã Ea M’Droh, xã Quảng Phú, xã Cuôr Đăng, Xã Cư M’gar, xã Ea Tul"
@@ -403,7 +403,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Cư Kuin`}
+                  {`Vùng Cư Kuin`}
                   <span className="custom-tooltip">
                     {"xã Ea Ning, xã Dray Bhăng, xã Ea Ktur"}
                   </span>
@@ -425,7 +425,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Ea H'leo`}
+                  {`Vùng Ea H'leo`}
                   <span className="custom-tooltip">
                     {
                       "Xã Ea Khăl, xã Ea Drăng, xã Ea Wy, xã Ea Hiao, Xã Ea H’leo"
@@ -449,7 +449,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Krông Năng`}
+                  {`Vùng Krông Năng`}
                   <span className="custom-tooltip">
                     {"xã Krông Năng, xã Dliê Ya, xã Tam Giang, xã Phú Xuân"}
                   </span>
@@ -471,7 +471,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Krông Búk`}
+                  {`Vùng Krông Búk`}
                   <span className="custom-tooltip">
                     {"xã Pơng Drang, xã Krông Búk, xã Cư Pơng"}
                   </span>
@@ -493,7 +493,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Krông Bông + Huyện Lắk`}
+                  {`Vùng Krông Bông + Vùng Lắk`}
                   <span className="custom-tooltip">
                     {
                       "xã Hòa Sơn, xã Dang Kang, xã Krông Bông, xã Yang Mao, xã Cư Pui, xã Liên Sơn Lắk, xã Đắk Liêng, xã Nam Ka, xã Đắk Phơi, xã Krông Nô"
@@ -517,7 +517,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Krông A Na`}
+                  {`Vùng Krông A Na`}
                   <span className="custom-tooltip">
                     {"xã Krông Ana, xã Dur Kmăl, xã Ea Na"}
                   </span>
@@ -539,7 +539,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Buôn Đôn + Huyện Ea Súp`}
+                  {`Vùng Buôn Đôn + Vùng Ea Súp`}
                   <span className="custom-tooltip">
                     {
                       "xã Ea Wer, xã Ea Nuôl, xã Buôn Đôn, xã Ea Súp, xã Ea Rốk, xã Ea Bung, xã Ia Lốp, xã Ia Rvê"
@@ -563,7 +563,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện M'ĐrắK`}
+                  {`Vùng M'ĐrắK`}
                   <span className="custom-tooltip">
                     {
                       "Xã M’Drắk, xã Ea Riêng, Xã Cư M’ta, xã Krông Á, xã Cư Prao, xã Ea Trang"
@@ -587,7 +587,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Thành phố Tuy Hoà`}
+                  {`Vùng Tuy Hoà`}
                   <span className="custom-tooltip">
                     {"Phường Bình Kiến, Phường Phú Yên, Phường Tuy Hòa"}
                   </span>
@@ -609,7 +609,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Đông Hoà`}
+                  {`Vùng Đông Hoà`}
                   <span className="custom-tooltip">
                     {"xã Hòa Xuân, Phường Đông Hòa, Phường Hòa Hiệp"}
                   </span>
@@ -631,7 +631,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Phú Hoà + Huyện Sơn Hòa`}
+                  {`Vùng Phú Hoà + Vùng Sơn Hòa`}
                   <span className="custom-tooltip">
                     {
                       "xã Vân Hòa, xã Tây Sơn, xã Suối Trai, xã Sơn Hòa, xã Phú Hòa 2, xã Phú Hòa 1"
@@ -655,7 +655,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Tây Hoà + Huyện Sông Hinh`}
+                  {`Vùng Tây Hoà + Vùng Sông Hinh`}
                   <span className="custom-tooltip">
                     {
                       "xã Hòa Mỹ, xã Tây Hòa,xã Sơn Thành, xã Ea Bá,xã Ea Ly,xã Đức Bình,xã Sông Hinh"
@@ -679,7 +679,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Thị xã Sông Cầu`}
+                  {`Vùng Sông Cầu`}
                   <span className="custom-tooltip">
                     {
                       "xã Xuân Thọ, Phường Xuân Đài, xã Xuân Cảnh, xã Xuân Lộc, Phường Sông Cầu"
@@ -703,7 +703,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                     tooltip.style.transform = "translateX(-50%)";
                   }}
                 >
-                  {`Huyện Tuy An +Huyện Đồng Xuân`}
+                  {`Vùng Tuy An +Vùng Đồng Xuân`}
                   <span className="custom-tooltip">
                     {
                       "xã Tuy An Tây,xã Tuy An Bắc, xã Tuy An Nam, xã Tuy An Đông,xã Ô Loan,xã Phú Mỡ,xã Xuân Lãnh,xã Xuân Phước,xã Đồng Xuân"
