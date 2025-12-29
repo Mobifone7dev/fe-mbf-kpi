@@ -859,7 +859,7 @@ export default function Page(props) {
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TYLE_GD_C2C_EXEC) /
+                            (convertToNumber(object.TYLE_GD_C2C_EXEC *100) /
                               convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
                               100
                           ) >
@@ -873,6 +873,13 @@ export default function Page(props) {
                       fontWeight: 500,
                     }}
                   >
+                    {/* {
+                     convertToFloat2FixedNumber(
+                            (convertToNumber(object.TYLE_GD_C2C_EXEC) /
+                              convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
+                              100
+                          )  
+                    } */}
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                         convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
