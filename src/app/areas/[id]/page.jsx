@@ -34,14 +34,14 @@ export default function AreaDetail({ params }) {
             KPI thực hiện của NVBH
           </button>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <button
             className={`nav-link ${activeTab === "tab3" ? "active" : ""}`}
             onClick={() => setActiveTab("tab3")}
           >
             KPI thực hiện của AM
           </button>
-        </li>
+        </li> */}
       </ul>
 
       {/* TAB CONTENT */}
@@ -58,11 +58,11 @@ export default function AreaDetail({ params }) {
           </div>
         )}
 
-        {activeTab === "tab3" && (
+        {/* {activeTab === "tab3" && (
           <div className="tab-pane active">
             <h4>AM</h4>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
