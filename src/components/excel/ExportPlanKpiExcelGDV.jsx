@@ -13,7 +13,16 @@ export const exportKpiPlanExcelGDV = (finalData = []) => {
     "M2M",
     "SAYMEE",
     "FIBER",
-
+    "KẾ HOẠCH C90N/C99N",
+    "THỰC HIỆN C90N/C99N",
+    "KẾ HOẠCH GIA HẠN LẠI GÓI ĐƠN KỲ",
+    "THỰC HIỆN GIA HẠN LẠI GÓI ĐƠN KỲ",
+    "KẾ HOẠCH TBTS C1C",
+    "THỰC HIỆN TBTS C1C",
+    "KẾ HOẠCH TBTT C1C",
+    "THỰC HIỆN TBTT C1C",
+    "KẾ HOẠCH DT BÁN GÓI N-1",
+    "THỰC HIỆN DT BÁN GÓI N-1"
   ];
 
   // 2. Data rows
@@ -27,6 +36,16 @@ export const exportKpiPlanExcelGDV = (finalData = []) => {
     item.SL_TB_PTM_M2M_PLAN ?? 0,
     item.TB_PTM_SAYMEE_PLAN ?? 0,
     item.TB_PTM_FIBER_PLAN ?? 0,
+    item.PLAN_SL_C90N_C99N ?? 0,
+    item.EXEC_TB_C90N_C99N ?? 0,
+    item.PLAN_TB_GIA_HAN_DON_KY ?? 0,
+    item.EXEC_TB_GIA_HAN_DON_KY ?? 0,
+    item.PLAN_TB_TBTS_C1C ?? 0,
+    item.EXEC_TB_TBTS_C1C ?? 0,
+    item.PLAN_TB_TBTT_C1C ?? 0,
+    item.EXEC_TB_TBTT_C1C ?? 0,
+    item.PLAN_DTHU_N_1 ?? 0,
+    item.EXEC_DTHU_N_1 ?? 0,
 
   ]);
 

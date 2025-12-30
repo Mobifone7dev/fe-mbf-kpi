@@ -2155,7 +2155,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td>
                 {loadingExec ? (
                   <LoadingComponent />
-                ) :(
+                ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_DTHU_FIBER.DLA_T01 / 1000000) +
                       convertToNumber(EXEC_DTHU_FIBER.DLA_T02 / 1000000) +
@@ -2177,7 +2177,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_DTHU_FIBER.DLA_D05 / 1000000) +
                       convertToNumber(EXEC_DTHU_FIBER.DLA_D06 / 1000000)
                   )
-                ) }
+                )}
               </td>
               <td>
                 {loadingExec ? (
@@ -2735,11 +2735,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
             <tr>
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01) * 1000000) >
+               className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T01 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T01 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2749,22 +2751,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T01
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T01 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T01 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T01 ? PLAN_DTHU_GPS.DLA_T01 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T01 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T01 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T02)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02) * 1000000) >
+               className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T02 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T02 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2774,23 +2775,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T02
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T02 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T02 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T02 ? PLAN_DTHU_GPS.DLA_T02 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T02 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T02 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02)) *
+                      100
+                  ) + '%'
                 )}
               </td>
 
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T03) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T03)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T03 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T03 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2799,23 +2799,23 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
+                 
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T03
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T03 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T03 / 100000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T03 ? PLAN_DTHU_GPS.DLA_T03 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T03 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T03 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T04) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T04)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T04 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T04 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2824,24 +2824,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T04
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T04 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T04 / 100000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T04 ? PLAN_DTHU_GPS.DLA_T04 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T04 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T04 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T05) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T05)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_TDLA_T05) *
-                      1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T05 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T05 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T05)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2851,22 +2849,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T05
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T05 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T05 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T05 ? PLAN_DTHU_GPS.DLA_T05 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T05 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T05 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T05)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T06) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T06)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T06 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T06 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2875,23 +2872,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T06
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T06 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T06 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T06 ? PLAN_DTHU_GPS.DLA_T06 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T06 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T06 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T07) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T07)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T07 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T07 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2900,23 +2896,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T07
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T07 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T07
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T07 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T07 ? PLAN_DTHU_GPS.DLA_T07 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T07 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T07 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T08) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T08)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T08 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T08 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2925,23 +2920,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T08
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T08 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T08
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T08 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T08 ? PLAN_DTHU_GPS.DLA_T08 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T08 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T08 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T09) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T09)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T09 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T09 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2951,22 +2945,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T09
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T09 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T09
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T09 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T09 ? PLAN_DTHU_GPS.DLA_T09 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T09 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T09 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T10) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T10)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T10 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T10 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2975,23 +2968,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T10
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T10 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T10
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T10 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T10 ? PLAN_DTHU_GPS.DLA_T10 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T10 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T10 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T11) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T11)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T11 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T11 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3000,23 +2992,22 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T11
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T11 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T11
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T11 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T11 ? PLAN_DTHU_GPS.DLA_T11 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T11 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T11 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T12) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T12)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T12 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T12 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3026,22 +3017,45 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T12
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T12 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T12
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T12 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T12 ? PLAN_DTHU_GPS.DLA_T12 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T12 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T12 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12)) *
+                      100
+                  ) + '%'
+                )}
+              </td>
+              <td
+               className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T13 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T13 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13)) *
+                      100
+                  ) >
+                  processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_T13 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_T13 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T13) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T13)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D01 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D01 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3051,22 +3065,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_T13
-                      ? EXEC_DTHU_GPS_KHCN.DLA_T13 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_T13
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T13 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_T13 ? PLAN_DTHU_GPS.DLA_T13 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D01 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D01 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D01) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D01)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D02 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D02 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3076,22 +3089,69 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D01
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D01 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D01 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D01 ? PLAN_DTHU_GPS.DLA_D01 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D02 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D02 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02)) *
+                      100
+                  ) + '%'
+                )}
+              </td>
+              <td
+               className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D03 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D03 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03)) *
+                      100
+                  ) >
+                  processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D03 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D03 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03)) *
+                      100
+                  ) + '%'
+                )}
+              </td>
+              <td
+                 className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D04 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D04 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04)) *
+                      100
+                  ) >
+                  processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D04 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D04 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D02) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D02)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D05 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D05 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3101,22 +3161,21 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D02
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D02 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D02 / 100000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D02 ? PLAN_DTHU_GPS.DLA_D02 : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D05 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D05 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D03) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D03)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03) * 1000000) >
+               className={
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D06 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D06 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3125,99 +3184,23 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D03
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D03 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D03 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D03 ? PLAN_DTHU_GPS.DLA_D03 : 1)
-                  ) + "%"
-                )}
-              </td>
-              <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D04) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D04)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04) * 1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D04
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D04 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D04 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D04 ? PLAN_DTHU_GPS.DLA_D04 : 1)
-                  ) + "%"
-                )}
-              </td>
-              <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05) * 1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D05
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D05 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D05 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D05 ? PLAN_DTHU_GPS.DLA_D05 : 1)
-                  ) + "%"
-                )}
-              </td>
-              <td
-                className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06) * 1000000) >
-                  processKPI
-                    ? "bg-green"
-                    : "bg-red"
-                }
-              >
-                {loadingExec || loadingPlan ? (
-                  <LoadingComponent />
-                ) : (
-                  convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.DLA_D06
-                      ? EXEC_DTHU_GPS_KHCN.DLA_D06 / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.DLA_D06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D06 / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.DLA_D06 ? PLAN_DTHU_GPS.DLA_D06 : 1)
-                  ) + "%"
+                 convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.DLA_D06 ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.DLA_D06 ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06)) *
+                      100
+                  ) + '%'
                 )}
               </td>
               <td>{loadingExec || loadingPlan ? <LoadingComponent /> : ""}</td>
               <td
                 className={
-                  ((convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
-                    convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS)) *
-                    100) /
-                    (convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS) * 1000000) >
+                convertToFloat2Fixed(
+                    (((EXEC_DTHU_GPS_KHCN.TTKDGPS ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.TTKDGPS ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)) *
+                      100
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3227,14 +3210,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    ((EXEC_DTHU_GPS_KHCN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHCN.TTKDGPS / 1000000
-                      : 0 + EXEC_DTHU_GPS_KHDN.TTKDGPS
-                      ? EXEC_DTHU_GPS_KHDN.TTKDGPS / 1000000
-                      : 0) *
-                      100) /
-                      (PLAN_DTHU_GPS.TTKDGPS ? PLAN_DTHU_GPS.TTKDGPS : 1)
-                  ) + "%"
+                    (((EXEC_DTHU_GPS_KHCN.TTKDGPS ?? 0) / 1000000 +
+                      (EXEC_DTHU_GPS_KHDN.TTKDGPS ?? 0) / 1000000) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)) *
+                      100
+                  ) + '%'
                 )}
               </td>
             </tr>
@@ -4505,8 +4485,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
                 ) : (
-                  convertToFloat2Fixed((
-                    (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) / 1000000 +
@@ -4525,10 +4505,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000) /
-                      convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT)
-                  )*
-                    100) +
-                  "%"
+                      convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT)) *
+                      100
+                  ) + "%"
                 )}
               </td>
               <td
@@ -5386,8 +5365,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>{" "}
               <td
                 className={
-                  ( convertToFloat2Fixed(
-                    (convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T02) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T03) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T04) +
@@ -5405,10 +5384,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06))*100 /
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06)) *
+                      100) /
                       convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
-                  ) ) >
-                  processKPI
+                  ) > processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5417,7 +5396,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
+                    ((convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T02) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T03) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_T04) +
@@ -5435,10 +5414,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06))*100 /
+                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06)) *
+                      100) /
                       convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
-                  )  +
-                  "%"
+                  ) + "%"
                 )}
               </td>{" "}
               <td

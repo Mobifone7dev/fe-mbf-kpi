@@ -378,7 +378,7 @@ export async function handleGetExecKpi(month: string, province?: string) {
     res = await fetch(
       urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -412,7 +412,7 @@ export async function handleGetExecKpiDLA(month: string) {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -449,7 +449,7 @@ export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: st
         res = await fetch(urlApi, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (res.status == 403) {
+      if (res.status == 403 || res.status == 401) {
         signOut({ redirect: false });
         redirect("/login");
       }
@@ -490,7 +490,7 @@ export async function handleGetWebUser(userEmail: string) {
     res = await fetch(
       URL + `/user-role/web-user?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -523,7 +523,7 @@ export async function handleGetUserRole(userEmail: string) {
     res = await fetch(
       URL + `/user-role/get-user-role?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -564,7 +564,7 @@ export async function handleUpdateUseRole(postData: any) {
         body: JSON.stringify(postData)
 
       })
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -612,7 +612,7 @@ export async function handleGetExecKpiExcel(month: string, kpiType: string, prov
       },
     });
 
-    if (res.status === 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
       return;
@@ -654,7 +654,7 @@ export async function handleSearchEmployeeByArea(
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }
@@ -693,7 +693,7 @@ export async function handleSearchEmployeeByEmpcode(
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403) {
+    if (res.status == 403 || res.status == 401) {
       signOut({ redirect: false });
       redirect("/login");
     }

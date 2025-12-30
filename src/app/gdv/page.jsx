@@ -356,22 +356,22 @@ export default function Page(props) {
   }
 
   const exportToExcel = () => {
-      const table = document.getElementById("table-kpi-gdv");
-      const workbook = XLSX.utils.table_to_book(table, {
-        sheet: "KPI_DLA",
-      });
-  
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
-  
-      const blob = new Blob([excelBuffer], {
-        type: "application/octet-stream",
-      });
-  
-      saveAs(blob, "bao_cao_kpi_dla_gdv.xlsx");
-    };
+    const table = document.getElementById("table-kpi-gdv");
+    const workbook = XLSX.utils.table_to_book(table, {
+      sheet: "KPI_DLA",
+    });
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(blob, "bao_cao_kpi_dla_gdv.xlsx");
+  };
   return (
     <div className="dashboard-nvbh">
       <div className="d-flex justify-content-start align-items-center">
@@ -555,9 +555,37 @@ export default function Page(props) {
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
-              >{`TB MNP đến`}</th>
+              >{`C90N/C99N`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_pink-light position-relative"
+              >{`GIA HẠN LẠI GÓI ĐƠN KỲ`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_green-light position-relative"
+              >{`TBTS C1C`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_yellow-light position-relative"
+              >{`TBTT C1C`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_blue-light position-relative"
+              >{`DT BÁN GÓI N-1`}</th>
             </tr>
             <tr className="th-title th-color-yellow ">
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
@@ -814,9 +842,25 @@ export default function Page(props) {
                         convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
                         100
                     )}{" "}
-                    {"%"}
+                    {"%"}p
                   </td>
-                  {/* Doanh thu */}
+                  {/* C90N */}
+                  <td style={{textAlign:"center"}}>{object.TYLE_C90N_C99N ?? 0}</td>
+                  <td></td>
+                  <td></td>
+                  {/* Gia hạn đơn kỳ */}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  {/* TB trả sau c1c */}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  {/* TB trả trước c1c */}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  {/* Dthu bán gói n-1 */}
                   <td></td>
                   <td></td>
                   <td></td>
@@ -824,7 +868,7 @@ export default function Page(props) {
               ))
             ) : (
               <tr>
-                <td colSpan={24} className="text-center fw-bold">
+                <td colSpan={36} className="text-center fw-bold">
                   Đang tải dữ liệu...
                 </td>
               </tr>
