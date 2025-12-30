@@ -1883,48 +1883,48 @@ export const dataRawKpi =
       ]
     }
   ];
-  export const kpiSummaryData = {
-    CLOUD: [
-      { province: "KHO", data: 530 },
-      { province: "DLA", data: 194 },
-      { province: "GLA", data: 149 },
-      { province: "PYE", data: 82 },
-      { province: "DNO", data: 70 },
-      { province: "KON", data: 63 },
-    ],
-    IOT: [
-      { province: "KHO", data: 262 },
-      { province: "DLA", data: 228 },
-      { province: "GLA", data: 192 },
-      { province: "PYE", data: 155 },
-      { province: "DNO", data: 146 },
-      { province: "KON", data: 120 },
-    ],
-    AGRI_DTHU: [
-      { province: "KHO", data: 295363636 },
-      { province: "DLA", data: 155000000 },
-      { province: "GLA", data: 155000000 },
-      { province: "PYE", data: 65909091 },
-      { province: "DNO", data: 72636364 },
-      { province: "KON", data: 74272721 },
-    ],
-    AGRI_SL: [
-      { province: "KHO", data: 3249 },
-      { province: "DLA", data: 1705 },
-      { province: "GLA", data: 1705 },
-      { province: "PYE", data: 725 },
-      { province: "DNO", data: 799 },
-      { province: "KON", data: 817 },
-    ],
-    M2M: [
-      { province: "KHO", data: 480 },
-      { province: "DLA", data: 320 },
-      { province: "GLA", data: 310 },
-      { province: "PYE", data: 170 },
-      { province: "DNO", data: 162 },
-      { province: "KON", data: 158 },
-    ],
-  };
+export const kpiSummaryData = {
+  CLOUD: [
+    { province: "KHO", data: 530 },
+    { province: "DLA", data: 194 },
+    { province: "GLA", data: 149 },
+    { province: "PYE", data: 82 },
+    { province: "DNO", data: 70 },
+    { province: "KON", data: 63 },
+  ],
+  IOT: [
+    { province: "KHO", data: 262 },
+    { province: "DLA", data: 228 },
+    { province: "GLA", data: 192 },
+    { province: "PYE", data: 155 },
+    { province: "DNO", data: 146 },
+    { province: "KON", data: 120 },
+  ],
+  AGRI_DTHU: [
+    { province: "KHO", data: 295363636 },
+    { province: "DLA", data: 155000000 },
+    { province: "GLA", data: 155000000 },
+    { province: "PYE", data: 65909091 },
+    { province: "DNO", data: 72636364 },
+    { province: "KON", data: 74272721 },
+  ],
+  AGRI_SL: [
+    { province: "KHO", data: 3249 },
+    { province: "DLA", data: 1705 },
+    { province: "GLA", data: 1705 },
+    { province: "PYE", data: 725 },
+    { province: "DNO", data: 799 },
+    { province: "KON", data: 817 },
+  ],
+  M2M: [
+    { province: "KHO", data: 480 },
+    { province: "DLA", data: 320 },
+    { province: "GLA", data: 310 },
+    { province: "PYE", data: 170 },
+    { province: "DNO", data: 162 },
+    { province: "KON", data: 158 },
+  ],
+};
 
 export const kpiSummaryDataT08 = {
   LTT: [
@@ -1944,3 +1944,54 @@ export const kpiSummaryDataT08 = {
     { province: "KON", data: 70 },
   ]
 };
+
+export const excludeEmpCodes = [
+  "7DLAC12A1054",
+  "7DLAC12A1049",
+  "7DLAC12A1061",
+  "3PYEC02A1020",
+  "3PYEC02A1024",
+  "3PYEC02A1021",
+  "3PYEC02A1018",
+  "3PYEC02A1022",
+  "3PYEC02A1025",
+  "3PYEC02A1023",
+  "7DLAC12A1034",
+  "7DLAC12A1040",
+  "7DLAC12A1057",
+  "7DLAC12A1025",
+  "7DLAC12A1001",
+  "7DLAC12A1053",
+  "7DLAC12A1055",
+  "7DLAC12A1041",
+  "7DLAC12A1004",
+  "7DLAC12A1047",
+  "7DLAC12A1048",
+  "7DLAC12A1007",
+  "7DLAC12A1036",
+  "7DLAC12A1038",
+  "7DLAC12A1043",
+  "7DLAC12A1046",
+  "7DLAC12A1006",
+  "7DLAC12A1063",
+  "7DLAC12A1008",
+  "7DLAC12A1042",
+  "7DLAC12A1032",
+  "7DLAC12A1064",
+  "7DLAC12A1003",
+  "7DLAC12A1039",
+  "7DLAC12A1058",
+  "7DLAC12A1045",
+  "7DLAC12A1044",
+  "7DLAC12A1060",
+  "7DLAC12A1059",
+  "7DLAC12A1056",
+  "7DLAC12A1051",
+  "7DLAC12A1062",
+  "3DLAC12A1002", ,
+  "7DLAC12A1009",
+  "7DLAC12A1050",
+  "7DLAC12A1052",
+  "C7_2_THUYLTP"
+
+];

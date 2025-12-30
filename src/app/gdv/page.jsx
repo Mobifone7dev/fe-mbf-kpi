@@ -25,7 +25,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
-
+import { excludeEmpCodes } from "../../lib/rawData";
 var x = new Date();
 x.setDate(1);
 x.setMonth(x.getMonth());
@@ -91,7 +91,10 @@ export default function Page(props) {
     const result = await handleSearchEmployeeByEmpcode("%C7_%");
     const tempRes = await result.json();
     if (tempRes) {
-      setEmployeeList(tempRes.result);
+      const filteredList = tempRes.result.filter(
+        (item) => !excludeEmpCodes.includes(item.EMP_CODE)
+      );
+      setEmployeeList(filteredList);
     }
     setLoading(false);
   };
@@ -845,7 +848,9 @@ export default function Page(props) {
                     {"%"}p
                   </td>
                   {/* C90N */}
-                  <td style={{textAlign:"center"}}>{object.TYLE_C90N_C99N ?? 0}</td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.TYLE_C90N_C99N ?? 0}
+                  </td>
                   <td></td>
                   <td></td>
                   {/* Gia hạn đơn kỳ */}

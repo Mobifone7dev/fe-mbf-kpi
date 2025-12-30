@@ -25,7 +25,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
-
+import { excludeEmpCodes } from "../../lib/rawData";
 var x = new Date();
 x.setDate(1);
 x.setMonth(x.getMonth());
@@ -61,6 +61,7 @@ export default function Page(props) {
   const [SL_TB_PTM_M2M_PROCESS, SET_SL_TB_PTM_M2M_PROCESS] = useState(0);
   const [TB_PTM_SAYMEE_PROCESS, SET_TB_PTM_SAYMEE_PROCESS] = useState(0);
   const [TB_PTM_FIBER_PROCESS, SET_TB_PTM_FIBER_PROCESS] = useState(0);
+
   useEffect(() => {
     const userString = localStorage.getItem("user");
     if (userString) {
@@ -85,13 +86,6 @@ export default function Page(props) {
     const tempRes = await result.json();
     if (tempRes) {
       if (tempRes?.result) {
-        const excludeEmpCodes = [
-          "7DLAC12A1054",
-          "7DLAC12A1049",
-          "7DLAC12A1061",
-          "3PYEC02A1020",
-        ];
-
         const filteredList = tempRes.result.filter(
           (item) => !excludeEmpCodes.includes(item.EMP_CODE)
         );
