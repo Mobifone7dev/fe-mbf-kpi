@@ -726,34 +726,34 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 <Link href={`/areas/DLA_T01`}>DLA_T01</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T01`}>DLA_T02</Link>
+                <Link href={`/areas/DLA_T02`}>DLA_T02</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T02`}>DLA_T03</Link>
+                <Link href={`/areas/DLA_T03`}>DLA_T03</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T03`}>DLA_T04</Link>
+                <Link href={`/areas/DLA_T04`}>DLA_T04</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T04`}>DLA_T05</Link>
+                <Link href={`/areas/DLA_T05`}>DLA_T05</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T05`}>DLA_T06</Link>
+                <Link href={`/areas/DLA_T06`}>DLA_T06</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T06`}>DLA_T07</Link>
+                <Link href={`/areas/DLA_T07`}>DLA_T07</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T07`}>DLA_T08</Link>
+                <Link href={`/areas/DLA_T08`}>DLA_T08</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T08`}>DLA_T09</Link>
+                <Link href={`/areas/DLA_T09`}>DLA_T09</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T09`}>DLA_T10</Link>
+                <Link href={`/areas/DLA_T010`}>DLA_T10</Link>
               </th>
               <th>
-                <Link href={`/areas/DLA_T10`}>DLA_T11</Link>
+                <Link href={`/areas/DLA_T11`}>DLA_T11</Link>
               </th>
               <th>
                 <Link href={`/areas/DLA_T12`}>DLA_T12</Link>
