@@ -68,6 +68,12 @@ export default function Page(props) {
   const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
   const [TB_C90N_C99N_PROCESS, SET_TB_C90N_C99N_PROCESS] = useState(0);
   const [TB_GIA_HAN_DON_KY_PROCESS, SET_TB_GIA_HAN_DON_KY_PROCESS] = useState(0)
+    const [TB_TBTS_C1C_PROCESS, SET_TB_TBTS_C1C_PROCESS] =
+      useState(0);
+      const [TB_TBTT_C1C_PROCESS, SET_TB_TBTT_C1C_PROCESS] = useState(0);
+  const [DTHU_N_1_PROCESS, SET_DTHU_N_1_PROCESS] = useState(0);
+
+
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -150,6 +156,15 @@ export default function Page(props) {
       SET_TB_GIA_HAN_DON_KY_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_GIA_HAN_DON_KY"], sumDateInMonth)
       );
+SET_TB_TBTS_C1C_PROCESS(
+  calcProcessFromLastDate(lastDateMap["TB_TBTS_C1C"], sumDateInMonth)
+);
+SET_TB_TBTT_C1C_PROCESS(
+  calcProcessFromLastDate(lastDateMap["TB_TBTT_C1C"], sumDateInMonth)
+);
+SET_DTHU_N_1_PROCESS(
+  calcProcessFromLastDate(lastDateMap["DTHU_N_1"], sumDateInMonth)
+);
 
 
       
@@ -872,11 +887,16 @@ export default function Page(props) {
                   <td style={{ textAlign: "center" }}>
                     {object.TB_C90N_C99N_PLAN ?? 0}
                   </td>
-                  <td   style={{
+                  <td
+                    style={{
                       textAlign: "center",
                       fontStyle: "italic",
-                    }}> {object.TB_C90N_C99N_EXEC ?? 0}</td>
-                 <td
+                    }}
+                  >
+                    {" "}
+                    {object.TB_C90N_C99N_EXEC ?? 0}
+                  </td>
+                  <td
                     className={
                       convertToNumber(object.TB_C90N_C99N_PLAN) === 0
                         ? convertToNumber(object.TB_C90N_C99N_EXEC) > 0
@@ -905,14 +925,19 @@ export default function Page(props) {
                     {"%"}
                   </td>
                   {/* Gia hạn đơn kỳ */}
-                 <td style={{ textAlign: "center" }}>
+                  <td style={{ textAlign: "center" }}>
                     {object.TB_GIA_HAN_DON_KY_PLAN ?? 0}
                   </td>
-                  <td   style={{
+                  <td
+                    style={{
                       textAlign: "center",
                       fontStyle: "italic",
-                    }}> {object.TB_GIA_HAN_DON_KY_EXEC ?? 0}</td>
-                 <td
+                    }}
+                  >
+                    {" "}
+                    {object.TB_GIA_HAN_DON_KY_EXEC ?? 0}
+                  </td>
+                  <td
                     className={
                       convertToNumber(object.TB_GIA_HAN_DON_KY_PLAN) === 0
                         ? convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) > 0
@@ -920,10 +945,14 @@ export default function Page(props) {
                           : ""
                         : convertToFloat2FixedNumber(
                             (convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) /
-                              convertToNumberMauso(object.TB_GIA_HAN_DON_KY_PLAN)) *
+                              convertToNumberMauso(
+                                object.TB_GIA_HAN_DON_KY_PLAN
+                              )) *
                               100
                           ) >
-                          convertToFloat2FixedNumber(TB_GIA_HAN_DON_KY_PROCESS * 100)
+                          convertToFloat2FixedNumber(
+                            TB_GIA_HAN_DON_KY_PROCESS * 100
+                          )
                         ? "bg-green"
                         : "bg-red"
                     }
@@ -934,24 +963,137 @@ export default function Page(props) {
                     }}
                   >
                     {convertToFloat2FixedNumber(
-                      (convertToNumber(object.TB_C90N_C99N_EXEC) /
-                        convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
+                      (convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) /
+                        convertToNumberMauso(object.TB_GIA_HAN_DON_KY_PLAN)) *
                         100
                     )}{" "}
                     {"%"}
                   </td>
                   {/* TB trả sau c1c */}
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_TBTS_C1C_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {" "}
+                    {object.TB_TBTS_C1C_EXEC ?? 0}
+                  </td>
+                  <td
+                    className={
+                      convertToNumber(object.TB_TBTS_C1C_PLAN) === 0
+                        ? convertToNumber(object.TB_TBTS_C1C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_TBTS_C1C_EXEC) /
+                              convertToNumberMauso(object.TB_TBTS_C1C_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_TBTS_C1C_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_TBTS_C1C_PLAN) /
+                        convertToNumberMauso(object.TB_TBTS_C1C_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
                   {/* TB trả trước c1c */}
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.TB_TBTT_C1C_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {" "}
+                    {object.TB_TBTT_C1C_EXEC ?? 0}
+                  </td>
+                  <td
+                    className={
+                      convertToNumber(object.TB_TBTT_C1C_PLAN) === 0
+                        ? convertToNumber(object.TB_TBTT_C1C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_TBTT_C1C_EXEC) /
+                              convertToNumberMauso(object.TB_TBTT_C1C_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_TBTT_C1C_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_TBTT_C1C_EXEC) /
+                        convertToNumberMauso(object.TB_TBTT_C1C_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
                   {/* Dthu bán gói n-1 */}
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td style={{ textAlign: "center" }}>
+                    {object.DTHU_N_1_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {" "}
+                    {object.DTHU_N_1_EXEC ?? 0}
+                  </td>
+                  <td
+                    className={
+                      convertToNumber(object.DTHU_N_1_PLAN) === 0
+                        ? convertToNumber(object.DTHU_N_1_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.DTHU_N_1_EXEC) /
+                              convertToNumberMauso(object.DTHU_N_1_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(
+                            DTHU_N_1_PROCESS * 100
+                          )
+                        ? "bg-green"
+                        : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.DTHU_N_1_EXEC) /
+                        convertToNumberMauso(object.DTHU_N_1_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
                 </tr>
               ))
             ) : (
