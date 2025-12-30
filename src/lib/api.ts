@@ -268,6 +268,43 @@ export async function createManualApiListDLAEmployee(postData: any) {
     );
   }
 }
+
+export async function createManualApiListDLAEmployeeExec(postData: any) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  console.log("postData", postData);
+  let res;
+  const token = localStorage.getItem("accessToken");
+
+  try {
+    res = await fetch(URL + `/dashboard/dashboard-create-manual-list-kpi-dla-nhan-vien-thuc-hien`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+    if (res.status == 403 || res.status == 401) {
+      redirect("/login");
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    console.log(e);
+    return Response.json(
+      { message: "An error occurred while get code.", e },
+      { status: 500 }
+    );
+  }
+}
 export async function handleGetPlanKpi(month: string, district?: string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;

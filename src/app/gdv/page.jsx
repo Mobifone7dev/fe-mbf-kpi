@@ -23,7 +23,7 @@ import {
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
+import ImportKpiExcelGDV from "../../components/excel/ImportKpiExcelGDV";
 import { setLazyProp } from "next/dist/server/api-utils";
 import { excludeEmpCodes } from "../../lib/rawData";
 var x = new Date();
@@ -66,7 +66,8 @@ export default function Page(props) {
   const [TB_PTM_FIBER_PROCESS, SET_TB_PTM_FIBER_PROCESS] = useState(0);
   const [SL_TB_C2C_PROCESS, SET_SL_TB_C2C_PROCESS] = useState(0);
   const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
-  const [TB_MNP_DEN_PROCESS, SET_TB_MNP_DEN_PROCESS] = useState(0);
+  const [TB_C90N_C99N_PROCESS, SET_TB_C90N_C99N_PROCESS] = useState(0);
+  const [TB_GIA_HAN_DON_KY_PROCESS, SET_TB_GIA_HAN_DON_KY_PROCESS] = useState(0)
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -141,9 +142,18 @@ export default function Page(props) {
         calcProcessFromLastDate(lastDateMap["TYLE_GD_C2C"], sumDateInMonth)
       );
 
-      SET_TB_MNP_DEN_PROCESS(
-        calcProcessFromLastDate(lastDateMap["TB_MNP_DEN"], sumDateInMonth)
+    
+      SET_TB_C90N_C99N_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_C90N_C99N"], sumDateInMonth)
       );
+
+      SET_TB_GIA_HAN_DON_KY_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_GIA_HAN_DON_KY"], sumDateInMonth)
+      );
+
+
+      
+      
     }
 
     setLoading(false);
@@ -455,7 +465,7 @@ export default function Page(props) {
           >
             Export kế hoạch KPI
           </button>{" "}
-          <ImportPlanKpiExcel
+          <ImportKpiExcelGDV
             selectedDate={selectedDate}
             employeeList={employeeList}
             loading={(e) => {
@@ -474,7 +484,7 @@ export default function Page(props) {
                 getExecKpiEmployee();
               }
             }}
-          ></ImportPlanKpiExcel>
+          ></ImportKpiExcelGDV>
           <div className="flex flex-col">
             <span
               style={{ fontStyle: "italic", color: "red", paddingTop: "5px" }}
@@ -509,6 +519,11 @@ export default function Page(props) {
                 style={{ width: "100px" }}
                 className="th-title position-relative"
               >{`ĐƠN VỊ/BP`}</th>
+              <th
+                rowSpan={2}
+                style={{ width: "100px" }}
+                className="th-title position-relative"
+              >{`SHOP CODE`}</th>
               <th
                 rowSpan={2}
                 style={{ width: "150px" }}
@@ -618,6 +633,12 @@ export default function Page(props) {
                     className="td-stt  fix-col-1"
                   >
                     {object.AREA}
+                  </td>
+                  <td
+                    style={{ textAlign: "center", fontWeight: 600 }}
+                    className="td-stt  fix-col-1"
+                  >
+                    {object.SHOP_CODE}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
@@ -845,18 +866,80 @@ export default function Page(props) {
                         convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
                         100
                     )}{" "}
-                    {"%"}p
+                    {"%"}
                   </td>
                   {/* C90N */}
                   <td style={{ textAlign: "center" }}>
-                    {object.TYLE_C90N_C99N ?? 0}
+                    {object.TB_C90N_C99N_PLAN ?? 0}
                   </td>
-                  <td></td>
-                  <td></td>
+                  <td   style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}> {object.TB_C90N_C99N_EXEC ?? 0}</td>
+                 <td
+                    className={
+                      convertToNumber(object.TB_C90N_C99N_PLAN) === 0
+                        ? convertToNumber(object.TB_C90N_C99N_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_C90N_C99N_EXEC) /
+                              convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_C90N_C99N_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_C90N_C99N_EXEC) /
+                        convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
                   {/* Gia hạn đơn kỳ */}
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                 <td style={{ textAlign: "center" }}>
+                    {object.TB_GIA_HAN_DON_KY_PLAN ?? 0}
+                  </td>
+                  <td   style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}> {object.TB_GIA_HAN_DON_KY_EXEC ?? 0}</td>
+                 <td
+                    className={
+                      convertToNumber(object.TB_GIA_HAN_DON_KY_PLAN) === 0
+                        ? convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                            (convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) /
+                              convertToNumberMauso(object.TB_GIA_HAN_DON_KY_PLAN)) *
+                              100
+                          ) >
+                          convertToFloat2FixedNumber(TB_GIA_HAN_DON_KY_PROCESS * 100)
+                        ? "bg-green"
+                        : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.TB_C90N_C99N_EXEC) /
+                        convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
+                        100
+                    )}{" "}
+                    {"%"}
+                  </td>
                   {/* TB trả sau c1c */}
                   <td></td>
                   <td></td>
@@ -873,7 +956,7 @@ export default function Page(props) {
               ))
             ) : (
               <tr>
-                <td colSpan={36} className="text-center fw-bold">
+                <td colSpan={37} className="text-center fw-bold">
                   Đang tải dữ liệu...
                 </td>
               </tr>

@@ -5,9 +5,9 @@ export const exportKpiPlanExcelGDV = (finalData = []) => {
   // 1. Header Excel
   const header = [
     "ĐƠN VỊ",
+    "SHOP_CODE",
     "EMP_CODE",
     "TÊN NV",
-
     "TBTT PTM",
     "TBTS THOẠI",
     "M2M",
@@ -28,6 +28,7 @@ export const exportKpiPlanExcelGDV = (finalData = []) => {
   // 2. Data rows
   const rows = finalData.map((item) => [
     item.AREA ?? "",
+    item.SHOP_CODE ?? "",
     item.EMP_CODE ?? "",
     item.EMP_NAME ?? "",
 
@@ -36,7 +37,7 @@ export const exportKpiPlanExcelGDV = (finalData = []) => {
     item.SL_TB_PTM_M2M_PLAN ?? 0,
     item.TB_PTM_SAYMEE_PLAN ?? 0,
     item.TB_PTM_FIBER_PLAN ?? 0,
-    item.PLAN_SL_C90N_C99N ?? 0,
+    item.PLAN_TB_C90N_C99N ?? 0,
     item.EXEC_TB_C90N_C99N ?? 0,
     item.PLAN_TB_GIA_HAN_DON_KY ?? 0,
     item.EXEC_TB_GIA_HAN_DON_KY ?? 0,

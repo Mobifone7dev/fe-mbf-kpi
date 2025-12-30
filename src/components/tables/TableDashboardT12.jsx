@@ -11719,11 +11719,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02) *
-                    100) /
-                    convertToNumberMauso(
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
-                    ) >
+                 convertToFloat2Fixed(
+                    (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 * 100)) /
+                      convertToNumberMauso(PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02)
+                  ) >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -11734,8 +11733,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 ) : EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 &&
                   EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 * 100) /
-                      EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
+                    (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 * 100)) /
+                      convertToNumberMauso(PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02)
                   ) + "%"
                 ) : (
                   ""
