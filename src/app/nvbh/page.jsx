@@ -25,6 +25,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
+import Link from "next/link";
 
 var x = new Date();
 x.setDate(1);
@@ -641,7 +642,8 @@ export default function Page(props) {
                     style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt   fix-col-2"
                   >
-                    {object.EMP_CODE}
+                    <Link href={`/kpi-employee/${object.EMP_CODE}`}> {object.EMP_CODE}</Link>
+                   
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}

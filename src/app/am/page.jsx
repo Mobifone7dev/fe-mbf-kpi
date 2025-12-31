@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "../../components/widgets/datePickers/DatePickerField";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Link from "next/link";
 import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
@@ -597,7 +598,10 @@ export default function Page(props) {
                     style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt   fix-col-2"
                   >
-                    {object.EMP_CODE}
+                    <Link href={`/kpi-employee/${object.EMP_CODE}`}>
+                      {" "}
+                      {object.EMP_CODE}
+                    </Link>{" "}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}

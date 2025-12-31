@@ -12,6 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "../../components/widgets/datePickers/DatePickerField";
 import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Link from "next/link";
+
 import {
   changeFormatDateFirstDateInMonth,
   convertToNumber,
@@ -67,13 +69,11 @@ export default function Page(props) {
   const [SL_TB_C2C_PROCESS, SET_SL_TB_C2C_PROCESS] = useState(0);
   const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
   const [TB_C90N_C99N_PROCESS, SET_TB_C90N_C99N_PROCESS] = useState(0);
-  const [TB_GIA_HAN_DON_KY_PROCESS, SET_TB_GIA_HAN_DON_KY_PROCESS] = useState(0)
-    const [TB_TBTS_C1C_PROCESS, SET_TB_TBTS_C1C_PROCESS] =
-      useState(0);
-      const [TB_TBTT_C1C_PROCESS, SET_TB_TBTT_C1C_PROCESS] = useState(0);
+  const [TB_GIA_HAN_DON_KY_PROCESS, SET_TB_GIA_HAN_DON_KY_PROCESS] =
+    useState(0);
+  const [TB_TBTS_C1C_PROCESS, SET_TB_TBTS_C1C_PROCESS] = useState(0);
+  const [TB_TBTT_C1C_PROCESS, SET_TB_TBTT_C1C_PROCESS] = useState(0);
   const [DTHU_N_1_PROCESS, SET_DTHU_N_1_PROCESS] = useState(0);
-
-
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -148,27 +148,25 @@ export default function Page(props) {
         calcProcessFromLastDate(lastDateMap["TYLE_GD_C2C"], sumDateInMonth)
       );
 
-    
       SET_TB_C90N_C99N_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_C90N_C99N"], sumDateInMonth)
       );
 
       SET_TB_GIA_HAN_DON_KY_PROCESS(
-        calcProcessFromLastDate(lastDateMap["TB_GIA_HAN_DON_KY"], sumDateInMonth)
+        calcProcessFromLastDate(
+          lastDateMap["TB_GIA_HAN_DON_KY"],
+          sumDateInMonth
+        )
       );
-SET_TB_TBTS_C1C_PROCESS(
-  calcProcessFromLastDate(lastDateMap["TB_TBTS_C1C"], sumDateInMonth)
-);
-SET_TB_TBTT_C1C_PROCESS(
-  calcProcessFromLastDate(lastDateMap["TB_TBTT_C1C"], sumDateInMonth)
-);
-SET_DTHU_N_1_PROCESS(
-  calcProcessFromLastDate(lastDateMap["DTHU_N_1"], sumDateInMonth)
-);
-
-
-      
-      
+      SET_TB_TBTS_C1C_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_TBTS_C1C"], sumDateInMonth)
+      );
+      SET_TB_TBTT_C1C_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_TBTT_C1C"], sumDateInMonth)
+      );
+      SET_DTHU_N_1_PROCESS(
+        calcProcessFromLastDate(lastDateMap["DTHU_N_1"], sumDateInMonth)
+      );
     }
 
     setLoading(false);
@@ -659,7 +657,10 @@ SET_DTHU_N_1_PROCESS(
                     style={{ textAlign: "left", fontWeight: 600 }}
                     className="td-stt   fix-col-2"
                   >
-                    {object.EMP_CODE}
+                    <Link href={`/kpi-employee/${object.EMP_CODE}`}>
+                      {" "}
+                      {object.EMP_CODE}
+                    </Link>
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
@@ -1074,10 +1075,7 @@ SET_DTHU_N_1_PROCESS(
                             (convertToNumber(object.DTHU_N_1_EXEC) /
                               convertToNumberMauso(object.DTHU_N_1_PLAN)) *
                               100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            DTHU_N_1_PROCESS * 100
-                          )
+                          ) > convertToFloat2FixedNumber(DTHU_N_1_PROCESS * 100)
                         ? "bg-green"
                         : "bg-red"
                     }

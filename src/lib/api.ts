@@ -472,7 +472,7 @@ export async function handleGetExecKpiDLA(month: string) {
   }
 }
 
-export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: string, area ? :string) {
+export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: string, area?: string) {
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
   let res;
   const token = localStorage.getItem("accessToken");
@@ -480,10 +480,10 @@ export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: st
     try {
       let urlApi =
         URL + `/dashboard/dashboard-exec-kpi-dla-nhan-vien?month=${month}&matchSearch=${matchSearch}`;
-      if(area){
+      if (area) {
         urlApi += `&area=${area}`;
       }
-        res = await fetch(urlApi, {
+      res = await fetch(urlApi, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status == 403 || res.status == 401) {
@@ -751,5 +751,52 @@ export async function handleSearchEmployeeByEmpcode(
       { status: 500 }
     );
   }
+}
+
+export async function handleSearchPTMEmployeeByEmpcode(
+  matchSearch: string, month: string
+) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  const encodedSearch = encodeURIComponent(matchSearch);
+  console.log("check", encodedSearch);
+  if (month && encodedSearch) {
+    const urlApi =
+      URL +
+      `/dashboard/dashboard-search-employee-ptm-by-empcode?matchSearch=${encodedSearch}&month=${month}`;
+    try {
+      res = await fetch(urlApi, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.status == 403 || res.status == 401) {
+        signOut({ redirect: false });
+        redirect("/login");
+      }
+      const data = await res.json();
+      if (res) {
+        return Response.json({
+          success: true,
+          result: data.data,
+        });
+      } else {
+        console.log("res", res);
+        return Response.json({ success: false });
+      }
+    } catch (e) {
+      console.log(e);
+      return Response.json(
+        { message: "An error occurred while get code.", e },
+        { status: 500 }
+      );
+    }
+  } else {
+    return Response.json(
+      { message: "thieu params dau vao" },
+      { status: 400 }
+    );
+  }
+
+
 }
 
