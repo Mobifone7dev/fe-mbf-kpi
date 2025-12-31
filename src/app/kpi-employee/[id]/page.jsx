@@ -144,8 +144,8 @@ export default function Page(props) {
                     </thead>
                     <tbody>
                       {!loading && data && data.length > 0 ? (
-                        data.map((object) => (
-                          <tr>
+                        data.map((object,i) => (
+                          <tr key={i}>
                             <td>{object.NV_PT ?? ""}</td>
                             <td>{object.SHOP_CODE_PT ?? ""}</td>
                             <td>{object.ISDN ?? ""}</td>
