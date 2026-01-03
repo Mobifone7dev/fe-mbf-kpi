@@ -70,7 +70,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
   useEffect(() => {
     setSelectedDate(props.selectedDate);
-    if (new Date(props.selectedDate) < new Date()) {
+    const now = new Date();
+    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    if (new Date(props.selectedDate) < firstDayOfMonth) {
       setProsessKpi(100);
     } else {
       setProsessKpi(
