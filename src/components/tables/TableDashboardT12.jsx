@@ -69,11 +69,16 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   }, [props.loadingExec]);
 
   useEffect(() => {
-    setSelectedDate(props.selectedDate);
+    const selected = stripTime(new Date(props.selectedDate));
+    setSelectedDate(selected);
     const now = new Date();
     const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    if (new Date(props.selectedDate) < firstDayOfMonth) {
+    if (selected < firstDayOfMonth) {
       setProsessKpi(100);
+    } else if (selected.getTime() == firstDayOfMonth.getTime()) {
+      setProsessKpi(
+        convertToNumber(new Date().getDate() / props.sumDateInMonth) * 100
+      );
     } else {
       setProsessKpi(
         convertToNumber(
@@ -85,6 +90,10 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   useEffect(() => {
     setSumDateInMonth(props.sumDateInMonth);
   }, [props.sumDateInMonth]);
+
+function stripTime(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
 
   useImperativeHandle(ref, () => ({
     resetPlan() {

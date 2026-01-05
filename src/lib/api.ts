@@ -323,7 +323,6 @@ export async function handleGetPlanKpi(month: string, district?: string) {
         success: true, result: data.result
       });
     } else {
-      console.log('res', res)
       return Response.json({ success: false });
     }
 
@@ -347,7 +346,6 @@ export async function handleGetPlanKpiDLA(month: string, district?: string) {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("res", res.status == 401);
     if (res.status == 403 || res.status == 401) {
       throw { unauthorized: true };
     }
