@@ -3191,10 +3191,49 @@ const TableDashboardT12 = forwardRef((props, ref) => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_GPS_KHCN.TTKDGPS ?? 0) / 1000000 +
-                      (EXEC_DTHU_GPS_KHDN.TTKDGPS ?? 0) / 1000000) /
-                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)) *
-                      100
+                    (((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T07) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T07)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T08) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T08)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T09) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T09)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T10) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T10)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T11) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T11)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T12) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T12)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T13) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T13)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D01) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D01)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
+                      1000000) *
+                      100) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3204,10 +3243,49 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (((EXEC_DTHU_GPS_KHCN.TTKDGPS ?? 0) / 1000000 +
-                      (EXEC_DTHU_GPS_KHDN.TTKDGPS ?? 0) / 1000000) /
-                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)) *
-                      100
+                    (((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
+                      convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T07) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T07)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T08) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T08)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T09) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T09)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T10) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T10)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T11) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T11)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T12) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T12)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T13) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T13)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D01) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D01)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D02) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D02)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D03) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D03)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D04) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D04)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D05) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D05)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_D06) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) +
+                      (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
+                        convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
+                      1000000) *
+                      100) /
+                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
                   ) + "%"
                 )}
               </td>

@@ -89,7 +89,12 @@ export default function Page(props) {
 
   const getEmployee = async () => {
     setLoading(true);
-    const result = await handleSearchEmployeeByEmpcode("%MBP%");
+    const result = await handleSearchEmployeeByEmpcode("%MBP%").catch((e) => {
+        if (err?.unauthorized) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
+      });;
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);
@@ -121,7 +126,12 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetExecKpiDLAEmployee(date, "%MBP%");
+    const result = await handleGetExecKpiDLAEmployee(date, "%MBP%").catch((e) => {
+        if (err?.unauthorized) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
+      });;
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
@@ -171,7 +181,12 @@ export default function Page(props) {
     setLoading(true);
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
-    const result = await handleGetPlanKpiDLAEmployee(date, "%MBP%");
+    const result = await handleGetPlanKpiDLAEmployee(date, "%MBP%").catch((e) => {
+        if (err?.unauthorized) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
+      });;
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithPlanKpi(employeeList, tempRes.result);
