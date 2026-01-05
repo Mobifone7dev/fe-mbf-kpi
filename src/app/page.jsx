@@ -62,7 +62,7 @@ const Page = () => {
   const childRef = useRef();
   const router = useRouter();
   const [user, setUser] = useState(null);
- useEffect(() => {
+  useEffect(() => {
     const userString = localStorage.getItem("user");
     if (userString) {
       try {
@@ -75,7 +75,6 @@ const Page = () => {
       router.replace("/login");
     }
   }, []);
-
 
   useEffect(() => {
     try {
@@ -101,7 +100,6 @@ const Page = () => {
       redirect("/login");
     }
   }, []);
-  
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -123,19 +121,25 @@ const Page = () => {
     };
   });
 
-  
   const getPlanKpi = (month) => {
     setLoadingPlan(true);
     if (childRef.current) {
       childRef.current.resetPlan();
     }
-    handleGetPlanKpiDLA(month).then(async (res) => {
-      const data = await res.json();
-      if (data && data.result) {
-        setPlanData(data);
-      }
-      setLoadingPlan(false);
-    });
+    handleGetPlanKpiDLA(month)
+      .then(async (res) => {
+        const data = await res.json();
+        if (data && data.result) {
+          setPlanData(data);
+        }
+        setLoadingPlan(false);
+      })
+      .catch((e) => {
+        if (err?.unauthorized) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
+      });
   };
 
   const getExecKpi = (month) => {
@@ -143,11 +147,18 @@ const Page = () => {
     if (childRef.current) {
       childRef.current.resetExec();
     }
-    handleGetExecKpiDLA(month).then(async (res) => {
-      const data = await res.json();
-      setExecData(data);
-      setLoadingExec(false);
-    });
+    handleGetExecKpiDLA(month)
+      .then(async (res) => {
+        const data = await res.json();
+        setExecData(data);
+        setLoadingExec(false);
+      })
+      .catch((e) => {
+        if (err?.unauthorized) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
+      });
   };
 
   const [show, setShow] = useState(false);
@@ -228,7 +239,7 @@ const Page = () => {
               getExecKpi(date);
             }}
           /> */}
-            {/* <CreateKpiT08Modal
+          {/* <CreateKpiT08Modal
             show={show}
             handleClose={() => {
               setShow(false);
@@ -248,16 +259,15 @@ const Page = () => {
         </div>
       </div>
       {/* selectDate se cham hon 1 thang */}
-        <TableDashboardT12
-          ref={childRef}
-          planData={planData}
-          execData={execData}
-          loadingExec={loadingExec}
-          loadingPlan={loadingPlan}
-          selectedDate={selectedDate}
-          sumDateInMonth={sumDateInMonth}
-        />
-     
+      <TableDashboardT12
+        ref={childRef}
+        planData={planData}
+        execData={execData}
+        loadingExec={loadingExec}
+        loadingPlan={loadingPlan}
+        selectedDate={selectedDate}
+        sumDateInMonth={sumDateInMonth}
+      />
     </div>
   );
 };

@@ -1,6 +1,4 @@
 import axios from "axios";
-import { signOut } from "next-auth/react";
-import { redirect } from "next/navigation";
 
 const API_URL = process.env.NEXTAUTH_APP_API_URL_SSL;
 
@@ -15,6 +13,7 @@ export const CHECK_TYPE_PACKAGE_URL = `${API_URL}/website/type`;
 axios.interceptors.response.use(
   function (response) {
     // Do something with response data
+    console.log("check log o day", response)
     return response.data;
   },
   function (error) {
@@ -136,8 +135,7 @@ export async function createManualApiList(postData: any) {
 
       })
     if (res.status == 403) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -174,7 +172,7 @@ export async function logout() {
       body: JSON.stringify({}),
     });
     if (res.status == 403) {
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -211,7 +209,7 @@ export async function createManualApiListDLA(postData: any) {
       body: JSON.stringify(postData),
     });
     if (res.status == 403 || res.status == 401) {
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -248,7 +246,7 @@ export async function createManualApiListDLAEmployee(postData: any) {
       body: JSON.stringify(postData),
     });
     if (res.status == 403 || res.status == 401) {
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -285,7 +283,7 @@ export async function createManualApiListDLAEmployeeExec(postData: any) {
       body: JSON.stringify(postData),
     });
     if (res.status == 403 || res.status == 401) {
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -317,8 +315,7 @@ export async function handleGetPlanKpi(month: string, district?: string) {
       urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -350,9 +347,9 @@ export async function handleGetPlanKpiDLA(month: string, district?: string) {
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
+    console.log("res", res.status == 401);
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -383,8 +380,7 @@ export async function handleGetPlanKpiDLAEmployee(month: string, matchSearch: st
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -416,8 +412,7 @@ export async function handleGetExecKpi(month: string, province?: string) {
       urlApi,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -450,8 +445,7 @@ export async function handleGetExecKpiDLA(month: string) {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -487,8 +481,7 @@ export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: st
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status == 403 || res.status == 401) {
-        signOut({ redirect: false });
-        redirect("/login");
+        throw { unauthorized: true };
       }
       const data = await res.json();
       if (res) {
@@ -528,8 +521,7 @@ export async function handleGetWebUser(userEmail: string) {
       URL + `/user-role/web-user?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -561,8 +553,7 @@ export async function handleGetUserRole(userEmail: string) {
       URL + `/user-role/get-user-role?userEmail=${userEmail}`,
       { headers: { "Authorization": `Bearer ${token}` } })
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -602,8 +593,7 @@ export async function handleUpdateUseRole(postData: any) {
 
       })
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json()
     if (res) {
@@ -650,8 +640,7 @@ export async function handleGetExecKpiExcel(month: string, kpiType: string, prov
     });
 
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
       return;
     }
 
@@ -692,8 +681,7 @@ export async function handleSearchEmployeeByArea(
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -731,8 +719,7 @@ export async function handleSearchEmployeeByEmpcode(
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.status == 403 || res.status == 401) {
-      signOut({ redirect: false });
-      redirect("/login");
+      throw { unauthorized: true };
     }
     const data = await res.json();
     if (res) {
@@ -770,8 +757,7 @@ export async function handleSearchPTMEmployeeByEmpcode(
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status == 403 || res.status == 401) {
-        signOut({ redirect: false });
-        redirect("/login");
+        throw { unauthorized: true };
       }
       const data = await res.json();
       if (res) {

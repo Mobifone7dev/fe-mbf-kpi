@@ -58,8 +58,8 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   const [loadingExec, setLoadingExec] = useState(props.loadingExec);
   const [selectedDate, setSelectedDate] = useState(props.selectedDate);
   const [sumDateInMonth, setSumDateInMonth] = useState(props.sumDateInMonth);
-  const processKPI =
-    convertToNumber(new Date().getDate() / props.sumDateInMonth) * 100;
+  const [processKPI, setProcessKPI] = useState(convertToNumber(new Date().getDate() / props.sumDateInMonth) * 100);
+  
 
   useEffect(() => {
     setLoadingExec(props.loadingExec);
