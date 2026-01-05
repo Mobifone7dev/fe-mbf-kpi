@@ -1008,7 +1008,7 @@ const CreateKpiT12Modal = (props) => {
                     disabled={false}
                     callbackSetDate={(e) => {
                       const date = changeFormatDateFirstDateInMonth(e);
-                      //   getExecKpi(date);
+                      getExecKpi(date);
                       setInitKpiValues({
                         ...initKpiValues,
                         selectKpiMonth: e,

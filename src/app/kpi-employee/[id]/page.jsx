@@ -97,7 +97,7 @@ export default function Page(props) {
               <div className="dashboard-nvbh">
                 <div className="flex flex-col md:flex-row">
                   <Form>
-                    <div className="filter-body d-flex flex-start md:flex-col">
+                    <div className="filter-body d-flex flex-start ">
                       <div className="select-filter">
                         <label
                           htmlFor="selectMonth"

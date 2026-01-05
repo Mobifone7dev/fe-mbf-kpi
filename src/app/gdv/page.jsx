@@ -426,7 +426,7 @@ export default function Page(props) {
             return (
               <div className=" filter flex flex-row justify-items-center align-items-center me-5">
                 <Form>
-                  <div className="filter-body d-flex flex-start md:flex-col">
+                  <div className="filter-body d-flex flex-start">
                     <div className="select-filter">
                       <label
                         htmlFor="selectMonth"
