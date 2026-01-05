@@ -102,7 +102,7 @@ export default function Page(props) {
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%A1%");
     const tempRes = await result.json();
-    if (tempRes && tempRes.result && tempRes.result.length > 0) {
+    if (tempRes && tempRes.result && tempRes.result.length >= 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
       setExecData(result);
       // ✅ 1. lấy map LAST_DATE theo TEN_CHI_TIEU
@@ -191,7 +191,7 @@ export default function Page(props) {
     // 1. INIT TRƯỚC: tất cả nhân viên
     employeeList.forEach((emp) => {
       resultMap[emp.EMP_CODE] = {
-        AREA: emp.AREA_CODE,
+        AREA: emp.AREA,
         AREA_CODE: emp.AREA_CODE,
         EMP_CODE: emp.EMP_CODE,
         EMP_NAME: emp.EMP_NAME,
@@ -318,7 +318,7 @@ export default function Page(props) {
 
   function initFinalDataFromEmployees(employeeList = []) {
     return employeeList.map((emp) => ({
-      AREA: emp.AREA_CODE ?? null,
+      AREA: emp.AREA ?? emp.AREA_CODE ?? null,
       AREA_CODE: emp.AREA_CODE ?? null,
       EMP_CODE: emp.EMP_CODE,
       EMP_NAME: emp.EMP_NAME,
