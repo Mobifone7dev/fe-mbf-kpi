@@ -70,9 +70,11 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
   useEffect(() => {
     const selected = stripTime(new Date(props.selectedDate));
+
     setSelectedDate(selected);
     const now = new Date();
     const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
     if (selected < firstDayOfMonth) {
       setProsessKpi(100);
     } else if (selected.getTime() == firstDayOfMonth.getTime()) {
@@ -2760,7 +2762,7 @@ function stripTime(date) {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01)) *
@@ -2783,7 +2785,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02)) *
@@ -2807,7 +2809,7 @@ function stripTime(date) {
 
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03)) *
@@ -2830,7 +2832,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04)) *
@@ -2853,7 +2855,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T05)) *
@@ -2876,7 +2878,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06)) *
@@ -2899,7 +2901,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T07 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T07 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07)) *
@@ -2922,7 +2924,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T08 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T08 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08)) *
@@ -2945,7 +2947,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T09 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T09 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09)) *
@@ -2968,7 +2970,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T10 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T10 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10)) *
@@ -2991,7 +2993,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T11 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T11 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11)) *
@@ -3014,7 +3016,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T12 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T12 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12)) *
@@ -3037,7 +3039,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_T13 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T13 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13)) *
@@ -3060,7 +3062,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01)) *
@@ -3083,7 +3085,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02)) *
@@ -3106,7 +3108,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03)) *
@@ -3129,7 +3131,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04)) *
@@ -3152,7 +3154,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05)) *
@@ -3175,7 +3177,7 @@ function stripTime(date) {
               </td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((EXEC_DTHU_GPS_KHCN.DLA_D06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06)) *
@@ -3199,7 +3201,7 @@ function stripTime(date) {
               <td>{loadingExec || loadingPlan ? <LoadingComponent /> : ""}</td>
               <td
                 className={
-                  convertToFloat2Fixed(
+                  convertToNumber(
                     (((convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T01) +
                       convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_T01) +
                       (convertToNumber(EXEC_DTHU_GPS_KHCN.DLA_T02) +
