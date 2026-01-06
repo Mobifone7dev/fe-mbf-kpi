@@ -12,8 +12,10 @@ process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 import RecoilProvider from "../lib/states/RecoilRootWrapper";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import ChunkErrorHandler from "../components/error/ChunkErrorHandler";
+
 // eslint-disable-next-line @next/next/no-async-client-component
-const RootLayout =  ({ children }) => {
+const RootLayout = ({ children }) => {
   const pathname = usePathname();
   const isLoginPage = pathname === "/login";
 
@@ -53,7 +55,8 @@ const RootLayout =  ({ children }) => {
         ></script>
         <RecoilProvider>
           <AuthProvider>
-        {!isLoginPage ? <Layout>{children}</Layout> : children}
+            <ChunkErrorHandler />
+            {!isLoginPage ? <Layout>{children}</Layout> : children}
           </AuthProvider>
         </RecoilProvider>
       </body>

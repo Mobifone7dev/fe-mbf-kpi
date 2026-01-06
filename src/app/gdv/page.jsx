@@ -123,7 +123,7 @@ export default function Page(props) {
       }
     );
     const tempRes = await result.json();
-    if (tempRes && tempRes.result && tempRes.result.length > 0) {
+    if (tempRes && tempRes.result && tempRes.result.length >= 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
       setExecData(result);
       // ✅ 1. lấy map LAST_DATE theo TEN_CHI_TIEU
@@ -196,7 +196,7 @@ export default function Page(props) {
       }
     );
     const tempRes = await result.json();
-    if (tempRes && tempRes.result && tempRes.result.length > 0) {
+    if (tempRes && tempRes.result && tempRes.result.length >= 0) {
       const result = mergeEmployeeWithPlanKpi(employeeList, tempRes.result);
       setPlanData(result);
     }
