@@ -508,6 +508,49 @@ export async function handleGetExecKpiDLAEmployee(month: string, matchSearch: st
 
 }
 
+
+export async function handleGetPtmByWard(month: string) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  if (month) {
+    try {
+      let urlApi =
+        URL + `/dashboard/dashboard-ptm-by-area?month=${month}`;
+
+      res = await fetch(urlApi, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.status == 403 || res.status == 401) {
+        throw { unauthorized: true };
+      }
+      const data = await res.json();
+      if (res) {
+        return Response.json({
+          success: true,
+          result: data.result,
+        });
+      } else {
+        console.log("res", res);
+        return Response.json({ success: false });
+      }
+    } catch (e) {
+      console.log(e);
+      return Response.json(
+        { message: "An error occurred while get code.", e },
+        { status: 500 }
+      );
+    }
+  } else {
+    return Response.json(
+      { message: "thieu truong match search va month" },
+      { status: 400 }
+    );
+  }
+
+
+}
+
 export async function handleGetWebUser(userEmail: string) {
 
   const URL = process.env.NEXTAUTH_APP_API_URL_SSL;

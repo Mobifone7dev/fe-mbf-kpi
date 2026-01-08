@@ -69,6 +69,10 @@ const menuCategory = [
     label: "AM",
     link: "/am",
   },
+  {
+    label: "Ptm theo xã",
+    link: "/ptm-by-ward",
+  },
 
   // {
   //   label: "Dashboard thi đua Tháng 08 ",
