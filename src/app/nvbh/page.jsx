@@ -90,11 +90,11 @@ export default function Page(props) {
   const getEmployee = async () => {
     setLoading(true);
     const result = await handleSearchEmployeeByEmpcode("%MBP%").catch((e) => {
-        if (err?.unauthorized) {
-          localStorage.removeItem("accessToken");
-          router.push("/login");
-        }
-      });;
+      if (e?.unauthorized) {
+        localStorage.removeItem("accessToken");
+        router.push("/login");
+      }
+    });;
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);
@@ -127,11 +127,11 @@ export default function Page(props) {
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetExecKpiDLAEmployee(date, "%MBP%").catch((e) => {
-        if (err?.unauthorized) {
-          localStorage.removeItem("accessToken");
-          router.push("/login");
-        }
-      });;
+      if (e?.unauthorized) {
+        localStorage.removeItem("accessToken");
+        router.push("/login");
+      }
+    });;
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithKpi(employeeList, tempRes.result);
@@ -182,11 +182,11 @@ export default function Page(props) {
 
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetPlanKpiDLAEmployee(date, "%MBP%").catch((e) => {
-        if (err?.unauthorized) {
-          localStorage.removeItem("accessToken");
-          router.push("/login");
-        }
-      });;
+      if (e?.unauthorized) {
+        localStorage.removeItem("accessToken");
+        router.push("/login");
+      }
+    });;
     const tempRes = await result.json();
     if (tempRes && tempRes.result && tempRes.result.length > 0) {
       const result = mergeEmployeeWithPlanKpi(employeeList, tempRes.result);
@@ -393,9 +393,8 @@ export default function Page(props) {
     <div className="dashboard-nvbh">
       <div className="d-flex justify-content-start align-items-center">
         <h4 className="text-center my-4">
-          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
-            selectedDate.getMonth() + 1
-          }`}
+          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${selectedDate.getMonth() + 1
+            }`}
         </h4>
         <button className="ms-5 btn-houze btn-solid" onClick={exportToExcel}>
           Export Excel
@@ -658,7 +657,7 @@ export default function Page(props) {
                     className="td-stt   fix-col-2"
                   >
                     <Link href={`/kpi-employee/${object.EMP_CODE}`}> {object.EMP_CODE}</Link>
-                   
+
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
@@ -699,18 +698,20 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
-                        ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_PTM_TBTT_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
+                          ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                               convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -721,7 +722,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                         convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -740,22 +741,24 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
-                        ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TBTS_PTM_THOAI_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
+                          ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                               convertToNumberMauso(
                                 object.SL_TBTS_PTM_THOAI_PLAN
                               )) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            SL_TBTS_PTM_THOAI_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              SL_TBTS_PTM_THOAI_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -766,7 +769,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                         convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -784,20 +787,22 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
-                        ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TB_PTM_M2M_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
+                          ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                               convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            SL_TB_PTM_M2M_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              SL_TB_PTM_M2M_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -808,7 +813,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                         convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -826,20 +831,22 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
-                        ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(TB_PTM_SAYMEE_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
+                          ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                               convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            TB_PTM_SAYMEE_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              TB_PTM_SAYMEE_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -850,7 +857,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                         convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -868,18 +875,20 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
-                        ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(TB_PTM_FIBER_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
+                          ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                               convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -890,7 +899,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                         convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -908,18 +917,20 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TB_C2C_PLAN) === 0
-                        ? convertToNumber(object.SL_TB_C2C_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TB_C2C_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_TB_C2C_PLAN) === 0
+                          ? convertToNumber(object.SL_TB_C2C_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TB_C2C_EXEC) /
                               convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(SL_TB_C2C_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(SL_TB_C2C_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -930,7 +941,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TB_C2C_EXEC) /
                         convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -952,18 +963,20 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.TYLE_GD_C2C_PLAN) === 0
-                        ? convertToNumber(object.TYLE_GD_C2C_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(TYLE_GD_C2C_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.TYLE_GD_C2C_PLAN) === 0
+                          ? convertToNumber(object.TYLE_GD_C2C_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                               convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(TYLE_GD_C2C_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(TYLE_GD_C2C_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -981,7 +994,7 @@ export default function Page(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                         convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>

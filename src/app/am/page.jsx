@@ -638,7 +638,7 @@ export default function Page(props) {
                             (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                               convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
                               100
-                          ) >
+                          ) >=
                           convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
                         ? "bg-green"
                         : "bg-red"
@@ -681,7 +681,7 @@ export default function Page(props) {
                                 object.SL_TBTS_PTM_THOAI_PLAN
                               )) *
                               100
-                          ) >
+                          ) >=
                           convertToFloat2FixedNumber(
                             SL_TBTS_PTM_THOAI_PROCESS * 100
                           )
@@ -723,7 +723,7 @@ export default function Page(props) {
                             (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                               convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
                               100
-                          ) >
+                          ) >=
                           convertToFloat2FixedNumber(
                             SL_TB_PTM_M2M_PROCESS * 100
                           )
@@ -765,7 +765,7 @@ export default function Page(props) {
                             (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                               convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
                               100
-                          ) >
+                          ) >=
                           convertToFloat2FixedNumber(
                             TB_PTM_SAYMEE_PROCESS * 100
                           )
@@ -807,7 +807,7 @@ export default function Page(props) {
                             (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                               convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
                               100
-                          ) >
+                          ) >=
                           convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
                         ? "bg-green"
                         : "bg-red"

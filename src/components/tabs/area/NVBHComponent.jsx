@@ -59,7 +59,7 @@ export default function NVBHComponent(props) {
   const [sumDateInMonth, setSumDateInMonth] = useState(daysInMonth(new Date()));
   const formSchema = Yup.object().shape({});
   const [SL_PTM_TBTT_PROCESS, SET_SL_PTM_TBTT_PROCESS] = useState(0);
-  const [SL_TBTS_PTM_THOAI_PROCESS, SET_SL_TBTS_PTM_THOAI] = useState(0);
+  const [SL_TBTS_PTM_THOAI_PROCESS, SET_SL_TBTS_PTM_THOAI_PROCESS] = useState(0);
   const [SL_TB_PTM_M2M_PROCESS, SET_SL_TB_PTM_M2M_PROCESS] = useState(0);
   const [TB_PTM_SAYMEE_PROCESS, SET_TB_PTM_SAYMEE_PROCESS] = useState(0);
   const [TB_PTM_FIBER_PROCESS, SET_TB_PTM_FIBER_PROCESS] = useState(0);
@@ -131,12 +131,6 @@ export default function NVBHComponent(props) {
         calcProcessFromLastDate(lastDateMap["SL_PTM_TBTT"], sumDateInMonth)
       );
 
-      SET_SL_TBTS_PTM_THOAI(
-        calcProcessFromLastDate(
-          lastDateMap["SL_TBTS_PTM_THOAI"],
-          sumDateInMonth
-        )
-      );
 
       SET_SL_TB_PTM_M2M_PROCESS(
         calcProcessFromLastDate(lastDateMap["SL_TB_PTM_M2M"], sumDateInMonth)
@@ -161,6 +155,10 @@ export default function NVBHComponent(props) {
       SET_TB_MNP_DEN_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_MNP_DEN"], sumDateInMonth)
       );
+      SET_SL_TBTS_PTM_THOAI_PROCESS(
+        calcProcessFromLastDate(lastDateMap["SL_TBTS_PTM_THOAI"], sumDateInMonth)
+      );
+
     }
 
     setLoading(false);
@@ -376,9 +374,8 @@ export default function NVBHComponent(props) {
     <div className="dashboard-nvbh">
       <div className="d-flex justify-content-start align-items-center">
         <h4 className="text-center my-4">
-          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${
-            selectedDate.getMonth() + 1
-          }`}
+          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI NVBH THÁNG ${selectedDate.getMonth() + 1
+            }`}
         </h4>
         <button className="ms-5 btn-houze btn-solid" onClick={exportToExcel}>
           Export Excel
@@ -634,7 +631,7 @@ export default function NVBHComponent(props) {
                     style={{ textAlign: "center", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
-                    {props.area ??""}
+                    {props.area ?? ""}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}
@@ -681,18 +678,20 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(SL_PTM_TBTT_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
                         ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.SL_PTM_TBTT_EXEC) /
-                              convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.SL_PTM_TBTT_EXEC) /
+                            convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -703,7 +702,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                         convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -722,22 +721,23 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
-                        ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TBTS_PTM_THOAI_PROCESS) === 0 ? "bg-red" :
+                        convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
+                          ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                               convertToNumberMauso(
                                 object.SL_TBTS_PTM_THOAI_PLAN
                               )) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            SL_TBTS_PTM_THOAI_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              SL_TBTS_PTM_THOAI_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -748,8 +748,10 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                         convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
-                        100
+                      100
                     )}
+
+
                     {"%"}
                   </td>
                   {/* M2M */}
@@ -766,20 +768,22 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(SL_TB_PTM_M2M_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
                         ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
-                              convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
+                            convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(
                             SL_TB_PTM_M2M_PROCESS * 100
                           )
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -790,7 +794,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                         convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -808,20 +812,22 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(TB_PTM_SAYMEE_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
                         ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
-                              convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
+                            convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(
                             TB_PTM_SAYMEE_PROCESS * 100
                           )
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -832,7 +838,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                         convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -850,18 +856,20 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(TB_PTM_FIBER_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
                         ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_PTM_FIBER_EXEC) /
-                              convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.TB_PTM_FIBER_EXEC) /
+                            convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -872,7 +880,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                         convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -890,18 +898,20 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(SL_TB_C2C_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.SL_TB_C2C_PLAN) === 0
                         ? convertToNumber(object.SL_TB_C2C_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.SL_TB_C2C_EXEC) /
-                              convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.SL_TB_C2C_EXEC) /
+                            convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(SL_TB_C2C_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -912,7 +922,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TB_C2C_EXEC) /
                         convertToNumberMauso(object.SL_TB_C2C_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -934,18 +944,20 @@ export default function NVBHComponent(props) {
                   </td>
                   <td
                     className={
+                      convertToNumber(TYLE_GD_C2C_PROCESS) === 0 ? "bg-red" :
+
                       convertToNumber(object.TYLE_GD_C2C_PLAN) === 0
                         ? convertToNumber(object.TYLE_GD_C2C_EXEC) > 0
                           ? "bg-green"
                           : ""
                         : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
-                              convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
-                              100
-                          ) >
+                          (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
+                            convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
+                          100
+                        ) >=
                           convertToFloat2FixedNumber(TYLE_GD_C2C_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -963,7 +975,7 @@ export default function NVBHComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                         convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>

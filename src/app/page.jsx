@@ -135,7 +135,7 @@ const Page = () => {
         setLoadingPlan(false);
       })
       .catch((e) => {
-        if (err?.unauthorized) {
+        if (e?.unauthorized) {
           localStorage.removeItem("accessToken");
           router.push("/login");
         }
@@ -154,7 +154,7 @@ const Page = () => {
         setLoadingExec(false);
       })
       .catch((e) => {
-        if (err?.unauthorized) {
+        if (e?.unauthorized) {
           localStorage.removeItem("accessToken");
           router.push("/login");
         }

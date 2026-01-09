@@ -76,7 +76,7 @@ export default function Page(props) {
     setLoading(true);
     const date = changeFormatDateFirstDateInMonth(selectedDate);
     const result = await handleGetPtmByWard(date).catch((e) => {
-      if (err?.unauthorized) {
+      if (e?.unauthorized) {
         localStorage.removeItem("accessToken");
         router.push("/login");
       }
