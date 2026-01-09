@@ -159,6 +159,8 @@ export default function Page(props) {
               >
                 <thead>
                   <tr>
+                    <th>AREA </th>
+                    <th>DISTRICT</th>
                     <th>NEW_PRECINCT_CODE</th>
                     <th>WARD_NAME</th>
                     <th>ISDN_COUNT</th>
@@ -167,6 +169,8 @@ export default function Page(props) {
                 <tbody>
                   {data.map((row, idx) => (
                     <tr key={idx}>
+                      <td>{row.AREA_CODE || ""}</td>
+                      <td >{row.OLD_DISTRICT_NAME || ""}</td>
                       <td>
                         <div
                           className="text-truncate"
