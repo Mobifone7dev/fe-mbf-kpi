@@ -20,6 +20,7 @@ import {
   convertToNumberMauso,
   daysInMonth,
   calcProcessFromLastDate,
+  stripTime
 } from "../../../until/functions";
 import { useRouter } from "next/navigation";
 import * as XLSX from "xlsx";
@@ -150,6 +151,27 @@ export default function GDVComponent(props) {
 
     setLoading(false);
   };
+
+  // useEffect(() => {
+  //   const selected = stripTime(new Date(selectedDate));
+
+  //   const now = new Date();
+  //   const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  //   if (selected < firstDayOfMonth) {
+  //     setProsessKpi(100);
+  //   } else if (selected.getTime() == firstDayOfMonth.getTime()) {
+  //     setProsessKpi(
+  //       convertToNumber(new Date().getDate() / sumDateInMonth) * 100
+  //     );
+  //   } else {
+  //     setProsessKpi(
+  //       convertToNumber(
+  //         new Date(selectedDate).getDate() / sumDateInMonth
+  //       ) * 100
+  //     );
+  //   }
+  // }, [selectedDate]);
   const getPlanKpiEmployee = async () => {
     setLoading(true);
 
@@ -381,9 +403,8 @@ export default function GDVComponent(props) {
     <div className="dashboard-nvbh">
       <div className="d-flex justify-content-start align-items-center">
         <h4 className="text-center my-4">
-          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI GDV THÁNG ${
-            selectedDate.getMonth() + 1
-          }`}
+          {`THEO DÕI KẾT QUẢ THỰC HIỆN THEO NGÀY KHỐI GDV THÁNG ${selectedDate.getMonth() + 1
+            }`}
         </h4>
         <button className="ms-5 btn btn-primary" onClick={exportToExcel}>
           Export Excel
@@ -419,7 +440,8 @@ export default function GDVComponent(props) {
                         dateFormat="MM/yyyy"
                         disabled={false}
                         callbackSetDate={(e) => {
-                          console.log("Selected date:", e.getMonth());
+                          const sumDate = daysInMonth(e);
+                          setSumDateInMonth(sumDate);
                           setSelectedDate(e);
                           let indexDate;
                           if (e < new Date()) {
@@ -428,8 +450,7 @@ export default function GDVComponent(props) {
                             indexDate = e.getDate();
                           }
                           setIndexDateInMonth(indexDate);
-                          const sumDate = daysInMonth(e);
-                          setSumDateInMonth(sumDate);
+
                           setInitValues({
                             ...initValues,
                             selectMonth: e,
@@ -626,18 +647,20 @@ export default function GDVComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
-                        ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_PTM_TBTT_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_PTM_TBTT_PLAN) === 0
+                          ? convertToNumber(object.SL_PTM_TBTT_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                               convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(SL_PTM_TBTT_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -648,7 +671,7 @@ export default function GDVComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_PTM_TBTT_EXEC) /
                         convertToNumberMauso(object.SL_PTM_TBTT_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -667,22 +690,24 @@ export default function GDVComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
-                        ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TBTS_PTM_THOAI_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_TBTS_PTM_THOAI_PLAN) === 0
+                          ? convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                               convertToNumberMauso(
                                 object.SL_TBTS_PTM_THOAI_PLAN
                               )) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            SL_TBTS_PTM_THOAI_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              SL_TBTS_PTM_THOAI_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -693,7 +718,7 @@ export default function GDVComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) /
                         convertToNumberMauso(object.SL_TBTS_PTM_THOAI_PLAN)) *
-                        100
+                      100
                     )}
                     {"%"}
                   </td>
@@ -711,20 +736,21 @@ export default function GDVComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
-                        ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(SL_TB_PTM_M2M_PROCESS) === 0 ? "bg-red" :
+                        convertToNumber(object.SL_TB_PTM_M2M_PLAN) === 0
+                          ? convertToNumber(object.SL_TB_PTM_M2M_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                               convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            SL_TB_PTM_M2M_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              SL_TB_PTM_M2M_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -735,7 +761,7 @@ export default function GDVComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.SL_TB_PTM_M2M_EXEC) /
                         convertToNumberMauso(object.SL_TB_PTM_M2M_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -753,20 +779,22 @@ export default function GDVComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
-                        ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(TB_PTM_SAYMEE_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.TB_PTM_SAYMEE_PLAN) === 0
+                          ? convertToNumber(object.TB_PTM_SAYMEE_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                               convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(
-                            TB_PTM_SAYMEE_PROCESS * 100
-                          )
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(
+                              TB_PTM_SAYMEE_PROCESS * 100
+                            )
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -777,7 +805,7 @@ export default function GDVComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_SAYMEE_EXEC) /
                         convertToNumberMauso(object.TB_PTM_SAYMEE_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>
@@ -795,18 +823,20 @@ export default function GDVComponent(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
-                        ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
-                          ? "bg-green"
-                          : ""
-                        : convertToFloat2FixedNumber(
+                      convertToNumber(TB_PTM_FIBER_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.TB_PTM_FIBER_PLAN) === 0
+                          ? convertToNumber(object.TB_PTM_FIBER_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
                             (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                               convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                              100
-                          ) >
-                          convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
-                        ? "bg-green"
-                        : "bg-red"
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(TB_PTM_FIBER_PROCESS * 100)
+                            ? "bg-green"
+                            : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -817,7 +847,7 @@ export default function GDVComponent(props) {
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TB_PTM_FIBER_EXEC) /
                         convertToNumberMauso(object.TB_PTM_FIBER_PLAN)) *
-                        100
+                      100
                     )}{" "}
                     {"%"}
                   </td>

@@ -9,7 +9,6 @@ export default function AreaDetail({ params }) {
 
   const { id } = params;
 
-  console.log("id", id);
 
   return (
     <div className="dashboard-kpi-area">

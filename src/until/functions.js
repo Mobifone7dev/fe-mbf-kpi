@@ -89,5 +89,8 @@ export function getFormattedDate(date) {
 
   return day + '/' + month + '/' + year;
 }
+export function stripTime(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
 
 
