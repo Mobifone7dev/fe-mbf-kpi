@@ -927,8 +927,6 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(TB_C90N_C99N_PROCESS) === 0 ? "bg-red" :
-
                         convertToNumber(object.TB_C90N_C99N_PLAN) === 0
                           ? convertToNumber(object.TB_C90N_C99N_EXEC) > 0
                             ? "bg-green"
@@ -938,7 +936,7 @@ export default function Page(props) {
                               convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
                             100
                           ) >=
-                            convertToFloat2FixedNumber(TB_C90N_C99N_PROCESS * 100)
+                           100
                             ? "bg-green"
                             : "bg-red"
                     }
@@ -970,7 +968,6 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(TB_GIA_HAN_DON_KY_PROCESS) === 0 ? "bg-red" :
 
                         convertToNumber(object.TB_GIA_HAN_DON_KY_PLAN) === 0
                           ? convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) > 0
@@ -983,9 +980,7 @@ export default function Page(props) {
                               )) *
                             100
                           ) >=
-                            convertToFloat2FixedNumber(
-                              TB_GIA_HAN_DON_KY_PROCESS * 100
-                            )
+                            100
                             ? "bg-green"
                             : "bg-red"
                     }
@@ -1017,8 +1012,6 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(TB_TBTS_C1C_PROCESS) === 0 ? "bg-red" :
-
                         convertToNumber(object.TB_TBTS_C1C_PLAN) === 0
                           ? convertToNumber(object.TB_TBTS_C1C_EXEC) > 0
                             ? "bg-green"
@@ -1028,7 +1021,7 @@ export default function Page(props) {
                               convertToNumberMauso(object.TB_TBTS_C1C_PLAN)) *
                             100
                           ) >=
-                            convertToFloat2FixedNumber(TB_TBTS_C1C_PROCESS * 100)
+                            100
                             ? "bg-green"
                             : "bg-red"
                     }
@@ -1060,7 +1053,6 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(TB_TBTT_C1C_PROCESS) === 0 ? "bg-red" :
 
                         convertToNumber(object.TB_TBTT_C1C_PLAN) === 0
                           ? convertToNumber(object.TB_TBTT_C1C_EXEC) > 0
@@ -1071,7 +1063,7 @@ export default function Page(props) {
                               convertToNumberMauso(object.TB_TBTT_C1C_PLAN)) *
                             100
                           ) >=
-                            convertToFloat2FixedNumber(TB_TBTT_C1C_PROCESS * 100)
+                            100
                             ? "bg-green"
                             : "bg-red"
                     }
@@ -1103,7 +1095,6 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                      convertToNumber(DTHU_N_1_PROCESS) === 0 ? "bg-red" :
                         convertToNumber(object.DTHU_N_1_PLAN) === 0
                           ? convertToNumber(object.DTHU_N_1_EXEC) > 0
                             ? "bg-green"
@@ -1112,7 +1103,7 @@ export default function Page(props) {
                             (convertToNumber(object.DTHU_N_1_EXEC) /
                               convertToNumberMauso(object.DTHU_N_1_PLAN)) *
                             100
-                          ) >= convertToFloat2FixedNumber(DTHU_N_1_PROCESS * 100)
+                          ) >= 100
                             ? "bg-green"
                             : "bg-red"
                     }
@@ -1128,6 +1119,7 @@ export default function Page(props) {
                       100
                     )}{" "}
                     {"%"}
+                    
                   </td>
                 </tr>
               ))
