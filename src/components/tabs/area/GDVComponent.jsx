@@ -118,7 +118,11 @@ export default function GDVComponent(props) {
           sumDateInMonth
         )
       );
-
+      console.log(
+        "check",
+        calcProcessFromLastDate(lastDateMap["SL_TB_PTM_M2M"], sumDateInMonth,lastDateMap["SL_TB_PTM_M2M"]),
+        sumDateInMonth
+      );
       SET_SL_TB_PTM_M2M_PROCESS(
         calcProcessFromLastDate(lastDateMap["SL_TB_PTM_M2M"], sumDateInMonth)
       );
@@ -357,22 +361,22 @@ export default function GDVComponent(props) {
   }
 
   const exportToExcel = () => {
-      const table = document.getElementById("table-kpi-gdv");
-      const workbook = XLSX.utils.table_to_book(table, {
-        sheet: "KPI_DLA",
-      });
-  
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "array",
-      });
-  
-      const blob = new Blob([excelBuffer], {
-        type: "application/octet-stream",
-      });
-  
-      saveAs(blob, "bao_cao_kpi_dla_gdv.xlsx");
-    };
+    const table = document.getElementById("table-kpi-gdv");
+    const workbook = XLSX.utils.table_to_book(table, {
+      sheet: "KPI_DLA",
+    });
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(blob, "bao_cao_kpi_dla_gdv.xlsx");
+  };
   return (
     <div className="dashboard-nvbh">
       <div className="d-flex justify-content-start align-items-center">
@@ -587,7 +591,7 @@ export default function GDVComponent(props) {
                     style={{ textAlign: "center", fontWeight: 600 }}
                     className="td-stt  fix-col-1"
                   >
-                    {props.area ??""}
+                    {props.area ?? ""}
                   </td>
                   <td
                     style={{ textAlign: "left", fontWeight: 600 }}

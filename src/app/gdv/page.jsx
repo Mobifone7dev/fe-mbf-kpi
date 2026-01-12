@@ -1082,7 +1082,7 @@ export default function Page(props) {
                     }}
                   >
                     {" "}
-                    {object.DTHU_N_1_EXEC ?? 0}
+                    {convertToFloat2FixedNumber(object.DTHU_N_1_EXEC) ?? 0}
                   </td>
                   <td
                     className={

@@ -82,12 +82,13 @@ export default function Page(props) {
       }
     });
     const resData = await result.json();
-    // console.log("resData", resData.result);
     const filteredData = resData.result.filter(
       (item) => item.WARD_NAME !== null && item.WARD_NAME !== ""
     );
 
-    setData(filteredData);
+    const sortedData = filteredData.sort((a, b) => b.ISDN_COUNT - a.ISDN_COUNT);
+
+    setData(sortedData);
     setLoading(false);
   };
 
@@ -154,7 +155,7 @@ export default function Page(props) {
           <>
             <div class="table-responsive">
               <table
-                style={{ maxWidth: "600px" }}
+                style={{ maxWidth: "800px" }}
                 className="table table-striped table-hover table-bordered"
               >
                 <thead>
