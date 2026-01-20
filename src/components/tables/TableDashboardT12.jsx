@@ -6365,9 +6365,8 @@ function stripTime(date) {
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
                       19 /
-                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT)
-                  ) *
-                    100 >
+                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) *100
+                  )  >
                   processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6397,9 +6396,9 @@ function stripTime(date) {
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
                       19 /
-                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT)
-                  ) *
-                    100 +
+                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) *100
+                  ) 
+                     +
                   "%"
                 )}
               </td>
