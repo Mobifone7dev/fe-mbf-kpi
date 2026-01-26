@@ -128,6 +128,10 @@ const Page = () => {
     }
     handleGetPlanKpiDLA(month)
       .then(async (res) => {
+         if (res?.status == 403) {
+          localStorage.removeItem("accessToken");
+          router.push("/login");
+        }
         const data = await res.json();
         if (data && data.result) {
           setPlanData(data);
@@ -135,7 +139,7 @@ const Page = () => {
         setLoadingPlan(false);
       })
       .catch((e) => {
-        if (e?.unauthorized) {
+        if (e?.status == 403) {
           localStorage.removeItem("accessToken");
           router.push("/login");
         }
