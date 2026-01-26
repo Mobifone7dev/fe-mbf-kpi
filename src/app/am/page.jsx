@@ -84,10 +84,14 @@ export default function Page(props) {
   const getEmployee = async () => {
     setLoading(true);
     const result = await handleSearchEmployeeByEmpcode("%A1%");
+     if (result?.status == 403) {
+      localStorage.removeItem("accessToken");
+      router.push("/login");
+    }
     const tempRes = await result.json();
     if (tempRes) {
       if (tempRes?.result) {
-        const filteredList = tempRes.result.filter(
+        const filteredList = tempRes?.result?.filter(
           (item) => !excludeEmpCodes.includes(item.EMP_CODE)
         );
 

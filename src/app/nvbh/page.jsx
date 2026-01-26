@@ -95,6 +95,11 @@ export default function Page(props) {
         router.push("/login");
       }
     });;
+     if (result?.status == 403) {
+        localStorage.removeItem("accessToken");
+        router.push("/login");
+      }
+
     const tempRes = await result.json();
     if (tempRes) {
       setEmployeeList(tempRes.result);

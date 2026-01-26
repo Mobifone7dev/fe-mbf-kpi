@@ -101,9 +101,14 @@ export default function Page(props) {
         router.push("/login");
       }
     });
+    if (result?.status == 403) {
+      localStorage.removeItem("accessToken");
+      router.push("/login");
+    }
+
     const tempRes = await result.json();
     if (tempRes) {
-      const filteredList = tempRes.result.filter(
+      const filteredList = tempRes?.result?.filter(
         (item) => !excludeEmpCodes.includes(item.EMP_CODE)
       );
       setEmployeeList(filteredList);
@@ -927,18 +932,18 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                        convertToNumber(object.TB_C90N_C99N_PLAN) === 0
-                          ? convertToNumber(object.TB_C90N_C99N_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_C90N_C99N_EXEC) /
-                              convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
-                            100
-                          ) >=
-                           100
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToNumber(object.TB_C90N_C99N_PLAN) === 0
+                        ? convertToNumber(object.TB_C90N_C99N_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                          (convertToNumber(object.TB_C90N_C99N_EXEC) /
+                            convertToNumberMauso(object.TB_C90N_C99N_PLAN)) *
+                          100
+                        ) >=
+                          100
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -969,20 +974,20 @@ export default function Page(props) {
                   <td
                     className={
 
-                        convertToNumber(object.TB_GIA_HAN_DON_KY_PLAN) === 0
-                          ? convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) /
-                              convertToNumberMauso(
-                                object.TB_GIA_HAN_DON_KY_PLAN
-                              )) *
-                            100
-                          ) >=
-                            100
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToNumber(object.TB_GIA_HAN_DON_KY_PLAN) === 0
+                        ? convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                          (convertToNumber(object.TB_GIA_HAN_DON_KY_EXEC) /
+                            convertToNumberMauso(
+                              object.TB_GIA_HAN_DON_KY_PLAN
+                            )) *
+                          100
+                        ) >=
+                          100
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -1012,18 +1017,18 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                        convertToNumber(object.TB_TBTS_C1C_PLAN) === 0
-                          ? convertToNumber(object.TB_TBTS_C1C_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_TBTS_C1C_EXEC) /
-                              convertToNumberMauso(object.TB_TBTS_C1C_PLAN)) *
-                            100
-                          ) >=
-                            100
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToNumber(object.TB_TBTS_C1C_PLAN) === 0
+                        ? convertToNumber(object.TB_TBTS_C1C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                          (convertToNumber(object.TB_TBTS_C1C_EXEC) /
+                            convertToNumberMauso(object.TB_TBTS_C1C_PLAN)) *
+                          100
+                        ) >=
+                          100
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -1054,18 +1059,18 @@ export default function Page(props) {
                   <td
                     className={
 
-                        convertToNumber(object.TB_TBTT_C1C_PLAN) === 0
-                          ? convertToNumber(object.TB_TBTT_C1C_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.TB_TBTT_C1C_EXEC) /
-                              convertToNumberMauso(object.TB_TBTT_C1C_PLAN)) *
-                            100
-                          ) >=
-                            100
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToNumber(object.TB_TBTT_C1C_PLAN) === 0
+                        ? convertToNumber(object.TB_TBTT_C1C_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                          (convertToNumber(object.TB_TBTT_C1C_EXEC) /
+                            convertToNumberMauso(object.TB_TBTT_C1C_PLAN)) *
+                          100
+                        ) >=
+                          100
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -1095,17 +1100,17 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                        convertToNumber(object.DTHU_N_1_PLAN) === 0
-                          ? convertToNumber(object.DTHU_N_1_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.DTHU_N_1_EXEC) /
-                              convertToNumberMauso(object.DTHU_N_1_PLAN)) *
-                            100
-                          ) >= 100
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToNumber(object.DTHU_N_1_PLAN) === 0
+                        ? convertToNumber(object.DTHU_N_1_EXEC) > 0
+                          ? "bg-green"
+                          : ""
+                        : convertToFloat2FixedNumber(
+                          (convertToNumber(object.DTHU_N_1_EXEC) /
+                            convertToNumberMauso(object.DTHU_N_1_PLAN)) *
+                          100
+                        ) >= 100
+                          ? "bg-green"
+                          : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -1119,7 +1124,7 @@ export default function Page(props) {
                       100
                     )}{" "}
                     {"%"}
-                    
+
                   </td>
                 </tr>
               ))

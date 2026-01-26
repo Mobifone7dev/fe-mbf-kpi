@@ -385,8 +385,12 @@ export async function handleGetPlanKpiDLAEmployee(month: string, matchSearch: st
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403 || res.status == 401) {
-      throw { unauthorized: true };
+    if (res.status === 401 || res.status === 403) {
+      throw {
+        unauthorized: true,
+        status: res.status,
+        message: "Unauthorized or Forbidden"
+      };
     }
     const data = await res.json();
     if (res) {
@@ -399,10 +403,15 @@ export async function handleGetPlanKpiDLAEmployee(month: string, matchSearch: st
       return Response.json({ success: false });
     }
   } catch (e) {
-    console.log(e);
+    const err = e as { status?: number; message?: string };
     return Response.json(
-      { message: "An error occurred while get code.", e },
-      { status: 500 }
+      {
+        message: err.message || "An error occurred while get code.",
+        status: err.status || 500,
+      },
+      {
+        status: err.status || 500,
+      }
     );
   }
 }
@@ -767,8 +776,12 @@ export async function handleSearchEmployeeByEmpcode(
     res = await fetch(urlApi, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.status == 403 || res.status == 401) {
-      throw { unauthorized: true };
+    if (res.status === 401 || res.status === 403) {
+      throw {
+        unauthorized: true,
+        status: res.status,
+        message: "Unauthorized or Forbidden"
+      };
     }
     const data = await res.json();
     if (res) {
@@ -781,10 +794,15 @@ export async function handleSearchEmployeeByEmpcode(
       return Response.json({ success: false });
     }
   } catch (e) {
-    console.log(e);
+    const err = e as { status?: number; message?: string };
     return Response.json(
-      { message: "An error occurred while get code.", e },
-      { status: 500 }
+      {
+        message: err.message || "An error occurred while get code.",
+        status: err.status || 500,
+      },
+      {
+        status: err.status || 500,
+      }
     );
   }
 }
