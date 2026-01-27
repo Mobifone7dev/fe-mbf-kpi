@@ -27,6 +27,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
   const [PLAN_TYLE_GD_C2C, SET_PLAN_TYLE_GD_C2C] = useState({});
   const [PLAN_SL_PTM_TBTT, SET_PLAN_SL_PTM_TBTT] = useState({});
+  const [PLAN_SL_PTM_FWA, SET_PLAN_SL_PTM_FWA] = useState({});
   const [PLAN_SL_TBTS_PTM_THOAI, SET_PLAN_SL_TBTS_PTM_THOAI] = useState({});
   const [PLAN_SL_TB_PTM_M2M, SET_PLAN_SL_TB_PTM_M2M] = useState({});
   const [PLAN_TB_PTM_SAYMEE, SET_PLAN_TB_PTM_SAYMEE] = useState({});
@@ -44,6 +45,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   const [EXEC_SL_TB_C2C, SET_EXEC_SL_TB_C2C] = useState({});
   const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
   const [EXEC_SL_PTM_TBTT, SET_EXEC_SL_PTM_TBTT] = useState({});
+  const [EXEC_SL_PTM_FWA, SET_EXEC_SL_PTM_FWA] = useState({});
   const [EXEC_SL_TBTS_PTM_THOAI, SET_EXEC_SL_TBTS_PTM_THOAI] = useState({});
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
@@ -70,11 +72,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
   useEffect(() => {
     const selected = stripTime(new Date(props.selectedDate));
-
     setSelectedDate(selected);
     const now = new Date();
     const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-
     if (selected < firstDayOfMonth) {
       setProsessKpi(100);
     } else if (selected.getTime() == firstDayOfMonth.getTime()) {
@@ -93,9 +93,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
     setSumDateInMonth(props.sumDateInMonth);
   }, [props.sumDateInMonth]);
 
-function stripTime(date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
+  function stripTime(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
 
   useImperativeHandle(ref, () => ({
     resetPlan() {
@@ -110,6 +110,8 @@ function stripTime(date) {
       SET_PLAN_TB_PTM_SAYMEE({});
       SET_PLAN_TB_PTM_FIBER({});
       SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
+      SET_PLAN_SL_PTM_FWA({});
+
     },
     resetExec() {
       SET_EXEC_DTHU_TKC_HTS({});
@@ -125,6 +127,7 @@ function stripTime(date) {
       SET_EXEC_TB_PTM_SAYMEE({});
       SET_EXEC_TB_PTM_FIBER({});
       SET_EXEC_TI_LE_GIA_HAN_GOI_DAI_KY({});
+      SET_EXEC_SL_PTM_FWA({});
     },
   }));
   useEffect(() => {
@@ -165,6 +168,9 @@ function stripTime(date) {
         }
         if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
           SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY(object);
+        }
+        if (object["TEN_CHI_TIEU"] == "SL_PTM_FWA") {
+          SET_PLAN_SL_PTM_FWA(object);
         }
       });
     }
@@ -216,6 +222,10 @@ function stripTime(date) {
 
         if (object["TEN_CHI_TIEU"] == "TI_LE_GIA_HAN_GOI_DAI_KY") {
           SET_EXEC_TI_LE_GIA_HAN_GOI_DAI_KY(object);
+        }
+
+        if (object["TEN_CHI_TIEU"] == "SL_PTM_FWA") {
+          SET_EXEC_SL_PTM_FWA(object);
         }
       });
     }
@@ -1055,9 +1065,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T01
                       ? EXEC_DTHU_FIBER.DLA_T01 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T01
-                        ? EXEC_DTHU_TKC_HTS.DLA_T01 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T01
+                      ? EXEC_DTHU_TKC_HTS.DLA_T01 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1069,9 +1079,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T02
                       ? EXEC_DTHU_FIBER.DLA_T02 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T02
-                        ? EXEC_DTHU_TKC_HTS.DLA_T02 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T02
+                      ? EXEC_DTHU_TKC_HTS.DLA_T02 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1083,9 +1093,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T03
                       ? EXEC_DTHU_FIBER.DLA_T03 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T03
-                        ? EXEC_DTHU_TKC_HTS.DLA_T03 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T03
+                      ? EXEC_DTHU_TKC_HTS.DLA_T03 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1097,9 +1107,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T04
                       ? EXEC_DTHU_FIBER.DLA_T04 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T04
-                        ? EXEC_DTHU_TKC_HTS.DLA_T04 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T04
+                      ? EXEC_DTHU_TKC_HTS.DLA_T04 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1111,9 +1121,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T05
                       ? EXEC_DTHU_FIBER.DLA_T05 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T05
-                        ? EXEC_DTHU_TKC_HTS.DLA_T05 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T05
+                      ? EXEC_DTHU_TKC_HTS.DLA_T05 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1125,9 +1135,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T06
                       ? EXEC_DTHU_FIBER.DLA_T06 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T06
-                        ? EXEC_DTHU_TKC_HTS.DLA_T06 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T06
+                      ? EXEC_DTHU_TKC_HTS.DLA_T06 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1139,9 +1149,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T07
                       ? EXEC_DTHU_FIBER.DLA_T07 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T07
-                        ? EXEC_DTHU_TKC_HTS.DLA_T07 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T07
+                      ? EXEC_DTHU_TKC_HTS.DLA_T07 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1153,9 +1163,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T08
                       ? EXEC_DTHU_FIBER.DLA_T08 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T08
-                        ? EXEC_DTHU_TKC_HTS.DLA_T08 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T08
+                      ? EXEC_DTHU_TKC_HTS.DLA_T08 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1167,9 +1177,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T09
                       ? EXEC_DTHU_FIBER.DLA_T09 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T09
-                        ? EXEC_DTHU_TKC_HTS.DLA_T09 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T09
+                      ? EXEC_DTHU_TKC_HTS.DLA_T09 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1181,9 +1191,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T10
                       ? EXEC_DTHU_FIBER.DLA_T10 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T10
-                        ? EXEC_DTHU_TKC_HTS.DLA_T10 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T10
+                      ? EXEC_DTHU_TKC_HTS.DLA_T10 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1195,9 +1205,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T11
                       ? EXEC_DTHU_FIBER.DLA_T11 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T11
-                        ? EXEC_DTHU_TKC_HTS.DLA_T11 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T11
+                      ? EXEC_DTHU_TKC_HTS.DLA_T11 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1209,9 +1219,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T12
                       ? EXEC_DTHU_FIBER.DLA_T12 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T12
-                        ? EXEC_DTHU_TKC_HTS.DLA_T12 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T12
+                      ? EXEC_DTHU_TKC_HTS.DLA_T12 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1223,9 +1233,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_T13
                       ? EXEC_DTHU_FIBER.DLA_T13 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_T13
-                        ? EXEC_DTHU_TKC_HTS.DLA_T13 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_T13
+                      ? EXEC_DTHU_TKC_HTS.DLA_T13 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1237,9 +1247,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D01
                       ? EXEC_DTHU_FIBER.DLA_D01 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D01
-                        ? EXEC_DTHU_TKC_HTS.DLA_D01 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D01
+                      ? EXEC_DTHU_TKC_HTS.DLA_D01 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1251,9 +1261,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D02
                       ? EXEC_DTHU_FIBER.DLA_D02 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D02
-                        ? EXEC_DTHU_TKC_HTS.DLA_D02 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D02
+                      ? EXEC_DTHU_TKC_HTS.DLA_D02 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1265,9 +1275,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D03
                       ? EXEC_DTHU_FIBER.DLA_D03 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D03
-                        ? EXEC_DTHU_TKC_HTS.DLA_D03 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D03
+                      ? EXEC_DTHU_TKC_HTS.DLA_D03 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1279,9 +1289,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D04
                       ? EXEC_DTHU_FIBER.DLA_D04 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D04
-                        ? EXEC_DTHU_TKC_HTS.DLA_D04 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D04
+                      ? EXEC_DTHU_TKC_HTS.DLA_D04 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1293,9 +1303,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D05
                       ? EXEC_DTHU_FIBER.DLA_D05 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D05
-                        ? EXEC_DTHU_TKC_HTS.DLA_D05 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D05
+                      ? EXEC_DTHU_TKC_HTS.DLA_D05 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1307,9 +1317,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.DLA_D06
                       ? EXEC_DTHU_FIBER.DLA_D06 / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.DLA_D06
-                        ? EXEC_DTHU_TKC_HTS.DLA_D06 / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.DLA_D06
+                      ? EXEC_DTHU_TKC_HTS.DLA_D06 / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1356,7 +1366,7 @@ function stripTime(date) {
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06))) /
-                      1000000
+                    1000000
                   )
                 )}
               </td>
@@ -1368,9 +1378,9 @@ function stripTime(date) {
                     (EXEC_DTHU_FIBER.TTKDGPS
                       ? EXEC_DTHU_FIBER.TTKDGPS / 1000000
                       : 0) +
-                      (EXEC_DTHU_TKC_HTS.TTKDGPS
-                        ? EXEC_DTHU_TKC_HTS.TTKDGPS / 1000000
-                        : 0)
+                    (EXEC_DTHU_TKC_HTS.TTKDGPS
+                      ? EXEC_DTHU_TKC_HTS.TTKDGPS / 1000000
+                      : 0)
                   )
                 )}
               </td>
@@ -1384,7 +1394,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T01) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1396,8 +1406,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T01) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T01)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T01) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T01) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1408,7 +1418,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T02) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1420,8 +1430,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T02) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T02) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1432,7 +1442,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T03) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1444,8 +1454,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T03) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T03) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1456,7 +1466,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T04) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1468,8 +1478,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T04) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T04) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1480,7 +1490,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T05) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1492,8 +1502,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T05) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T05) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1505,7 +1515,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T06) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1517,8 +1527,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T06) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T06) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1529,7 +1539,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T07) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1541,8 +1551,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T07) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T07) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1553,7 +1563,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T08) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1565,8 +1575,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T08) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T08) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1577,7 +1587,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T09) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1589,8 +1599,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T09) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T09) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1601,7 +1611,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T10) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1613,8 +1623,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T10) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T10) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1625,7 +1635,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T11) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1637,8 +1647,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T11) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T11) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1649,7 +1659,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T12) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1661,8 +1671,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T12) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T12) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1673,7 +1683,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T13) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1685,8 +1695,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T13) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_T13) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1697,7 +1707,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D01) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1709,8 +1719,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D01) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D01) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1721,7 +1731,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D02) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1733,8 +1743,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D02) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D02) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1745,7 +1755,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D03) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1757,8 +1767,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D03) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D03) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1769,7 +1779,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D04) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1781,8 +1791,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D04) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D04) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1793,7 +1803,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D05) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1805,8 +1815,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D05) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D05) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1817,7 +1827,7 @@ function stripTime(date) {
                     100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D06) *
                       1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1829,8 +1839,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D06) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.DLA_D06) *
+                      1000000)
                   ) + "%"
                 )}
               </td>
@@ -1841,60 +1851,60 @@ function stripTime(date) {
                     100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
-                      100 +
+                    100 +
                     (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
-                      100) /
+                    100) /
                     (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDVT) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -1908,59 +1918,59 @@ function stripTime(date) {
                       100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T02) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T02)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T03) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T03)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T04) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T04)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T05) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T05)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T06) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T06)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T07) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T07)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T08) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T08)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T09) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T09)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T10) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T10)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T11) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T11)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T12) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T12)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_T13) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_T13)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D01) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D01)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D02) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D02)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D03) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D03)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D04) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D04)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D05) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D05)) *
-                        100 +
+                      100 +
                       (convertToNumber(EXEC_DTHU_FIBER.DLA_D06) +
                         convertToNumber(EXEC_DTHU_TKC_HTS.DLA_D06)) *
-                        100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDVT) * 1000000)
+                      100) /
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDVT) * 1000000)
                   ) + "%"
                 )}
               </td>
@@ -1968,10 +1978,10 @@ function stripTime(date) {
                 className={
                   PLAN_DTHU_TKC_HTS.TTKDGPS
                     ? ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
-                        convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
-                        100) /
-                        (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
-                          1000000) >
+                      convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
+                      100) /
+                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
+                        1000000) >
                       processKPI
                       ? "bg-green"
                       : "bg-red"
@@ -1985,8 +1995,8 @@ function stripTime(date) {
                     ((convertToNumber(EXEC_DTHU_FIBER.TTKDGPS) +
                       convertToNumber(EXEC_DTHU_TKC_HTS.TTKDGPS)) *
                       100) /
-                      (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
-                        1000000)
+                    (convertToNumberMauso(PLAN_DTHU_TKC_HTS.TTKDGPS) *
+                      1000000)
                   ) + "%"
                 ) : (
                   ""
@@ -2184,24 +2194,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_DTHU_FIBER.DLA_T01 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T02 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T03 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T04 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T05 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T06 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T07 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T08 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T09 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T10 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T11 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T12 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_T13 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D01 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D02 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D03 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D04 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D05 / 1000000) +
-                      convertToNumber(EXEC_DTHU_FIBER.DLA_D06 / 1000000)
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T02 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T03 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T04 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T05 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T06 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T07 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T08 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T09 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T10 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T11 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T12 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_T13 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D01 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D02 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D03 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D04 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D05 / 1000000) +
+                    convertToNumber(EXEC_DTHU_FIBER.DLA_D06 / 1000000)
                   )
                 )}
               </td>
@@ -2455,8 +2465,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T01
                       ? EXEC_DTHU_GPS_KHCN.DLA_T01 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T01 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T01 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2468,8 +2478,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T02
                       ? EXEC_DTHU_GPS_KHCN.DLA_T02 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T02 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T02 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2481,8 +2491,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T03
                       ? EXEC_DTHU_GPS_KHCN.DLA_T03 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T03 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T03 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2494,8 +2504,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T04
                       ? EXEC_DTHU_GPS_KHCN.DLA_T04 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T04 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T04 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2507,8 +2517,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T05
                       ? EXEC_DTHU_GPS_KHCN.DLA_T05 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T05 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T05 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2520,8 +2530,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T06
                       ? EXEC_DTHU_GPS_KHCN.DLA_T06 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T06 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T06 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2533,8 +2543,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T07
                       ? EXEC_DTHU_GPS_KHCN.DLA_T07 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T07
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T07 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T07 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2546,8 +2556,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T08
                       ? EXEC_DTHU_GPS_KHCN.DLA_T08 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T08
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T08 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T08 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2559,8 +2569,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T09
                       ? EXEC_DTHU_GPS_KHCN.DLA_T09 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T09
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T09 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T09 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2572,8 +2582,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T10
                       ? EXEC_DTHU_GPS_KHCN.DLA_T10 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T10
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T10 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T10 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2585,8 +2595,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T11
                       ? EXEC_DTHU_GPS_KHCN.DLA_T11 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T11
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T11 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T11 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2598,8 +2608,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T12
                       ? EXEC_DTHU_GPS_KHCN.DLA_T12 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T12
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T12 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T12 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2611,8 +2621,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_T13
                       ? EXEC_DTHU_GPS_KHCN.DLA_T13 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_T13
-                      ? EXEC_DTHU_GPS_KHDN.DLA_T13 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_T13 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2624,8 +2634,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D01
                       ? EXEC_DTHU_GPS_KHCN.DLA_D01 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D01
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D01 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D01 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2637,8 +2647,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D02
                       ? EXEC_DTHU_GPS_KHCN.DLA_D02 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D02
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D02 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D02 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2650,8 +2660,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D03
                       ? EXEC_DTHU_GPS_KHCN.DLA_D03 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D03
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D03 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D03 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2663,8 +2673,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D04
                       ? EXEC_DTHU_GPS_KHCN.DLA_D04 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D04
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D04 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D04 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2676,8 +2686,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D05
                       ? EXEC_DTHU_GPS_KHCN.DLA_D05 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D05
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D05 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D05 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2689,8 +2699,8 @@ function stripTime(date) {
                     EXEC_DTHU_GPS_KHCN.DLA_D06
                       ? EXEC_DTHU_GPS_KHCN.DLA_D06 / 1000000
                       : 0 + EXEC_DTHU_GPS_KHDN.DLA_D06
-                      ? EXEC_DTHU_GPS_KHDN.DLA_D06 / 1000000
-                      : 0
+                        ? EXEC_DTHU_GPS_KHDN.DLA_D06 / 1000000
+                        : 0
                   )
                 )}
               </td>
@@ -2753,7 +2763,7 @@ function stripTime(date) {
                         convertToNumber(EXEC_DTHU_GPS_KHDN.DLA_D06)) +
                       (convertToNumber(EXEC_DTHU_GPS_KHCN.TTKDGPS) +
                         convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
-                      1000000
+                    1000000
                   )
                 )}
               </td>
@@ -2766,7 +2776,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2779,7 +2789,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T01)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2789,7 +2799,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2802,7 +2812,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T02)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2813,7 +2823,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2826,7 +2836,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T03)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2836,7 +2846,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2849,7 +2859,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T04)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2859,7 +2869,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T05)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2872,7 +2882,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T05)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2882,7 +2892,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2895,7 +2905,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T06)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2905,7 +2915,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T07 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T07 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2918,7 +2928,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T07 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T07 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T07)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2928,7 +2938,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T08 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T08 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2941,7 +2951,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T08 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T08 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T08)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2951,7 +2961,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T09 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T09 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2964,7 +2974,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T09 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T09 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T09)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2974,7 +2984,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T10 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T10 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -2987,7 +2997,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T10 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T10 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T10)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -2997,7 +3007,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T11 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T11 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3010,7 +3020,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T11 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T11 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T11)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3020,7 +3030,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T12 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T12 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3033,7 +3043,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T12 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T12 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T12)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3043,7 +3053,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T13 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T13 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3056,7 +3066,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_T13 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_T13 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_T13)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3066,7 +3076,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3079,7 +3089,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D01 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D01 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D01)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3089,7 +3099,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3102,7 +3112,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D02 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D02 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D02)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3112,7 +3122,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3125,7 +3135,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D03 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D03 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D03)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3135,7 +3145,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3148,7 +3158,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D04 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D04 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D04)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3158,7 +3168,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3171,7 +3181,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D05 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D05 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D05)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3181,7 +3191,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06)) *
-                      100
+                    100
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3194,7 +3204,7 @@ function stripTime(date) {
                     (((EXEC_DTHU_GPS_KHCN.DLA_D06 ?? 0) / 1000000 +
                       (EXEC_DTHU_GPS_KHDN.DLA_D06 ?? 0) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_GPS.DLA_D06)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -3244,7 +3254,7 @@ function stripTime(date) {
                         convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
                       1000000) *
                       100) /
-                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
+                    convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -3296,7 +3306,7 @@ function stripTime(date) {
                         convertToNumber(EXEC_DTHU_GPS_KHDN.TTKDGPS))) /
                       1000000) *
                       100) /
-                      convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
+                    convertToNumberMauso(PLAN_DTHU_GPS.TTKDGPS)
                   ) + "%"
                 )}
               </td>
@@ -4123,24 +4133,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
-                      convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
+                    convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000
                   )
                 )}
               </td>
@@ -4160,7 +4170,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T01) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T01) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4170,7 +4180,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T01 && PLAN_DTHU_SAYMEE.DLA_T01 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T01 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T01
+                    PLAN_DTHU_SAYMEE.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -4180,7 +4190,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T02) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T02) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4190,7 +4200,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T02 && PLAN_DTHU_SAYMEE.DLA_T02 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T02 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T02
+                    PLAN_DTHU_SAYMEE.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -4201,7 +4211,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T03) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T03) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4211,7 +4221,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T03 && PLAN_DTHU_SAYMEE.DLA_T03 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T03 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T03
+                    PLAN_DTHU_SAYMEE.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -4221,7 +4231,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T04) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T04) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4231,7 +4241,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T04 && PLAN_DTHU_SAYMEE.DLA_T04 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T04 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T04
+                    PLAN_DTHU_SAYMEE.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -4241,7 +4251,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T05) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T05) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4251,7 +4261,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T05 && PLAN_DTHU_SAYMEE.DLA_T05 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T05 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T05
+                    PLAN_DTHU_SAYMEE.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -4261,7 +4271,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T06) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T06) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4271,7 +4281,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T06 && PLAN_DTHU_SAYMEE.DLA_T06 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T06 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T06
+                    PLAN_DTHU_SAYMEE.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -4281,7 +4291,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T07) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T07) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4291,7 +4301,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T07 && PLAN_DTHU_SAYMEE.DLA_T07 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T07 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T07
+                    PLAN_DTHU_SAYMEE.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -4301,7 +4311,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T08) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T08) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4311,7 +4321,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T08 && PLAN_DTHU_SAYMEE.DLA_T08 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T08 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T08
+                    PLAN_DTHU_SAYMEE.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -4321,7 +4331,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T09) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T09) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4331,7 +4341,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T09 && PLAN_DTHU_SAYMEE.DLA_T09 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T09 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T09
+                    PLAN_DTHU_SAYMEE.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -4341,7 +4351,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T10) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T10) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4351,7 +4361,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T10 && PLAN_DTHU_SAYMEE.DLA_T10 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T10 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T10
+                    PLAN_DTHU_SAYMEE.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -4361,7 +4371,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T11) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T11) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4371,7 +4381,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T11 && PLAN_DTHU_SAYMEE.DLA_T11 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T11 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T11
+                    PLAN_DTHU_SAYMEE.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -4381,7 +4391,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T12) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T12) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4391,7 +4401,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T12 && PLAN_DTHU_SAYMEE.DLA_T12 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T12 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T12
+                    PLAN_DTHU_SAYMEE.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -4401,7 +4411,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_T13) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_T13) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4411,7 +4421,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_T13 && PLAN_DTHU_SAYMEE.DLA_T13 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_T13 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_T13
+                    PLAN_DTHU_SAYMEE.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -4421,7 +4431,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D01) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D01) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4431,7 +4441,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D01 && PLAN_DTHU_SAYMEE.DLA_D01 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D01 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D01
+                    PLAN_DTHU_SAYMEE.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -4441,7 +4451,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D02) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D02) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4451,7 +4461,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D02 && PLAN_DTHU_SAYMEE.DLA_D02 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D02 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D02
+                    PLAN_DTHU_SAYMEE.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -4461,7 +4471,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D03) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D03) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4471,7 +4481,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D03 && PLAN_DTHU_SAYMEE.DLA_D03 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D03 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D03
+                    PLAN_DTHU_SAYMEE.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -4481,7 +4491,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D04) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D04) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4491,7 +4501,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D04 && PLAN_DTHU_SAYMEE.DLA_D04 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D04 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D04
+                    PLAN_DTHU_SAYMEE.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -4501,7 +4511,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D05) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4511,7 +4521,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D05 && PLAN_DTHU_SAYMEE.DLA_D05 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D05 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D05
+                    PLAN_DTHU_SAYMEE.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -4521,7 +4531,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) * 100) /
                     (convertToNumberMauso(PLAN_DTHU_SAYMEE.DLA_D06) * 1000000) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4531,7 +4541,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.DLA_D06 && PLAN_DTHU_SAYMEE.DLA_D06 ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.DLA_D06 / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.DLA_D06
+                    PLAN_DTHU_SAYMEE.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -4560,7 +4570,7 @@ function stripTime(date) {
                     EXEC_DTHU_SAYMEE.DLA_D06 / 1000000) *
                     100) /
                     convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -4589,7 +4599,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D05) / 1000000 +
                       convertToNumber(EXEC_DTHU_SAYMEE.DLA_D06) / 1000000) /
                       convertToNumberMauso(PLAN_DTHU_SAYMEE.TTKDVT)) *
-                      100
+                    100
                   ) + "%"
                 )}
               </td>
@@ -4607,7 +4617,7 @@ function stripTime(date) {
                 ) : EXEC_DTHU_SAYMEE.TTKDGPS && PLAN_DTHU_SAYMEE.TTKDGPS ? (
                   convertToFloat2Fixed(
                     ((EXEC_DTHU_SAYMEE.TTKDGPS / 1000000) * 100) /
-                      PLAN_DTHU_SAYMEE.TTKDGPS
+                    PLAN_DTHU_SAYMEE.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -5051,24 +5061,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_SL_TB_C2C.DLA_T01) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T02) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T03) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T04) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T05) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T06) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T07) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T08) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T09) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T10) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T11) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T12) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_T13) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D01) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D02) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
-                      convertToNumber(EXEC_SL_TB_C2C.DLA_D06)
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T02) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T03) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T04) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T05) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T06) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T07) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T08) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T09) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T10) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T11) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T12) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_T13) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D01) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D02) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D03) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D04) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
+                    convertToNumber(EXEC_SL_TB_C2C.DLA_D06)
                   )
                 )}
               </td>
@@ -5089,7 +5099,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5108,7 +5118,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5127,7 +5137,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5146,7 +5156,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5165,7 +5175,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5184,7 +5194,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5203,7 +5213,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5222,7 +5232,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5241,7 +5251,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5260,7 +5270,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5279,7 +5289,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5298,7 +5308,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5317,7 +5327,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5336,7 +5346,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5355,7 +5365,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5374,7 +5384,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5393,7 +5403,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5412,7 +5422,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5431,7 +5441,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_C2C.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_C2C.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -5469,7 +5479,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -5499,7 +5509,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D05) +
                       convertToNumber(EXEC_SL_TB_C2C.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TB_C2C.TTKDVT)
                   ) + "%"
                 )}
               </td>{" "}
@@ -5964,7 +5974,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
-                      19
+                    19
                   )
                 )}
               </td>
@@ -5985,7 +5995,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6004,7 +6014,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6023,7 +6033,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6042,7 +6052,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6061,7 +6071,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6080,7 +6090,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6099,7 +6109,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6118,7 +6128,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6137,7 +6147,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6156,7 +6166,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6175,7 +6185,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6194,7 +6204,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6213,7 +6223,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6232,7 +6242,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6251,7 +6261,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6270,7 +6280,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6289,7 +6299,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6308,7 +6318,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6327,7 +6337,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6364,10 +6374,10 @@ function stripTime(date) {
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
-                      19 /
-                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) *100
-                  )  >
-                  processKPI
+                    19 /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) * 100
+                  ) >
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6395,10 +6405,10 @@ function stripTime(date) {
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
                       convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
-                      19 /
-                      convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) *100
-                  ) 
-                     +
+                    19 /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) * 100
+                  )
+                  +
                   "%"
                 )}
               </td>
@@ -6851,24 +6861,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) +
-                      convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06)
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) +
+                    convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06)
                   )
                 )}
               </td>
@@ -6889,7 +6899,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6908,7 +6918,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6927,7 +6937,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6946,7 +6956,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6965,7 +6975,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -6984,7 +6994,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7003,7 +7013,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7022,7 +7032,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7041,7 +7051,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7060,7 +7070,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7079,7 +7089,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7098,7 +7108,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7117,7 +7127,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7136,7 +7146,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7155,7 +7165,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7174,7 +7184,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7193,7 +7203,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7212,7 +7222,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7231,7 +7241,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_SL_PTM_TBTT.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7269,7 +7279,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) +
                       convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -7299,7 +7309,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_PTM_TBTT.DLA_D05) +
                       convertToNumber(EXEC_SL_PTM_TBTT.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_PTM_TBTT.TTKDVT)
                   ) + "%"
                 )}
               </td>
@@ -7746,24 +7756,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) +
-                      convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06)
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) +
+                    convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06)
                   )
                 )}
               </td>
@@ -7784,7 +7794,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7795,7 +7805,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T01 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T01 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T01
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -7805,7 +7815,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7816,7 +7826,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T02 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T02 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T02
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -7826,7 +7836,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7837,7 +7847,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T03 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T03 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T03
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -7847,7 +7857,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7858,7 +7868,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T04 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T04 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T04
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -7868,7 +7878,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7879,7 +7889,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T05 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T05 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T05
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -7889,7 +7899,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7900,7 +7910,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T06 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T06 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T06
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -7910,7 +7920,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7921,7 +7931,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T07 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T07 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T07
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -7931,7 +7941,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7942,7 +7952,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T08 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T08 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T08
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -7952,7 +7962,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7963,7 +7973,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T09 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T09 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T09
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -7973,7 +7983,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -7984,7 +7994,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T10 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T10 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T10
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -7994,7 +8004,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8005,7 +8015,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T11 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T11 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T11
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -8015,7 +8025,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8026,7 +8036,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T12 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T12 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T12
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -8036,7 +8046,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8047,7 +8057,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_T13 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_T13 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_T13
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -8057,7 +8067,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8068,7 +8078,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D01 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D01 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D01
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -8078,7 +8088,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8089,7 +8099,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D02 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D02 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D02
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -8099,7 +8109,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8110,7 +8120,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D03 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D03 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D03
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -8120,7 +8130,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8131,7 +8141,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D04 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D04 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D04
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -8141,7 +8151,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8152,7 +8162,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D05 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D05 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D05
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -8162,7 +8172,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8173,7 +8183,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.DLA_D06 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.DLA_D06 * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.DLA_D06
+                    PLAN_SL_TBTS_PTM_THOAI.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -8202,7 +8212,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) +
                       convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -8232,7 +8242,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D05) +
                       convertToNumber(EXEC_SL_TBTS_PTM_THOAI.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TBTS_PTM_THOAI.TTKDVT)
                   ) + "%"
                 )}
               </td>
@@ -8251,7 +8261,7 @@ function stripTime(date) {
                   PLAN_SL_TBTS_PTM_THOAI.TTKDGPS ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TBTS_PTM_THOAI.TTKDGPS * 100) /
-                      PLAN_SL_TBTS_PTM_THOAI.TTKDGPS
+                    PLAN_SL_TBTS_PTM_THOAI.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -8681,24 +8691,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) +
-                      convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06)
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) +
+                    convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06)
                   )
                 )}
               </td>
@@ -8719,7 +8729,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8729,7 +8739,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T01 && PLAN_SL_TB_PTM_M2M.DLA_T01 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T01 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T01
+                    PLAN_SL_TB_PTM_M2M.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -8739,7 +8749,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8749,7 +8759,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T02 && PLAN_SL_TB_PTM_M2M.DLA_T02 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T02 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T02
+                    PLAN_SL_TB_PTM_M2M.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -8759,7 +8769,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8769,7 +8779,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T03 && PLAN_SL_TB_PTM_M2M.DLA_T03 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T03 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T03
+                    PLAN_SL_TB_PTM_M2M.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -8779,7 +8789,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8789,7 +8799,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T04 && PLAN_SL_TB_PTM_M2M.DLA_T04 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T04 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T04
+                    PLAN_SL_TB_PTM_M2M.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -8799,7 +8809,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8809,7 +8819,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T05 && PLAN_SL_TB_PTM_M2M.DLA_T05 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T05 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T05
+                    PLAN_SL_TB_PTM_M2M.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -8819,7 +8829,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8829,7 +8839,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T06 && PLAN_SL_TB_PTM_M2M.DLA_T06 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T06 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T06
+                    PLAN_SL_TB_PTM_M2M.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -8839,7 +8849,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8849,7 +8859,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T07 && PLAN_SL_TB_PTM_M2M.DLA_T07 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T07 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T07
+                    PLAN_SL_TB_PTM_M2M.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -8859,7 +8869,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8869,7 +8879,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T08 && PLAN_SL_TB_PTM_M2M.DLA_T08 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T08 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T08
+                    PLAN_SL_TB_PTM_M2M.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -8879,7 +8889,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8889,7 +8899,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T09 && PLAN_SL_TB_PTM_M2M.DLA_T09 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T09 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T09
+                    PLAN_SL_TB_PTM_M2M.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -8899,7 +8909,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8909,7 +8919,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T10 && PLAN_SL_TB_PTM_M2M.DLA_T10 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T10 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T10
+                    PLAN_SL_TB_PTM_M2M.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -8919,7 +8929,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8929,7 +8939,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T11 && PLAN_SL_TB_PTM_M2M.DLA_T11 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T11 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T11
+                    PLAN_SL_TB_PTM_M2M.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -8939,7 +8949,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8949,7 +8959,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T12 && PLAN_SL_TB_PTM_M2M.DLA_T12 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T12 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T12
+                    PLAN_SL_TB_PTM_M2M.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -8959,7 +8969,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8969,7 +8979,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_T13 && PLAN_SL_TB_PTM_M2M.DLA_T13 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_T13 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_T13
+                    PLAN_SL_TB_PTM_M2M.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -8979,7 +8989,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -8989,7 +8999,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D01 && PLAN_SL_TB_PTM_M2M.DLA_D01 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D01 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D01
+                    PLAN_SL_TB_PTM_M2M.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -8999,7 +9009,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9009,7 +9019,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D02 && PLAN_SL_TB_PTM_M2M.DLA_D02 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D02 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D02
+                    PLAN_SL_TB_PTM_M2M.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -9019,7 +9029,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9029,7 +9039,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D03 && PLAN_SL_TB_PTM_M2M.DLA_D03 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D03 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D03
+                    PLAN_SL_TB_PTM_M2M.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -9039,7 +9049,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9049,7 +9059,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D04 && PLAN_SL_TB_PTM_M2M.DLA_D04 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D04 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D04
+                    PLAN_SL_TB_PTM_M2M.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -9059,7 +9069,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9069,7 +9079,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D05 && PLAN_SL_TB_PTM_M2M.DLA_D05 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D05 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D05
+                    PLAN_SL_TB_PTM_M2M.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -9079,7 +9089,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_SL_TB_PTM_M2M.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9089,7 +9099,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.DLA_D06 && PLAN_SL_TB_PTM_M2M.DLA_D06 ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.DLA_D06 * 100) /
-                      PLAN_SL_TB_PTM_M2M.DLA_D06
+                    PLAN_SL_TB_PTM_M2M.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -9119,7 +9129,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) +
                       convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -9149,7 +9159,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D05) +
                       convertToNumber(EXEC_SL_TB_PTM_M2M.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT)
+                    convertToNumberMauso(PLAN_SL_TB_PTM_M2M.TTKDVT)
                   ) + "%"
                 )}
               </td>
@@ -9167,7 +9177,7 @@ function stripTime(date) {
                 ) : EXEC_SL_TB_PTM_M2M.TTKDGPS && PLAN_SL_TB_PTM_M2M.TTKDGPS ? (
                   convertToFloat2Fixed(
                     (EXEC_SL_TB_PTM_M2M.TTKDGPS * 100) /
-                      PLAN_SL_TB_PTM_M2M.TTKDGPS
+                    PLAN_SL_TB_PTM_M2M.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -9603,24 +9613,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) +
-                      convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06)
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) +
+                    convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06)
                   )
                 )}
               </td>
@@ -9641,7 +9651,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9651,7 +9661,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T01 && PLAN_TB_PTM_SAYMEE.DLA_T01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T01 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T01
+                    PLAN_TB_PTM_SAYMEE.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -9661,7 +9671,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9671,7 +9681,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T02 && PLAN_TB_PTM_SAYMEE.DLA_T02 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T02 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T02
+                    PLAN_TB_PTM_SAYMEE.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -9681,7 +9691,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T03) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9691,7 +9701,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T03 && PLAN_TB_PTM_SAYMEE.DLA_T03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T03 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T03
+                    PLAN_TB_PTM_SAYMEE.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -9701,7 +9711,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9711,7 +9721,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T04 && PLAN_TB_PTM_SAYMEE.DLA_T04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T04 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T04
+                    PLAN_TB_PTM_SAYMEE.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -9721,7 +9731,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9731,7 +9741,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T05 && PLAN_TB_PTM_SAYMEE.DLA_T05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T05 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T05
+                    PLAN_TB_PTM_SAYMEE.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -9741,7 +9751,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9751,7 +9761,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T06 && PLAN_TB_PTM_SAYMEE.DLA_T06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T06 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T06
+                    PLAN_TB_PTM_SAYMEE.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -9761,7 +9771,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9771,7 +9781,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T07 && PLAN_TB_PTM_SAYMEE.DLA_T07 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T07 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T07
+                    PLAN_TB_PTM_SAYMEE.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -9781,7 +9791,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9791,7 +9801,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T08 && PLAN_TB_PTM_SAYMEE.DLA_T08 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T08 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T08
+                    PLAN_TB_PTM_SAYMEE.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -9801,7 +9811,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9811,7 +9821,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T09 && PLAN_TB_PTM_SAYMEE.DLA_T09 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T09 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T09
+                    PLAN_TB_PTM_SAYMEE.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -9821,7 +9831,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9831,7 +9841,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T10 && PLAN_TB_PTM_SAYMEE.DLA_T10 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T10 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T10
+                    PLAN_TB_PTM_SAYMEE.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -9841,7 +9851,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9851,7 +9861,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T11 && PLAN_TB_PTM_SAYMEE.DLA_T11 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T11 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T11
+                    PLAN_TB_PTM_SAYMEE.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -9861,7 +9871,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9871,7 +9881,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T12 && PLAN_TB_PTM_SAYMEE.DLA_T12 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T12 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T12
+                    PLAN_TB_PTM_SAYMEE.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -9881,7 +9891,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9891,7 +9901,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_T13 && PLAN_TB_PTM_SAYMEE.DLA_T13 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_T13 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_T13
+                    PLAN_TB_PTM_SAYMEE.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -9901,7 +9911,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9911,7 +9921,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D01 && PLAN_TB_PTM_SAYMEE.DLA_D01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D01 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D01
+                    PLAN_TB_PTM_SAYMEE.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -9921,7 +9931,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9931,7 +9941,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D02 && PLAN_TB_PTM_SAYMEE.DLA_D02 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D02 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D02
+                    PLAN_TB_PTM_SAYMEE.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -9941,7 +9951,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9951,7 +9961,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D03 && PLAN_TB_PTM_SAYMEE.DLA_D03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D03 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D03
+                    PLAN_TB_PTM_SAYMEE.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -9961,7 +9971,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9971,7 +9981,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D04 && PLAN_TB_PTM_SAYMEE.DLA_D04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D04 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D04
+                    PLAN_TB_PTM_SAYMEE.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -9981,7 +9991,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -9991,7 +10001,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D05 && PLAN_TB_PTM_SAYMEE.DLA_D05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D05 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D05
+                    PLAN_TB_PTM_SAYMEE.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -10001,7 +10011,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_SAYMEE.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10011,7 +10021,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.DLA_D06 && PLAN_TB_PTM_SAYMEE.DLA_D06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.DLA_D06 * 100) /
-                      PLAN_TB_PTM_SAYMEE.DLA_D06
+                    PLAN_TB_PTM_SAYMEE.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -10040,7 +10050,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) +
                       convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT)
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -10070,7 +10080,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D05) +
                       convertToNumber(EXEC_TB_PTM_SAYMEE.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT)
+                    convertToNumberMauso(PLAN_TB_PTM_SAYMEE.TTKDVT)
                   ) + "%"
                 )}
               </td>
@@ -10088,7 +10098,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_SAYMEE.TTKDGPS && PLAN_TB_PTM_SAYMEE.TTKDGPS ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_SAYMEE.TTKDGPS * 100) /
-                      PLAN_TB_PTM_SAYMEE.TTKDGPS
+                    PLAN_TB_PTM_SAYMEE.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -10524,24 +10534,24 @@ function stripTime(date) {
                 ) : (
                   convertToFloat2Fixed(
                     convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T03) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) +
-                      convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06)
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T03) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) +
+                    convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06)
                   )
                 )}
               </td>
@@ -10562,7 +10572,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T01) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10572,7 +10582,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T01 && PLAN_TB_PTM_FIBER.DLA_T01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T01 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T01
+                    PLAN_TB_PTM_FIBER.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -10582,7 +10592,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10592,7 +10602,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T02 && PLAN_TB_PTM_FIBER.DLA_T02 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T02 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T02
+                    PLAN_TB_PTM_FIBER.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -10602,7 +10612,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T02) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10612,7 +10622,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T03 && PLAN_TB_PTM_FIBER.DLA_T03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T03 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T03
+                    PLAN_TB_PTM_FIBER.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -10622,7 +10632,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T04) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10632,7 +10642,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T04 && PLAN_TB_PTM_FIBER.DLA_T04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T04 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T04
+                    PLAN_TB_PTM_FIBER.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -10642,7 +10652,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T05) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10652,7 +10662,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T05 && PLAN_TB_PTM_FIBER.DLA_T05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T05 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T05
+                    PLAN_TB_PTM_FIBER.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -10662,7 +10672,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T06) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10672,7 +10682,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T06 && PLAN_TB_PTM_FIBER.DLA_T06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T06 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T06
+                    PLAN_TB_PTM_FIBER.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -10682,7 +10692,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T07) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T07) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10692,7 +10702,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T07 && PLAN_TB_PTM_FIBER.DLA_T07 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T07 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T07
+                    PLAN_TB_PTM_FIBER.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -10702,7 +10712,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T08) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T08) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10712,7 +10722,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T08 && PLAN_TB_PTM_FIBER.DLA_T08 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T08 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T08
+                    PLAN_TB_PTM_FIBER.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -10722,7 +10732,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T09) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T09) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10732,7 +10742,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T09 && PLAN_TB_PTM_FIBER.DLA_T09 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T09 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T09
+                    PLAN_TB_PTM_FIBER.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -10742,7 +10752,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T10) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T10) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10752,7 +10762,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T10 && PLAN_TB_PTM_FIBER.DLA_T10 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T10 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T10
+                    PLAN_TB_PTM_FIBER.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -10762,7 +10772,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T11) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T11) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10772,7 +10782,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T11 && PLAN_TB_PTM_FIBER.DLA_T11 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T11 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T11
+                    PLAN_TB_PTM_FIBER.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -10782,7 +10792,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T12) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T12) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10792,7 +10802,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T12 && PLAN_TB_PTM_FIBER.DLA_T12 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T12 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T12
+                    PLAN_TB_PTM_FIBER.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -10802,7 +10812,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_T13) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_T13) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10812,7 +10822,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_T13 && PLAN_TB_PTM_FIBER.DLA_T13 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_T13 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_T13
+                    PLAN_TB_PTM_FIBER.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -10822,7 +10832,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D01) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D01) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10832,7 +10842,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D01 && PLAN_TB_PTM_FIBER.DLA_D01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D01 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D01
+                    PLAN_TB_PTM_FIBER.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -10842,7 +10852,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D02) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D02) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10852,7 +10862,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D02 && PLAN_TB_PTM_FIBER.DLA_D02 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D02 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D02
+                    PLAN_TB_PTM_FIBER.DLA_D02
                   ) + "%"
                 ) : (
                   ""
@@ -10862,7 +10872,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D03) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D03) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10872,7 +10882,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D03 && PLAN_TB_PTM_FIBER.DLA_D03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D03 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D03
+                    PLAN_TB_PTM_FIBER.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -10882,7 +10892,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D04) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D04) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10892,7 +10902,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D04 && PLAN_TB_PTM_FIBER.DLA_D04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D04 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D04
+                    PLAN_TB_PTM_FIBER.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -10902,7 +10912,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D05) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10912,7 +10922,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D05 && PLAN_TB_PTM_FIBER.DLA_D05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D05 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D05
+                    PLAN_TB_PTM_FIBER.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -10922,7 +10932,7 @@ function stripTime(date) {
                 className={
                   (convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06) * 100) /
                     convertToNumberMauso(PLAN_TB_PTM_FIBER.DLA_D06) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -10932,7 +10942,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.DLA_D06 && PLAN_TB_PTM_FIBER.DLA_D06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.DLA_D06 * 100) /
-                      PLAN_TB_PTM_FIBER.DLA_D06
+                    PLAN_TB_PTM_FIBER.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -10961,7 +10971,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) +
                       convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT)
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT)
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -10991,7 +11001,7 @@ function stripTime(date) {
                       convertToNumber(EXEC_TB_PTM_FIBER.DLA_D05) +
                       convertToNumber(EXEC_TB_PTM_FIBER.DLA_D06)) *
                       100) /
-                      convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT)
+                    convertToNumberMauso(PLAN_TB_PTM_FIBER.TTKDVT)
                   ) + "%"
                 )}
               </td>
@@ -11009,7 +11019,7 @@ function stripTime(date) {
                 ) : EXEC_TB_PTM_FIBER.TTKDGPS && PLAN_TB_PTM_FIBER.TTKDGPS ? (
                   convertToFloat2Fixed(
                     (EXEC_TB_PTM_FIBER.TTKDGPS * 100) /
-                      PLAN_TB_PTM_FIBER.TTKDGPS
+                    PLAN_TB_PTM_FIBER.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
@@ -11243,8 +11253,8 @@ function stripTime(date) {
               <td rowSpan={3}>
                 {EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE
                   ? getFormattedDate(
-                      new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
-                    )
+                    new Date(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.LAST_DATE)
+                  )
                   : ""}
               </td>
             </tr>
@@ -11470,7 +11480,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11481,7 +11491,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -11494,7 +11504,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11505,7 +11515,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -11518,7 +11528,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11529,7 +11539,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -11542,7 +11552,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11553,7 +11563,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -11566,7 +11576,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11577,7 +11587,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -11590,7 +11600,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11601,7 +11611,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -11614,7 +11624,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11625,7 +11635,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -11638,7 +11648,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11649,7 +11659,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -11662,7 +11672,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11673,7 +11683,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -11686,7 +11696,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11697,7 +11707,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -11710,7 +11720,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11721,7 +11731,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -11734,7 +11744,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11745,7 +11755,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T12
                   ) + "%"
                 ) : (
                   ""
@@ -11758,7 +11768,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11769,7 +11779,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -11782,7 +11792,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11793,7 +11803,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -11805,9 +11815,9 @@ function stripTime(date) {
                     convertToNumber(
                       EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 * 100
                     ) /
-                      convertToNumberMauso(
-                        PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
-                      )
+                    convertToNumberMauso(
+                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
+                    )
                   ) > processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -11821,9 +11831,9 @@ function stripTime(date) {
                     convertToNumber(
                       EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02 * 100
                     ) /
-                      convertToNumberMauso(
-                        PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
-                      )
+                    convertToNumberMauso(
+                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D02
+                    )
                   ) + "%"
                 ) : (
                   ""
@@ -11836,7 +11846,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11847,7 +11857,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -11860,7 +11870,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11871,7 +11881,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -11884,7 +11894,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11895,7 +11905,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -11908,7 +11918,7 @@ function stripTime(date) {
                     convertToNumberMauso(
                       PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06
                     ) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11919,7 +11929,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06 ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06 * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -11930,7 +11940,7 @@ function stripTime(date) {
                   (convertToNumber(EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT) *
                     100) /
                     convertToNumberMauso(PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT) >
-                  processKPI
+                    processKPI
                     ? "bg-green"
                     : "bg-red"
                 }
@@ -11941,7 +11951,7 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDVT
                   ) + "%"
                 ) : (
                   ""
@@ -11965,7 +11975,954 @@ function stripTime(date) {
                   PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS ? (
                   convertToFloat2Fixed(
                     (EXEC_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS * 100) /
-                      PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS
+                    PLAN_TI_LE_GIA_HAN_GOI_DAI_KY.TTKDGPS
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td
+                rowSpan={3}
+                className="td-title-center fw-bold td-stt fix-col-1"
+              >
+                8
+              </td>
+              <td
+                rowSpan={3}
+                className="td-title  fw-bold td-content fix-col-2"
+              >
+                {`Thuê bao FWA`}
+              </td>
+              <td className="td-title-center  td-kh fix-col-3">KH</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWA.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWA.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_SL_PTM_FWA.LAST_DATE
+                  ? getFormattedDate(
+                    new Date(EXEC_SL_PTM_FWA.LAST_DATE)
+                  )
+                  : ""}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.TTKDVT ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWA.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T01) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T01
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T01 &&
+                  PLAN_SL_PTM_FWA.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T01 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T02) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T02
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T02 &&
+                  PLAN_SL_PTM_FWA.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T02 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T03) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T03
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T03 &&
+                  PLAN_SL_PTM_FWA.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T03 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T04) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T04
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T04 &&
+                  PLAN_SL_PTM_FWA.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T04 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T05) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T05
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T05 &&
+                  PLAN_SL_PTM_FWA.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T05 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T06) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T06
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T06 &&
+                  PLAN_SL_PTM_FWA.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T06 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T07) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T07
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T07 &&
+                  PLAN_SL_PTM_FWA.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T07 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T07
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T08) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T08
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T08 &&
+                  PLAN_SL_PTM_FWA.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T08 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T08
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T09) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T09
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T09 &&
+                  PLAN_SL_PTM_FWA.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T09 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T09
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T10) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T10
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T10 &&
+                  PLAN_SL_PTM_FWA.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T10 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T10
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T11) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T11
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T11 &&
+                  PLAN_SL_PTM_FWA.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T11 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T11
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T12) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T12
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T12 &&
+                  PLAN_SL_PTM_FWA.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T12 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T12
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_T13) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_T13
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_T13 &&
+                  PLAN_SL_PTM_FWA.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_T13 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_T13
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_D01) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D01
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D01 &&
+                  PLAN_SL_PTM_FWA.DLA_D01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_D01 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_D01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    convertToNumber(
+                      EXEC_SL_PTM_FWA.DLA_D02 * 100
+                    ) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D02
+                    )
+                  ) > processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D02 &&
+                  EXEC_SL_PTM_FWA.DLA_D02 ? (
+                  convertToFloat2Fixed(
+                    convertToNumber(
+                      EXEC_SL_PTM_FWA.DLA_D02 * 100
+                    ) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D02
+                    )
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_D03) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D03
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D03 &&
+                  PLAN_SL_PTM_FWA.DLA_D03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_D03 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_D03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_D04) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D04
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D04 &&
+                  PLAN_SL_PTM_FWA.DLA_D04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_D04 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_D04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_D05) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D05
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D05 &&
+                  PLAN_SL_PTM_FWA.DLA_D05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_D05 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_D05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.DLA_D06) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWA.DLA_D06
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.DLA_D06 &&
+                  PLAN_SL_PTM_FWA.DLA_D06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.DLA_D06 * 100) /
+                    PLAN_SL_PTM_FWA.DLA_D06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWA.TTKDVT) *
+                    100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWA.TTKDVT) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.TTKDVT &&
+                  PLAN_SL_PTM_FWA.TTKDVT ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.TTKDVT * 100) /
+                    PLAN_SL_PTM_FWA.TTKDVT
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+             
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWA.TTKDGPS &&
+                  PLAN_SL_PTM_FWA.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWA.TTKDGPS * 100) /
+                    PLAN_SL_PTM_FWA.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
