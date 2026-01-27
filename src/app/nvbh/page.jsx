@@ -43,6 +43,7 @@ const KPI_KEYS = [
   "SL_TB_C2C",
   "TYLE_GD_C2C",
   "TB_MNP_DEN",
+  "SL_PTM_FWA"
 ];
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
@@ -68,6 +69,8 @@ export default function Page(props) {
   const [SL_TB_C2C_PROCESS, SET_SL_TB_C2C_PROCESS] = useState(0);
   const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
   const [TB_MNP_DEN_PROCESS, SET_TB_MNP_DEN_PROCESS] = useState(0);
+  const [SL_PTM_FWA_PROCESS, SET_SL_PTM_FWA_PROCESS] = useState(0);
+
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -177,6 +180,9 @@ export default function Page(props) {
 
       SET_TB_MNP_DEN_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_MNP_DEN"], sumDateInMonth)
+      );
+      SET_SL_PTM_FWA_PROCESS(
+        calcProcessFromLastDate(lastDateMap["SL_PTM_FWA"], sumDateInMonth)
       );
     }
 
@@ -619,8 +625,15 @@ export default function Page(props) {
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
               >{`TB MNP đến`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_blue-light position-relative"
+              >{`TB PTM FWA`}</th>
             </tr>
             <tr className="th-title th-color-yellow ">
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
@@ -989,13 +1002,6 @@ export default function Page(props) {
                       fontWeight: 500,
                     }}
                   >
-                    {/* {
-                     convertToFloat2FixedNumber(
-                            (convertToNumber(object.TYLE_GD_C2C_EXEC) /
-                              convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
-                              100
-                          )  
-                    } */}
                     {convertToFloat2FixedNumber(
                       (convertToNumber(object.TYLE_GD_C2C_EXEC * 100) /
                         convertToNumberMauso(object.TYLE_GD_C2C_PLAN)) *
@@ -1007,6 +1013,53 @@ export default function Page(props) {
                   <td></td>
                   <td></td>
                   <td></td>
+
+                  {/* Tỷ lệ gia hạn */}
+                  <td style={{ textAlign: "center" }}>
+                    {object.SL_PTM_FWA_PLAN ?? 0}
+                    {"%"}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      convertToNumber(object.SL_PTM_FWA_EXEC) * 100
+                    )}
+                    {"%"}
+                  </td>
+                  <td
+                    className={
+                      convertToNumber(SL_PTM_FWA_PROCESS) === 0 ? "bg-red" :
+
+                        convertToNumber(object.SL_PTM_FWA_PLAN) === 0
+                          ? convertToNumber(object.SL_PTM_FWA_EXEC) > 0
+                            ? "bg-green"
+                            : ""
+                          : convertToFloat2FixedNumber(
+                            (convertToNumber(object.SL_PTM_FWA_EXEC * 100) /
+                              convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                            100
+                          ) >=
+                            convertToFloat2FixedNumber(object.SL_PTM_FWA_EXEC * 100)
+                            ? "bg-green"
+                            : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_FWA_EXEC * 100) /
+                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                      100
+                    )}{" "}
+                    {"%"}
+                  </td>
                 </tr>
               ))
             ) : (
