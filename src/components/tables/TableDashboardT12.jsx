@@ -28,6 +28,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   const [PLAN_TYLE_GD_C2C, SET_PLAN_TYLE_GD_C2C] = useState({});
   const [PLAN_SL_PTM_TBTT, SET_PLAN_SL_PTM_TBTT] = useState({});
   const [PLAN_SL_PTM_FWA, SET_PLAN_SL_PTM_FWA] = useState({});
+    const [PLAN_SL_PTM_FWAP, SET_PLAN_SL_PTM_FWAP] = useState({});
   const [PLAN_SL_TBTS_PTM_THOAI, SET_PLAN_SL_TBTS_PTM_THOAI] = useState({});
   const [PLAN_SL_TB_PTM_M2M, SET_PLAN_SL_TB_PTM_M2M] = useState({});
   const [PLAN_TB_PTM_SAYMEE, SET_PLAN_TB_PTM_SAYMEE] = useState({});
@@ -46,6 +47,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
   const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
   const [EXEC_SL_PTM_TBTT, SET_EXEC_SL_PTM_TBTT] = useState({});
   const [EXEC_SL_PTM_FWA, SET_EXEC_SL_PTM_FWA] = useState({});
+  const [EXEC_SL_PTM_FWAP, SET_EXEC_SL_PTM_FWAP] = useState({});
   const [EXEC_SL_TBTS_PTM_THOAI, SET_EXEC_SL_TBTS_PTM_THOAI] = useState({});
   const [EXEC_SL_TB_PTM_M2M, SET_EXEC_SL_TB_PTM_M2M] = useState({});
   const [EXEC_TB_PTM_SAYMEE, SET_EXEC_TB_PTM_SAYMEE] = useState({});
@@ -111,6 +113,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
       SET_PLAN_TB_PTM_FIBER({});
       SET_PLAN_TI_LE_GIA_HAN_GOI_DAI_KY({});
       SET_PLAN_SL_PTM_FWA({});
+      SET_PLAN_SL_PTM_FWAP({});
 
     },
     resetExec() {
@@ -128,6 +131,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
       SET_EXEC_TB_PTM_FIBER({});
       SET_EXEC_TI_LE_GIA_HAN_GOI_DAI_KY({});
       SET_EXEC_SL_PTM_FWA({});
+      SET_EXEC_SL_PTM_FWAP({});
     },
   }));
   useEffect(() => {
@@ -171,6 +175,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
         }
         if (object["TEN_CHI_TIEU"] == "SL_PTM_FWA") {
           SET_PLAN_SL_PTM_FWA(object);
+        }
+         if (object["TEN_CHI_TIEU"] == "SL_PTM_FWAP") {
+          SET_PLAN_SL_PTM_FWAP(object);
         }
       });
     }
@@ -226,6 +233,9 @@ const TableDashboardT12 = forwardRef((props, ref) => {
 
         if (object["TEN_CHI_TIEU"] == "SL_PTM_FWA") {
           SET_EXEC_SL_PTM_FWA(object);
+        }
+         if (object["TEN_CHI_TIEU"] == "SL_PTM_FWAP") {
+          SET_EXEC_SL_PTM_FWAP(object);
         }
       });
     }
@@ -11987,13 +11997,13 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 rowSpan={3}
                 className="td-title-center fw-bold td-stt fix-col-1"
               >
-                8
+                9
               </td>
               <td
                 rowSpan={3}
                 className="td-title  fw-bold td-content fix-col-2"
               >
-                {`Thuê bao FWA`}
+                {`Thuê bao PTM FWA`}
               </td>
               <td className="td-title-center  td-kh fix-col-3">KH</td>
               <td>
@@ -12929,6 +12939,954 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                 )}
               </td>
             </tr>
+             <tr>
+              <td
+                rowSpan={3}
+                className="td-title-center fw-bold td-stt fix-col-1"
+              >
+                10
+              </td>
+              <td
+                rowSpan={3}
+                className="td-title  fw-bold td-content fix-col-2"
+              >
+                {`Thuê bao PTM FWAP`}
+              </td>
+              <td className="td-title-center  td-kh fix-col-3">KH</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : PLAN_SL_PTM_FWAP.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_SL_PTM_FWAP.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td rowSpan={3}>
+                {EXEC_SL_PTM_FWAP.LAST_DATE
+                  ? getFormattedDate(
+                    new Date(EXEC_SL_PTM_FWAP.LAST_DATE)
+                  )
+                  : ""}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh fix-col-3">TH</td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T07)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T08)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T09)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T10)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T11)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T12)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_T13)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D01)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D02)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D03)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D04)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D05)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.DLA_D06)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.TTKDVT ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.TTKDVT)
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_SL_PTM_FWAP.TTKDGPS)
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td className="td-title-center td-kh fix-col-3">%TH</td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T01) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T01
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T01 &&
+                  PLAN_SL_PTM_FWAP.DLA_T01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T01 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T02) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T02
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T02 &&
+                  PLAN_SL_PTM_FWAP.DLA_T02 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T02 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T02
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T03) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T03
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T03 &&
+                  PLAN_SL_PTM_FWAP.DLA_T03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T03 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T04) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T04
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T04 &&
+                  PLAN_SL_PTM_FWAP.DLA_T04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T04 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T05) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T05
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T05 &&
+                  PLAN_SL_PTM_FWAP.DLA_T05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T05 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T06) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T06
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T06 &&
+                  PLAN_SL_PTM_FWAP.DLA_T06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T06 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T07) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T07
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T07 &&
+                  PLAN_SL_PTM_FWAP.DLA_T07 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T07 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T07
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T08) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T08
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T08 &&
+                  PLAN_SL_PTM_FWAP.DLA_T08 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T08 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T08
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T09) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T09
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T09 &&
+                  PLAN_SL_PTM_FWAP.DLA_T09 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T09 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T09
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T10) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T10
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T10 &&
+                  PLAN_SL_PTM_FWAP.DLA_T10 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T10 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T10
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T11) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T11
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T11 &&
+                  PLAN_SL_PTM_FWAP.DLA_T11 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T11 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T11
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T12) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T12
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T12 &&
+                  PLAN_SL_PTM_FWAP.DLA_T12 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T12 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T12
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_T13) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_T13
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_T13 &&
+                  PLAN_SL_PTM_FWAP.DLA_T13 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_T13 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_T13
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_D01) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D01
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D01 &&
+                  PLAN_SL_PTM_FWAP.DLA_D01 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_D01 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_D01
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  convertToFloat2Fixed(
+                    convertToNumber(
+                      EXEC_SL_PTM_FWAP.DLA_D02 * 100
+                    ) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D02
+                    )
+                  ) > processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D02 &&
+                  EXEC_SL_PTM_FWAP.DLA_D02 ? (
+                  convertToFloat2Fixed(
+                    convertToNumber(
+                      EXEC_SL_PTM_FWAP.DLA_D02 * 100
+                    ) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D02
+                    )
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_D03) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D03
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D03 &&
+                  PLAN_SL_PTM_FWAP.DLA_D03 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_D03 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_D03
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_D04) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D04
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D04 &&
+                  PLAN_SL_PTM_FWAP.DLA_D04 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_D04 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_D04
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_D05) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D05
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D05 &&
+                  PLAN_SL_PTM_FWAP.DLA_D05 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_D05 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_D05
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.DLA_D06) *
+                    100) /
+                    convertToNumberMauso(
+                      PLAN_SL_PTM_FWAP.DLA_D06
+                    ) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.DLA_D06 &&
+                  PLAN_SL_PTM_FWAP.DLA_D06 ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.DLA_D06 * 100) /
+                    PLAN_SL_PTM_FWAP.DLA_D06
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+                className={
+                  (convertToNumber(EXEC_SL_PTM_FWAP.TTKDVT) *
+                    100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWAP.TTKDVT) >
+                    processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.TTKDVT &&
+                  PLAN_SL_PTM_FWAP.TTKDVT ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.TTKDVT * 100) /
+                    PLAN_SL_PTM_FWAP.TTKDVT
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+              <td
+             
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : EXEC_SL_PTM_FWAP.TTKDGPS &&
+                  PLAN_SL_PTM_FWAP.TTKDGPS ? (
+                  convertToFloat2Fixed(
+                    (EXEC_SL_PTM_FWAP.TTKDGPS * 100) /
+                    PLAN_SL_PTM_FWAP.TTKDGPS
+                  ) + "%"
+                ) : (
+                  ""
+                )}
+              </td>
+            </tr>
+
           </tbody>
         </table>
       </div>
