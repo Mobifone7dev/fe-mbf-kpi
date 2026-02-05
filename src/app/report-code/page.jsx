@@ -100,7 +100,10 @@ export default function Page() {
         }
         const resTemp = await result.json();
         if (resTemp) {
-            setData(resTemp.result);
+            const sorted = [...resTemp.result].sort(
+                (a, b) => (b.TONG_TRONG_TINH || 0) - (a.TONG_TRONG_TINH || 0)
+            );
+            setData(sorted);
         }
         setLoading(false);
     };
