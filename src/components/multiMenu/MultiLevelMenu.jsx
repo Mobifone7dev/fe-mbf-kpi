@@ -10,22 +10,7 @@ export default function MultiLevelMenu({ menuData }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  /* ✅ Load user 1 lần khi mount */
-  useEffect(() => {
-    try {
-      const userString = localStorage.getItem("user");
-      const user = userString ? JSON.parse(userString) : null;
-
-      if (user) {
-        console.log("User:", user);
-        // Nếu cần filter menu theo role thì làm ở đây
-        // setLocalMenuData(...)
-      }
-    } catch (err) {
-      console.error("Parse user error:", err);
-    }
-  }, []);
-
+ 
   /* ✅ Click ngoài menu → đóng dropdown */
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -48,7 +33,7 @@ export default function MultiLevelMenu({ menuData }) {
         const isActive =
           pathname === item.link ||
           (pathname === "/report-code" && item.link === "/report") ||
-          (pathname === "/" && item.link === "/report");
+          (pathname === "/report-other" && item.link === "/report");
 
         return (
           <li
