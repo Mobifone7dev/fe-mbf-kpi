@@ -83,7 +83,7 @@ const menuCategory = [
       },
       {
         label: "Báo cáo khác",
-        link: "/",
+        link: "/report-other",
       },
     ],
   },
