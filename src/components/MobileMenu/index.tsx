@@ -6,6 +6,7 @@ import PhoneComponent from "@components/elements/PhoneComponent";
 import MenuItem from "../elements/MenuItem/index";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { logout } from "@/lib/api";
 
 type MenuProps = {
   toggleMenu: () => void;
@@ -48,10 +49,7 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
         <button
           onClick={async () => {
             try {
-              await fetch(`${process.env.NEXTAUTH_APP_API_URL_SSL}/authentication/logout`, {
-                method: "POST",
-                credentials: "include", // gửi kèm cookie để server clear
-              });
+              await logout();
 
               // Xóa dữ liệu phụ trong localStorage nếu có
               localStorage.removeItem("user");
