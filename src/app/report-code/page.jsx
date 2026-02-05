@@ -196,7 +196,7 @@ export default function Page() {
                         return (
                             <div className=" filter flex flex-row justify-items-center align-items-center me-5">
                                 <Form>
-                                    <div className="filter-body d-flex flex-start align-items-center mb-2 ">
+                                    <div className="filter-body d-flex flex-start align-items-center mb-2 border p-2">
                                         <div className="select-filter me-5">
                                             <label
                                                 htmlFor="selectMonth"
@@ -230,7 +230,7 @@ export default function Page() {
                                                 getReportByCodeDetail();
                                             }}
                                         >
-                                            Export Excel thuê bao chi tiết
+                                            Export thuê bao chi tiết
                                         </button>{" "}
                                     </div>
                                 </Form>
