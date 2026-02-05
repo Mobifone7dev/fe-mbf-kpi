@@ -46,9 +46,22 @@ const MobileMenu: FC<MenuProps> = ({ toggleMenu, isOpen }) => {
       </div>
       <div className="logout-menu-mobile">
         <button
-          onClick={() => {
-            signOut({ redirect: false });
-            router.push("/login");
+          onClick={async () => {
+            try {
+              await fetch(`${process.env.NEXTAUTH_APP_API_URL_SSL}/authentication/logout`, {
+                method: "POST",
+                credentials: "include", // gửi kèm cookie để server clear
+              });
+
+              // Xóa dữ liệu phụ trong localStorage nếu có
+              localStorage.removeItem("user");
+              localStorage.removeItem("accessToken");
+
+              // Redirect về trang login
+              router.replace("/login");
+            } catch (err) {
+              console.error("Logout failed", err);
+            }
           }}
         >
           <a className={`btn-houze btn-solid`}>

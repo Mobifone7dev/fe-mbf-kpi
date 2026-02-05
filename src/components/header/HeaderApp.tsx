@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { logout } from "@/lib/api";
+import MultiLevelMenu from "../../components/multiMenu/MultiLevelMenu";
 
 type HeaderProps = {
   toggleMenu: () => void;
@@ -74,7 +75,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             </div>
             <div className="main-title" style={{ color: 'red', fontSize:'18px' }}>DLA</div>
             <div className="navigation ms-5">
-              {menuCategory.map((item, index) => (
+              {/* {menuCategory.map((item, index) => (
                 <div
                   key={index}
                   className={`nav-item ${item.link === pathname && "active"}`}
@@ -83,7 +84,9 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
                     <span>{item.label} </span>
                   </Link>
                 </div>
-              ))}
+              ))} */}
+                      <MultiLevelMenu menuData={menuCategory} />
+
             </div>
           </div>
         </div>
@@ -100,6 +103,8 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <i className="icon-call-connecting" />
             <span>18001090</span>
           </a> */}
+
+
           <button
             onClick={async () => {
               try {
@@ -122,6 +127,7 @@ const HeaderApp: FC<HeaderProps> = ({ toggleMenu, isOpen }) => {
             <span>Logout</span>
           </button>
         </div>
+
       </div>
 
     </div>

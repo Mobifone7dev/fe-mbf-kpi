@@ -474,7 +474,7 @@ export default function Page(props) {
             className="btn btn-success"
             onClick={() => {
               // console.log("check", finalData)
-              exportKpiPlanExcel(finalData);
+              exportTableExcel(finalData);
             }}
           >
             Export kế hoạch KPI

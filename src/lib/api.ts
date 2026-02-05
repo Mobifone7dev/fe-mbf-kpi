@@ -807,6 +807,96 @@ export async function handleSearchEmployeeByEmpcode(
   }
 }
 
+export async function handleGetReportCodeByVlr(
+  month: string
+) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  const encodedSearch = encodeURIComponent(month);
+  const urlApi =
+    URL +
+    `/report/report-code-by-vlr?month=${encodedSearch}`;
+  try {
+    res = await fetch(urlApi, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.status === 401 || res.status === 403) {
+      throw {
+        unauthorized: true,
+        status: res.status,
+        message: "Unauthorized or Forbidden"
+      };
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    const err = e as { status?: number; message?: string };
+    return Response.json(
+      {
+        message: err.message || "An error occurred while get code.",
+        status: err.status || 500,
+      },
+      {
+        status: err.status || 500,
+      }
+    );
+  }
+}
+
+export async function handleGetReportCodeByVlrDetail(
+  month: string
+) {
+  const URL = process.env.NEXTAUTH_APP_API_URL_SSL;
+  let res;
+  const token = localStorage.getItem("accessToken");
+  const encodedSearch = encodeURIComponent(month);
+  const urlApi =
+    URL +
+    `/report/report-code-by-vlr-detail?month=${encodedSearch}`;
+  try {
+    res = await fetch(urlApi, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.status === 401 || res.status === 403) {
+      throw {
+        unauthorized: true,
+        status: res.status,
+        message: "Unauthorized or Forbidden"
+      };
+    }
+    const data = await res.json();
+    if (res) {
+      return Response.json({
+        success: true,
+        result: data.result,
+      });
+    } else {
+      console.log("res", res);
+      return Response.json({ success: false });
+    }
+  } catch (e) {
+    const err = e as { status?: number; message?: string };
+    return Response.json(
+      {
+        message: err.message || "An error occurred while get code.",
+        status: err.status || 500,
+      },
+      {
+        status: err.status || 500,
+      }
+    );
+  }
+}
+
 export async function handleSearchPTMEmployeeByEmpcode(
   matchSearch: string, month: string
 ) {

@@ -73,6 +73,20 @@ const menuCategory = [
     label: "Ptm theo xã",
     link: "/ptm-by-ward",
   },
+  {
+    label: "Báo cáo",
+    link: "/report",
+    children: [
+      {
+        label: "Báo cáo gói vlr",
+        link: "/report-code",
+      },
+      {
+        label: "Báo cáo khác",
+        link: "/",
+      },
+    ],
+  },
 
   // {
   //   label: "Dashboard thi đua Tháng 08 ",

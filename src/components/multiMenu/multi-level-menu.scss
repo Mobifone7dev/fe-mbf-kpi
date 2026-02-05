@@ -1,0 +1,110 @@
+.multi-level-menu {
+  background-color: #f8f9fa;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+  .menu-item {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+
+    .menu-title {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 15px;
+      border: none;
+      background: none;
+      font: inherit;
+      color: #333;
+
+      &:hover {
+        background-color: #e9ecef;
+        border-radius: 4px;
+      }
+      &.active {
+        background: #fcfcfc;
+        color: $primary-base;
+      }
+
+      .arrow {
+        margin-left: 10px;
+        font-size: 10px;
+        color: #555;
+      }
+    }
+
+    .menu-link {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+
+      &:hover {
+        background-color: #e9ecef;
+        border-radius: 4px;
+      }
+    }
+
+    .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      min-width: 200px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 1000;
+
+      li {
+        .menu-link,
+        .menu-title {
+          width: 100%;
+          padding: 10px;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: #f1f1f1;
+          }
+          &.active {
+            background: #fcfcfc;
+            color: $primary-base;
+          }
+        }
+      }
+    }
+  }
+  .menu-item .menu-title .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item .sub-menu.open ~ .menu-title .arrow {
+    transform: rotate(180deg);
+  }
+  .menu-item .menu-title.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background: $primary-base
+  }
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  margin-left: 6px;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
