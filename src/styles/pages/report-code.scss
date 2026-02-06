@@ -1,0 +1,27 @@
+.th-trong {
+  color: #0d6efd;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.th-ngoai {
+  color: #dc3545;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.cell-trong {
+  color: #0d6efd !important;
+  font-weight: 500;
+}
+
+.cell-ngoai {
+  color: #dc3545 !important;
+  font-weight: 500;
+}
+
+.table-report th,
+.table-report td {
+  vertical-align: middle;
+  white-space: nowrap;
+}

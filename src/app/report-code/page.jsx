@@ -252,76 +252,116 @@ export default function Page() {
 
             {!loading && data && data.length > 0 && (
                 <div className="table-responsive">
-                    <table id="table-report-code-vlr" className="table table-bordered table-sm table-hover">
-                        <thead className="table-primary text-center">
-                            <tr>
-                                <th>Gói cước</th>
+                    <div className="table-responsive">
+                        <table
+                            id="table-report-code-vlr"
+                            className="table table-bordered table-sm table-hover table-report"
+                        >
+                            <thead className="text-center">
+                                <tr className="table-primary fw-bold">
+                                    <th rowSpan="2">Gói cước</th>
 
-                                {/* Trong tỉnh */}
-                                <th>DLA_T01</th>
-                                <th>DLA_T02</th>
-                                <th>DLA_T03</th>
-                                <th>DLA_T04</th>
-                                <th>DLA_T05</th>
-                                <th>DLA_T06</th>
-                                <th>DLA_T07</th>
-                                <th>DLA_T08</th>
-                                <th>DLA_T09</th>
-                                <th>DLA_T10</th>
-                                <th>DLA_T11</th>
-                                <th>DLA_T12</th>
-                                <th>DLA_T13</th>
+                                    {[
+                                        "DLA_T01", "DLA_T02", "DLA_T03", "DLA_T04", "DLA_T05", "DLA_T06",
+                                        "DLA_T07", "DLA_T08", "DLA_T09", "DLA_T10", "DLA_T11", "DLA_T12", "DLA_T13",
+                                        "DLA_D01", "DLA_D02", "DLA_D03", "DLA_D04", "DLA_D05", "DLA_D06"
+                                    ].map(code => (
+                                        <th key={code} colSpan="2">{code}</th>
+                                    ))}
 
-                                {/* Ngoài tỉnh */}
-                                <th>DLA_D01</th>
-                                <th>DLA_D02</th>
-                                <th>DLA_D03</th>
-                                <th>DLA_D04</th>
-                                <th>DLA_D05</th>
-                                <th>DLA_D06</th>
-
-                                <th>Tổng trong tỉnh</th>
-                                <th>Tổng ngoài tỉnh</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {data.map((row, idx) => (
-                                <tr key={idx} className="text-end">
-                                    <td className="text-start fw-bold">{row.GOI_CUOC}</td>
-
-                                    <td>{row.DLA_T01 || 0}</td>
-                                    <td>{row.DLA_T02 || 0}</td>
-                                    <td>{row.DLA_T03 || 0}</td>
-                                    <td>{row.DLA_T04 || 0}</td>
-                                    <td>{row.DLA_T05 || 0}</td>
-                                    <td>{row.DLA_T06 || 0}</td>
-                                    <td>{row.DLA_T07 || 0}</td>
-                                    <td>{row.DLA_T08 || 0}</td>
-                                    <td>{row.DLA_T09 || 0}</td>
-                                    <td>{row.DLA_T10 || 0}</td>
-                                    <td>{row.DLA_T11 || 0}</td>
-                                    <td>{row.DLA_T12 || 0}</td>
-                                    <td>{row.DLA_T13 || 0}</td>
-
-                                    <td>{row.DLA_D01 || 0}</td>
-                                    <td>{row.DLA_D02 || 0}</td>
-                                    <td>{row.DLA_D03 || 0}</td>
-                                    <td>{row.DLA_D04 || 0}</td>
-                                    <td>{row.DLA_D05 || 0}</td>
-                                    <td>{row.DLA_D06 || 0}</td>
-
-                                    <td className="fw-bold text-primary">
-                                        {row.TONG_TRONG_TINH || 0}
-                                    </td>
-                                    <td className="fw-bold text-danger">
-                                        {row.TONG_NGOAI_TINH || 0}
-                                    </td>
+                                    <th rowSpan="2">Tổng trong tỉnh</th>
+                                    <th rowSpan="2">Tổng ngoài tỉnh</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+
+                                <tr>
+                                    {Array.from({ length: 19 }).map((_, i) => (
+                                        <>
+                                            <th className="th-trong">Trong tỉnh</th>
+                                            <th className="th-ngoai">Ngoài tỉnh</th>
+                                        </>
+                                    ))}
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {data.map((row, idx) => (
+                                    <tr key={idx} className="text-end">
+                                        <td className="text-start fw-bold">{row.GOI_CUOC}</td>
+
+                                        {/* T01 → T13 */}
+                                        <td className="cell-trong">{row.DLA_T01_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T01_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T02_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T02_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T03_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T03_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T04_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T04_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T05_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T05_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T06_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T06_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T07_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T07_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T08_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T08_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T09_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T09_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T10_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T10_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T11_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T11_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T12_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T12_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_T13_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_T13_NGOAI_TINH || 0}</td>
+
+                                        {/* D01 → D06 */}
+                                        <td className="cell-trong">{row.DLA_D01_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D01_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_D02_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D02_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_D03_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D03_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_D04_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D04_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_D05_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D05_NGOAI_TINH || 0}</td>
+
+                                        <td className="cell-trong">{row.DLA_D06_TRONG_TINH || 0}</td>
+                                        <td className="cell-ngoai">{row.DLA_D06_NGOAI_TINH || 0}</td>
+
+                                        {/* Tổng */}
+                                        <td className="fw-bold text-primary">
+                                            {row.TONG_TRONG_TINH}
+                                        </td>
+                                        <td className="fw-bold text-danger">
+                                            {row.TONG_NGOAI_TINH}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
+
             )}
         </div>
     );
