@@ -173,6 +173,9 @@ export default function Page() {
         const d = new Date(dateStr);
         return d.toLocaleDateString("vi-VN");
     };
+
+    const sumColumn = (field) =>
+        data.reduce((sum, item) => sum + (Number(item[field]) || 0), 0);
     return (
         <div className="container-fluid report-code p-3">
             <div className="flex flex-wrap">
@@ -356,6 +359,72 @@ export default function Page() {
                                         </td>
                                     </tr>
                                 ))}
+                                <tr className="fw-bold table-warning text-end">
+                                    <td className="text-start">Tổng cộng</td>
+
+                                    {/* T01 → T13 */}
+                                    <td>{sumColumn("DLA_T01_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T01_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T02_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T02_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T03_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T03_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T04_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T04_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T05_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T05_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T06_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T06_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T07_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T07_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T08_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T08_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T09_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T09_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T10_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T10_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T11_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T11_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T12_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T12_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_T13_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_T13_NGOAI_TINH")}</td>
+
+                                    {/* D01 → D06 */}
+                                    <td>{sumColumn("DLA_D01_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D01_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_D02_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D02_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_D03_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D03_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_D04_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D04_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_D05_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D05_NGOAI_TINH")}</td>
+
+                                    <td>{sumColumn("DLA_D06_TRONG_TINH")}</td>
+                                    <td>{sumColumn("DLA_D06_NGOAI_TINH")}</td>
+
+                                    {/* Tổng cuối */}
+                                    <td className="text-primary">{sumColumn("TONG_TRONG_TINH")}</td>
+                                    <td className="text-danger">{sumColumn("TONG_NGOAI_TINH")}</td>
+                                </tr>
                             </tbody>
                         </table>
 
