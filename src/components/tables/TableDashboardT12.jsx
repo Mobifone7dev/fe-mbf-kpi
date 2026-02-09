@@ -12416,7 +12416,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td>
+              {/* <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -12424,6 +12424,34 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   convertToFloat2Fixed(EXEC_SL_PTM_FWA.TTKDVT)
                 ) : (
                   ""
+                )}
+              </td> */}
+                <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T01) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T02) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T03) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T04) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T05) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T06) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T07) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T08) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T09) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T10) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T11) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T12) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_T13) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D01) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D02) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D03) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D04) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D05) +
+                    convertToNumber(EXEC_SL_PTM_FWA.DLA_D06)
+                  )
                 )}
               </td>
               <td>
@@ -12901,7 +12929,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+              {/* <td
                 className={
                   (convertToNumber(EXEC_SL_PTM_FWA.TTKDVT) *
                     100) /
@@ -12921,6 +12949,63 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ) + "%"
                 ) : (
                   ""
+                )}
+              </td> */}
+               <td
+                className={
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_SL_PTM_FWA.DLA_T01) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T02) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T03) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T04) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T05) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T06) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T07) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T08) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T09) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T10) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T11) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T12) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T13) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D01) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D02) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D03) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D04) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D05) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D06)) *
+                      100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWA.TTKDVT)
+                  ) > processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_SL_PTM_FWA.DLA_T01) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T02) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T03) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T04) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T05) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T06) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T07) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T08) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T09) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T10) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T11) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T12) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_T13) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D01) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D02) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D03) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D04) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D05) +
+                      convertToNumber(EXEC_SL_PTM_FWA.DLA_D06)) *
+                      100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWA.TTKDVT)
+                  ) + "%"
                 )}
               </td>
               <td
@@ -13363,7 +13448,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td>
+              {/* <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
@@ -13371,6 +13456,34 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   convertToFloat2Fixed(EXEC_SL_PTM_FWAP.TTKDVT)
                 ) : (
                   ""
+                )}
+              </td> */}
+               <td>
+                {" "}
+                {loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T01) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T02) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T03) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T04) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T05) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T06) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T07) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T08) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T09) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T10) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T11) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T12) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_T13) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D01) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D02) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D03) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D04) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D05) +
+                    convertToNumber(EXEC_SL_PTM_FWAP.DLA_D06)
+                  )
                 )}
               </td>
               <td>
@@ -13848,7 +13961,7 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ""
                 )}
               </td>
-              <td
+              {/* <td
                 className={
                   (convertToNumber(EXEC_SL_PTM_FWAP.TTKDVT) *
                     100) /
@@ -13868,6 +13981,64 @@ const TableDashboardT12 = forwardRef((props, ref) => {
                   ) + "%"
                 ) : (
                   ""
+                )}
+              </td> */}
+
+               <td
+                className={
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_SL_PTM_FWAP.DLA_T01) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T02) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T03) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T04) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T05) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T06) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T07) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T08) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T09) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T10) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T11) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T12) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T13) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D01) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D02) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D03) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D04) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D05) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D06)) *
+                      100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWAP.TTKDVT)
+                  ) > processKPI
+                    ? "bg-green"
+                    : "bg-red"
+                }
+              >
+                {loadingExec || loadingPlan ? (
+                  <LoadingComponent />
+                ) : (
+                  convertToFloat2Fixed(
+                    ((convertToNumber(EXEC_SL_PTM_FWAP.DLA_T01) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T02) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T03) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T04) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T05) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T06) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T07) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T08) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T09) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T10) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T11) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T12) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_T13) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D01) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D02) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D03) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D04) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D05) +
+                      convertToNumber(EXEC_SL_PTM_FWAP.DLA_D06)) *
+                      100) /
+                    convertToNumberMauso(PLAN_SL_PTM_FWAP.TTKDVT)
+                  ) + "%"
                 )}
               </td>
               <td
