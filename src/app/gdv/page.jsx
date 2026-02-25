@@ -44,7 +44,8 @@ const KPI_KEYS = [
   "SL_TB_C2C",
   "TYLE_GD_C2C",
   "TB_MNP_DEN",
-  "SL_PTM_FWA"
+  "SL_PTM_FWA",
+  "SL_PTM_FWAP"
 ];
 export default function Page(props) {
   const [employeeList, setEmployeeList] = useState([]);
@@ -67,6 +68,8 @@ export default function Page(props) {
   const [SL_TB_PTM_M2M_PROCESS, SET_SL_TB_PTM_M2M_PROCESS] = useState(0);
   const [TB_PTM_SAYMEE_PROCESS, SET_TB_PTM_SAYMEE_PROCESS] = useState(0);
   const [TB_PTM_FIBER_PROCESS, SET_TB_PTM_FIBER_PROCESS] = useState(0);
+  const [TB_PTM_FWA_PROCESS, SET_TB_PTM_FWA_PROCESS] = useState(0);
+  const [TB_PTM_FWAP_PROCESS, SET_TB_PTM_FWAP_PROCESS] = useState(0);
   const [SL_TB_C2C_PROCESS, SET_SL_TB_C2C_PROCESS] = useState(0);
   const [TYLE_GD_C2C_PROCESS, SET_TYLE_GD_C2C_PROCESS] = useState(0);
   const [TB_C90N_C99N_PROCESS, SET_TB_C90N_C99N_PROCESS] = useState(0);
@@ -76,6 +79,7 @@ export default function Page(props) {
   const [TB_TBTT_C1C_PROCESS, SET_TB_TBTT_C1C_PROCESS] = useState(0);
   const [DTHU_N_1_PROCESS, SET_DTHU_N_1_PROCESS] = useState(0);
   const [SL_PTM_FWA_PROCESS, SET_SL_PTM_FWA_PROCESS] = useState(0);
+  const [SL_PTM_FWAP_PROCESS, SET_SL_PTM_FWAP_PROCESS] = useState(0);
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
@@ -158,6 +162,13 @@ export default function Page(props) {
       SET_TB_PTM_FIBER_PROCESS(
         calcProcessFromLastDate(lastDateMap["TB_PTM_FIBER"], sumDateInMonth)
       );
+      SET_TB_PTM_FWA_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_PTM_FWA"], sumDateInMonth)
+      );
+      SET_TB_PTM_FWAP_PROCESS(
+        calcProcessFromLastDate(lastDateMap["TB_PTM_FWAP"], sumDateInMonth)
+      );
+
 
       SET_SL_TB_C2C_PROCESS(
         calcProcessFromLastDate(lastDateMap["SL_TB_C2C"], sumDateInMonth)
@@ -614,6 +625,14 @@ export default function Page(props) {
               <th
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
+              >{`TB PTM FWA`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_blue-light position-relative"
+              >{`TB PTM FWAP`}</th>
+              <th
+                colSpan={3}
+                className="th-title bg_blue-light position-relative"
               >{`C90N/C99N`}</th>
               <th
                 colSpan={3}
@@ -631,12 +650,12 @@ export default function Page(props) {
                 colSpan={3}
                 className="th-title bg_blue-light position-relative"
               >{`DT BÁN GÓI N-1`}</th>
-              <th
-                colSpan={3}
-                className="th-title bg_blue-light position-relative"
-              >{`TB PTM FWA`}</th>
+
             </tr>
             <tr className="th-title th-color-yellow ">
+              <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>TH</th>
+              <th style={{ fontStyle: "italic" }}>%TH</th>
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
@@ -929,6 +948,78 @@ export default function Page(props) {
                     )}{" "}
                     {"%"}
                   </td>
+                  {/*FWA*/}
+                  <td style={{ textAlign: "center" }}>
+                    {" "}
+                    {object.SL_PTM_FWA_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.SL_PTM_FWA_EXEC ?? 0}
+                  </td>
+                  <td
+                    className={
+                      convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_FWA_EXEC) /
+                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                      100
+                    ) >0
+                            ? "bg-green"
+                            : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_FWA_EXEC) /
+                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                      100
+                    )}
+                    {"%"}
+                  </td>
+                  {/*FWAP*/}
+                  <td style={{ textAlign: "center" }}>
+                    {" "}
+                    {object.SL_PTM_FWAP_PLAN ?? 0}
+                  </td>
+                  <td
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    {object.SL_PTM_FWAP_EXEC ?? 0}
+                  </td>
+                  <td
+                    className={
+                     convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_FWAP_EXEC) /
+                        convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
+                      100
+                    ) > 0
+                            ? "bg-green"
+                            : "bg-red"
+                    }
+                    style={{
+                      textAlign: "center",
+                      fontStyle: "italic",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {convertToFloat2FixedNumber(
+                      (convertToNumber(object.SL_PTM_FWAP_EXEC) /
+                        convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
+                      100
+                    )}
+                    {"%"}
+                  </td>
                   {/* C90N */}
                   <td style={{ textAlign: "center" }}>
                     {object.TB_C90N_C99N_PLAN ?? 0}
@@ -1138,51 +1229,7 @@ export default function Page(props) {
                     {"%"}
 
                   </td>
-                  <td style={{ textAlign: "center" }}>
-                    {object.SL_PTM_FWA_PLAN ?? 0}
-                    {"%"}
-                  </td>
-                  <td
-                    style={{
-                      textAlign: "center",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    {convertToFloat2FixedNumber(
-                      convertToNumber(object.SL_PTM_FWA_EXEC) * 100
-                    )}
-                    {"%"}
-                  </td>
-                  <td
-                    className={
-                      convertToNumber(SL_PTM_FWA_PROCESS) === 0 ? "bg-red" :
 
-                        convertToNumber(object.SL_PTM_FWA_PLAN) === 0
-                          ? convertToNumber(object.SL_PTM_FWA_EXEC) > 0
-                            ? "bg-green"
-                            : ""
-                          : convertToFloat2FixedNumber(
-                            (convertToNumber(object.SL_PTM_FWA_EXEC * 100) /
-                              convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
-                            100
-                          ) >=
-                            convertToFloat2FixedNumber(object.SL_PTM_FWA_EXEC * 100)
-                            ? "bg-green"
-                            : "bg-red"
-                    }
-                    style={{
-                      textAlign: "center",
-                      fontStyle: "italic",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {convertToFloat2FixedNumber(
-                      (convertToNumber(object.SL_PTM_FWA_EXEC * 100) /
-                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
-                      100
-                    )}{" "}
-                    {"%"}
-                  </td>
                 </tr>
               ))
             ) : (

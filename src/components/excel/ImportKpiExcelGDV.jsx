@@ -14,6 +14,8 @@ const KPI_MAPPING = [
   { key: "SL_TB_PTM_M2M", excel: "M2M" },
   { key: "TB_PTM_SAYMEE", excel: "SAYMEE" },
   { key: "TB_PTM_FIBER", excel: "FIBER" },
+  { key: "TB_PTM_FWA", excel: "TB PTM FWA" },
+  { key: "TB_PTM_FWAP", excel: "TB PTM FWAP" },
   { key: "SL_TB_C2C", excel: "Số lượng thuê bao PTM qua kênh C2C" },
   { key: "TYLE_GD_C2C", excel: "Tỷ lệ PS GD C2C (%)" },
   { key: "TB_C90N_C99N", excel: "KẾ HOẠCH C90N/C99N" },

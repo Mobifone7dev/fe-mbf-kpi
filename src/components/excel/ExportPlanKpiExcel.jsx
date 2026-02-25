@@ -16,7 +16,8 @@ export const exportKpiPlanExcel = (finalData = []) => {
 
     "Số lượng thuê bao PTM qua kênh C2C",
     "Tỷ lệ PS GD C2C (%)",
-    "FWA"
+    "TB PTM FWA",
+    "TB PTM FWAP",
   ];
 
   // 2. Data rows
@@ -33,7 +34,9 @@ export const exportKpiPlanExcel = (finalData = []) => {
 
     item.SL_TB_C2C_PLAN ?? 0,
     item.TYLE_GD_C2C_PLAN ?? 0,
-    item.SL_PTM_FWA ?? 0
+    item.SL_PTM_FWA ?? 0,
+    item.SL_PTM_FWAP ?? 0
+
   ]);
 
   // 3. Tạo worksheet

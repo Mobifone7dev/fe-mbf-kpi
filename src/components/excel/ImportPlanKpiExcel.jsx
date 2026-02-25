@@ -14,7 +14,8 @@ const KPI_MAPPING = [
   { key: "SL_TB_C2C", excel: "Số lượng thuê bao PTM qua kênh C2C" },
   { key: "TYLE_GD_C2C", excel: "Tỷ lệ PS GD C2C (%)" },
   { key: "TB_MNP_DEN", excel: "Thuê bao MNP đến" },
-  { key: "SL_PTM_FWA", excel: "FWA" },
+  { key: "TB_PTM_FWA", excel: "TB PTM FWA" },
+  { key: "TB_PTM_FWAP", excel: "TB PTM FWAP" },
 
 ];
 export default function ImportKpiPlanExcel(props) {
