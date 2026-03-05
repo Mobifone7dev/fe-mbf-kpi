@@ -15,6 +15,7 @@ import TableDashboardT03 from "@components/tables/TableDashboardT03";
 import TableDashboardT04 from "@components/tables/TableDashboardT04";
 import TableDashboardT08 from "@components/tables/TableDashboardT08";
 import TableDashboardT12 from "@components/tables/TableDashboardT12";
+import TableDashboardT032026 from "@components/tables/TableDashboardT032026";
 
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -263,7 +264,8 @@ const Page = () => {
         </div>
       </div>
       {/* selectDate se cham hon 1 thang */}
-      <TableDashboardT12
+      {selectedDate.getMonth() > 1 ? 
+      <TableDashboardT032026
         ref={childRef}
         planData={planData}
         execData={execData}
@@ -271,7 +273,16 @@ const Page = () => {
         loadingPlan={loadingPlan}
         selectedDate={selectedDate}
         sumDateInMonth={sumDateInMonth}
-      />
+      />:  <TableDashboardT12
+        ref={childRef}
+        planData={planData}
+        execData={execData}
+        loadingExec={loadingExec}
+        loadingPlan={loadingPlan}
+        selectedDate={selectedDate}
+        sumDateInMonth={sumDateInMonth}
+      />}
+     
     </div>
   );
 };
