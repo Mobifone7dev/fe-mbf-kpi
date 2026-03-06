@@ -25,7 +25,7 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
   const [PLAN_SL_TB_C2C, SET_PLAN_SL_TB_C2C] = useState({});
   const [PLAN_DTHU_SAYMEE, SET_PLAN_DTHU_SAYMEE] = useState({});
 
-  const [PLAN_TYLE_GD_C2C, SET_PLAN_TYLE_GD_C2C] = useState({});
+  const [PLAN_TYLE_GD_C2C_PSC_100000, SET_PLAN_TYLE_GD_C2C_PSC_100000] = useState({});
   const [PLAN_SL_PTM_TBTT, SET_PLAN_SL_PTM_TBTT] = useState({});
   const [PLAN_SL_PTM_FWA, SET_PLAN_SL_PTM_FWA] = useState({});
   const [PLAN_SL_PTM_FWAP, SET_PLAN_SL_PTM_FWAP] = useState({});
@@ -44,7 +44,7 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
   const [EXEC_DTHU_SAYMEE, SET_EXEC_DTHU_SAYMEE] = useState({});
 
   const [EXEC_SL_TB_C2C, SET_EXEC_SL_TB_C2C] = useState({});
-  const [EXEC_TYLE_GD_C2C, SET_EXEC_TYLE_GD_C2C] = useState({});
+  const [EXEC_TYLE_GD_C2C_PSC_100000, SET_EXEC_TYLE_GD_C2C_PSC_100000] = useState({});
   const [EXEC_SL_PTM_TBTT, SET_EXEC_SL_PTM_TBTT] = useState({});
   const [EXEC_SL_PTM_FWA, SET_EXEC_SL_PTM_FWA] = useState({});
   const [EXEC_SL_PTM_FWAP, SET_EXEC_SL_PTM_FWAP] = useState({});
@@ -105,7 +105,7 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
       SET_PLAN_DTHU_GPS({});
       SET_PLAN_DTHU_SAYMEE({});
       SET_PLAN_SL_TB_C2C({});
-      SET_PLAN_TYLE_GD_C2C({});
+      SET_PLAN_TYLE_GD_C2C_PSC_100000({});
       SET_PLAN_SL_PTM_TBTT({});
       SET_PLAN_SL_TBTS_PTM_THOAI({});
       SET_PLAN_SL_TB_PTM_M2M_FWAP({});
@@ -123,7 +123,7 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
       SET_EXEC_DTHU_FIBER({});
       SET_EXEC_DTHU_SAYMEE({});
       SET_EXEC_SL_TB_C2C({});
-      SET_EXEC_TYLE_GD_C2C({});
+      SET_EXEC_TYLE_GD_C2C_PSC_100000({});
       SET_EXEC_SL_PTM_TBTT({});
       SET_EXEC_SL_TBTS_PTM_THOAI({});
       SET_EXEC_SL_TB_PTM_M2M_FWAP({});
@@ -152,8 +152,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
           SET_PLAN_SL_TB_C2C(object);
         }
-        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
-          SET_PLAN_TYLE_GD_C2C(object);
+        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C_PSC_100000") {
+          SET_PLAN_TYLE_GD_C2C_PSC_100000(object);
         }
         if (object["TEN_CHI_TIEU"] == "SL_PTM_TBTT") {
           SET_PLAN_SL_PTM_TBTT(object);
@@ -204,8 +204,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
         if (object["TEN_CHI_TIEU"] == "SL_TB_C2C") {
           SET_EXEC_SL_TB_C2C(object);
         }
-        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C") {
-          SET_EXEC_TYLE_GD_C2C(object);
+        if (object["TEN_CHI_TIEU"] == "TYLE_GD_C2C_PSC_100000") {
+          SET_EXEC_TYLE_GD_C2C_PSC_100000(object);
         }
         if (object["TEN_CHI_TIEU"] == "DTHU_FIBER") {
           SET_EXEC_DTHU_FIBER(object);
@@ -5548,15 +5548,15 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 4.2
               </td>
               <td rowSpan={3} className="td-title   td-content fix-col-2">
-                {`Tỷ lệ điểm bán C2C có phát sinh giao dịch(%)`}
+                {`Tỷ lệ thuê bao PTM qua kênh có gói từ 100.000 đồng/tháng (%)`}
               </td>
               <td className="td-title-center td-kh fix-col-3">KH</td>
               <td>
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T01 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T01)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T01 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T01)
                 ) : (
                   ""
                 )}
@@ -5565,8 +5565,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T02 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T02)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T02 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T02)
                 ) : (
                   ""
                 )}
@@ -5575,8 +5575,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T03 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T03)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T03 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T03)
                 ) : (
                   ""
                 )}
@@ -5585,8 +5585,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T04 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T04)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T04 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T04)
                 ) : (
                   ""
                 )}
@@ -5595,8 +5595,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T05 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T05)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T05 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T05)
                 ) : (
                   ""
                 )}
@@ -5605,8 +5605,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T06 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T06)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T06 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T06)
                 ) : (
                   ""
                 )}
@@ -5615,8 +5615,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T07 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T07)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T07 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T07)
                 ) : (
                   ""
                 )}
@@ -5625,8 +5625,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T08 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T08)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T08 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T08)
                 ) : (
                   ""
                 )}
@@ -5635,8 +5635,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T09 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T09)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T09 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T09)
                 ) : (
                   ""
                 )}
@@ -5645,8 +5645,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T10 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T10)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T10 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T10)
                 ) : (
                   ""
                 )}
@@ -5655,8 +5655,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T11 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T11)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T11 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T11)
                 ) : (
                   ""
                 )}
@@ -5665,8 +5665,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T12 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T12)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T12 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T12)
                 ) : (
                   ""
                 )}
@@ -5675,8 +5675,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_T13 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_T13)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_T13 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T13)
                 ) : (
                   ""
                 )}
@@ -5685,8 +5685,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D01 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D01)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D01 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D01)
                 ) : (
                   ""
                 )}
@@ -5695,8 +5695,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D02 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D02)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D02 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D02)
                 ) : (
                   ""
                 )}
@@ -5705,8 +5705,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D03 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D03)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D03 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D03)
                 ) : (
                   ""
                 )}
@@ -5715,8 +5715,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D04 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D04)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D04 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D04)
                 ) : (
                   ""
                 )}
@@ -5725,8 +5725,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D05 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D05)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D05 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D05)
                 ) : (
                   ""
                 )}
@@ -5735,8 +5735,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.DLA_D06 ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.DLA_D06)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.DLA_D06 ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D06)
                 ) : (
                   ""
                 )}
@@ -5745,8 +5745,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.TTKDVT ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.TTKDVT)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.TTKDVT ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.TTKDVT)
                 ) : (
                   ""
                 )}
@@ -5755,15 +5755,15 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : PLAN_TYLE_GD_C2C.TTKDGPS ? (
-                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C.TTKDGPS)
+                ) : PLAN_TYLE_GD_C2C_PSC_100000.TTKDGPS ? (
+                  convertToFloat2Fixed(PLAN_TYLE_GD_C2C_PSC_100000.TTKDGPS)
                 ) : (
                   ""
                 )}
               </td>
               <td rowSpan={3}>
-                {EXEC_TYLE_GD_C2C.LAST_DATE
-                  ? getFormattedDate(new Date(EXEC_TYLE_GD_C2C.LAST_DATE))
+                {EXEC_TYLE_GD_C2C_PSC_100000.LAST_DATE
+                  ? getFormattedDate(new Date(EXEC_TYLE_GD_C2C_PSC_100000.LAST_DATE))
                   : ""}
               </td>
             </tr>
@@ -5773,8 +5773,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T01 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T01)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01)
                 ) : (
                   ""
                 )}
@@ -5783,8 +5783,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T02 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T02)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02)
                 ) : (
                   ""
                 )}
@@ -5793,8 +5793,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T03 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T03)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03)
                 ) : (
                   ""
                 )}
@@ -5803,8 +5803,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T04 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T04)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04)
                 ) : (
                   ""
                 )}
@@ -5813,8 +5813,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T05 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T05)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05)
                 ) : (
                   ""
                 )}
@@ -5823,8 +5823,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T06 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T06)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06)
                 ) : (
                   ""
                 )}
@@ -5833,8 +5833,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T07 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T07)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07)
                 ) : (
                   ""
                 )}
@@ -5843,8 +5843,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T08 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T08)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08)
                 ) : (
                   ""
                 )}
@@ -5853,8 +5853,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T09 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T09)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09)
                 ) : (
                   ""
                 )}
@@ -5863,8 +5863,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T10 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T10)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10)
                 ) : (
                   ""
                 )}
@@ -5873,8 +5873,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T11 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T11)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11)
                 ) : (
                   ""
                 )}
@@ -5883,8 +5883,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T12 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T12)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12)
                 ) : (
                   ""
                 )}
@@ -5893,8 +5893,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T13 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_T13)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13)
                 ) : (
                   ""
                 )}
@@ -5903,8 +5903,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D01 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D01)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01)
                 ) : (
                   ""
                 )}
@@ -5913,8 +5913,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D02 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D02)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02)
                 ) : (
                   ""
                 )}
@@ -5923,8 +5923,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D03 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D03)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03)
                 ) : (
                   ""
                 )}
@@ -5933,8 +5933,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D04 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D04)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04)
                 ) : (
                   ""
                 )}
@@ -5943,8 +5943,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D05 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D05)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05)
                 ) : (
                   ""
                 )}
@@ -5953,8 +5953,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D06 ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.DLA_D06)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06 ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06)
                 ) : (
                   ""
                 )}
@@ -5965,25 +5965,25 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
+                    (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06)) /
                     19
                   )
                 )}
@@ -5992,8 +5992,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                 {" "}
                 {loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.TTKDGPS ? (
-                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C.TTKDGPS)
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.TTKDGPS ? (
+                  convertToFloat2Fixed(EXEC_TYLE_GD_C2C_PSC_100000.TTKDGPS)
                 ) : (
                   ""
                 )}
@@ -6003,8 +6003,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               <td className="td-title-center td-kh fix-col-3">%TH</td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T01) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T01) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6012,9 +6012,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T01 && PLAN_TYLE_GD_C2C.DLA_T01 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T01 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T01 * 100) / PLAN_TYLE_GD_C2C.DLA_T01
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T01
                   ) + "%"
                 ) : (
                   ""
@@ -6022,8 +6022,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T02) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T02) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6031,9 +6031,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T02 && PLAN_TYLE_GD_C2C.DLA_T02 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T02 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T02 * 100) / PLAN_TYLE_GD_C2C.DLA_T02
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T02
                   ) + "%"
                 ) : (
                   ""
@@ -6041,8 +6041,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T03) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T03) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6050,9 +6050,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T03 && PLAN_TYLE_GD_C2C.DLA_T03 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T03 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T03 * 100) / PLAN_TYLE_GD_C2C.DLA_T03
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T03
                   ) + "%"
                 ) : (
                   ""
@@ -6060,8 +6060,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T04) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T04) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6069,9 +6069,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T04 && PLAN_TYLE_GD_C2C.DLA_T04 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T04 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T04 * 100) / PLAN_TYLE_GD_C2C.DLA_T04
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T04
                   ) + "%"
                 ) : (
                   ""
@@ -6079,8 +6079,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T05) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T05) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6088,9 +6088,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T05 && PLAN_TYLE_GD_C2C.DLA_T05 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T05 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T05 * 100) / PLAN_TYLE_GD_C2C.DLA_T05
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T05
                   ) + "%"
                 ) : (
                   ""
@@ -6098,8 +6098,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T06) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T06) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6107,9 +6107,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T06 && PLAN_TYLE_GD_C2C.DLA_T06 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T06 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T06 * 100) / PLAN_TYLE_GD_C2C.DLA_T06
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T06
                   ) + "%"
                 ) : (
                   ""
@@ -6117,8 +6117,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T07) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T07) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6126,9 +6126,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T07 && PLAN_TYLE_GD_C2C.DLA_T07 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T07 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T07 * 100) / PLAN_TYLE_GD_C2C.DLA_T07
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T07
                   ) + "%"
                 ) : (
                   ""
@@ -6136,8 +6136,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T08) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T08) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6145,9 +6145,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T08 && PLAN_TYLE_GD_C2C.DLA_T08 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T08 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T08 * 100) / PLAN_TYLE_GD_C2C.DLA_T08
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T08
                   ) + "%"
                 ) : (
                   ""
@@ -6155,8 +6155,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T09) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T09) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6164,9 +6164,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T09 && PLAN_TYLE_GD_C2C.DLA_T09 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T09 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T09 * 100) / PLAN_TYLE_GD_C2C.DLA_T09
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T09
                   ) + "%"
                 ) : (
                   ""
@@ -6174,8 +6174,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T10) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T10) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6183,9 +6183,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T10 && PLAN_TYLE_GD_C2C.DLA_T10 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T10 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T10 * 100) / PLAN_TYLE_GD_C2C.DLA_T10
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T10
                   ) + "%"
                 ) : (
                   ""
@@ -6193,8 +6193,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T11) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T11) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6202,9 +6202,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T11 && PLAN_TYLE_GD_C2C.DLA_T11 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T11 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T11 * 100) / PLAN_TYLE_GD_C2C.DLA_T11
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T11
                   ) + "%"
                 ) : (
                   ""
@@ -6212,8 +6212,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T12) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T12) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6221,18 +6221,21 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T12 && PLAN_TYLE_GD_C2C.DLA_T12 ? (
+                ) : 
+                EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T12 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T12 * 100) / PLAN_TYLE_GD_C2C.DLA_T12
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T12
                   ) + "%"
                 ) : (
                   ""
-                )}
+                )
+              
+                }
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_T13) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_T13) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6240,9 +6243,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_T13 && PLAN_TYLE_GD_C2C.DLA_T13 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_T13 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_T13 * 100) / PLAN_TYLE_GD_C2C.DLA_T13
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_T13
                   ) + "%"
                 ) : (
                   ""
@@ -6250,8 +6253,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D01) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D01) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6259,9 +6262,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D01 && PLAN_TYLE_GD_C2C.DLA_D01 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D01 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D01 * 100) / PLAN_TYLE_GD_C2C.DLA_D01
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D01
                   ) + "%"
                 ) : (
                   ""
@@ -6269,8 +6272,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D02) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D02) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6278,18 +6281,25 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D02 && EXEC_TYLE_GD_C2C.DLA_D02 ? (
+                ) :
+                // (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02)
+                EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D02 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D02 * 100) / EXEC_TYLE_GD_C2C.DLA_D02
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D02
                   ) + "%"
-                ) : (
+                ) 
+                
+                
+                : (
                   ""
-                )}
+                )
+                
+                }
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D03) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D03) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6297,9 +6307,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D03 && PLAN_TYLE_GD_C2C.DLA_D03 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D03 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D03 * 100) / PLAN_TYLE_GD_C2C.DLA_D03
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D03
                   ) + "%"
                 ) : (
                   ""
@@ -6307,8 +6317,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D04) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D04) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6316,9 +6326,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D04 && PLAN_TYLE_GD_C2C.DLA_D04 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D04 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D04 * 100) / PLAN_TYLE_GD_C2C.DLA_D04
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D04
                   ) + "%"
                 ) : (
                   ""
@@ -6326,8 +6336,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D05) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D05) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6335,9 +6345,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D05 && PLAN_TYLE_GD_C2C.DLA_D05 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D05 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D05 * 100) / PLAN_TYLE_GD_C2C.DLA_D05
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D05
                   ) + "%"
                 ) : (
                   ""
@@ -6345,8 +6355,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
                 className={
-                  (convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06) * 100) /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.DLA_D06) >
+                  (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06) * 100) /
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.DLA_D06) >
                     processKPI
                     ? "bg-green"
                     : "bg-red"
@@ -6354,9 +6364,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.DLA_D06 && PLAN_TYLE_GD_C2C.DLA_D06 ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06 && PLAN_TYLE_GD_C2C_PSC_100000.DLA_D06 ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.DLA_D06 * 100) / PLAN_TYLE_GD_C2C.DLA_D06
+                    (EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06 * 100) / PLAN_TYLE_GD_C2C_PSC_100000.DLA_D06
                   ) + "%"
                 ) : (
                   ""
@@ -6365,27 +6375,27 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               <td
                 className={
                   convertToFloat2Fixed(
-                    (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
+                    (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06)) /
                     19 /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) * 100
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.TTKDVT) * 100
                   ) >
                     processKPI
                     ? "bg-green"
@@ -6396,27 +6406,27 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
                   <LoadingComponent />
                 ) : (
                   convertToFloat2Fixed(
-                    (convertToNumber(EXEC_TYLE_GD_C2C.DLA_T01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T06) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T07) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T08) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T09) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T10) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T11) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T12) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_T13) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D01) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D02) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D03) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D04) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D05) +
-                      convertToNumber(EXEC_TYLE_GD_C2C.DLA_D06)) /
+                    (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T06) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T07) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T08) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T09) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T10) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T11) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T12) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_T13) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D01) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D02) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D03) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D04) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D05) +
+                      convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.DLA_D06)) /
                     19 /
-                    convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDVT) * 100
+                    convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.TTKDVT) * 100
                   )
                   +
                   "%"
@@ -6424,8 +6434,8 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               </td>
               <td
               // className={
-              //   (convertToNumber(EXEC_TYLE_GD_C2C.TTKDGPS) * 100) /
-              //     convertToNumberMauso(PLAN_TYLE_GD_C2C.TTKDGPS) >
+              //   (convertToNumber(EXEC_TYLE_GD_C2C_PSC_100000.TTKDGPS) * 100) /
+              //     convertToNumberMauso(PLAN_TYLE_GD_C2C_PSC_100000.TTKDGPS) >
               //   processKPI
               //     ? "bg-green"
               //     : "bg-red"
@@ -6433,9 +6443,9 @@ const TableDashboardT032026 = forwardRef((props, ref) => {
               >
                 {loadingExec || loadingPlan ? (
                   <LoadingComponent />
-                ) : EXEC_TYLE_GD_C2C.TTKDGPS && PLAN_TYLE_GD_C2C.TTKDGPS ? (
+                ) : EXEC_TYLE_GD_C2C_PSC_100000.TTKDGPS && PLAN_TYLE_GD_C2C_PSC_100000.TTKDGPS ? (
                   convertToFloat2Fixed(
-                    (EXEC_TYLE_GD_C2C.TTKDGPS * 100) / PLAN_TYLE_GD_C2C.TTKDGPS
+                    (EXEC_TYLE_GD_C2C_PSC_100000.TTKDGPS * 100) / PLAN_TYLE_GD_C2C_PSC_100000.TTKDGPS
                   ) + "%"
                 ) : (
                   ""
