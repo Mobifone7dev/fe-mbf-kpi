@@ -26,6 +26,8 @@ import { saveAs } from "file-saver";
 import ImportPlanKpiExcel from "../../components/excel/ImportPlanKpiExcel";
 import { setLazyProp } from "next/dist/server/api-utils";
 import Link from "next/link";
+import { excludeEmpCodes } from "../../lib/rawData";
+
 
 var x = new Date();
 x.setDate(1);
@@ -99,15 +101,21 @@ export default function Page(props) {
         router.push("/login");
       }
     });;
-     if (result?.status == 403) {
-        localStorage.removeItem("accessToken");
-        router.push("/login");
-      }
+    if (result?.status == 403) {
+      localStorage.removeItem("accessToken");
+      router.push("/login");
+    }
 
     const tempRes = await result.json();
     if (tempRes) {
-      setEmployeeList(tempRes.result);
+      const filteredList = tempRes?.result?.filter(
+        (item) => !excludeEmpCodes.includes(item.EMP_CODE)
+      );
+      if (filteredList) {
+        setEmployeeList(filteredList);
+      }
     }
+
     setLoading(false);
   };
   useEffect(() => {
@@ -186,7 +194,7 @@ export default function Page(props) {
         calcProcessFromLastDate(lastDateMap["SL_PTM_FWA"], sumDateInMonth)
       );
 
-       SET_SL_PTM_FWAP_PROCESS(
+      SET_SL_PTM_FWAP_PROCESS(
         calcProcessFromLastDate(lastDateMap["SL_PTM_FWAP"], sumDateInMonth)
       );
     }
@@ -667,7 +675,7 @@ export default function Page(props) {
               <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
-               <th style={{ fontStyle: "italic" }}>KH</th>
+              <th style={{ fontStyle: "italic" }}>KH</th>
               <th style={{ fontStyle: "italic" }}>TH</th>
               <th style={{ fontStyle: "italic" }}>%TH</th>
             </tr>
@@ -1042,12 +1050,12 @@ export default function Page(props) {
                   <td
                     className={
                       convertToFloat2FixedNumber(
-                      (convertToNumber(object.SL_PTM_FWA_EXEC) /
-                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
-                      100
-                    ) >0
-                            ? "bg-green"
-                            : "bg-red"
+                        (convertToNumber(object.SL_PTM_FWA_EXEC) /
+                          convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                        100
+                      ) > 0
+                        ? "bg-green"
+                        : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -1077,13 +1085,13 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                     convertToFloat2FixedNumber(
-                      (convertToNumber(object.SL_PTM_FWAP_EXEC) /
-                        convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
-                      100
-                    ) > 0
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToFloat2FixedNumber(
+                        (convertToNumber(object.SL_PTM_FWAP_EXEC) /
+                          convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
+                        100
+                      ) > 0
+                        ? "bg-green"
+                        : "bg-red"
                     }
                     style={{
                       textAlign: "center",

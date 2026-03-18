@@ -1993,4 +1993,6 @@ export const excludeEmpCodes = [
   "7DLAC12A1050",
   "7DLAC12A1052",
   "C7_6_TRANGNT",
+  "7DLAKBOMBP0006",
+  "7DLAKNAMBP0011"
 ];

@@ -594,6 +594,11 @@ export default function Page(props) {
                 className="th-title position-relative"
               >{`PHONE`}</th>
               <th
+                style={{ width: "100px" }}
+                rowSpan={2}
+                className="th-title position-relative"
+              >{`TỔNG TB`}</th>
+              <th
                 colSpan={3}
                 className="th-title bg_green-light position-relative"
               >{`TBTT PTM`}</th>
@@ -727,6 +732,12 @@ export default function Page(props) {
                     className="fix-col-4"
                   >
                     {object.PHONE ? `${object.PHONE}` : ""}
+                  </td>
+                  <td style={{ textAlign: "center", fontWeight: 600 }}>
+                    {convertToNumber(object.SL_PTM_TBTT_EXEC) +
+                      convertToNumber(object.TB_PTM_SAYMEE_EXEC) +
+                      convertToNumber(object.SL_TBTS_PTM_THOAI_EXEC) +
+                      convertToNumber(object.SL_TB_PTM_M2M_EXEC)}
                   </td>
 
                   <td style={{ textAlign: "center" }}>
@@ -964,12 +975,12 @@ export default function Page(props) {
                   <td
                     className={
                       convertToFloat2FixedNumber(
-                      (convertToNumber(object.SL_PTM_FWA_EXEC) /
-                        convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
-                      100
-                    ) >0
-                            ? "bg-green"
-                            : "bg-red"
+                        (convertToNumber(object.SL_PTM_FWA_EXEC) /
+                          convertToNumberMauso(object.SL_PTM_FWA_PLAN)) *
+                        100
+                      ) > 0
+                        ? "bg-green"
+                        : "bg-red"
                     }
                     style={{
                       textAlign: "center",
@@ -999,13 +1010,13 @@ export default function Page(props) {
                   </td>
                   <td
                     className={
-                     convertToFloat2FixedNumber(
-                      (convertToNumber(object.SL_PTM_FWAP_EXEC) /
-                        convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
-                      100
-                    ) > 0
-                            ? "bg-green"
-                            : "bg-red"
+                      convertToFloat2FixedNumber(
+                        (convertToNumber(object.SL_PTM_FWAP_EXEC) /
+                          convertToNumberMauso(object.SL_PTM_FWAP_PLAN)) *
+                        100
+                      ) > 0
+                        ? "bg-green"
+                        : "bg-red"
                     }
                     style={{
                       textAlign: "center",
